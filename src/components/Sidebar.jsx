@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 
 export const calculatorsList = [
+  { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText },
   { id: 'emi', name: 'EMI Calculator', desc: 'Home, Car & Personal Loan EMIs', icon: Percent },
   { id: 'eligibility', name: 'Loan Eligibility', desc: 'FOIR-based eligible loan amount', icon: UserCheck },
   { id: 'ppf', name: 'PPF Calculator', desc: 'Public Provident Fund earnings', icon: Shield },
@@ -15,7 +16,6 @@ export const calculatorsList = [
   { id: 'rd', name: 'RD Calculator', desc: 'Recurring Deposit maturity value', icon: CalendarClock },
   { id: 'nps', name: 'NPS Calculator', desc: 'National Pension Scheme maturity & pension', icon: HeartHandshake },
   { id: 'retirement', name: 'Retirement Planner', desc: 'Target corpus & inflation savings', icon: Sunset },
-  { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText },
   { id: 'mutualfund', name: 'Mutual Fund Calculator', desc: 'SIP & Lumpsum wealth estimator', icon: Coins },
   { id: 'compound', name: 'Compound Interest', desc: 'Variable compounding calculator', icon: Sparkles }
 ];
