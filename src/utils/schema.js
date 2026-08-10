@@ -63,6 +63,26 @@ const schemas = {
     name: "Compound Interest Calculator",
     description: "Calculate compound interest for various compounding frequencies (daily, monthly, quarterly, half-yearly, or annually) with growth visualization.",
     category: "SavingsCalculator",
+  },
+  home: {
+    name: "Indian Financial Calculators Dashboard",
+    description: "Calculate Home/Car Loan EMI, compare Income Tax regimes, plan Retirement corpus, calculate SIP growth, EPF savings, and check PPF interest rates with our free tools.",
+    category: "FinancialSuite",
+  },
+  about: {
+    name: "About Us | FinanceCalc India",
+    description: "Learn more about FinanceCalc India. Our mission is to provide clean, interactive, math-driven personal finance calculators with 100% data privacy.",
+    category: "AboutPage",
+  },
+  privacy: {
+    name: "Privacy Policy | FinanceCalc India",
+    description: "Read our privacy policy. We commit to a zero-data-collection policy for all our financial calculator tools. Your data remains on your local browser.",
+    category: "PrivacyPage",
+  },
+  contact: {
+    name: "Contact Us | FinanceCalc India",
+    description: "Have questions, feedback, or suggestion about our calculators? Contact the FinanceCalc India support team directly.",
+    category: "ContactPage",
   }
 };
 

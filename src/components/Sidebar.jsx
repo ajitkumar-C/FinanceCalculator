@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
-  Search, X, Menu, Calculator
+  Search, X, Menu, Calculator, Home, Info, Mail
 } from 'lucide-react';
 
 export const calculatorsList = [
@@ -78,33 +78,106 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
         </div>
 
         {/* Calculators List */}
-        <nav className="sidebar-menu">
-          <span className="menu-group-title">CALCULATORS</span>
-          <ul className="menu-list">
-            {filteredCalculators.map((calc) => {
-              const IconComponent = calc.icon;
-              const isActive = activeCalculator === calc.id;
-              return (
-                <li key={calc.id} className="menu-item-wrapper">
-                  <button 
-                    onClick={() => selectCalculator(calc.id)}
-                    className={`menu-item-btn ${isActive ? 'active' : ''}`}
-                  >
-                    <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
-                      <IconComponent size={18} />
-                    </div>
-                    <div className="menu-text-container">
-                      <span className="menu-item-name">{calc.name}</span>
-                      <span className="menu-item-desc">{calc.desc}</span>
-                    </div>
-                  </button>
-                </li>
-              );
-            })}
-            {filteredCalculators.length === 0 && (
-              <li className="no-results-msg">No calculators found</li>
-            )}
-          </ul>
+        <nav className="sidebar-menu" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          
+          {/* Dashboard / Home */}
+          <div>
+            <ul className="menu-list">
+              <li className="menu-item-wrapper">
+                <button 
+                  onClick={() => selectCalculator('home')}
+                  className={`menu-item-btn ${activeCalculator === 'home' ? 'active' : ''}`}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'home' ? 'active' : ''}`}>
+                    <Home size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">Home / Dashboard</span>
+                    <span className="menu-item-desc">All financial calculators grid</span>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Calculators Group */}
+          <div>
+            <span className="menu-group-title">CALCULATORS</span>
+            <ul className="menu-list">
+              {filteredCalculators.map((calc) => {
+                const IconComponent = calc.icon;
+                const isActive = activeCalculator === calc.id;
+                return (
+                  <li key={calc.id} className="menu-item-wrapper">
+                    <button 
+                      onClick={() => selectCalculator(calc.id)}
+                      className={`menu-item-btn ${isActive ? 'active' : ''}`}
+                    >
+                      <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
+                        <IconComponent size={18} />
+                      </div>
+                      <div className="menu-text-container">
+                        <span className="menu-item-name">{calc.name}</span>
+                        <span className="menu-item-desc">{calc.desc}</span>
+                      </div>
+                    </button>
+                  </li>
+                );
+              })}
+              {filteredCalculators.length === 0 && (
+                <li className="no-results-msg">No calculators found</li>
+              )}
+            </ul>
+          </div>
+
+          {/* Support / Info Pages Group */}
+          <div>
+            <span className="menu-group-title">INFORMATION</span>
+            <ul className="menu-list">
+              <li className="menu-item-wrapper">
+                <button 
+                  onClick={() => selectCalculator('about')}
+                  className={`menu-item-btn ${activeCalculator === 'about' ? 'active' : ''}`}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'about' ? 'active' : ''}`}>
+                    <Info size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">About Us</span>
+                    <span className="menu-item-desc">Who we are & our mission</span>
+                  </div>
+                </button>
+              </li>
+              <li className="menu-item-wrapper">
+                <button 
+                  onClick={() => selectCalculator('privacy')}
+                  className={`menu-item-btn ${activeCalculator === 'privacy' ? 'active' : ''}`}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'privacy' ? 'active' : ''}`}>
+                    <Lock size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">Privacy Policy</span>
+                    <span className="menu-item-desc">Data protection disclosure</span>
+                  </div>
+                </button>
+              </li>
+              <li className="menu-item-wrapper">
+                <button 
+                  onClick={() => selectCalculator('contact')}
+                  className={`menu-item-btn ${activeCalculator === 'contact' ? 'active' : ''}`}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'contact' ? 'active' : ''}`}>
+                    <Mail size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">Contact Us</span>
+                    <span className="menu-item-desc">Get in touch with support</span>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
         </nav>
 
         <div className="sidebar-footer">

@@ -42,12 +42,27 @@ import TaxCalculator from './components/calculators/TaxCalculator';
 import MutualFundCalculator from './components/calculators/MutualFundCalculator';
 import CompoundCalculator from './components/calculators/CompoundCalculator';
 
+// Static Info Pages
+import Dashboard from './components/pages/Dashboard';
+import AboutUs from './components/pages/AboutUs';
+import PrivacyPolicy from './components/pages/PrivacyPolicy';
+import ContactUs from './components/pages/ContactUs';
+
+const validRoutes = [...calculatorsList.map(c => c.id), 'home', 'about', 'privacy', 'contact'];
+
+const staticPages = {
+  home: { name: 'Home / Dashboard' },
+  about: { name: 'About Us' },
+  privacy: { name: 'Privacy Policy' },
+  contact: { name: 'Contact Us' }
+};
+
 export default function App() {
-  // Read initial calculator from URL query parameter, fallback to 'emi'
+  // Read initial calculator from URL query parameter, fallback to 'home' (Dashboard)
   const [activeCalc, setActiveCalc] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const urlCalc = params.get('calc');
-    return (urlCalc && calculatorsList.some(c => c.id === urlCalc)) ? urlCalc : 'emi';
+    return (urlCalc && validRoutes.includes(urlCalc)) ? urlCalc : 'home';
   });
   const [resultText, setResultText] = useState('');
 
@@ -68,10 +83,10 @@ export default function App() {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const urlCalc = params.get('calc');
-      if (urlCalc && calculatorsList.some(c => c.id === urlCalc)) {
+      if (urlCalc && validRoutes.includes(urlCalc)) {
         setActiveCalc(urlCalc);
       } else {
-        setActiveCalc('emi');
+        setActiveCalc('home');
       }
     };
 
@@ -79,10 +94,18 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const activeDetails = calculatorsList.find(calc => calc.id === activeCalc) || calculatorsList[0];
+  const activeDetails = calculatorsList.find(calc => calc.id === activeCalc) || staticPages[activeCalc] || staticPages['home'];
 
   const renderActiveCalculator = () => {
     switch (activeCalc) {
+      case 'home':
+        return <Dashboard setActiveCalculator={setActiveCalc} />;
+      case 'about':
+        return <AboutUs />;
+      case 'privacy':
+        return <PrivacyPolicy />;
+      case 'contact':
+        return <ContactUs />;
       case 'emi':
         return <EmiCalculator setResultText={setResultText} />;
       case 'eligibility':
@@ -108,7 +131,7 @@ export default function App() {
       case 'compound':
         return <CompoundCalculator setResultText={setResultText} />;
       default:
-        return <EmiCalculator setResultText={setResultText} />;
+        return <Dashboard setActiveCalculator={setActiveCalc} />;
     }
   };
 
