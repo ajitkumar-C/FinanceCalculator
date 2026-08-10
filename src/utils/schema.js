@@ -83,6 +83,11 @@ const schemas = {
     name: "Contact Us | RupeeBuddy.in",
     description: "Have questions, feedback, or suggestion about our calculators? Contact the RupeeBuddy.in support team directly.",
     category: "ContactPage",
+  },
+  blogs: {
+    name: "Financial Guides & Investment Strategies",
+    description: "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.",
+    category: "FinanceGuides",
   }
 };
 

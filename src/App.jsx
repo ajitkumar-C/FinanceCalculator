@@ -47,14 +47,31 @@ import Dashboard from './components/pages/Dashboard';
 import AboutUs from './components/pages/AboutUs';
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import ContactUs from './components/pages/ContactUs';
+import Blogs from './components/pages/Blogs';
 
-const validRoutes = [...calculatorsList.map(c => c.id), 'home', 'about', 'privacy', 'contact'];
+const validRoutes = [...calculatorsList.map(c => c.id), 'home', 'about', 'privacy', 'contact', 'blogs'];
 
 const staticPages = {
   home: { name: 'Home / Dashboard' },
   about: { name: 'About Us' },
   privacy: { name: 'Privacy Policy' },
-  contact: { name: 'Contact Us' }
+  contact: { name: 'Contact Us' },
+  blogs: { name: 'Finance Guides' }
+};
+
+const relatedMap = {
+  tax: ['sip', 'ppf', 'retirement'],
+  emi: ['eligibility', 'compound', 'tax'],
+  eligibility: ['emi', 'compound', 'fd'],
+  ppf: ['pf', 'nps', 'sip'],
+  pf: ['ppf', 'nps', 'retirement'],
+  sip: ['mutualfund', 'compound', 'ppf'],
+  fd: ['rd', 'ppf', 'compound'],
+  rd: ['fd', 'ppf', 'compound'],
+  nps: ['retirement', 'pf', 'sip'],
+  retirement: ['nps', 'pf', 'ppf'],
+  mutualfund: ['sip', 'compound', 'ppf'],
+  compound: ['sip', 'fd', 'rd']
 };
 
 export default function App() {
@@ -130,6 +147,8 @@ export default function App() {
         return <MutualFundCalculator setResultText={setResultText} />;
       case 'compound':
         return <CompoundCalculator setResultText={setResultText} />;
+      case 'blogs':
+        return <Blogs setActiveCalculator={setActiveCalc} />;
       default:
         return <Dashboard setActiveCalculator={setActiveCalc} />;
     }
@@ -152,7 +171,38 @@ export default function App() {
         {/* Dynamic Calculator Component */}
         {renderActiveCalculator()}
 
-
+        {/* Dynamic Related Tools Panel (Only visible on Calculator pages) */}
+        {calculatorsList.some(c => c.id === activeCalc) && relatedMap[activeCalc] && (
+          <div className="related-tools-container no-print">
+            <h3 className="related-tools-title">Explore Related Tools</h3>
+            <div className="related-tools-grid">
+              {calculatorsList
+                .filter(c => relatedMap[activeCalc].includes(c.id))
+                .map(calc => {
+                  const Icon = calc.icon;
+                  return (
+                    <div 
+                      key={calc.id} 
+                      className="related-tool-card"
+                      onClick={() => {
+                        setActiveCalc(calc.id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                    >
+                      <div className="related-tool-icon">
+                        <Icon size={18} />
+                      </div>
+                      <div className="related-tool-info">
+                        <span className="related-tool-name">{calc.name}</span>
+                        <span className="related-tool-desc">{calc.desc}</span>
+                      </div>
+                      <span className="related-tool-arrow">→</span>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
         
         {/* Footer */}
         <footer className="app-footer-credits no-print" style={{ 

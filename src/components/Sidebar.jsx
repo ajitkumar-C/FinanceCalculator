@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
-  Search, X, Menu, Calculator, Home, Info, Mail
+  Search, X, Menu, Calculator, Home, Info, Mail, BookOpen
 } from 'lucide-react';
 
 export const calculatorsList = [
@@ -127,6 +127,27 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
               {filteredCalculators.length === 0 && (
                 <li className="no-results-msg">No calculators found</li>
               )}
+            </ul>
+          </div>
+
+          {/* Guides & Articles Group */}
+          <div>
+            <span className="menu-group-title">GUIDES & ARTICLES</span>
+            <ul className="menu-list">
+              <li className="menu-item-wrapper">
+                <button 
+                  onClick={() => selectCalculator('blogs')}
+                  className={`menu-item-btn ${activeCalculator === 'blogs' ? 'active' : ''}`}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'blogs' ? 'active' : ''}`}>
+                    <BookOpen size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">Finance Guides</span>
+                    <span className="menu-item-desc">Wealth & tax saving articles</span>
+                  </div>
+                </button>
+              </li>
             </ul>
           </div>
 
