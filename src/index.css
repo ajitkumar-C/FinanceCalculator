@@ -1568,6 +1568,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   transition: var(--transition-smooth);
+  white-space: nowrap;
 }
 
 .nav-link-btn:hover {

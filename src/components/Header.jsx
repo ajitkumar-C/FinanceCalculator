@@ -1,5 +1,5 @@
 import React from 'react';
-import { Printer, Share2, HelpCircle, Menu, X, Calculator } from 'lucide-react';
+import { Printer, Share2, Menu, X, Calculator } from 'lucide-react';
 import { exportToPDF, shareCalculation } from '../utils/pdfExport';
 
 export default function Header({ 
@@ -45,7 +45,9 @@ export default function Header({
       {/* Main Header Content (Restructured for Top Navigation) */}
       <div className="header-main-content">
         <div className="header-left">
-          <h1 className="header-active-title">{activeCalculatorName}</h1>
+          {activeCalculatorId !== 'home' && (
+            <h1 className="header-active-title">{activeCalculatorName}</h1>
+          )}
         </div>
 
         {/* Top Navigation Menu (Hidden on mobile) */}
@@ -82,35 +84,28 @@ export default function Header({
           </button>
         </nav>
 
-        {/* Action Buttons */}
-        <div className="header-right no-print">
-          <button 
-            className="header-action-btn share-btn" 
-            onClick={handleShare}
-            title="Share calculation details"
-          >
-            <Share2 size={18} />
-            <span>Share</span>
-          </button>
+        {/* Action Buttons (Hidden on Home page, Help button removed) */}
+        {activeCalculatorId !== 'home' && (
+          <div className="header-right no-print">
+            <button 
+              className="header-action-btn share-btn" 
+              onClick={handleShare}
+              title="Share details"
+            >
+              <Share2 size={18} />
+              <span>Share</span>
+            </button>
 
-          <button 
-            className="header-action-btn print-btn" 
-            onClick={handlePrint}
-            title="Download PDF report"
-          >
-            <Printer size={18} />
-            <span>Download Report</span>
-          </button>
-
-          <a 
-            href="#faq-section" 
-            className="header-action-btn faq-btn-nav"
-            title="Help & FAQs"
-          >
-            <HelpCircle size={18} />
-            <span>Help</span>
-          </a>
-        </div>
+            <button 
+              className="header-action-btn print-btn" 
+              onClick={handlePrint}
+              title="Download PDF report"
+            >
+              <Printer size={18} />
+              <span>Download Report</span>
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
