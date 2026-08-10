@@ -141,7 +141,7 @@ export default function Blogs({ setActiveCalculator }) {
           <p>
             The mathematical formula for future value of a SIP is:
           </p>
-          \[M = P \times \frac{(1 + i)^n - 1}{i} \times (1 + i)\]
+          {"\\[M = P \\times \\frac{(1 + i)^n - 1}{i} \\times (1 + i)\\]"}
           <p>
             Where:
             <ul>
