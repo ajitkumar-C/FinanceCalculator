@@ -1113,3 +1113,100 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important; /* Hide details on printed sheet */
   }
 }
+
+/* --- BRAND NEW PREMIUM DESIGN REFINEMENTS --- */
+
+/* Thin scrollbar for Sidebar Navigation */
+.app-sidebar .sidebar-menu::-webkit-scrollbar {
+  width: 5px;
+}
+.app-sidebar .sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-sidebar .sidebar-menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-full);
+}
+.app-sidebar .sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Premium Dashboard Calculator Cards */
+.calculators-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 24px !important;
+}
+
+.calc-card {
+  background-color: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -2px rgba(15, 23, 42, 0.03) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-top: 3px solid transparent !important;
+  transform: none !important;
+}
+
+.calc-card:hover {
+  border-color: var(--border-color) !important;
+  border-top-color: var(--brand-navy) !important; /* Top indicator lights up */
+  transform: translateY(-4px) scale(1.01) !important;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.06), 0 10px 10px -5px rgba(15, 23, 42, 0.04) !important;
+}
+
+.calc-card .card-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background-color: var(--brand-navy-light);
+  color: var(--brand-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.calc-card:hover .card-icon-wrapper {
+  background-color: var(--brand-navy);
+  color: #ffffff;
+}
+
+.calc-card .launch-link {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--brand-navy);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.25s ease;
+}
+
+.calc-card:hover .launch-link {
+  color: var(--finance-green-dark);
+  padding-left: 2px;
+}
+
+/* Sidebar padding and item separations */
+.app-sidebar .sidebar-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* Hover scales for top buttons */
+.header-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.print-btn:hover {
+  background-color: var(--primary-hover) !important;
+}
