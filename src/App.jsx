@@ -82,6 +82,7 @@ export default function App() {
     return (urlCalc && validRoutes.includes(urlCalc)) ? urlCalc : 'home';
   });
   const [resultText, setResultText] = useState('');
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   // Dynamically update SEO tags, schema, and URL query params when active calculator changes
   useEffect(() => {
@@ -157,7 +158,12 @@ export default function App() {
   return (
     <div className="app-container-layout">
       {/* Sidebar Navigation */}
-      <Sidebar activeCalculator={activeCalc} setActiveCalculator={setActiveCalc} />
+      <Sidebar 
+        activeCalculator={activeCalc} 
+        setActiveCalculator={setActiveCalc} 
+        isMobileOpen={isMobileOpen}
+        setIsMobileOpen={setIsMobileOpen}
+      />
 
       {/* Main Content Layout */}
       <main className="main-content-layout">
@@ -166,6 +172,10 @@ export default function App() {
           activeCalculatorName={activeDetails.name} 
           activeCalculatorId={activeCalc} 
           calculatorResultText={resultText} 
+          activeCalculator={activeCalc}
+          setActiveCalculator={setActiveCalc}
+          isMobileOpen={isMobileOpen}
+          setIsMobileOpen={setIsMobileOpen}
         />
 
         {/* Dynamic Calculator Component */}

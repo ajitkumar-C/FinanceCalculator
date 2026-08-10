@@ -20,9 +20,8 @@ export const calculatorsList = [
   { id: 'compound', name: 'Compound Interest', desc: 'Variable compounding calculator', icon: Sparkles }
 ];
 
-export default function Sidebar({ activeCalculator, setActiveCalculator }) {
+export default function Sidebar({ activeCalculator, setActiveCalculator, isMobileOpen, setIsMobileOpen }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const filteredCalculators = calculatorsList.filter(calc => 
     calc.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -37,15 +36,6 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
 
   return (
     <>
-      {/* Mobile Toggle Button */}
-      <button 
-        className="mobile-nav-toggle no-print" 
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        aria-label="Toggle Menu"
-      >
-        {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
       {/* Sidebar Container */}
       <aside className={`app-sidebar no-print ${isMobileOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-brand">
@@ -81,7 +71,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
         <nav className="sidebar-menu" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           
           {/* Dashboard / Home */}
-          <div>
+          <div className="mobile-only-menu-group">
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <button 
@@ -131,7 +121,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
           </div>
 
           {/* Guides & Articles Group */}
-          <div>
+          <div className="mobile-only-menu-group">
             <span className="menu-group-title">GUIDES & ARTICLES</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">
@@ -152,7 +142,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
           </div>
 
           {/* Support / Info Pages Group */}
-          <div>
+          <div className="mobile-only-menu-group">
             <span className="menu-group-title">INFORMATION</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">

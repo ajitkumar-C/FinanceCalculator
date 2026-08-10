@@ -1545,3 +1545,193 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--primary-hover);
   transform: translateY(-1px);
 }
+
+/* --- HEADER TOP NAVIGATION & RESPONSIVE MOBILE BRANDING --- */
+
+/* General Desktop Top Nav Styles */
+.header-top-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-link-btn {
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.nav-link-btn:hover {
+  color: var(--brand-navy);
+  background-color: var(--brand-navy-light);
+}
+
+.nav-link-btn.active {
+  color: var(--brand-navy);
+  background-color: var(--brand-navy-light);
+  font-weight: 700;
+}
+
+.mobile-header-brand {
+  display: none; /* Hidden on desktop */
+}
+
+.header-main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Hide mobile menu elements on desktop sidebar */
+.mobile-only-menu-group {
+  display: none !important;
+}
+
+/* Responsive Mobile Rules (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Restructure Header to fit mobile logo and sections */
+  .app-header {
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    background-color: var(--bg-sidebar) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+
+  /* Large Mobile Logo Top Row */
+  .mobile-header-brand {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 14px 20px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    background-color: #ffffff !important;
+  }
+
+  .mobile-brand-logo-section {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .mobile-brand-logo-section .brand-logo-icon {
+    background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent-blue) 100%) !important;
+    color: #ffffff !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: var(--radius-md) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.15) !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+  }
+
+  .mobile-brand-logo-section .brand-logo-text {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: left !important;
+  }
+
+  .mobile-brand-logo-section .brand-logo-name {
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    color: var(--brand-navy) !important;
+    line-height: 1.2 !important;
+  }
+
+  .mobile-brand-logo-section .brand-logo-sub {
+    font-size: 9px !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .mobile-hamburger-btn {
+    background: none !important;
+    border: none !important;
+    color: var(--primary-color) !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px !important;
+    border-radius: var(--radius-sm) !important;
+    transition: var(--transition-smooth) !important;
+  }
+
+  .mobile-hamburger-btn:hover {
+    background-color: var(--brand-navy-light) !important;
+  }
+
+  /* Subtitle Row containing active title and action buttons below Logo */
+  .header-main-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 12px 20px !important;
+    gap: 12px !important;
+    width: 100% !important;
+    background-color: var(--bg-main) !important;
+  }
+
+  .header-main-content .header-left {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  .header-main-content .header-active-title {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: var(--primary-color) !important;
+    margin: 0 !important;
+  }
+
+  .header-main-content .header-right {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin: 0 !important;
+  }
+
+  .header-main-content .header-right .header-action-btn {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Hide the top navbar on mobile header */
+  .header-top-nav {
+    display: none !important;
+  }
+
+  /* Show navigation links inside the drawer on mobile */
+  .mobile-only-menu-group {
+    display: block !important;
+    margin-top: 10px !important;
+    border-top: 1px solid var(--border-color) !important;
+    padding-top: 16px !important;
+  }
+
+  /* Reposition mobile drawer height since toggle is inside header */
+  .app-sidebar.mobile-open {
+    top: 0 !important;
+    height: 100% !important;
+  }
+}
