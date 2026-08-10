@@ -151,7 +151,7 @@ export default function ContactUs() {
               color: 'var(--brand-navy)',
               fontSize: '14px'
             }}>
-              📧 support@financecalculator.pages.dev
+              📧 support@RupeeBuddyulator.pages.dev
             </div>
           </div>
 

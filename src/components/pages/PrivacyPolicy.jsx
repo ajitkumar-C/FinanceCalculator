@@ -3,14 +3,14 @@ import React from 'react';
 export default function PrivacyPolicy() {
   return (
     <div className="seo-rich-content-section" style={{ border: 'none', boxShadow: 'none', padding: 0 }}>
-      <h2>Privacy Policy - FinanceCalc India</h2>
+      <h2>Privacy Policy - RupeeBuddy.in</h2>
       <p>
-        At FinanceCalc India (accessible from our URL), one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information we collect and how we utilize it.
+        At RupeeBuddy.in (accessible from our URL), one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information we collect and how we utilize it.
       </p>
 
       <h3>1. Zero Data Collection Policy (Calculators)</h3>
       <p>
-        FinanceCalc India is designed as a client-side web application. All calculations, numbers, sliders, and values you input into the calculators (such as salary, monthly investment, loan requirements, and pension expectations) are processed <strong>strictly within your local web browser</strong> using JavaScript. 
+        RupeeBuddy.in is designed as a client-side web application. All calculations, numbers, sliders, and values you input into the calculators (such as salary, monthly investment, loan requirements, and pension expectations) are processed <strong>strictly within your local web browser</strong> using JavaScript. 
       </p>
       <p>
         We do not transmit, upload, save, or store any of this financial data to our web servers, nor do we share it with third parties. Your financial numbers are completely private to you.
@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
 
       <h3>2. Log Files & Analytics</h3>
       <p>
-        Like most other websites, FinanceCalc India uses standard web server log files. The information inside the log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamp, referring/exit pages, and number of clicks. This data is not linked to any personally identifiable information. We use it solely to analyze site traffic patterns, administer the website, and improve overall user experience.
+        Like most other websites, RupeeBuddy.in uses standard web server log files. The information inside the log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamp, referring/exit pages, and number of clicks. This data is not linked to any personally identifiable information. We use it solely to analyze site traffic patterns, administer the website, and improve overall user experience.
       </p>
 
       <h3>3. Cookies and Web Beacons</h3>
@@ -33,10 +33,10 @@ export default function PrivacyPolicy() {
 
       <h3>5. Third-Party Advertising Partners</h3>
       <p>
-        Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on FinanceCalc India, which are sent directly to users' browsers. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see.
+        Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on RupeeBuddy.in, which are sent directly to users' browsers. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see.
       </p>
       <p>
-        Note that FinanceCalc India has no access to or control over these cookies that are used by third-party advertisers.
+        Note that RupeeBuddy.in has no access to or control over these cookies that are used by third-party advertisers.
       </p>
 
       <h3>6. Consent</h3>

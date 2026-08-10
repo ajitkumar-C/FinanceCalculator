@@ -17,7 +17,7 @@ export default function Header({ activeCalculatorName, activeCalculatorId, calcu
         <div className="logo-section">
           <span className="logo-emoji">📈</span>
           <div className="logo-text">
-            <span className="logo-brand">FinanceCalc</span>
+            <span className="logo-brand">RupeeBuddy</span>
             <span className="logo-country">INDIA 🇮🇳</span>
           </div>
         </div>

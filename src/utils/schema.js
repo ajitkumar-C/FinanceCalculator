@@ -70,18 +70,18 @@ const schemas = {
     category: "FinancialSuite",
   },
   about: {
-    name: "About Us | FinanceCalc India",
-    description: "Learn more about FinanceCalc India. Our mission is to provide clean, interactive, math-driven personal finance calculators with 100% data privacy.",
+    name: "About Us | RupeeBuddy.in",
+    description: "Learn more about RupeeBuddy.in. Our mission is to provide clean, interactive, math-driven personal finance calculators with 100% data privacy.",
     category: "AboutPage",
   },
   privacy: {
-    name: "Privacy Policy | FinanceCalc India",
+    name: "Privacy Policy | RupeeBuddy.in",
     description: "Read our privacy policy. We commit to a zero-data-collection policy for all our financial calculator tools. Your data remains on your local browser.",
     category: "PrivacyPage",
   },
   contact: {
-    name: "Contact Us | FinanceCalc India",
-    description: "Have questions, feedback, or suggestion about our calculators? Contact the FinanceCalc India support team directly.",
+    name: "Contact Us | RupeeBuddy.in",
+    description: "Have questions, feedback, or suggestion about our calculators? Contact the RupeeBuddy.in support team directly.",
     category: "ContactPage",
   }
 };
@@ -100,7 +100,7 @@ export function injectCalculatorSchema(calculatorId) {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": `${details.name} - FinanceCalc India`,
+    "name": `${details.name} - RupeeBuddy.in`,
     "description": details.description,
     "url": window.location.href,
     "applicationCategory": "BusinessApplication",

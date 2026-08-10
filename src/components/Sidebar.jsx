@@ -53,7 +53,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator }) {
             <Calculator size={28} className="brand-icon" />
           </div>
           <div>
-            <span className="brand-name">FinanceCalc</span>
+            <span className="brand-name">RupeeBuddy</span>
             <span className="brand-subtitle">Indian Financial Suite</span>
           </div>
         </div>

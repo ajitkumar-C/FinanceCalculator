@@ -163,7 +163,7 @@ export default function App() {
           fontSize: '12px',
           color: 'var(--text-muted)'
         }}>
-          <p>© 2026 FinanceCalc India. All calculations are indicative and based on prevailing tax laws and market standards. Please consult a certified financial planner for commercial decisions.</p>
+          <p>© 2026 RupeeBuddy.in. All calculations are indicative and based on prevailing tax laws and market standards. Please consult a certified financial planner for commercial decisions.</p>
         </footer>
       </main>
     </div>
