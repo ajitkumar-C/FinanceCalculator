@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://financecalculator.pages.dev/sitemap.xml
+Sitemap: https://rupeebuddy.in/sitemap.xml

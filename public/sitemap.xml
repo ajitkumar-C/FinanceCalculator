@@ -2,91 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Main Home Page (Dashboard Grid) -->
   <url>
-    <loc>https://financecalculator.pages.dev/</loc>
+    <loc>https://rupeebuddy.in/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=home</loc>
+    <loc>https://rupeebuddy.in/?calc=home</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Information & Compliance Pages (Critical for SEO & AdSense) -->
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=about</loc>
+    <loc>https://rupeebuddy.in/?calc=about</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=privacy</loc>
+    <loc>https://rupeebuddy.in/?calc=privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=contact</loc>
+    <loc>https://rupeebuddy.in/?calc=contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <!-- Individual Calculators (High Priority Indexing) -->
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=emi</loc>
+    <loc>https://rupeebuddy.in/?calc=emi</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=sip</loc>
+    <loc>https://rupeebuddy.in/?calc=sip</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=tax</loc>
+    <loc>https://rupeebuddy.in/?calc=tax</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=ppf</loc>
+    <loc>https://rupeebuddy.in/?calc=ppf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=pf</loc>
+    <loc>https://rupeebuddy.in/?calc=pf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=nps</loc>
+    <loc>https://rupeebuddy.in/?calc=nps</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=retirement</loc>
+    <loc>https://rupeebuddy.in/?calc=retirement</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=fd</loc>
+    <loc>https://rupeebuddy.in/?calc=fd</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=rd</loc>
+    <loc>https://rupeebuddy.in/?calc=rd</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=eligibility</loc>
+    <loc>https://rupeebuddy.in/?calc=eligibility</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=mutualfund</loc>
+    <loc>https://rupeebuddy.in/?calc=mutualfund</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://financecalculator.pages.dev/?calc=compound</loc>
+    <loc>https://rupeebuddy.in/?calc=compound</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
