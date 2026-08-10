@@ -89,8 +89,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar-brand {
-  height: var(--header-height);
-  padding: 0 24px;
+  height: 84px;
+  padding: 16px 24px 0 24px; /* Shifts logo and brand name down for breathing room */
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
