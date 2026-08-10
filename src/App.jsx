@@ -43,13 +43,41 @@ import MutualFundCalculator from './components/calculators/MutualFundCalculator'
 import CompoundCalculator from './components/calculators/CompoundCalculator';
 
 export default function App() {
-  const [activeCalc, setActiveCalc] = useState('emi');
+  // Read initial calculator from URL query parameter, fallback to 'emi'
+  const [activeCalc, setActiveCalc] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlCalc = params.get('calc');
+    return (urlCalc && calculatorsList.some(c => c.id === urlCalc)) ? urlCalc : 'emi';
+  });
   const [resultText, setResultText] = useState('');
 
-  // Dynamically update SEO tags and structured data Schema when active calculator changes
+  // Dynamically update SEO tags, schema, and URL query params when active calculator changes
   useEffect(() => {
     injectCalculatorSchema(activeCalc);
+    
+    // Update URL query parameters without page reload
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('calc') !== activeCalc) {
+      params.set('calc', activeCalc);
+      window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+    }
   }, [activeCalc]);
+
+  // Listen to browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const urlCalc = params.get('calc');
+      if (urlCalc && calculatorsList.some(c => c.id === urlCalc)) {
+        setActiveCalc(urlCalc);
+      } else {
+        setActiveCalc('emi');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const activeDetails = calculatorsList.find(calc => calc.id === activeCalc) || calculatorsList[0];
 
