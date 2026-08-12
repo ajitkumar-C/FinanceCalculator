@@ -127,10 +127,38 @@ export function injectCalculatorSchema(calculatorId) {
   if (calculatorId === 'home') {
     schemaData = {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "RupeeBuddy",
-      "alternateName": ["RupeeBuddy.in", "rupeebuddy"],
-      "url": "https://rupeebuddy.in/"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://rupeebuddy.in/#website",
+          "url": "https://rupeebuddy.in/",
+          "name": "RupeeBuddy",
+          "alternateName": ["RupeeBuddy.in", "rupeebuddy"],
+          "publisher": {
+            "@id": "https://rupeebuddy.in/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://rupeebuddy.in/#organization",
+          "name": "RupeeBuddy",
+          "url": "https://rupeebuddy.in/",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://rupeebuddy.in/#logo",
+            "url": "https://rupeebuddy.in/favicon.svg",
+            "caption": "RupeeBuddy Logo"
+          },
+          "image": {
+            "@id": "https://rupeebuddy.in/#logo"
+          },
+          "description": "RupeeBuddy.in is a free online personal finance resources portal providing expert calculators for Indian income tax slabs, mutual fund SIP returns, home loan EMIs, and retirement savings.",
+          "sameAs": [
+            "https://www.facebook.com/RupeeBuddy",
+            "https://twitter.com/RupeeBuddy"
+          ]
+        }
+      ]
     };
   } else {
     // Map correct Schema Type based on category

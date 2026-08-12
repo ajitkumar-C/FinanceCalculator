@@ -28,26 +28,28 @@ import Sidebar, { calculatorsList } from './components/Sidebar';
 import Header from './components/Header';
 import { injectCalculatorSchema } from './utils/schema';
 
-// Calculators
-import EmiCalculator from './components/calculators/EmiCalculator';
-import EligibilityCalculator from './components/calculators/EligibilityCalculator';
-import PpfCalculator from './components/calculators/PpfCalculator';
-import PfCalculator from './components/calculators/PfCalculator';
-import SipCalculator from './components/calculators/SipCalculator';
-import FdCalculator from './components/calculators/FdCalculator';
-import RdCalculator from './components/calculators/RdCalculator';
-import NpsCalculator from './components/calculators/NpsCalculator';
-import RetirementCalculator from './components/calculators/RetirementCalculator';
-import TaxCalculator from './components/calculators/TaxCalculator';
-import MutualFundCalculator from './components/calculators/MutualFundCalculator';
-import CompoundCalculator from './components/calculators/CompoundCalculator';
-
-// Static Info Pages
+// Dashboard is kept synchronous for fast FCP/LCP home rendering
 import Dashboard from './components/pages/Dashboard';
-import AboutUs from './components/pages/AboutUs';
-import PrivacyPolicy from './components/pages/PrivacyPolicy';
-import ContactUs from './components/pages/ContactUs';
-import Blogs from './components/pages/Blogs';
+
+// Lazy load calculators
+const EmiCalculator = React.lazy(() => import('./components/calculators/EmiCalculator'));
+const EligibilityCalculator = React.lazy(() => import('./components/calculators/EligibilityCalculator'));
+const PpfCalculator = React.lazy(() => import('./components/calculators/PpfCalculator'));
+const PfCalculator = React.lazy(() => import('./components/calculators/PfCalculator'));
+const SipCalculator = React.lazy(() => import('./components/calculators/SipCalculator'));
+const FdCalculator = React.lazy(() => import('./components/calculators/FdCalculator'));
+const RdCalculator = React.lazy(() => import('./components/calculators/RdCalculator'));
+const NpsCalculator = React.lazy(() => import('./components/calculators/NpsCalculator'));
+const RetirementCalculator = React.lazy(() => import('./components/calculators/RetirementCalculator'));
+const TaxCalculator = React.lazy(() => import('./components/calculators/TaxCalculator'));
+const MutualFundCalculator = React.lazy(() => import('./components/calculators/MutualFundCalculator'));
+const CompoundCalculator = React.lazy(() => import('./components/calculators/CompoundCalculator'));
+
+// Lazy load static pages
+const AboutUs = React.lazy(() => import('./components/pages/AboutUs'));
+const PrivacyPolicy = React.lazy(() => import('./components/pages/PrivacyPolicy'));
+const ContactUs = React.lazy(() => import('./components/pages/ContactUs'));
+const Blogs = React.lazy(() => import('./components/pages/Blogs'));
 
 const validRoutes = [...calculatorsList.map(c => c.id), 'home', 'about', 'privacy', 'contact', 'blogs'];
 
@@ -179,7 +181,37 @@ export default function App() {
         />
 
         {/* Dynamic Calculator Component */}
-        {renderActiveCalculator()}
+        <React.Suspense fallback={
+          <div className="calculator-loading-skeleton" style={{ 
+            padding: '60px 40px', 
+            textAlign: 'center', 
+            color: 'var(--text-muted)',
+            background: 'var(--card-bg)',
+            borderRadius: '16px',
+            border: '1px solid var(--border-color)',
+            margin: '24px 0',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            <style>{`
+              @keyframes loader-spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
+            <div style={{
+              width: '24px',
+              height: '24px',
+              border: '3px solid var(--border-color)',
+              borderTopColor: 'var(--primary-color)',
+              borderRadius: '50%',
+              margin: '0 auto 12px auto',
+              animation: 'loader-spin 0.8s linear infinite'
+            }}></div>
+            Loading calculator view...
+          </div>
+        }>
+          {renderActiveCalculator()}
+        </React.Suspense>
 
         {/* Dynamic Related Tools Panel (Only visible on Calculator pages) */}
         {calculatorsList.some(c => c.id === activeCalc) && relatedMap[activeCalc] && (
