@@ -133,32 +133,43 @@ export function injectCalculatorSchema(calculatorId) {
       "url": "https://rupeebuddy.in/"
     };
   } else {
+    // Map correct Schema Type based on category
+    let type = "WebApplication";
+    if (details.category === "AboutPage") type = "AboutPage";
+    else if (details.category === "PrivacyPage") type = "WebPage";
+    else if (details.category === "ContactPage") type = "ContactPage";
+    else if (details.category === "FinanceGuides") type = "CollectionPage";
+
     schemaData = {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
+      "@type": type,
       "name": `${details.name} - RupeeBuddy.in`,
       "description": details.description,
-      "url": window.location.href,
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "offers": {
+      "url": window.location.href
+    };
+
+    // Add WebApplication details only if it is a calculator application
+    if (type === "WebApplication") {
+      schemaData.applicationCategory = "BusinessApplication";
+      schemaData.operatingSystem = "All";
+      schemaData.browserRequirements = "Requires JavaScript. Requires HTML5.";
+      schemaData.offers = {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "INR"
-      },
-      "featureList": [
+      };
+      schemaData.featureList = [
         "Real-time calculations as sliders move",
         "Interactive pie charts and bar graphs",
         "Printable PDF reports",
         "Optimized for Indian financial terms and schemes"
-      ],
-      "about": {
+      ];
+      schemaData.about = {
         "@type": "Thing",
         "name": details.name,
         "description": details.description
-      }
-    };
+      };
+    }
   }
 
   // 3. Create BreadcrumbList schema object for inner pages

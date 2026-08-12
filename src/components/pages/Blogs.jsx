@@ -874,6 +874,11 @@ export default function Blogs({ setActiveCalculator }) {
     if (existingBreadcrumb) {
       existingBreadcrumb.remove();
     }
+    // Remove existing article schema if any
+    const existingArticleSchema = document.getElementById("article-schema");
+    if (existingArticleSchema) {
+      existingArticleSchema.remove();
+    }
 
     if (selectedArticleId) {
       if (params.get('article') !== selectedArticleId) {
@@ -947,6 +952,40 @@ export default function Blogs({ setActiveCalculator }) {
         breadcrumbScript.id = "breadcrumb-schema";
         breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
         document.head.appendChild(breadcrumbScript);
+
+        // Inject BlogPosting Schema for Rich Search Cards
+        const articleSchemaData = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": article.title,
+          "description": article.snippet,
+          "image": [
+            "https://rupeebuddy.in/favicon.svg"
+          ],
+          "datePublished": "2026-08-12T00:00:00Z",
+          "author": {
+            "@type": "Organization",
+            "name": "RupeeBuddy Editorial Team",
+            "url": "https://rupeebuddy.in/?calc=about"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "RupeeBuddy",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://rupeebuddy.in/favicon.svg"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://rupeebuddy.in/?calc=blogs&article=${article.id}`
+          }
+        };
+        const articleScript = document.createElement("script");
+        articleScript.type = "application/ld+json";
+        articleScript.id = "article-schema";
+        articleScript.text = JSON.stringify(articleSchemaData, null, 2);
+        document.head.appendChild(articleScript);
       }
     } else {
       if (params.has('article')) {
