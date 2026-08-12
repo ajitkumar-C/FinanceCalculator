@@ -257,41 +257,45 @@ export function calculateRetirement(currentAge, retirementAge, currentExpenses, 
 
 // 10. Income Tax Calculator (FY 2026-27 / AY 2027-28 - Indian Slabs)
 export function calculateTax(annualIncome, deductions = 0) {
-  // New Regime slabs (FY 2024-25 / 2025-26 / 2026-27 updated)
+  // New Regime slabs (FY 2025-26 & FY 2026-27 Budget 2025 Updates)
   // Standard Deduction: ₹75,000 for salaried
   const standardDeductionNew = 75000;
   const taxableIncomeNew = Math.max(0, annualIncome - standardDeductionNew);
   let taxNew = 0;
 
   if (taxableIncomeNew > 0) {
-    // Up to 3L: Nil
-    // 3L - 7L: 5% (max 20k)
-    // 7L - 10L: 10% (max 30k)
-    // 10L - 12L: 15% (max 30k)
-    // 12L - 15L: 20% (max 60k)
-    // Above 15L: 30%
-    if (taxableIncomeNew > 300000) {
-      taxNew += Math.min(taxableIncomeNew - 300000, 400000) * 0.05;
+    // Up to 4L: Nil
+    // 4L - 8L: 5% (max 20k)
+    // 8L - 12L: 10% (max 40k)
+    // 12L - 16L: 15% (max 60k)
+    // 16L - 20L: 20% (max 80k)
+    // 20L - 24L: 25% (max 1L)
+    // Above 24L: 30%
+    if (taxableIncomeNew > 400000) {
+      taxNew += Math.min(taxableIncomeNew - 400000, 400000) * 0.05;
     }
-    if (taxableIncomeNew > 700000) {
-      taxNew += Math.min(taxableIncomeNew - 700000, 300000) * 0.10;
-    }
-    if (taxableIncomeNew > 1000000) {
-      taxNew += Math.min(taxableIncomeNew - 1000000, 200000) * 0.15;
+    if (taxableIncomeNew > 800000) {
+      taxNew += Math.min(taxableIncomeNew - 800000, 400000) * 0.10;
     }
     if (taxableIncomeNew > 1200000) {
-      taxNew += Math.min(taxableIncomeNew - 1200000, 300000) * 0.20;
+      taxNew += Math.min(taxableIncomeNew - 1200000, 400000) * 0.15;
     }
-    if (taxableIncomeNew > 1500000) {
-      taxNew += (taxableIncomeNew - 1500000) * 0.30;
+    if (taxableIncomeNew > 1600000) {
+      taxNew += Math.min(taxableIncomeNew - 1600000, 400000) * 0.20;
+    }
+    if (taxableIncomeNew > 2000000) {
+      taxNew += Math.min(taxableIncomeNew - 2000000, 400000) * 0.25;
+    }
+    if (taxableIncomeNew > 2400000) {
+      taxNew += (taxableIncomeNew - 2400000) * 0.30;
     }
 
-    // Rebate u/s 87A: Nil tax if taxable income <= 7,00,000
-    if (taxableIncomeNew <= 700000) {
+    // Rebate u/s 87A: Nil tax if taxable income <= 12,00,000 (New Regime)
+    if (taxableIncomeNew <= 1200000) {
       taxNew = 0;
     } else {
-      // Marginal Relief: Tax cannot exceed income exceeding 7,00,000
-      const excessIncome = taxableIncomeNew - 700000;
+      // Marginal Relief: Tax cannot exceed income exceeding 12,00,000
+      const excessIncome = taxableIncomeNew - 1200000;
       if (taxNew > excessIncome) {
         taxNew = excessIncome;
       }

@@ -218,10 +218,10 @@ export default function TaxCalculator({ setResultText }) {
       <section className="seo-rich-content-section" id="faq-section">
         <h2>About Income Tax Calculator</h2>
         <p>
-          The Income Tax Calculator helps you compare tax liability under the **Old Tax Regime** and the **New Tax Regime** in India. Since Budget 2023 and updated in Budget 2024, the New Tax Regime is the default regime. It offers lower slab rates but does not allow major tax exemptions like Section 80C, 80D, HRA, or Home Loan interest deductions. The Old Regime allows all exemptions but has higher tax rates.
+          The Income Tax Calculator helps you compare tax liability under the **Old Tax Regime** and the **New Tax Regime** in India. The New Tax Regime is the default regime and has been updated with the latest **Union Budget 2025** slabs (for FY 2025-26 & FY 2026-27). It offers lower slab rates and a high tax rebate, but does not allow major tax exemptions like Section 80C, 80D, HRA, or Home Loan interest deductions. The Old Regime allows all exemptions but has higher tax rates.
         </p>
 
-        <h3>New Tax Regime Slab Rates (FY 2024-25 / 2025-26 / 2026-27)</h3>
+        <h3>Latest Tax Slab Rates (FY 2025-26 / FY 2026-27 / AY 2026-27 & 2027-28)</h3>
         <div className="custom-table-wrapper">
           <table className="custom-table">
             <thead>
@@ -238,37 +238,47 @@ export default function TaxCalculator({ setResultText }) {
                 <td>Nil</td>
               </tr>
               <tr>
-                <td>2,50,001 to 3,00,000</td>
+                <td>2,50,001 to 4,00,000</td>
                 <td>Nil</td>
                 <td>5%</td>
               </tr>
               <tr>
-                <td>3,00,001 to 5,00,000</td>
+                <td>4,00,001 to 5,00,000</td>
                 <td>5%</td>
                 <td>5%</td>
               </tr>
               <tr>
-                <td>5,00,001 to 7,00,000</td>
+                <td>5,00,001 to 8,00,000</td>
                 <td>5%</td>
                 <td>20%</td>
               </tr>
               <tr>
-                <td>7,00,001 to 10,00,000</td>
+                <td>8,00,001 to 10,00,000</td>
                 <td>10%</td>
                 <td>20%</td>
               </tr>
               <tr>
                 <td>10,00,001 to 12,00,000</td>
+                <td>10%</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>12,00,001 to 16,00,000</td>
                 <td>15%</td>
                 <td>30%</td>
               </tr>
               <tr>
-                <td>12,00,001 to 15,00,000</td>
+                <td>16,00,001 to 20,00,000</td>
                 <td>20%</td>
                 <td>30%</td>
               </tr>
               <tr>
-                <td>Above 15,00,000</td>
+                <td>20,00,001 to 24,00,000</td>
+                <td>25%</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>Above 24,00,000</td>
                 <td>30%</td>
                 <td>30%</td>
               </tr>
@@ -276,7 +286,7 @@ export default function TaxCalculator({ setResultText }) {
           </table>
         </div>
         <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '8px' }}>
-          *Note: Standard deduction is ₹75,000 under the New Regime and ₹50,000 under the Old Regime for salaried employees. Tax rebate under Section 87A is available for income up to ₹7,00,000 in the New Regime (making net tax zero) and ₹5,00,000 in the Old Regime.
+          *Note: Standard deduction is ₹75,000 under the New Regime and ₹50,000 under the Old Regime for salaried employees. Tax rebate under Section 87A is available for income up to **₹12,00,000** in the New Regime (making net tax zero) and ₹5,00,000 in the Old Regime.
         </p>
 
         <h3>Frequently Asked Questions (FAQs)</h3>
