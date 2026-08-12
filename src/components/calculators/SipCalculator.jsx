@@ -200,6 +200,27 @@ export default function SipCalculator({ setResultText }) {
               Direct mutual funds have no distributor commissions, resulting in a lower expense ratio, meaning you get higher returns. Regular mutual funds include broker/agent commissions, which reduces your annual compounding growth rate by 0.5% to 1.5% over time.
             </p>
           </div>
+          <div className="faq-item">
+            <h4 className="faq-question">4. Where can I invest in zero-commission Direct Mutual Funds?</h4>
+            <p className="faq-answer" style={{ marginBottom: '8px' }}>
+              To avoid broker commissions and maximize your compound yield, you can invest directly on official Asset Management Company (AMC) websites:
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '8px', fontSize: '12px', marginTop: '8px' }}>
+              <a href="https://www.sbimf.com/" target="_blank" rel="noopener noreferrer">SBI Mutual Fund</a>
+              <a href="https://www.hdfcfund.com/" target="_blank" rel="noopener noreferrer">HDFC Mutual Fund</a>
+              <a href="https://www.icicipruamc.com/" target="_blank" rel="noopener noreferrer">ICICI Prudential Mutual Fund</a>
+              <a href="https://mf.nipponindiaim.com/" target="_blank" rel="noopener noreferrer">Nippon India Mutual Fund</a>
+              <a href="https://www.kotakmf.com/" target="_blank" rel="noopener noreferrer">Kotak Mutual Fund</a>
+              <a href="https://www.axismf.com/" target="_blank" rel="noopener noreferrer">Axis Mutual Fund</a>
+              <a href="https://www.utimf.com/" target="_blank" rel="noopener noreferrer">UTI Mutual Fund</a>
+              <a href="https://mutualfund.adityabirlacapital.com/" target="_blank" rel="noopener noreferrer">Aditya Birla Sun Life MF</a>
+              <a href="https://amc.ppfas.com/" target="_blank" rel="noopener noreferrer">Parag Parikh Mutual Fund</a>
+              <a href="https://www.miraeassetmf.co.in/" target="_blank" rel="noopener noreferrer">Mirae Asset Mutual Fund</a>
+              <a href="https://www.dspim.com/" target="_blank" rel="noopener noreferrer">DSP Mutual Fund</a>
+              <a href="https://www.tatamutualfund.com/" target="_blank" rel="noopener noreferrer">Tata Mutual Fund</a>
+              <a href="https://quantmutual.com/" target="_blank" rel="noopener noreferrer">Quant Mutual Fund</a>
+            </div>
+          </div>
         </div>
       </section>
     </div>

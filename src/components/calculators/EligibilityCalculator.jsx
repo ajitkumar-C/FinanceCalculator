@@ -232,6 +232,9 @@ export default function EligibilityCalculator({ setResultText }) {
         <p>
           A Loan Eligibility Calculator helps you estimate the maximum loan amount you can borrow from banks or financial institutions. The eligibility is primary based on your monthly income, current debt obligations (existing EMIs), age, employment stability, and the bank's internal ratios.
         </p>
+        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '8px', marginBottom: '20px' }}>
+          *Note: To check detailed home loan interest rates, schemes, and eligibility parameters, visit the official <a href="https://homeloans.sbi/" target="_blank" rel="noopener noreferrer">SBI Home Loans portal</a> or check direct products on the <a href="https://www.hdfcbank.com" target="_blank" rel="noopener noreferrer">HDFC Loans portal</a>.
+        </p>
 
         <h3>Understanding FOIR (Fixed Obligation to Income Ratio)</h3>
         <p>

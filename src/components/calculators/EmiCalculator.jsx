@@ -182,6 +182,9 @@ export default function EmiCalculator({ setResultText }) {
         <p>
           Equated Monthly Installment (EMI) is the monthly amount payable to the bank or any other financial institution until the loan amount is fully paid off. It consists of the interest on loan as well as part of the principal amount to be repaid. The interest component constitutes the major portion of the EMI in the initial years, but gradually, the principal component increases.
         </p>
+        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '8px', marginBottom: '20px' }}>
+          *Note: To verify your estimates, you can compare results with the official <a href="https://sbi.co.in/web/personal-banking/investments-deposits/govt-schemes/calculators/emi-calculator" target="_blank" rel="noopener noreferrer">SBI EMI Calculator</a> or check direct rates on the <a href="https://www.hdfcbank.com/personal/tools-and-calculators/home-loan-emi-calculator" target="_blank" rel="noopener noreferrer">HDFC Home Loan Calculator</a> and <a href="https://www.hdfcbank.com/personal/tools-and-calculators/personal-loan-emi-calculator" target="_blank" rel="noopener noreferrer">HDFC Personal Loan Calculator</a>.
+        </p>
 
         <h3>Mathematical Formula for EMI Calculation</h3>
         <p>The standard mathematical formula to calculate EMI is:</p>
