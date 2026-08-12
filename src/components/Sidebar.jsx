@@ -74,9 +74,14 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
           <div className="mobile-only-menu-group">
             <ul className="menu-list">
               <li className="menu-item-wrapper">
-                <button 
-                  onClick={() => selectCalculator('home')}
+                <a 
+                  href="?calc=home"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('home');
+                  }}
                   className={`menu-item-btn ${activeCalculator === 'home' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className={`menu-icon-container ${activeCalculator === 'home' ? 'active' : ''}`}>
                     <Home size={18} />
@@ -85,7 +90,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                     <span className="menu-item-name">Home / Dashboard</span>
                     <span className="menu-item-desc">All financial calculators grid</span>
                   </div>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -99,9 +104,14 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                 const isActive = activeCalculator === calc.id;
                 return (
                   <li key={calc.id} className="menu-item-wrapper">
-                    <button 
-                      onClick={() => selectCalculator(calc.id)}
+                    <a 
+                      href={`?calc=${calc.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        selectCalculator(calc.id);
+                      }}
                       className={`menu-item-btn ${isActive ? 'active' : ''}`}
+                      style={{ textDecoration: 'none' }}
                     >
                       <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
                         <IconComponent size={18} />
@@ -110,7 +120,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                         <span className="menu-item-name">{calc.name}</span>
                         <span className="menu-item-desc">{calc.desc}</span>
                       </div>
-                    </button>
+                    </a>
                   </li>
                 );
               })}
@@ -125,9 +135,14 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
             <span className="menu-group-title">GUIDES & ARTICLES</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">
-                <button 
-                  onClick={() => selectCalculator('blogs')}
+                <a 
+                  href="?calc=blogs"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('blogs');
+                  }}
                   className={`menu-item-btn ${activeCalculator === 'blogs' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className={`menu-icon-container ${activeCalculator === 'blogs' ? 'active' : ''}`}>
                     <BookOpen size={18} />
@@ -136,7 +151,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                     <span className="menu-item-name">Finance Guides</span>
                     <span className="menu-item-desc">Wealth & tax saving articles</span>
                   </div>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -146,9 +161,14 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
             <span className="menu-group-title">INFORMATION</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">
-                <button 
-                  onClick={() => selectCalculator('about')}
+                <a 
+                  href="?calc=about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('about');
+                  }}
                   className={`menu-item-btn ${activeCalculator === 'about' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className={`menu-icon-container ${activeCalculator === 'about' ? 'active' : ''}`}>
                     <Info size={18} />
@@ -157,12 +177,17 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                     <span className="menu-item-name">About Us</span>
                     <span className="menu-item-desc">Who we are & our mission</span>
                   </div>
-                </button>
+                </a>
               </li>
               <li className="menu-item-wrapper">
-                <button 
-                  onClick={() => selectCalculator('privacy')}
+                <a 
+                  href="?calc=privacy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('privacy');
+                  }}
                   className={`menu-item-btn ${activeCalculator === 'privacy' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className={`menu-icon-container ${activeCalculator === 'privacy' ? 'active' : ''}`}>
                     <Lock size={18} />
@@ -171,12 +196,17 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                     <span className="menu-item-name">Privacy Policy</span>
                     <span className="menu-item-desc">Data protection disclosure</span>
                   </div>
-                </button>
+                </a>
               </li>
               <li className="menu-item-wrapper">
-                <button 
-                  onClick={() => selectCalculator('contact')}
+                <a 
+                  href="?calc=contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('contact');
+                  }}
                   className={`menu-item-btn ${activeCalculator === 'contact' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className={`menu-icon-container ${activeCalculator === 'contact' ? 'active' : ''}`}>
                     <Mail size={18} />
@@ -185,7 +215,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
                     <span className="menu-item-name">Contact Us</span>
                     <span className="menu-item-desc">Get in touch with support</span>
                   </div>
-                </button>
+                </a>
               </li>
             </ul>
           </div>

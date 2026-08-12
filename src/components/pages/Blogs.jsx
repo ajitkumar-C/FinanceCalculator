@@ -1,8 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ArrowLeft, Search, Clock, ArrowRight, BookOpen } from 'lucide-react';
 
 export default function Blogs({ setActiveCalculator }) {
-  const [selectedArticleId, setSelectedArticleId] = useState(null);
+  const [selectedArticleId, setSelectedArticleId] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('article') || null;
+  });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -650,6 +653,34 @@ export default function Blogs({ setActiveCalculator }) {
     return articles.find(art => art.id === selectedArticleId);
   }, [selectedArticleId]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (selectedArticleId) {
+      if (params.get('article') !== selectedArticleId) {
+        params.set('article', selectedArticleId);
+        window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+      }
+      const article = articles.find(a => a.id === selectedArticleId);
+      if (article) {
+        document.title = `${article.title} | RupeeBuddy.in`;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute('content', article.snippet);
+        }
+      }
+    } else {
+      if (params.has('article')) {
+        params.delete('article');
+        window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+      }
+      document.title = "Financial Guides & Investment Strategies | RupeeBuddy.in";
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.");
+      }
+    }
+  }, [selectedArticleId]);
+
   return (
     <div className="blogs-wrapper">
       {activeArticle ? (
@@ -729,10 +760,15 @@ export default function Blogs({ setActiveCalculator }) {
           {/* Guides Cards Grid */}
           <div className="guides-grid">
             {filteredArticles.map((article) => (
-              <div 
+              <a 
                 key={article.id} 
+                href={`?calc=blogs&article=${article.id}`}
                 className="guide-summary-card"
-                onClick={() => setSelectedArticleId(article.id)}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedArticleId(article.id);
+                }}
               >
                 <span className={`guide-category-badge ${article.category}`}>
                   {article.category}
@@ -745,7 +781,7 @@ export default function Blogs({ setActiveCalculator }) {
                     Read Article →
                   </span>
                 </div>
-              </div>
+              </a>
             ))}
 
             {filteredArticles.length === 0 && (

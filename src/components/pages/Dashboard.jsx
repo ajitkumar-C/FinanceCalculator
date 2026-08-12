@@ -26,20 +26,28 @@ export default function Dashboard({ setActiveCalculator }) {
             Calculate home loans, compare tax regimes, estimate mutual fund returns, plan retirement, and track government schemes instantly with our free tools.
           </p>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <button 
+            <a 
+              href="?calc=tax"
               className="ad-btn" 
-              style={{ backgroundColor: 'var(--finance-green)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)' }}
-              onClick={() => setActiveCalculator('tax')}
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('tax');
+              }}
             >
               Compare Income Tax
-            </button>
-            <button 
+            </a>
+            <a 
+              href="?calc=sip"
               className="ad-btn" 
-              style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)' }}
-              onClick={() => setActiveCalculator('sip')}
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('sip');
+              }}
             >
               Calculate SIP Growth
-            </button>
+            </a>
           </div>
         </div>
         
@@ -67,10 +75,15 @@ export default function Dashboard({ setActiveCalculator }) {
         {calculatorsList.map((calc) => {
           const Icon = calc.icon;
           return (
-            <div 
+            <a 
               key={calc.id} 
+              href={`?calc=${calc.id}`}
               className="calc-card"
-              onClick={() => setActiveCalculator(calc.id)}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator(calc.id);
+              }}
             >
               <div className="card-icon-wrapper">
                 <Icon size={22} />
@@ -82,7 +95,7 @@ export default function Dashboard({ setActiveCalculator }) {
               <span className="launch-link">
                 Launch Tool →
               </span>
-            </div>
+            </a>
           );
         })}
       </div>

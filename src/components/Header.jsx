@@ -52,36 +52,56 @@ export default function Header({
 
         {/* Top Navigation Menu (Hidden on mobile) */}
         <nav className="header-top-nav no-print">
-          <button 
-            onClick={() => setActiveCalculator('home')}
+          <a 
+            href="?calc=home"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveCalculator('home');
+            }}
             className={`nav-link-btn ${activeCalculator === 'home' ? 'active' : ''}`}
           >
             Home
-          </button>
-          <button 
-            onClick={() => setActiveCalculator('blogs')}
+          </a>
+          <a 
+            href="?calc=blogs"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveCalculator('blogs');
+            }}
             className={`nav-link-btn ${activeCalculator === 'blogs' ? 'active' : ''}`}
           >
             Financial Guides
-          </button>
-          <button 
-            onClick={() => setActiveCalculator('about')}
+          </a>
+          <a 
+            href="?calc=about"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveCalculator('about');
+            }}
             className={`nav-link-btn ${activeCalculator === 'about' ? 'active' : ''}`}
           >
             About Us
-          </button>
-          <button 
-            onClick={() => setActiveCalculator('privacy')}
+          </a>
+          <a 
+            href="?calc=privacy"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveCalculator('privacy');
+            }}
             className={`nav-link-btn ${activeCalculator === 'privacy' ? 'active' : ''}`}
           >
             Privacy Policy
-          </button>
-          <button 
-            onClick={() => setActiveCalculator('contact')}
+          </a>
+          <a 
+            href="?calc=contact"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveCalculator('contact');
+            }}
             className={`nav-link-btn ${activeCalculator === 'contact' ? 'active' : ''}`}
           >
             Contact Us
-          </button>
+          </a>
         </nav>
 
         {/* Action Buttons (Hidden on Home page, Help button removed) */}
