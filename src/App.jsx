@@ -217,13 +217,20 @@ export default function App() {
         {/* Footer */}
         <footer className="app-footer-credits no-print" style={{ 
           marginTop: 'auto', 
-          padding: '20px 0', 
+          padding: '24px 16px', 
           borderTop: '1px solid var(--border-color)', 
           textAlign: 'center',
-          fontSize: '12px',
-          color: 'var(--text-muted)'
+          fontSize: '11px',
+          color: 'var(--text-muted)',
+          lineHeight: '1.6'
         }}>
-          <p>© 2026 RupeeBuddy.in. All calculations are indicative and based on prevailing tax laws and market standards. Please consult a certified financial planner for commercial decisions.</p>
+          <p style={{ fontWeight: '600', marginBottom: '6px', fontSize: '12px', color: 'var(--text-main)' }}>© 2026 RupeeBuddy.in. All Rights Reserved.</p>
+          <p style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <strong>YMYL Financial Disclaimer:</strong> RupeeBuddy.in is a free online educational resources portal. 
+            All financial calculators, algorithms, estimations, and guides are for illustrative and educational purposes only, based on standard mathematical formulas and prevailing Indian tax slabs. 
+            The calculations are indicative and do not constitute certified tax advisory, financial planning, or fiduciary investment services. 
+            Please consult a registered financial planner or Chartered Accountant before making commercial, tax, or investment decisions.
+          </p>
         </footer>
       </main>
     </div>

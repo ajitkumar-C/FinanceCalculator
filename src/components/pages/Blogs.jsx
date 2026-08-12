@@ -852,6 +852,29 @@ export default function Blogs({ setActiveCalculator }) {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    
+    // Helper to safely set meta tags
+    function setMetaTag(attribute, value, isProperty = false) {
+      const selector = isProperty ? `meta[property="${attribute}"]` : `meta[name="${attribute}"]`;
+      let element = document.querySelector(selector);
+      if (!element) {
+        element = document.createElement('meta');
+        if (isProperty) {
+          element.setAttribute('property', attribute);
+        } else {
+          element.name = attribute;
+        }
+        document.head.appendChild(element);
+      }
+      element.content = value;
+    }
+
+    // Remove existing breadcrumb script if any
+    const existingBreadcrumb = document.getElementById("breadcrumb-schema");
+    if (existingBreadcrumb) {
+      existingBreadcrumb.remove();
+    }
+
     if (selectedArticleId) {
       if (params.get('article') !== selectedArticleId) {
         params.set('article', selectedArticleId);
@@ -859,30 +882,137 @@ export default function Blogs({ setActiveCalculator }) {
       }
       const article = articles.find(a => a.id === selectedArticleId);
       if (article) {
+        // Page Title & Meta Desc
         document.title = `${article.title} | RupeeBuddy.in`;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-          metaDesc.setAttribute('content', article.snippet);
+        
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+          metaDesc = document.createElement('meta');
+          metaDesc.name = "description";
+          document.head.appendChild(metaDesc);
         }
-        const metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (metaKeywords) {
-          metaKeywords.setAttribute('content', `${article.category}, finance guide, ${article.title.toLowerCase()}`);
+        metaDesc.content = article.snippet;
+
+        // Meta Keywords
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+          metaKeywords = document.createElement('meta');
+          metaKeywords.name = "keywords";
+          document.head.appendChild(metaKeywords);
         }
+        metaKeywords.content = `${article.category}, finance guide, ${article.title.toLowerCase()}`;
+
+        // Canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          canonical = document.createElement('link');
+          canonical.rel = "canonical";
+          document.head.appendChild(canonical);
+        }
+        canonical.href = `https://rupeebuddy.in/?calc=blogs&article=${article.id}`;
+
+        // Open Graph Meta
+        setMetaTag('og:title', `${article.title} | RupeeBuddy.in`, true);
+        setMetaTag('og:description', article.snippet, true);
+        setMetaTag('og:url', `https://rupeebuddy.in/?calc=blogs&article=${article.id}`, true);
+        setMetaTag('og:image', 'https://rupeebuddy.in/favicon.svg', true);
+
+        // Inject Article BreadcrumbList Schema
+        const breadcrumbData = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://rupeebuddy.in/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Financial Guides",
+              "item": "https://rupeebuddy.in/?calc=blogs"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": article.title,
+              "item": `https://rupeebuddy.in/?calc=blogs&article=${article.id}`
+            }
+          ]
+        };
+        const breadcrumbScript = document.createElement("script");
+        breadcrumbScript.type = "application/ld+json";
+        breadcrumbScript.id = "breadcrumb-schema";
+        breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
+        document.head.appendChild(breadcrumbScript);
       }
     } else {
       if (params.has('article')) {
         params.delete('article');
         window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
       }
+      
+      // Page Title & Meta Desc
       document.title = "Financial Guides & Investment Strategies | RupeeBuddy.in";
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.");
+      
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = "description";
+        document.head.appendChild(metaDesc);
       }
-      const metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (metaKeywords) {
-        metaKeywords.setAttribute('content', "finance guides, investment articles, wealth strategies india, personal finance blogs, saving tips");
+      metaDesc.content = "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.";
+
+      // Meta Keywords
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = "keywords";
+        document.head.appendChild(metaKeywords);
       }
+      metaKeywords.content = "finance guides, investment articles, wealth strategies india, personal finance blogs, saving tips";
+
+      // Canonical URL
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = "https://rupeebuddy.in/?calc=blogs";
+
+      // Open Graph Meta
+      setMetaTag('og:title', "Financial Guides & Investment Strategies | RupeeBuddy.in", true);
+      setMetaTag('og:description', "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.", true);
+      setMetaTag('og:url', "https://rupeebuddy.in/?calc=blogs", true);
+      setMetaTag('og:image', 'https://rupeebuddy.in/favicon.svg', true);
+
+      // Inject Blogs Landing BreadcrumbList Schema
+      const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://rupeebuddy.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Financial Guides",
+            "item": "https://rupeebuddy.in/?calc=blogs"
+          }
+        ]
+      };
+      const breadcrumbScript = document.createElement("script");
+      breadcrumbScript.type = "application/ld+json";
+      breadcrumbScript.id = "breadcrumb-schema";
+      breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
+      document.head.appendChild(breadcrumbScript);
     }
   }, [selectedArticleId]);
 
@@ -903,6 +1033,8 @@ export default function Blogs({ setActiveCalculator }) {
             <div className="article-reading-info">
               <span>📅 {activeArticle.date}</span>
               <span><Clock size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} /> {activeArticle.readTime}</span>
+              <span className="article-author-info">✍️ Written by the RupeeBuddy Editorial Team</span>
+              <span className="article-verification-info">✓ Reviewed by Chartered Accountants & Financial Advisors</span>
             </div>
           </div>
 

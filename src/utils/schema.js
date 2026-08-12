@@ -109,51 +109,98 @@ const schemas = {
 };
 
 export function injectCalculatorSchema(calculatorId) {
-  // 1. Remove existing schema if any
+  // 1. Remove existing schema scripts if any
   const existingScript = document.getElementById("calculator-schema");
   if (existingScript) {
     existingScript.remove();
+  }
+  const existingBreadcrumb = document.getElementById("breadcrumb-schema");
+  if (existingBreadcrumb) {
+    existingBreadcrumb.remove();
   }
 
   const details = schemas[calculatorId];
   if (!details) return;
 
-  // 2. Create schema object
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": `${details.name} - RupeeBuddy.in`,
-    "description": details.description,
-    "url": window.location.href,
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    },
-    "featureList": [
-      "Real-time calculations as sliders move",
-      "Interactive pie charts and bar graphs",
-      "Printable PDF reports",
-      "Optimized for Indian financial terms and schemes"
-    ],
-    "about": {
-      "@type": "Thing",
-      "name": details.name,
-      "description": details.description
-    }
-  };
+  // 2. Determine and create main schema object
+  let schemaData;
+  if (calculatorId === 'home') {
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "RupeeBuddy",
+      "alternateName": ["RupeeBuddy.in", "rupeebuddy"],
+      "url": "https://rupeebuddy.in/"
+    };
+  } else {
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": `${details.name} - RupeeBuddy.in`,
+      "description": details.description,
+      "url": window.location.href,
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "featureList": [
+        "Real-time calculations as sliders move",
+        "Interactive pie charts and bar graphs",
+        "Printable PDF reports",
+        "Optimized for Indian financial terms and schemes"
+      ],
+      "about": {
+        "@type": "Thing",
+        "name": details.name,
+        "description": details.description
+      }
+    };
+  }
 
-  // 3. Inject into head
+  // 3. Create BreadcrumbList schema object for inner pages
+  let breadcrumbData = null;
+  if (calculatorId !== 'home') {
+    breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rupeebuddy.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": details.name,
+          "item": `https://rupeebuddy.in/?calc=${calculatorId}`
+        }
+      ]
+    };
+  }
+
+  // 4. Inject main schema script into head
   const script = document.createElement("script");
   script.type = "application/ld+json";
   script.id = "calculator-schema";
   script.text = JSON.stringify(schemaData, null, 2);
   document.head.appendChild(script);
 
-  // 4. Update Meta Page Title and Meta Description for SEO
+  // 5. Inject breadcrumb schema script if applicable
+  if (breadcrumbData) {
+    const breadcrumbScript = document.createElement("script");
+    breadcrumbScript.type = "application/ld+json";
+    breadcrumbScript.id = "breadcrumb-schema";
+    breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
+    document.head.appendChild(breadcrumbScript);
+  }
+
+  // 6. Update Meta Page Title and Meta Description for SEO
   document.title = `${details.name} | Indian Financial Calculator`;
   
   let metaDesc = document.querySelector('meta[name="description"]');
@@ -164,7 +211,7 @@ export function injectCalculatorSchema(calculatorId) {
   }
   metaDesc.content = details.description;
 
-  // 5. Update Meta Keywords for SEO
+  // 7. Update Meta Keywords for SEO
   let metaKeywords = document.querySelector('meta[name="keywords"]');
   if (!metaKeywords) {
     metaKeywords = document.createElement('meta');
@@ -172,4 +219,38 @@ export function injectCalculatorSchema(calculatorId) {
     document.head.appendChild(metaKeywords);
   }
   metaKeywords.content = details.keywords;
+
+  // 8. Update Canonical Link
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = calculatorId === 'home' 
+    ? 'https://rupeebuddy.in/' 
+    : `https://rupeebuddy.in/?calc=${calculatorId}`;
+
+  // Helper to safely set meta tags
+  function setMetaTag(attribute, value, isProperty = false) {
+    const selector = isProperty ? `meta[property="${attribute}"]` : `meta[name="${attribute}"]`;
+    let element = document.querySelector(selector);
+    if (!element) {
+      element = document.createElement('meta');
+      if (isProperty) {
+        element.setAttribute('property', attribute);
+      } else {
+        element.name = attribute;
+      }
+      document.head.appendChild(element);
+    }
+    element.content = value;
+  }
+
+  // 9. Sync Open Graph Meta tags dynamically
+  setMetaTag('og:title', `${details.name} | RupeeBuddy.in`, true);
+  setMetaTag('og:description', details.description, true);
+  setMetaTag('og:type', 'website', true);
+  setMetaTag('og:url', calculatorId === 'home' ? 'https://rupeebuddy.in/' : `https://rupeebuddy.in/?calc=${calculatorId}`, true);
+  setMetaTag('og:image', 'https://rupeebuddy.in/favicon.svg', true);
 }
