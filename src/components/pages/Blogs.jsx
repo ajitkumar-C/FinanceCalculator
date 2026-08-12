@@ -350,46 +350,132 @@ export default function Blogs({ setActiveCalculator }) {
     // OUTLINE GUIDES (5-18)
     {
       id: 'nps-vs-ppf',
-      title: 'NPS vs PPF: Which is Better for Long-Term Tax Savings?',
+      title: 'NPS vs PPF vs EPF: Which is Better for Long-Term Tax Savings?',
       category: 'retirement',
-      readTime: '5 min read',
+      readTime: '7 min read',
       date: 'Jul 30, 2026',
-      snippet: 'Stuck between NPS and PPF? Compare their tax benefits under Section 80C, equity exposure, maturity withdrawal rules, and pension payouts.',
+      snippet: 'Stuck between NPS, PPF, and EPF? Compare their tax benefits under Section 80C, equity compounding exposure, lock-in periods, and retirement pension payouts.',
       targetCalc: 'nps',
       ctaText: 'Calculate NPS Returns',
       content: (
         <div>
-          <p>Both the National Pension Scheme (NPS) and Public Provident Fund (PPF) are voluntary retirement schemes offering tax deductions. However, they serve very different asset allocations.</p>
-          <h2>Key Differences</h2>
+          <p>
+            When it comes to building a retirement nest egg in India, three government-backed schemes stand out: the <strong>National Pension Scheme (NPS)</strong>, the <strong>Public Provident Fund (PPF)</strong>, and the <strong>Employee Provident Fund (EPF)</strong>. 
+          </p>
+          <p>
+            Each scheme offers attractive tax benefits, but they serve completely different asset allocations. Choosing the right one—or finding the perfect balance among all three—can significantly boost your long-term wealth compounding.
+          </p>
+
+          <h2>NPS vs PPF vs EPF: Comparison Table</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>PPF (Public Provident Fund)</th>
+                <th>NPS (National Pension Scheme)</th>
+                <th>EPF (Employee Provident Fund)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Interest Rate / Yield</strong></td>
+                <td>7.1% (Fixed, reviewed quarterly)</td>
+                <td>9% - 12% (Market-linked returns)</td>
+                <td>8.25% (Fixed by Govt annually)</td>
+              </tr>
+              <tr>
+                <td><strong>Asset Class</strong></td>
+                <td>Fixed Income / Debt</td>
+                <td>Equity, Corporate Debt, Govt Bonds</td>
+                <td>Fixed Income / Debt</td>
+              </tr>
+              <tr>
+                <td><strong>Tax Status</strong></td>
+                <td>EEE (Exempt-Exempt-Exempt)</td>
+                <td>EET (Exempt-Exempt-Taxable on Annuity)</td>
+                <td>EEE (Up to ₹2.5 Lakhs contribution/yr)</td>
+              </tr>
+              <tr>
+                <td><strong>Lock-in Period</strong></td>
+                <td>15 Years (Extendable in blocks of 5)</td>
+                <td>Locked in until age 60</td>
+                <td>Until retirement or job switch</td>
+              </tr>
+              <tr>
+                <td><strong>Additional Deductions</strong></td>
+                <td>Max ₹1.5 Lakhs u/s 80C</td>
+                <td>Extra ₹50,000 u/s 80CCD(1B)</td>
+                <td>Part of ₹1.5 Lakhs u/s 80C</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Asset Allocation: Debt vs Equity Compounding</h2>
+          <p>
+            The biggest difference lies in how your money is invested:
+          </p>
           <ul>
-            <li><strong>PPF:</strong> Fixed tax-free interest (7.1% EEE), 15-year lock-in. Best for conservative safety-net savings.</li>
-            <li><strong>NPS:</strong> Market-linked returns, locked in until age 60. Up to 75% equity exposure makes it best for high wealth compounding.</li>
+            <li>
+              <strong>PPF & EPF (Fixed Income Debt):</strong> These are safe, fixed-interest instruments backed by the sovereign government. There is zero risk of principal loss. If you are a conservative investor, these provide a reliable foundation.
+            </li>
+            <li>
+              <strong>NPS (Market-Linked Equity):</strong> NPS allows you to invest up to 75% of your corpus in equities (Active Choice). Over a 20-30 year career, equity exposure helps beat inflation. Historical returns for NPS equity funds (Scheme E) have ranged between 10% and 13% CAGR.
+            </li>
           </ul>
-          <h3>Tax Deductions u/s 80C and 80CCD</h3>
-          <p>PPF contributions fall under the standard ₹1.5 Lakh limit. NPS contributions also count under this limit, but NPS offers an additional tax deduction of ₹50,000 under Section 80CCD(1B) for Tier 1 accounts.</p>
+
+          <h2>The Triple-Tax Benefit (EEE vs EET)</h2>
+          <p>
+            Both PPF and EPF enjoy **EEE (Exempt-Exempt-Exempt)** status. This means your contributions, interest accrued, and final maturity lump-sums are completely tax-free.
+          </p>
+          <p>
+            NPS operates on an **EET (Exempt-Exempt-Taxable)** basis. At age 60, you can withdraw up to 60% of your accumulated corpus tax-free. The remaining 40% must be used to purchase an **Annuity plan** (monthly pension), which is taxed under your salary tax slab in the year of payout.
+          </p>
         </div>
       )
     },
     {
       id: 'foir-guide',
-      title: 'Understanding FOIR: How Banks Calculate Your Eligible Loan',
+      title: 'Understanding FOIR: How Banks Calculate Your Eligible Loan Slabs',
       category: 'loans',
-      readTime: '4 min read',
+      readTime: '6 min read',
       date: 'Jul 28, 2026',
-      snippet: 'Before applying for a loan, banks calculate your Fixed Obligation to Income Ratio (FOIR). Learn how to check your eligible borrowing capacity.',
+      snippet: 'Before applying for a loan, banks calculate your Fixed Obligation to Income Ratio (FOIR). Learn how to check your eligible borrowing capacity based on salary.',
       targetCalc: 'eligibility',
       ctaText: 'Calculate Loan Eligibility',
       content: (
         <div>
-          <p>When you apply for a home or personal loan, banks assess your repaying capacity using a metric called <strong>FOIR (Fixed Obligation to Income Ratio)</strong>.</p>
-          <h2>What is FOIR?</h2>
-          <p>FOIR represents the percentage of your monthly net take-home salary that goes toward paying EMIs (including existing loans and the proposed new loan). Most banks cap FOIR between <strong>45% and 55%</strong> to ensure you have enough money left for personal expenses.</p>
-          <h3>How to improve loan eligibility</h3>
+          <p>
+            When applying for a home loan, car loan, or personal loan, banks don't just look at your credit score. They assess your repayment capacity using a metric called <strong>FOIR (Fixed Obligation to Income Ratio)</strong>.
+          </p>
+          <p>
+            FOIR is the primary mathematical indicator banks use to decide your eligible loan amount. If your existing EMIs consume too much of your salary, your FOIR will be high, and banks will reject your application—even with a credit score of 800+.
+          </p>
+
+          <h2>What is the FOIR Formula?</h2>
+          <p>
+            FOIR measures your fixed monthly obligations (existing loan EMIs, rent, and the proposed new loan EMI) as a percentage of your net monthly take-home salary. It ignores basic household expenses like food, fuel, and utility bills.
+          </p>
+          {"\\[\\text{FOIR (\\%)} = \\frac{\\text{Total Existing EMIs} + \\text{Proposed New EMI} + \\text{Fixed Rental Payments}}{\\text{Net Monthly Take-home Salary}} \\times 100\\]"}
+
+          <h2>Acceptable FOIR Slabs across Indian Banks</h2>
+          <p>
+            Most leading financial institutions (like SBI, HDFC, and ICICI Bank) cap the acceptable FOIR between <strong>40% and 55%</strong>.
+          </p>
           <ul>
-            <li>Pay off existing credit card debts or short-term personal loans before applying.</li>
-            <li>Apply with a co-applicant (like a spouse) to pool incomes and increase eligibility.</li>
-            <li>Opt for a longer tenure to reduce the monthly EMI, which lowers your FOIR.</li>
+            <li><strong>Salaried Income under ₹50,000:</strong> Acceptable FOIR is capped at <strong>40% - 45%</strong>.</li>
+            <li><strong>Salaried Income between ₹50,000 - ₹1.5 Lakhs:</strong> Acceptable FOIR is capped at <strong>50%</strong>.</li>
+            <li><strong>High Net Worth Individuals (Above ₹1.5 Lakhs):</strong> FOIR can go up to <strong>55% - 60%</strong>.</li>
           </ul>
+
+          <h2>A Real-World Example</h2>
+          <p>
+            Suppose your net monthly take-home salary is <strong>₹1,00,000</strong>.
+          </p>
+          <ol>
+            <li>If the bank's maximum allowable FOIR is <strong>50%</strong>, your total monthly EMI capacity is capped at <strong>₹50,000</strong>.</li>
+            <li>If you are already paying a car loan EMI of <strong>₹15,000</strong>, your remaining EMI budget for a new home loan is <strong>₹35,000</strong> (₹50,000 - ₹15,000).</li>
+            <li>If the proposed EMI for the home loan you requested is ₹40,000, your FOIR would rise to 55% (₹55,000/₹1,00,000). The bank will reduce your loan eligibility to bring the EMI down to ₹35,000.</li>
+          </ol>
         </div>
       )
     },
@@ -414,23 +500,82 @@ export default function Blogs({ setActiveCalculator }) {
     },
     {
       id: 'fd-compounding-guide',
-      title: 'FD Interest Compounding: Monthly vs Quarterly Payouts',
+      title: 'FD Interest Compounding: HDFC Bank Rates vs Post Office Yields',
       category: 'investment',
-      readTime: '4 min read',
+      readTime: '6 min read',
       date: 'Jul 22, 2026',
-      snippet: 'Fixed Deposits (FDs) are the go-to safety choice. Learn how compounding frequency (monthly, quarterly, or yearly) impacts your final maturity yield.',
+      snippet: 'Fixed Deposits (FDs) are the go-to safe choice in India. Learn how HDFC FD rates compare to SBI and Post Office yields, and how quarterly compounding works.',
       targetCalc: 'fd',
       ctaText: 'Calculate FD Returns',
       content: (
         <div>
-          <p>Fixed Deposits (FDs) offer guaranteed returns over a chosen tenure. However, many depositors do not understand the difference between cumulative and non-cumulative interest payouts.</p>
-          <h2>Cumulative vs Non-Cumulative</h2>
+          <p>
+            Fixed Deposits (FDs) are the cornerstone of capital preservation for Indian households. While they offer guaranteed returns, the yield you receive depends on the interest rate, the tenure, and the interest compounding frequency.
+          </p>
+          <p>
+            Most commercial banks in India (such as HDFC Bank, ICICI Bank, and SBI) calculate interest using **quarterly compounding**. However, depositors often choose non-cumulative FDs with monthly or quarterly payouts, which reduces their overall compound yield.
+          </p>
+
+          <h2>HDFC Bank FD Rates vs Post Office FD Yields</h2>
+          <p>
+            Different financial institutions offer varying interest rates. The table below illustrates typical interest slabs and maturity payouts for a lump-sum deposit of <strong>₹5,00,000</strong> for a <strong>5-Year Tenure</strong> (assuming typical senior parent vs general public rates):
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Bank/Institution</th>
+                <th>Interest Rate (p.a.)</th>
+                <th>Compounding Frequency</th>
+                <th>Maturity Value</th>
+                <th>Total Interest Earned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>HDFC Bank (General)</strong></td>
+                <td>7.00%</td>
+                <td>Quarterly</td>
+                <td>₹7,07,389</td>
+                <td>₹2,07,389</td>
+              </tr>
+              <tr>
+                <td><strong>HDFC Bank (Senior Citizen)</strong></td>
+                <td>7.50%</td>
+                <td>Quarterly</td>
+                <td>₹7,24,974</td>
+                <td>₹2,24,974</td>
+              </tr>
+              <tr>
+                <td><strong>SBI Bank (General)</strong></td>
+                <td>6.80%</td>
+                <td>Quarterly</td>
+                <td>₹7,00,490</td>
+                <td>₹2,00,490</td>
+              </tr>
+              <tr>
+                <td><strong>Post Office (5-Year Time Deposit)</strong></td>
+                <td>7.50%</td>
+                <td>Yearly Compounding</td>
+                <td>₹7,17,814</td>
+                <td>₹2,17,814</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <blockquote>
+            <p><strong>Critical Math Catch:</strong> Note that Post Office 5-Year FDs offer a 7.50% rate, but compound **annually**. An HDFC Senior Citizen FD at 7.50% compounds **quarterly**. Because of quarterly compounding, HDFC yields ₹7,24,974 while the Post Office yields ₹7,17,814. More frequent compounding builds higher wealth!</p>
+          </blockquote>
+
+          <h2>Cumulative vs Non-Cumulative Interest Payouts</h2>
           <ul>
-            <li><strong>Cumulative FDs:</strong> Interest is compounded quarterly and paid upon maturity. This gives you the highest final maturity corpus due to reinvested interest.</li>
-            <li><strong>Non-Cumulative FDs:</strong> Interest is paid out regularly (monthly, quarterly, or half-yearly) to provide steady income. Best for retirees.</li>
+            <li>
+              <strong>Cumulative FD:</strong> The interest you earn is reinvested quarterly into your principal. You receive the total interest and principal only upon maturity. This maximizes compounding.
+            </li>
+            <li>
+              <strong>Non-Cumulative FD:</strong> The interest earned is paid out to you monthly or quarterly. This is ideal for senior citizens seeking regular pension income, but it stops the power of compounding on the interest.
+            </li>
           </ul>
-          <h3>Compounding Power</h3>
-          <p>Because Indian banks compound FDs quarterly, the effective annual yield is always slightly higher than the advertised interest rate. Use our calculator to check the exact quarterly compounding output.</p>
         </div>
       )
     },
@@ -477,20 +622,72 @@ export default function Blogs({ setActiveCalculator }) {
     },
     {
       id: 'nps-tier-guide',
-      title: 'NPS Tier 1 vs Tier 2: Slabs, Annuity, and Tax Rules',
+      title: 'NPS Tier 1 vs Tier 2: Slabs, Annuity, and Tax Calculation Slabs',
       category: 'retirement',
-      readTime: '5 min read',
+      readTime: '6 min read',
       date: 'Jul 15, 2026',
-      snippet: 'What is the difference between NPS Tier 1 and Tier 2 accounts? Compare tax deductions, withdrawal lock-ins, and voluntary savings features.',
+      snippet: 'What is the difference between NPS Tier 1 and Tier 2 accounts? Compare tax deductions, withdrawal lock-ins, and auto vs active equity choices.',
       targetCalc: 'nps',
       ctaText: 'Compare NPS Tiers',
       content: (
         <div>
-          <p>The National Pension Scheme offers two types of accounts to accommodate different saving needs.</p>
-          <h2>NPS Tier 1 (Pension Account)</h2>
-          <p>The primary retirement account. Locked in until age 60. Qualifies for tax deductions of up to ₹1.5 Lakhs (Sec 80CCD(1)) and an additional ₹50,000 (Sec 80CCD(1B)). Withdrawals are restricted.</p>
-          <h2>NPS Tier 2 (Investment Account)</h2>
-          <p>A voluntary savings account. Only open if you have an active Tier 1 account. It has no lock-in period and allows unlimited withdrawals, but contributions do not qualify for tax deductions.</p>
+          <p>
+            The <strong>National Pension Scheme (NPS)</strong> is a powerful voluntary retirement plan designed to help citizens build a structured pension corpus. However, many subscribers are confused by the two distinct accounts offered: <strong>NPS Tier 1</strong> and <strong>NPS Tier 2</strong>.
+          </p>
+          <p>
+            Understanding the rules, slabs, and equity options of each tier is essential to maximizing your retirement returns and tax relief.
+          </p>
+
+          <h2>NPS Tier 1 vs NPS Tier 2: The Major Differences</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>NPS Tier 1 (Pension Account)</th>
+                <th>NPS Tier 2 (Savings Account)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Status</strong></td>
+                <td>Mandatory (to open NPS)</td>
+                <td>Voluntary (requires active Tier 1)</td>
+              </tr>
+              <tr>
+                <td><strong>Lock-in / Withdrawals</strong></td>
+                <td>Locked in until age 60 (limited partial withdrawals)</td>
+                <td>No lock-in period. Unlimited withdrawals.</td>
+              </tr>
+              <tr>
+                <td><strong>Tax Deduction (Sec 80C)</strong></td>
+                <td>Eligible up to ₹1.5 Lakhs u/s 80C</td>
+                <td>No tax benefits (except for Central Govt staff with 3-yr lock-in)</td>
+              </tr>
+              <tr>
+                <td><strong>Additional Deduction (80CCD)</strong></td>
+                <td>Extra ₹50,000 u/s 80CCD(1B)</td>
+                <td>Not applicable</td>
+              </tr>
+              <tr>
+                <td><strong>Annuity Purchase</strong></td>
+                <td>Mandatory to buy annuity with min 40% corpus at 60</td>
+                <td>No annuity requirement. Can withdraw 100% anytime.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Asset Allocation Choices: Active vs Auto</h2>
+          <p>
+            NPS allows you to choose how your money is divided across four asset classes: Equity (E), Corporate Bonds (C), Government Securities (G), and Alternative Assets (A). You can select between two investment styles:
+          </p>
+          <ol>
+            <li>
+              <strong>Active Choice:</strong> You decide the percentage allocation yourself. You can allocate a maximum of <strong>75% in Equity (Scheme E)</strong> up to age 50, which gradually tapers down as you grow older.
+            </li>
+            <li>
+              <strong>Auto Choice (Lifecycle Funds):</strong> Your money is automatically allocated based on your age. You can choose from three lifecycle profiles: **Aggressive** (starts at 75% equity), **Moderate** (starts at 50% equity), and **Conservative** (starts at 25% equity).
+            </li>
+          </ol>
         </div>
       )
     },
