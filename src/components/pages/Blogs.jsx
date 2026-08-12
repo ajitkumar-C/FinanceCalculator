@@ -864,6 +864,10 @@ export default function Blogs({ setActiveCalculator }) {
         if (metaDesc) {
           metaDesc.setAttribute('content', article.snippet);
         }
+        const metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (metaKeywords) {
+          metaKeywords.setAttribute('content', `${article.category}, finance guide, ${article.title.toLowerCase()}`);
+        }
       }
     } else {
       if (params.has('article')) {
@@ -874,6 +878,10 @@ export default function Blogs({ setActiveCalculator }) {
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute('content', "Explore 18 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.");
+      }
+      const metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (metaKeywords) {
+        metaKeywords.setAttribute('content', "finance guides, investment articles, wealth strategies india, personal finance blogs, saving tips");
       }
     }
   }, [selectedArticleId]);
