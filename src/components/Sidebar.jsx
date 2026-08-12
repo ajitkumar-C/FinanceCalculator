@@ -38,7 +38,15 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
     <>
       {/* Sidebar Container */}
       <aside className={`app-sidebar no-print ${isMobileOpen ? 'mobile-open' : ''}`}>
-        <div className="sidebar-brand">
+        <a 
+          href="?calc=home" 
+          onClick={(e) => {
+            e.preventDefault();
+            selectCalculator('home');
+          }}
+          className="sidebar-brand"
+          style={{ textDecoration: 'none', cursor: 'pointer' }}
+        >
           <div className="brand-logo">
             <Calculator size={28} className="brand-icon" />
           </div>
@@ -46,7 +54,7 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
             <span className="brand-name">RupeeBuddy</span>
             <span className="brand-subtitle">Indian Financial Suite</span>
           </div>
-        </div>
+        </a>
 
         {/* Search Bar */}
         <div className="sidebar-search">

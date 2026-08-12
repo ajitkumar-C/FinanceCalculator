@@ -23,7 +23,16 @@ export default function Header({
     <header className="app-header">
       {/* Mobile Branding Bar (Visible only on mobile) */}
       <div className="mobile-header-brand no-print">
-        <div className="mobile-brand-logo-section">
+        <a 
+          href="?calc=home"
+          onClick={(e) => {
+            e.preventDefault();
+            setActiveCalculator('home');
+            setIsMobileOpen(false);
+          }}
+          className="mobile-brand-logo-section"
+          style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+        >
           <div className="brand-logo-icon">
             <Calculator size={22} />
           </div>
@@ -31,7 +40,7 @@ export default function Header({
             <span className="brand-logo-name">RupeeBuddy</span>
             <span className="brand-logo-sub">Indian Financial Suite</span>
           </div>
-        </div>
+        </a>
         
         <button 
           className="mobile-hamburger-btn" 
