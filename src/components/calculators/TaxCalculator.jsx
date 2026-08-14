@@ -152,6 +152,10 @@ export default function TaxCalculator({ setResultText }) {
                   <span>{formatINR(results.newRegime.taxableIncome)}</span>
                 </div>
                 <div className="regime-detail-row">
+                  <span>Tax Bracket / Slab:</span>
+                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{results.newRegime.taxBracket}</span>
+                </div>
+                <div className="regime-detail-row">
                   <span>Base Tax:</span>
                   <span>{formatINR(results.newRegime.baseTax)}</span>
                 </div>
@@ -186,6 +190,10 @@ export default function TaxCalculator({ setResultText }) {
                 <div className="regime-detail-row">
                   <span>Taxable Income:</span>
                   <span>{formatINR(results.oldRegime.taxableIncome)}</span>
+                </div>
+                <div className="regime-detail-row">
+                  <span>Tax Bracket / Slab:</span>
+                  <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{results.oldRegime.taxBracket}</span>
                 </div>
                 <div className="regime-detail-row">
                   <span>Base Tax:</span>

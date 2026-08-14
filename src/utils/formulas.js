@@ -335,6 +335,31 @@ export function calculateTax(annualIncome, deductions = 0) {
     }
   }
 
+  // Determine Tax Brackets
+  let bracketNew = "0%";
+  if (taxableIncomeNew > 2400000) {
+    bracketNew = "30%";
+  } else if (taxableIncomeNew > 2000000) {
+    bracketNew = "25%";
+  } else if (taxableIncomeNew > 1600000) {
+    bracketNew = "20%";
+  } else if (taxableIncomeNew > 1200000) {
+    bracketNew = "15%";
+  } else if (taxableIncomeNew > 800000) {
+    bracketNew = taxableIncomeNew <= 1200000 ? "10% (Rebate Applied)" : "10%";
+  } else if (taxableIncomeNew > 400000) {
+    bracketNew = taxableIncomeNew <= 1200000 ? "5% (Rebate Applied)" : "5%";
+  }
+
+  let bracketOld = "0%";
+  if (taxableIncomeOld > 1000000) {
+    bracketOld = "30%";
+  } else if (taxableIncomeOld > 500000) {
+    bracketOld = "20%";
+  } else if (taxableIncomeOld > 250000) {
+    bracketOld = taxableIncomeOld <= 500000 ? "5% (Rebate Applied)" : "5%";
+  }
+
   // Health and Education Cess: 4%
   const cessNew = taxNew * 0.04;
   const cessOld = taxOld * 0.04;
@@ -347,7 +372,8 @@ export function calculateTax(annualIncome, deductions = 0) {
       taxableIncome: Math.round(taxableIncomeNew),
       baseTax: Math.round(taxNew),
       cess: Math.round(cessNew),
-      totalTax: Math.round(finalTaxNew)
+      totalTax: Math.round(finalTaxNew),
+      taxBracket: bracketNew
     },
     oldRegime: {
       taxableIncome: Math.round(taxableIncomeOld),
