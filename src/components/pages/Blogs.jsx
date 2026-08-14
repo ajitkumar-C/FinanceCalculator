@@ -11,6 +11,276 @@ export default function Blogs({ setActiveCalculator }) {
 
   const articles = [
     {
+      id: 'ai-trading-basics',
+      title: 'The Rise of AI in Stock Trading: How Algorithmic Bots Work',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 14, 2026',
+      snippet: 'Learn how AI-driven machine learning models analyze technical charts, recognize candlestick patterns, and execute high-speed stock trades.',
+      targetCalc: 'mutualfund',
+      ctaText: 'Estimate Your Mutual Fund Portfolio Yield',
+      imgUrl: '/images/ai_trading_basics.jpg',
+      content: (
+        <div>
+          <p>
+            Artificial Intelligence has changed how people trade stocks. Instead of human traders staring at charts all day, AI trading systems use machine learning and computer vision to analyze stock patterns. These algorithms scan thousands of historical price bars, trade volume indicators, and real-time news sentiments. They process data in milliseconds and trigger trades when specific statistical criteria are met.
+          </p>
+
+          <h2>Who Uses AI Trading Bots?</h2>
+          <p>
+            AI trading bots are primarily used by active retail swing traders, day traders, and hedge funds who want to identify breakouts early and execute trades without emotional biases.
+          </p>
+
+          <h2>Step-by-Step Guide on How to Use It</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Sign up on an automated charting platform.</li>
+            <li>Input or select your technical indicator criteria (e.g. Bollinger Bands, Moving Average crossover).</li>
+            <li>Run a historical backtest to check the performance of your indicators.</li>
+            <li>Connect the platform to your broker account to execute alerts.</li>
+          </ol>
+
+          <h2>Advantages & Disadvantages</h2>
+          <p><strong>Advantages:</strong></p>
+          <ul>
+            <li>Eliminates emotional/fear-based trading decisions.</li>
+            <li>Scans thousands of stocks simultaneously in real-time.</li>
+            <li>Backtests strategy logic against decades of history in seconds.</li>
+          </ul>
+          <p><strong>Disadvantages:</strong></p>
+          <ul>
+            <li>Past performance does not guarantee future results.</li>
+            <li>Can be complex for beginners to construct robust rules.</li>
+          </ul>
+
+          <h2>Current Adoption & Market Trends</h2>
+          <p>
+            Retail adoption has spiked by over 200% as platforms make AI charts accessible without coding. Traders are moving away from discretionary trading and towards rule-based systematic trading.
+          </p>
+
+          <h2>Official Outbound Reference</h2>
+          <p>
+            For automated charting, backtesting, and AI technical alerts, visit the official <a href="https://trendspider.com/" target="_blank" rel="noopener noreferrer">TrendSpider Website</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'no-code-algos',
+      title: 'No-Code Algorithmic Portfolios: Automated Strategy Builders',
+      category: 'investment',
+      readTime: '6 min read',
+      date: 'Aug 14, 2026',
+      snippet: 'Build, backtest, and automate complex stock and ETF trading strategies using simple drag-and-drop logic without writing a single line of code.',
+      targetCalc: 'sip',
+      ctaText: 'Plan Your Compound Growth SIP',
+      imgUrl: '/images/no_code_algos.jpg',
+      content: (
+        <div>
+          <p>
+            Historically, quantitative trading was restricted to developers who wrote code in Python or C++. Modern no-code platforms allow you to create rule-based investment portfolios using flowcharts or visual blocks. The platform translates your logic into server-side algorithms that execute automatically when target events trigger.
+          </p>
+
+          <h2>Who Uses No-Code Algos?</h2>
+          <p>
+            Long-term investors, DIY retirement planners, and passive asset managers looking to automate rebalancing and dynamic hedging.
+          </p>
+
+          <h2>Step-by-Step Guide on How to Use It</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Define your initial asset allocation (e.g., 60% S&P 500 ETF, 40% Treasury ETF).</li>
+            <li>Add conditional logic blocks (e.g., "If S&P 500 drops below its 200-day moving average, allocate 20% to Gold").</li>
+            <li>Run a backtest to see how the strategy survived historic recessions.</li>
+            <li>Click 'Deploy' to sync it with your broker.</li>
+          </ol>
+
+          <h2>Advantages & Disadvantages</h2>
+          <p><strong>Advantages:</strong></p>
+          <ul>
+            <li>No programming experience required.</li>
+            <li>Automates portfolio rebalancing based on rules.</li>
+            <li>Saves time by removing manual daily order entries.</li>
+          </ul>
+          <p><strong>Disadvantages:</strong></p>
+          <ul>
+            <li>Limited by the pre-built logic blocks.</li>
+            <li>Relies on standard market order execution speed.</li>
+          </ul>
+
+          <h2>Current Adoption & Market Trends</h2>
+          <p>
+            Massively popular among index fund investors who want dynamic risk management without high advisor fees.
+          </p>
+
+          <h2>Official Outbound Reference</h2>
+          <p>
+            Build and automate your personal index strategies u/s the official <a href="https://www.composer.trade/" target="_blank" rel="noopener noreferrer">Composer Platform</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'holly-ai-active',
+      title: 'Inside Holly AI: The Machine Learning Brain Powering Active Traders',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 14, 2026',
+      snippet: 'Meet the machine learning scanner engines that process millions of market scenarios each night to give day traders statistical breakout alerts.',
+      targetCalc: 'emi',
+      ctaText: 'Calculate Your Debt-to-Income Loan EMI',
+      imgUrl: '/images/holly_ai_active.jpg',
+      content: (
+        <div>
+          <p>
+            Active day trading requires filtering through thousands of moving stocks. AI engines like Trade-Ideas\' "Holly" use proprietary machine learning algorithms to simulate millions of trading scenarios overnight. During the active market day, Holly compares live price actions to these simulations, generating trade alerts with clear target prices and stop-losses.
+          </p>
+
+          <h2>Who Uses Holly AI?</h2>
+          <p>
+            Full-time day traders, scalpers, and momentum stock buyers seeking real-time alert signals.
+          </p>
+
+          <h2>Step-by-Step Guide on How to Use It</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Load the AI scanner interface during market hours.</li>
+            <li>Monitor the active alerts channel for buy/sell flags.</li>
+            <li>Review the statistical "probability of success" rating given by the AI for each alert.</li>
+            <li>Execute trades in your broker dashboard using the provided risk limits.</li>
+          </ol>
+
+          <h2>Advantages & Disadvantages</h2>
+          <p><strong>Advantages:</strong></p>
+          <ul>
+            <li>Real-time pattern scanning across all listings.</li>
+            <li>Dynamically calculates entry and exit targets.</li>
+            <li>Updates risk guidelines as intraday volatility changes.</li>
+          </ul>
+          <p><strong>Disadvantages:</strong></p>
+          <ul>
+            <li>Fast-paced, requiring immediate focus and execution.</li>
+            <li>High subscription costs for premium AI scanners.</li>
+          </ul>
+
+          <h2>Current Adoption & Market Trends</h2>
+          <p>
+            High-speed scalpers rely on active scanners to filter out noise and capture small price changes in high-momentum stocks.
+          </p>
+
+          <h2>Official Outbound Reference</h2>
+          <p>
+            Enhance your day trading setups with the official <a href="https://www.trade-ideas.com/" target="_blank" rel="noopener noreferrer">Trade Ideas Platform</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'pattern-recognition-ai',
+      title: 'AI Pattern Recognition: Scanning Chart Formations with Neural Networks',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 14, 2026',
+      snippet: 'How neural networks analyze technical charts to recognize complex breakouts, triangle patterns, and support/resistance zones.',
+      targetCalc: 'compound',
+      ctaText: 'Calculate Compound Interest Growth',
+      imgUrl: '/images/pattern_recognition_ai.jpg',
+      content: (
+        <div>
+          <p>
+            Spotting chart patterns (like Head & Shoulders, double tops, or flags) requires hours of manual analysis. AI pattern search engines use deep neural networks and computer vision to read charts like an image, identifying support levels, resistances, and breakout directions in seconds.
+          </p>
+
+          <h2>Who Uses AI Pattern Recognition?</h2>
+          <p>
+            Technical analysis enthusiasts, pattern traders, and swing investors seeking breakout candidates.
+          </p>
+
+          <h2>Step-by-Step Guide on How to Use It</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Select the patterns you want to scan for (e.g. Bullish Cup and Handle).</li>
+            <li>Choose your target scanning universe (e.g. Nifty 50 or S&P 500).</li>
+            <li>Review the AI\'s pattern match results and confidence score.</li>
+            <li>View the target breakout direction and entry triggers.</li>
+          </ol>
+
+          <h2>Advantages & Disadvantages</h2>
+          <p><strong>Advantages:</strong></p>
+          <ul>
+            <li>Speeds up charting research significantly.</li>
+            <li>Identifies overlooked pattern setups.</li>
+            <li>Provides objective target pricing based on pattern depth.</li>
+          </ul>
+          <p><strong>Disadvantages:</strong></p>
+          <ul>
+            <li>Market noise can trigger false pattern breakouts.</li>
+            <li>Less effective in sideways, low-volume markets.</li>
+          </ul>
+
+          <h2>Current Adoption & Market Trends</h2>
+          <p>
+            Widespread usage among part-time traders who want professional-grade chart filters to optimize screen time.
+          </p>
+
+          <h2>Official Outbound Reference</h2>
+          <p>
+            Scan and forecast breakouts automatically with the official <a href="https://tickeron.com/" target="_blank" rel="noopener noreferrer">Tickeron Website</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'algo-risk-management',
+      title: 'Algorithmic Risk Management: Why AI Trading is About Strategy',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 14, 2026',
+      snippet: 'Dispel the "money printer" myths and discover how beginners use automated risk rules and trading bots to keep their capital secure.',
+      targetCalc: 'retirement',
+      ctaText: 'Plan Your Retirement Savings Target',
+      imgUrl: '/images/algo_risk_management.jpg',
+      content: (
+        <div>
+          <p>
+            The most critical component of trading is not finding winning stocks, but protecting your capital. AI trading bots help you enforce risk rules (like strict trailing stop-losses, maximum daily loss limits, and size caps) without allowing human emotions to override them.
+          </p>
+
+          <h2>Who Uses Algorithmic Risk Management?</h2>
+          <p>
+            Beginner bot creators and systematic investors looking to run automated strategies safely across multiple broker platforms.
+          </p>
+
+          <h2>Step-by-Step Guide on How to Use It</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Set up a basic trading bot strategy (e.g., buy when price exceeds the 20-day high).</li>
+            <li>Input strict risk parameters: Set a 2% stop-loss and a 6% take-profit target.</li>
+            <li>Enable paper-trading mode to test the bot safely without real money.</li>
+            <li>Run live connections to your exchanges with small capital sizes first.</li>
+          </ol>
+
+          <h2>Advantages & Disadvantages</h2>
+          <p><strong>Advantages:</strong></p>
+          <ul>
+            <li>Enforces strict risk rules automatically.</li>
+            <li>Removes emotional greed or hesitation.</li>
+            <li>Allows paper-testing strategies before spending capital.</li>
+          </ul>
+          <p><strong>Disadvantages:</strong></p>
+          <ul>
+            <li>Relies on broker API stability for order execution.</li>
+            <li>Bots require monitoring during high-impact news releases.</li>
+          </ul>
+
+          <h2>Current Adoption & Market Trends</h2>
+          <p>
+            High growth among crypto and stock retail investors using paper trading to build and test bot configurations.
+          </p>
+
+          <h2>Official Outbound Reference</h2>
+          <p>
+            Build, test, and deploy personal bots using the official <a href="https://stockhero.ai/" target="_blank" rel="noopener noreferrer">StockHero Bot Builder</a>.
+          </p>
+        </div>
+      )
+    },
+    {
       id: 'tax-guide',
       title: 'Old vs New Tax Regime: FY 2026-27 Tax Saving Strategy Guide',
       category: 'tax',
@@ -1076,6 +1346,22 @@ export default function Blogs({ setActiveCalculator }) {
               <span className="article-verification-info">✓ Reviewed by Chartered Accountants & Financial Advisors</span>
             </div>
           </div>
+
+          {activeArticle.imgUrl && (
+            <img 
+              src={activeArticle.imgUrl} 
+              alt={activeArticle.title} 
+              className="article-featured-image"
+              style={{
+                width: '100%',
+                maxHeight: '380px',
+                objectFit: 'cover',
+                borderRadius: 'var(--radius-md)',
+                marginBottom: '28px',
+                border: '1px solid var(--border-color)'
+              }}
+            />
+          )}
 
           <div className="article-content">
             {activeArticle.content}
