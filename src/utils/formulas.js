@@ -379,7 +379,8 @@ export function calculateTax(annualIncome, deductions = 0) {
       taxableIncome: Math.round(taxableIncomeOld),
       baseTax: Math.round(taxOld),
       cess: Math.round(cessOld),
-      totalTax: Math.round(finalTaxOld)
+      totalTax: Math.round(finalTaxOld),
+      taxBracket: bracketOld
     },
     recommendation: finalTaxNew <= finalTaxOld ? 'New Regime' : 'Old Regime',
     savings: Math.abs(Math.round(finalTaxOld - finalTaxNew))
