@@ -189,4 +189,31 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <!-- AI Trading Blog Additions -->
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=ai-trading-basics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=no-code-algos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=holly-ai-active</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=pattern-recognition-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=algo-risk-management</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
