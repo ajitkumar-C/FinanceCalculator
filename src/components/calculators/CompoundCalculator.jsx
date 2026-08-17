@@ -222,9 +222,9 @@ export default function CompoundCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>About Compound Interest Calculator</h2>
+        <h2>Best Compound Interest Calculator India</h2>
         <p>
-          Compound interest is the interest calculated on the initial principal and also on the accumulated interest of previous periods. Often termed as the "8th wonder of the world", compounding allows your wealth to grow exponentially. This calculator helps you see how different compounding frequencies (daily, monthly, quarterly, or yearly) affect your terminal maturity amount.
+          Compound interest is the interest calculated on the initial principal and also on the accumulated interest of previous periods. Whether you are looking for a <strong>daily compound interest calculator India</strong> or a standard <strong>compounding calculator India</strong>, this tool helps you see how different compounding frequencies (daily, monthly, quarterly, or yearly) affect your terminal maturity amount and allows your wealth to grow exponentially.
         </p>
 
         <h3>The Compound Interest Equation</h3>

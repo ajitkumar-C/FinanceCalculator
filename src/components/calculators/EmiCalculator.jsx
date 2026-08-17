@@ -218,6 +218,12 @@ export default function EmiCalculator({ setResultText }) {
               A flat rate calculates interest on the initial loan amount for the entire tenure. A reducing balance rate calculates interest on the outstanding principal balance, which decreases monthly as you pay off the principal. The reducing balance method is standard in Indian retail loans.
             </p>
           </div>
+          <div className="faq-item">
+            <h4 className="faq-question">4. Does this tool work for a reducing balance personal loan?</h4>
+            <p className="faq-answer">
+              Yes! Whether it is a home loan, car loan, or a <strong>reducing balance personal loan</strong>, our EMI calculation engine is built entirely on the reducing balance methodology, which is the exact standard used by all Indian banks and financial institutions.
+            </p>
+          </div>
         </div>
       </section>
     </div>

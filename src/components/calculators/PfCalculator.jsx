@@ -218,9 +218,9 @@ export default function PfCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>About Employee Provident Fund (EPF)</h2>
+        <h2>Free PF Calculator: Check Your EPF Balance</h2>
         <p>
-          Employee Provident Fund (EPF) is a government-backed retirement benefit scheme mandatory for all salaried employees in India. Managed by the **Employees' Provident Fund Organisation (EPFO)**, it serves as a secure long-term saving instrument where both the employee and the employer contribute monthly.
+          Use our exact-match <strong>pf calculator</strong> to project your total corpus at retirement. The Employee Provident Fund (EPF) is a government-backed retirement benefit scheme mandatory for all salaried employees in India. Managed by the **Employees' Provident Fund Organisation (EPFO)**, it serves as a secure long-term saving instrument where both the employee and the employer contribute monthly.
         </p>
 
         <h3>Understanding EPF Contribution Splits</h3>

@@ -168,9 +168,9 @@ export default function SipCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>About SIP (Systematic Investment Plan) Calculator</h2>
+        <h2>Free Systematic Investment Plan (SIP) Calculator</h2>
         <p>
-          A Systematic Investment Plan (SIP) is a method offered by mutual funds in India to invest a fixed amount regularly (weekly, monthly, or quarterly) into a chosen mutual fund scheme. Instead of trying to time the market with a lump sum, a SIP allows you to buy units on a regular basis, leveraging **Rupee Cost Averaging** and the power of **Compounding**.
+          A <strong>systematic investment plan</strong> (SIP) is a proven method offered by mutual funds in India to invest a fixed amount regularly (weekly, monthly, or quarterly) into a chosen mutual fund scheme. Instead of trying to time the market with a lump sum, a SIP allows you to buy units on a regular basis, leveraging **Rupee Cost Averaging** and the power of **Compounding**.
         </p>
 
         <h3>Benefits of SIP Investments</h3>

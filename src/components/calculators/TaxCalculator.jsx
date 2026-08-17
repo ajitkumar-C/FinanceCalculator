@@ -317,6 +317,18 @@ export default function TaxCalculator({ setResultText }) {
               Salaried individuals who do not have business income can choose/switch between the Old and New regimes every financial year at the time of filing their Income Tax Return (ITR). However, individuals with business or professional income get a one-time choice to opt out of the default New Regime and cannot switch back and forth.
             </p>
           </div>
+          <div className="faq-item">
+            <h4 className="faq-question">4. How do you find out your tax rate?</h4>
+            <p className="faq-answer">
+              If you are wondering 'how to <strong>find out my tax rate</strong>', simply enter your Gross Annual Income and deductions above. Our calculator automatically determines your marginal tax slab and shows your effective tax rate under both the Old and New Regimes instantly.
+            </p>
+          </div>
+          <div className="faq-item">
+            <h4 className="faq-question">5. Is there a filing taxes jointly vs separately calculator for India?</h4>
+            <p className="faq-answer">
+              While users often search for a <strong>filing taxes jointly vs separately calculator</strong>, in India, the Income Tax Department requires every individual to file taxes separately. There is no joint tax return filing for married couples under Indian tax law, so each individual must use the calculator based on their own separate income.
+            </p>
+          </div>
         </div>
       </section>
     </div>
