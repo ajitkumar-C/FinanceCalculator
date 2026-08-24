@@ -1103,6 +1103,406 @@ export default function Blogs({ setActiveCalculator }) {
           </ul>
         </div>
       )
+    },
+    {
+      id: 'upi-digital-payments-india',
+      title: 'UPI and Digital Payments in India: The Rise of the Cashless Economy',
+      category: 'investment',
+      readTime: '6 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'India processed over 13 billion UPI transactions in a single month. Discover how UPI works, who uses it, its benefits, limitations, and what it means for your daily finances.',
+      targetCalc: 'emi',
+      ctaText: 'Calculate Your Loan EMI Instantly',
+      imgUrl: '/images/upi_digital_payments.jpg',
+      content: (
+        <div>
+          <p>
+            India's payment landscape has undergone a complete transformation in the last decade. Thanks to the <strong>Unified Payments Interface (UPI)</strong>, sending money from your mobile phone is now as easy as sending a text message. In August 2023, India crossed 10 billion UPI transactions in a single month — a milestone that stunned the global fintech community.
+          </p>
+
+          <h2>What is UPI and How Does It Work?</h2>
+          <p>
+            UPI (Unified Payments Interface) is a real-time payment system developed by the <a href="https://www.npci.org.in/" target="_blank" rel="noopener noreferrer">National Payments Corporation of India (NPCI)</a>. It allows users to link multiple bank accounts into a single mobile application and instantly transfer money 24x7, 365 days a year using a Virtual Payment Address (VPA) or UPI ID.
+          </p>
+          <p>
+            Platforms like <strong>Google Pay, PhonePe, Paytm, and BHIM</strong> all run on this backbone. When you pay ₹50 at a street vendor by scanning a QR code, you are using UPI.
+          </p>
+
+          <h2>Who Uses UPI?</h2>
+          <ul>
+            <li><strong>Salaried Individuals:</strong> For paying bills, splitting rent, and instant transfers.</li>
+            <li><strong>Small Business Owners:</strong> For accepting customer payments without POS machines or cash handling.</li>
+            <li><strong>Students:</strong> For peer-to-peer splitting of expenses.</li>
+            <li><strong>Senior Citizens:</strong> Simplified banking without visiting branches.</li>
+            <li><strong>E-commerce Shoppers:</strong> As a checkout payment method across platforms like Amazon and Flipkart.</li>
+          </ul>
+
+          <h2>Step-by-Step: How to Set Up and Use UPI</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Download a UPI-enabled app (Google Pay, PhonePe, or your bank's app).</li>
+            <li>Register using your mobile number linked to your bank account.</li>
+            <li>Create your unique VPA / UPI ID (e.g., yourname@okicici).</li>
+            <li>Link your bank account and set a 4 or 6-digit UPI PIN.</li>
+            <li>Start sending or receiving money instantly using UPI ID, mobile number, or QR code.</li>
+          </ol>
+
+          <h2>Key Benefits of UPI</h2>
+          <ul>
+            <li>Zero transaction charges for individuals.</li>
+            <li>Works round-the-clock including bank holidays.</li>
+            <li>Supports both push (send) and pull (request) transactions.</li>
+            <li>No need to remember bank account numbers or IFSC codes.</li>
+            <li>Encrypted and highly secure under RBI and NPCI guidelines.</li>
+          </ul>
+
+          <h2>Limitations to Keep in Mind</h2>
+          <ul>
+            <li>Single transaction limit is typically ₹1 Lakh per day (₹2 Lakhs for certain categories).</li>
+            <li>Requires an active internet connection.</li>
+            <li>UPI frauds and phishing scams are on the rise — always verify before accepting money requests.</li>
+            <li>Not yet fully accepted internationally (though being adopted in UAE, Singapore, France, etc.).</li>
+          </ul>
+
+          <h2>Market Adoption and Trends</h2>
+          <p>
+            India's digital payment adoption is growing 3x faster than China's. The government's push for a cashless economy through initiatives like <strong>Jan Dhan Yojana</strong> and <strong>Digital India</strong> has brought millions of unbanked Indians into the formal financial system. UPI is now being piloted in multiple countries as a model for real-time payment infrastructure globally.
+          </p>
+
+          <h2>Official Reference</h2>
+          <p>
+            To learn more about UPI guidelines, transaction limits, and participating banks, visit the official <a href="https://www.npci.org.in/what-we-do/upi/product-overview" target="_blank" rel="noopener noreferrer">NPCI UPI Product Overview</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'budget-2025-tax-slabs',
+      title: 'Budget 2025 Explained: New Tax Slabs and What It Means for You',
+      category: 'tax',
+      readTime: '7 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'The Union Budget 2025 brought major changes to the New Tax Regime with a zero-tax threshold raised to ₹12 Lakhs. Here is a full breakdown of the new slabs and how they impact salaried Indians.',
+      targetCalc: 'tax',
+      ctaText: 'Compare Old vs New Tax Regime',
+      imgUrl: '/images/budget_2025_tax_slabs.jpg',
+      content: (
+        <div>
+          <p>
+            The Union Budget 2025, presented by Finance Minister Nirmala Sitharaman, delivered one of the biggest income tax relief packages for middle-class salaried Indians in recent memory. The biggest headline: <strong>zero income tax for those earning up to ₹12 Lakhs per year</strong> under the New Tax Regime (thanks to the enhanced Section 87A rebate).
+          </p>
+
+          <h2>Who Does the Budget 2025 Tax Relief Benefit?</h2>
+          <p>
+            The primary beneficiaries are <strong>salaried employees and pensioners</strong> with a gross annual income below ₹12 Lakhs who opt for the New Tax Regime. With a standard deduction of ₹75,000, even those earning up to ₹12.75 Lakhs pay zero tax effectively.
+          </p>
+
+          <h2>New Tax Regime Slabs for FY 2025-26 and FY 2026-27</h2>
+          <ul>
+            <li><strong>Up to ₹4,00,000:</strong> 0% (Nil)</li>
+            <li><strong>₹4,00,001 – ₹8,00,000:</strong> 5%</li>
+            <li><strong>₹8,00,001 – ₹12,00,000:</strong> 10%</li>
+            <li><strong>₹12,00,001 – ₹16,00,000:</strong> 15%</li>
+            <li><strong>₹16,00,001 – ₹20,00,000:</strong> 20%</li>
+            <li><strong>₹20,00,001 – ₹24,00,000:</strong> 25%</li>
+            <li><strong>Above ₹24,00,000:</strong> 30%</li>
+          </ul>
+          <p>
+            <em>Note: Section 87A rebate makes net tax zero for taxable income up to ₹12,00,000. Standard deduction for salaried individuals is ₹75,000.</em>
+          </p>
+
+          <h2>Old Regime vs New Regime: When Should You Choose Which?</h2>
+          <ul>
+            <li><strong>Choose the New Regime if:</strong> Your total deductions (80C, HRA, home loan interest, health insurance) are below ₹3.75 Lakhs annually. You will likely pay less tax.</li>
+            <li><strong>Choose the Old Regime if:</strong> You have a home loan, pay significant rent (HRA), invest ₹1.5L in 80C instruments, and pay health insurance premiums. Deductions above ₹3.75L generally make the Old Regime favourable.</li>
+          </ul>
+
+          <h2>Step-by-Step: How to Decide Which Regime is Right for You</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Add up your total annual deductions (80C + HRA + 80D + home loan interest).</li>
+            <li>Enter your gross income into the RupeeBuddy Income Tax Calculator.</li>
+            <li>Compare the tax payable under both regimes side by side.</li>
+            <li>Choose the regime that gives you the lower tax liability.</li>
+            <li>Declare your choice to your employer at the beginning of the financial year for correct TDS deduction.</li>
+          </ol>
+
+          <h2>Market Adoption and Trends</h2>
+          <p>
+            The new slabs have made the New Tax Regime highly attractive, and the government expects a significant shift of salaried taxpayers moving away from the Old Regime. According to preliminary estimates, over 70% of new filers are likely to benefit more from the New Regime slabs in FY 2025-26.
+          </p>
+
+          <h2>Official Reference</h2>
+          <p>
+            For the official tax slab notification and the Finance Bill 2025 details, refer to the <a href="https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1" target="_blank" rel="noopener noreferrer">Income Tax India Official Portal</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'gold-vs-mutual-funds',
+      title: 'Gold vs Mutual Funds: Which is the Better Investment for Indians in 2025?',
+      category: 'investment',
+      readTime: '7 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'Gold has been the default safe haven for Indian families for centuries. Mutual funds offer market-linked growth. In 2025, which one should you choose — and can you pick both?',
+      targetCalc: 'mutualfund',
+      ctaText: 'Estimate Your Mutual Fund Returns',
+      imgUrl: '/images/gold_vs_mutual_funds.jpg',
+      content: (
+        <div>
+          <p>
+            Ask any Indian household about savings, and the answer is often the same — <strong>gold</strong>. It is the default safety net passed down generations. But in the modern investment landscape, <strong>equity mutual funds</strong> have delivered significantly higher long-term returns. So which one should you put your money into?
+          </p>
+
+          <h2>Who Invests in Gold vs Mutual Funds?</h2>
+          <ul>
+            <li><strong>Gold Investors:</strong> Conservative investors, senior citizens, households with cultural attachment to physical gold, and those seeking capital protection during economic uncertainty.</li>
+            <li><strong>Mutual Fund Investors:</strong> Young working professionals, long-term wealth builders, SIP investors, and those comfortable with some level of market risk for higher returns.</li>
+          </ul>
+
+          <h2>Historical Returns Comparison (India)</h2>
+          <ul>
+            <li><strong>Gold (10-year CAGR):</strong> Approximately 8–10% per annum. Gold surged significantly in 2020 and 2024 due to global uncertainty, with prices crossing ₹75,000+ per 10g.</li>
+            <li><strong>Nifty 50 Index Funds (10-year CAGR):</strong> Approximately 12–14% per annum, making them significantly more rewarding in the long run.</li>
+            <li><strong>ELSS Mutual Funds (5-year CAGR):</strong> Approximately 14–18%, with the added benefit of ₹1.5L tax deduction under Section 80C (Old Regime).</li>
+          </ul>
+
+          <h2>Advantages of Gold</h2>
+          <ul>
+            <li>Proven safe haven during geopolitical crises and market crashes.</li>
+            <li>Tangible, universally accepted asset.</li>
+            <li>Hedge against currency depreciation and inflation.</li>
+            <li>Liquidity — can be sold or pledged for loans quickly.</li>
+          </ul>
+
+          <h2>Advantages of Mutual Funds</h2>
+          <ul>
+            <li>Professionally managed portfolios via SEBI-registered fund houses.</li>
+            <li>Power of compounding over long tenures (10–20 years).</li>
+            <li>SIP allows investment starting at ₹500/month.</li>
+            <li>Diversification across sectors automatically.</li>
+            <li>Tax efficiency — Long Term Capital Gains (LTCG) taxed at just 12.5% above ₹1.25L.</li>
+          </ul>
+
+          <h2>Disadvantages: What to Watch Out For</h2>
+          <ul>
+            <li><strong>Gold:</strong> No regular income (no dividends), storage risk for physical gold, GST and making charges inflate buying cost.</li>
+            <li><strong>Mutual Funds:</strong> Market risk, no guaranteed returns, NAV can fall in bear markets.</li>
+          </ul>
+
+          <h2>The Smart Approach: Use Both</h2>
+          <p>
+            Most financial advisors recommend a <strong>blended portfolio</strong>: 70–80% equity mutual funds for growth and 10–15% gold (preferably via Sovereign Gold Bonds or Gold ETFs) as a hedge. This way, you benefit from market-linked growth while having a safety cushion during economic downturns.
+          </p>
+
+          <h2>Official Reference</h2>
+          <p>
+            For Sovereign Gold Bond (SGB) subscription details, visit the official <a href="https://www.rbi.org.in/scripts/bs_viewcontent.aspx?Id=2513" target="_blank" rel="noopener noreferrer">RBI Sovereign Gold Bond page</a>. For mutual fund investments, visit <a href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">AMFI India</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'emergency-fund-guide',
+      title: 'Emergency Fund Guide: How Much to Save and Where to Keep It',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'An emergency fund is the foundation of any solid financial plan. Most Indians skip it. Learn how to calculate the right size, where to park it, and how to build it step by step.',
+      targetCalc: 'fd',
+      ctaText: 'Calculate Your FD Returns',
+      imgUrl: '/images/emergency_fund_guide.jpg',
+      content: (
+        <div>
+          <p>
+            Imagine losing your job tomorrow. Could you pay rent, EMIs, and groceries for the next 6 months without panic? If the answer is no, you need an <strong>emergency fund</strong>. This is the single most important financial safety net, yet most Indians skip it in favour of investments.
+          </p>
+
+          <h2>What Is an Emergency Fund?</h2>
+          <p>
+            An emergency fund is a dedicated pool of liquid cash kept aside exclusively for genuine financial emergencies — job loss, medical crisis, major home repair, or a family emergency. It is <strong>not</strong> for vacations, buying gadgets, or "good deals" on investments.
+          </p>
+
+          <h2>Who Needs an Emergency Fund?</h2>
+          <ul>
+            <li><strong>Salaried employees</strong> who depend on a single income source.</li>
+            <li><strong>Freelancers and self-employed professionals</strong> with irregular income.</li>
+            <li><strong>Anyone with EMIs</strong> (home loan, car loan, personal loan) that must be paid monthly regardless of income disruption.</li>
+            <li><strong>Families with dependents</strong> (children, elderly parents) with high monthly outflows.</li>
+          </ul>
+
+          <h2>How Much Should Your Emergency Fund Be?</h2>
+          <p>
+            The standard rule: <strong>3 to 6 months of your total monthly expenses</strong>. However:
+          </p>
+          <ul>
+            <li>If you are single with a stable government job: 3 months is enough.</li>
+            <li>If you are self-employed or work in a volatile industry (startups, media): aim for 9–12 months.</li>
+            <li>Include all monthly outflows — rent/EMI, groceries, school fees, insurance premiums, subscriptions.</li>
+          </ul>
+          <p>
+            <strong>Example:</strong> If your monthly expenses are ₹50,000, your emergency fund target is ₹1.5 Lakh (3 months) to ₹3 Lakhs (6 months).
+          </p>
+
+          <h2>Step-by-Step: How to Build Your Emergency Fund</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Calculate your total monthly essential expenses (not wants — only needs).</li>
+            <li>Set a target (3x or 6x that number based on your job stability).</li>
+            <li>Open a separate savings account — ideally a high-interest savings account or a liquid mutual fund. Keep it separate from your regular account to prevent spending it.</li>
+            <li>Set up an automatic SIP transfer of a fixed amount each month until you reach your target.</li>
+            <li>Once built, only touch it for true emergencies. Replenish it as soon as possible if used.</li>
+          </ol>
+
+          <h2>Where Should You Keep Your Emergency Fund?</h2>
+          <ul>
+            <li><strong>High-interest Savings Account:</strong> Easy access, FDIC equivalent cover, 3–4% interest. Best for instant access.</li>
+            <li><strong>Liquid Mutual Funds:</strong> 6–7% returns, redeemable in 24 hours. Great for larger emergency funds.</li>
+            <li><strong>Short-term FD (Fixed Deposit with Overdraft):</strong> Higher interest, and you can borrow against it without breaking it.</li>
+            <li><strong>Avoid:</strong> Equity mutual funds, stocks, or real estate — these can't be liquidated quickly or without loss during crises.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>
+            For high-interest savings account options in India, check the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India portal</a> for scheduled bank interest rates and comparison guidance.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'home-loan-vs-rent',
+      title: 'Home Loan vs Rent: Which is the Smarter Financial Decision for Indians in 2025?',
+      category: 'loans',
+      readTime: '8 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'Buying vs renting is the single biggest financial decision most Indians face. The answer is not the same for everyone. Here is a clear, numbers-based breakdown to help you decide.',
+      targetCalc: 'emi',
+      ctaText: 'Calculate Your Home Loan EMI',
+      imgUrl: '/images/home_loan_vs_rent.jpg',
+      content: (
+        <div>
+          <p>
+            "Rent is a waste of money — buy a house!" This is a common piece of advice you will hear from family. But is it always true? In 2025, with property prices at record highs in metro cities and home loan interest rates hovering at 8.5–9.5%, the maths is more complicated than it sounds. Let us break it down clearly.
+          </p>
+
+          <h2>Who Benefits Most from Buying?</h2>
+          <ul>
+            <li>Those planning to stay in the same city for 10+ years.</li>
+            <li>Individuals who have a stable income and can afford 20–30% down payment.</li>
+            <li>Families who want ownership stability and are not dependent on job mobility.</li>
+            <li>People in cities where property appreciation rates are historically strong (Bengaluru, Hyderabad, Pune).</li>
+          </ul>
+
+          <h2>Who Benefits Most from Renting?</h2>
+          <ul>
+            <li>Young professionals in their 20s–30s with high job mobility between cities.</li>
+            <li>Those who invest the "rent difference" (money saved vs EMI) in equity mutual funds, which historically outperform real estate returns.</li>
+            <li>Residents in high property-price cities like Mumbai where the rent-to-price ratio makes buying extremely expensive.</li>
+            <li>People who value flexibility and liquidity over asset ownership.</li>
+          </ul>
+
+          <h2>The Real Cost of Buying a Home</h2>
+          <p>
+            Most people compare EMI to rent directly. But the actual cost of homeownership includes much more:
+          </p>
+          <ul>
+            <li><strong>Down Payment:</strong> Typically 20–30% of the property value — for a ₹1 Crore flat, that is ₹20–30 Lakhs locked in immediately.</li>
+            <li><strong>Home Loan Interest:</strong> On a ₹70L loan at 9% for 20 years, you pay back ₹1.36 Crores — almost double!</li>
+            <li><strong>Registration and Stamp Duty:</strong> 5–7% of property value (₹5–7 Lakhs on a ₹1 Crore flat).</li>
+            <li><strong>Maintenance and Society Charges:</strong> ₹3,000–₹15,000/month for flats.</li>
+            <li><strong>Property Tax:</strong> Municipal taxes levied annually.</li>
+          </ul>
+
+          <h2>The Price-to-Rent Ratio Rule</h2>
+          <p>
+            A simple rule: <strong>Price-to-Rent Ratio = Property Price / Annual Rent</strong>.
+          </p>
+          <ul>
+            <li>If ratio is below 15: Buying is likely the better financial decision.</li>
+            <li>If ratio is 15–20: The decision is roughly equal — personal preference matters.</li>
+            <li>If ratio is above 20: Renting and investing the difference is usually smarter financially.</li>
+          </ul>
+          <p>
+            <em>Example: In Mumbai, a ₹1.5 Crore flat renting for ₹40,000/month has a ratio of 31 — renting is financially superior in pure number terms.</em>
+          </p>
+
+          <h2>Tax Benefits on Home Loans (Old Regime)</h2>
+          <ul>
+            <li><strong>Section 80C:</strong> Principal repayment up to ₹1.5 Lakhs deduction.</li>
+            <li><strong>Section 24(b):</strong> Interest deduction up to ₹2 Lakhs for self-occupied property.</li>
+            <li><strong>Section 80EEA:</strong> Additional ₹1.5 Lakhs deduction for first-time buyers (select conditions).</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>
+            Check official home loan interest rates and eligibility at <a href="https://www.hdfc.com/home-loans" target="_blank" rel="noopener noreferrer">HDFC Bank Home Loans</a> and <a href="https://sbi.co.in/web/home-loan" target="_blank" rel="noopener noreferrer">SBI Home Loan</a>.
+          </p>
+        </div>
+      )
+    },
+    {
+      id: 'retirement-planning-at-30',
+      title: 'Retirement Planning at 30: Why Starting Early is the Most Powerful Financial Move',
+      category: 'retirement',
+      readTime: '7 min read',
+      date: 'Aug 24, 2026',
+      snippet: 'The biggest mistake Indians make is starting retirement planning at 45 or 50. Starting at 30 with even small amounts can build 3x the corpus of starting at 40, thanks to compounding.',
+      targetCalc: 'retirement',
+      ctaText: 'Plan Your Retirement Corpus Now',
+      imgUrl: '/images/retirement_planning_at_30.jpg',
+      content: (
+        <div>
+          <p>
+            Most 30-year-olds in India think retirement is a problem for their 50-year-old self. This single misconception costs crores over a lifetime. Thanks to the power of compounding, starting at 30 versus starting at 40 is not a 10-year difference — it can mean a corpus that is <strong>3 to 4 times larger</strong> at retirement.
+          </p>
+
+          <h2>Why Starting at 30 Changes Everything: The Compounding Math</h2>
+          <p>
+            Consider two people — Priya and Rohan — both wanting to retire at 60 with a corpus of ₹5 Crores. Both invest in equity mutual funds averaging 12% returns:
+          </p>
+          <ul>
+            <li><strong>Priya starts at 30:</strong> Invests ₹12,000/month for 30 years → Corpus: ₹4.2 Crores ✅</li>
+            <li><strong>Rohan starts at 40:</strong> Needs ₹42,000/month for just 20 years to match the same ₹4.2 Crore corpus ❌</li>
+          </ul>
+          <p>
+            The difference is not effort — it is <strong>time in market</strong>. Rohan has to invest 3.5x more per month simply because he started 10 years later.
+          </p>
+
+          <h2>Who Needs to Think About Retirement Planning at 30?</h2>
+          <ul>
+            <li>Young salaried professionals who just got their first job and want to secure the future.</li>
+            <li>Self-employed individuals and business owners who do not have automatic EPF contributions.</li>
+            <li>Parents who want to plan for both their children's education and their own retirement simultaneously.</li>
+            <li>Dual-income couples wanting to achieve financial independence (FIRE — Financial Independence, Retire Early) by their 45–50s.</li>
+          </ul>
+
+          <h2>Step-by-Step: How to Start Retirement Planning at 30</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Calculate your retirement target:</strong> Use the RupeeBuddy Retirement Calculator. Account for inflation — ₹1 Lakh today will need ₹3.2 Lakhs in 30 years at 4% inflation.</li>
+            <li><strong>Start your EPF contributions:</strong> If salaried, maximise your EPF and consider VPF (Voluntary Provident Fund) top-up for tax-free, guaranteed returns.</li>
+            <li><strong>Open an NPS account:</strong> Invest in NPS Tier 1 for additional tax benefits (₹50,000 deduction under Section 80CCD(1B)) and professional pension fund management.</li>
+            <li><strong>Start SIPs in equity mutual funds:</strong> For long-term growth, invest in Nifty 50 Index Funds, Flexicap Funds, or Large-Cap funds. Start with ₹5,000/month and step up by 10% each year.</li>
+            <li><strong>Get adequate term life insurance:</strong> 10–15x your annual income as a pure term plan. This protects your family if anything happens to you before retirement.</li>
+            <li><strong>Buy a comprehensive health insurance plan:</strong> Rising medical costs can wipe out retirement savings. Secure a ₹10–25 Lakh family floater policy early when premiums are low.</li>
+          </ol>
+
+          <h2>Best Instruments for Retirement at 30</h2>
+          <ul>
+            <li><strong>EPF (Employer Provident Fund):</strong> 8.25% guaranteed, tax-free (EEE). Auto-deducted from salary.</li>
+            <li><strong>NPS (National Pension System):</strong> Market-linked, low-cost, extra ₹50K tax deduction. Managed by PFRDA.</li>
+            <li><strong>PPF (Public Provident Fund):</strong> 7.1% guaranteed, sovereign-backed, 15-year lock-in, EEE status. Great for conservative allocation.</li>
+            <li><strong>Equity Mutual Funds (SIP):</strong> Highest long-term return potential (12–15% CAGR). Best for 10+ year horizons.</li>
+          </ul>
+
+          <h2>The 50-30-20 Retirement Rule for 30-Year-Olds</h2>
+          <p>
+            Allocate your savings as: <strong>50% equity mutual funds</strong> (SIP), <strong>30% guaranteed instruments</strong> (EPF + PPF + NPS), and <strong>20% liquid/emergency fund</strong>. Gradually shift more to debt instruments as you approach 50.
+          </p>
+
+          <h2>Official Reference</h2>
+          <p>
+            Open your NPS account directly at the official <a href="https://enps.nsdl.com/" target="_blank" rel="noopener noreferrer">eNPS by NSDL portal</a>. For EPF details, visit <a href="https://www.epfindia.gov.in/" target="_blank" rel="noopener noreferrer">EPFO India</a>.
+          </p>
+        </div>
+      )
     }
   ];
 

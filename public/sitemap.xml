@@ -216,4 +216,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=upi-digital-payments-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=budget-2025-tax-slabs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=gold-vs-mutual-funds</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=emergency-fund-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=home-loan-vs-rent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=retirement-planning-at-30</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
