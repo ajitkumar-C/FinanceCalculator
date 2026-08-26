@@ -1523,25 +1523,54 @@ export default function Blogs({ setActiveCalculator }) {
             <li>Self-employed professionals and business owners.</li>
             <li>Anyone earning above ₹7 Lakhs annually looking to legally minimise tax outgo.</li>
           </ul>
-          <h2>10 Legal Tax-Saving Strategies</h2>
+          <h2>10 Legal Tax-Saving Strategies for 2025</h2>
           <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
-            <li><strong>Section 80C (up to ₹1.5 Lakhs):</strong> Invest in ELSS mutual funds, PPF, EPF, NSC, or pay life insurance premiums.</li>
-            <li><strong>Section 80D (up to ₹75,000):</strong> Pay health insurance premiums for yourself and senior citizen parents.</li>
-            <li><strong>Section 24(b) — Home Loan Interest (up to ₹2 Lakhs):</strong> Deduct interest paid on self-occupied home loan.</li>
-            <li><strong>Section 80CCD(1B) — NPS (up to ₹50,000 extra):</strong> Extra deduction beyond the 80C limit.</li>
-            <li><strong>HRA (House Rent Allowance):</strong> Exempt portion reduces taxable income if you live in rented housing.</li>
-            <li><strong>Section 80E — Education Loan Interest:</strong> 100% deductible for 8 years with no upper limit.</li>
-            <li><strong>Section 80G — Charitable Donations:</strong> Deductible at 50% or 100% depending on the institution.</li>
-            <li><strong>Leave Travel Allowance (LTA):</strong> Travel expenses within India claimed twice in a 4-year block are tax-exempt.</li>
-            <li><strong>Standard Deduction:</strong> ₹50,000 (Old Regime) or ₹75,000 (New Regime) automatically for all salaried employees.</li>
-            <li><strong>Section 80TTA/80TTB:</strong> Interest up to ₹10,000 from savings accounts (₹50,000 for senior citizens) is exempt.</li>
+            <li><strong>Section 80C (up to ₹1.5 Lakhs):</strong> Invest in ELSS mutual funds, PPF, EPF, NSC, or life insurance premiums. You can split across multiple instruments — e.g., ₹50K ELSS + ₹50K PPF + ₹50K EPF employee share.</li>
+            <li><strong>Section 80D (up to ₹75,000):</strong> Deduct health insurance premiums — up to ₹25,000 for self/family and an additional ₹50,000 if your parents are senior citizens.</li>
+            <li><strong>Section 24(b) — Home Loan Interest (up to ₹2 Lakhs):</strong> If you own a self-occupied property with a home loan, the annual interest paid (up to ₹2 Lakhs) is fully deductible — one of the biggest individual deductions available.</li>
+            <li><strong>Section 80CCD(1B) — NPS (up to ₹50,000 extra):</strong> This is separate from the 80C limit. Invest ₹50,000 in NPS Tier-1 and get an exclusive additional deduction, effectively reducing taxable income by up to ₹2 Lakhs when combined with 80C.</li>
+            <li><strong>HRA (House Rent Allowance):</strong> If you live in rented accommodation and receive HRA from your employer, the exempt portion (calculated based on rent paid, basic salary, and city) significantly reduces taxable income. Even rent paid to parents qualifies with a rental agreement.</li>
+            <li><strong>Section 80E — Education Loan Interest:</strong> Interest on education loans for higher studies (self, spouse, or children) is 100% deductible for up to 8 consecutive years with no upper limit — particularly valuable for those repaying large study abroad loans.</li>
+            <li><strong>Section 80G — Charitable Donations:</strong> Donations to approved organisations like PM Relief Fund, certain NGOs, and educational trusts are deductible at 50% or 100%. Keep official receipts with the trust's 80G registration number.</li>
+            <li><strong>Leave Travel Allowance (LTA):</strong> Actual travel expenses (flight, train, bus) for domestic travel within India can be claimed twice in a 4-year block if your employer provides LTA. Only transport costs count — hotel and food are excluded.</li>
+            <li><strong>Standard Deduction:</strong> A flat ₹50,000 (Old Regime) or ₹75,000 (New Regime) is automatically deducted for all salaried employees. No proof or investment needed — it is applied by your employer automatically.</li>
+            <li><strong>Section 80TTA / 80TTB:</strong> Interest earned on savings bank accounts is exempt up to ₹10,000 (for individuals below 60) and up to ₹50,000 for senior citizens (80TTB covers all interest — savings, FD, RD).</li>
           </ol>
-          <h2>Common Mistakes to Avoid</h2>
+
+          <h2>Real-World Example: How Rahul Slashes His Tax Bill</h2>
+          <p>Rahul is a software engineer earning <strong>₹14 Lakhs gross salary</strong> in Bengaluru. He pays ₹20,000/month rent and has a home loan on a property he rents out. Here is his step-by-step Old Regime calculation:</p>
           <ul>
-            <li>Investing in tax-saving instruments at the last minute without evaluating quality.</li>
-            <li>Choosing traditional insurance-cum-investment plans over pure term plans and ELSS.</li>
-            <li>Not declaring all deductions to employer for correct TDS adjustment.</li>
+            <li>Gross Salary: <strong>₹14,00,000</strong></li>
+            <li>Less: Standard Deduction: <strong>−₹50,000</strong> → ₹13,50,000</li>
+            <li>Less: Section 80C (ELSS + PPF + EPF): <strong>−₹1,50,000</strong> → ₹12,00,000</li>
+            <li>Less: Section 80CCD(1B) NPS voluntary contribution: <strong>−₹50,000</strong> → ₹11,50,000</li>
+            <li>Less: Section 80D (self ₹25K + senior citizen parents ₹50K): <strong>−₹75,000</strong> → ₹10,75,000</li>
+            <li>Less: HRA exemption (actual rent − 10% of basic salary): <strong>−₹90,000</strong> → ₹9,85,000</li>
+            <li>Less: Section 24(b) Home Loan Interest: <strong>−₹2,00,000</strong> → ₹7,85,000</li>
+            <li><strong>Final Taxable Income: ₹7,85,000</strong> → Tax ≈ ₹57,720 (including 4% cess)</li>
+            <li>Under New Regime (₹14L − ₹75K standard = ₹13.25L): Tax ≈ <strong>₹1,48,125</strong></li>
+            <li><strong>Rahul saves ₹90,405 per year</strong> by using the Old Regime strategically.</li>
           </ul>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "The New Regime has no deductions at all."</strong> — False. The ₹75,000 standard deduction and employer NPS contribution (Section 80CCD(2)) remain available even in the New Regime. Only personal deductions like 80C, 80D, HRA are removed.</li>
+            <li><strong>Myth: "I must invest all ₹1.5 Lakhs in one instrument under 80C."</strong> — False. You can freely mix instruments — split between ELSS, PPF, EPF employee share, NSC, children's tuition fees, and life insurance premiums as long as the total does not exceed ₹1.5 Lakhs.</li>
+            <li><strong>Myth: "Tax planning is only needed in February-March."</strong> — False. Investing through monthly SIPs in ELSS throughout the year gives better rupee-cost averaging. Last-minute lump sum investing often means buying at market peaks and missing compounding during the year.</li>
+            <li><strong>Myth: "ELSS lock-in guarantees positive returns."</strong> — False. ELSS is an equity mutual fund and is fully market-linked. The 3-year lock-in only prevents early exit — it does not guarantee returns.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can I switch between Old and New Regime every year?</strong><br />A: Yes, salaried individuals can switch every financial year by informing their employer at the start of the year. However, self-employed individuals and business owners can switch from New to Old only once in a lifetime.</li>
+            <li><strong>Q: Can I claim HRA if I pay rent to my parents?</strong><br />A: Yes — rent paid to parents qualifies for HRA exemption, provided you have a registered rental agreement and your parents include this rent as income in their own tax return.</li>
+            <li><strong>Q: What if my employer does not provide HRA but I pay rent?</strong><br />A: Claim Section 80GG deduction — up to the least of: ₹5,000/month, 25% of total income, or actual rent minus 10% of income. Applicable only if you do not own any residential property.</li>
+            <li><strong>Q: Is the home loan interest deduction available under the New Regime?</strong><br />A: Section 24(b) interest deduction on self-occupied property is NOT available under the New Regime. This is a major reason why home loan borrowers often benefit more from the Old Regime — a point frequently missed by taxpayers.</li>
+          </ul>
+
+          <h2>Market Trends: India Tax Filing in 2025</h2>
+          <p>Over <strong>65% of individual tax filers</strong> opted for the New Tax Regime in FY2025-26, making it the dominant choice for the first time since its introduction. The shift is driven by the zero-tax threshold for incomes up to ₹12 Lakhs. However, individuals with home loans, HRA, and significant 80C + NPS investments still find the Old Regime more beneficial. The government aims to move towards a simplified single-slab system by 2030. With each Budget, the New Regime is being made more attractive — making it critical to re-evaluate your regime choice every April.</p>
+
           <h2>Official Reference</h2>
           <p>For a complete list of eligible deductions, visit the <a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener noreferrer">Income Tax India Official Portal</a>.</p>
         </div>
@@ -2177,7 +2206,75 @@ export default function Blogs({ setActiveCalculator }) {
               {activeArticle.ctaText} <ArrowRight size={14} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: '4px' }} />
             </button>
           </div>
+
+          {/* Related Articles Section */}
+          {(() => {
+            const related = articles
+              .filter(a => a.id !== activeArticle.id && a.category === activeArticle.category)
+              .slice(0, 3);
+            const others = articles
+              .filter(a => a.id !== activeArticle.id && a.category !== activeArticle.category)
+              .slice(0, 3 - related.length);
+            const relatedArticles = [...related, ...others].slice(0, 3);
+            if (relatedArticles.length === 0) return null;
+            return (
+              <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid var(--border-color)' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>
+                  📚 You May Also Like
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                  {relatedArticles.map(rel => (
+                    <a
+                      key={rel.id}
+                      href={`?calc=blogs&article=${rel.id}`}
+                      onClick={(e) => { e.preventDefault(); setSelectedArticleId(rel.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      <div style={{
+                        background: 'var(--bg-card, #fff)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: 'var(--radius-md)',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        transition: 'box-shadow 0.2s, transform 0.2s',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column'
+                      }}
+                        onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                      >
+                        {rel.imgUrl && (
+                          <img
+                            src={rel.imgUrl}
+                            alt={rel.title}
+                            style={{ width: '100%', height: '140px', objectFit: 'cover' }}
+                          />
+                        )}
+                        <div style={{ padding: '14px', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <span className={`guide-category-badge ${rel.category}`} style={{ alignSelf: 'flex-start', fontSize: '11px' }}>
+                            {rel.category}
+                          </span>
+                          <p style={{ fontWeight: '600', fontSize: '14px', lineHeight: '1.4', color: 'var(--text-primary)', margin: 0 }}>
+                            {rel.title}
+                          </p>
+                          <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0, flexGrow: 1 }}>
+                            {rel.snippet.length > 100 ? rel.snippet.slice(0, 100) + '…' : rel.snippet}
+                          </p>
+                          <span style={{ fontSize: '13px', color: 'var(--primary, #2563eb)', fontWeight: '600', marginTop: '4px' }}>
+                            Read Article →
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
         </div>
+
       ) : (
         /* Guides Dashboard */
         <div className="guides-container">
