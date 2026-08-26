@@ -1608,6 +1608,29 @@ export default function Blogs({ setActiveCalculator }) {
           </ol>
           <h2>How Long Does It Take?</h2>
           <p>Starting fresh: <strong>12–18 months</strong> of consistent on-time payments and low utilisation. Recovering from a bad score: <strong>24–36 months</strong>.</p>
+
+          <h2>Real-World Example: Priya's CIBIL Score Journey</h2>
+          <p>Priya had a CIBIL score of <strong>620 in January 2023</strong> — mostly because she missed 2 EMIs on her personal loan during a difficult period. She followed a disciplined plan: paid all EMIs on auto-pay from February 2023, reduced her credit card utilisation from 75% to below 25%, avoided applying for any new loans or credit cards for 12 months, and disputed one incorrect "settled" account on her CIBIL report. By <strong>July 2024 (18 months later)</strong>, her score reached <strong>748</strong>. She was then approved for a home loan at <strong>8.75% interest</strong> instead of the 10.5% she was quoted with a score of 620 — saving her approximately <strong>₹12 Lakhs in total interest</strong> over the 20-year loan tenure.</p>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "Checking your own CIBIL score reduces it."</strong> — False. When you check your own credit report, it is a soft inquiry and has zero impact on your score. Only hard inquiries (made by banks or lenders when you formally apply for credit) can slightly reduce your score temporarily.</li>
+            <li><strong>Myth: "Closing old credit cards will improve your score."</strong> — False. Closing old accounts actually shortens your credit history length, which can lower your score. Keep old credit cards open with zero or minimal balance — the longer the history, the better.</li>
+            <li><strong>Myth: "Your salary and income affect your CIBIL score."</strong> — False. Income is NOT a factor in CIBIL score calculation. A person earning ₹5 Lakhs/year with perfect repayment history will have a higher score than someone earning ₹50 Lakhs who regularly misses EMIs.</li>
+            <li><strong>Myth: "A settled account is as good as a closed account on CIBIL."</strong> — False. "Settled" means you paid less than the full outstanding amount. Banks view this negatively for up to 7 years. Always try to pay the full outstanding and get the account updated to "closed" status.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: How frequently is my CIBIL score updated?</strong><br />A: CIBIL scores are updated monthly, typically within 30–45 days after your bank reports your payment history to the credit bureau. If you make a payment today, it will typically reflect in your score within 45 days.</li>
+            <li><strong>Q: Can I remove a "settled" account from my CIBIL report?</strong><br />A: A settled status stays on your report for 7 years. However, you can request the bank to update it to "closed" if you pay the remaining outstanding in full, then raise a dispute with CIBIL to update the record. This significantly improves your creditworthiness.</li>
+            <li><strong>Q: Does being a loan guarantor affect my CIBIL score?</strong><br />A: Yes — if the primary borrower defaults on the loan, the guarantor's CIBIL score is also negatively affected because the loan appears in the guarantor's credit profile as well. Avoid being a guarantor unless absolutely necessary and you completely trust the primary borrower.</li>
+            <li><strong>Q: Can I have multiple credit cards to improve my score?</strong><br />A: Yes, having 2–3 credit cards with low utilisation on each can actually improve your score by increasing your total available credit limit. However, applying for all of them at once (multiple hard inquiries) will temporarily reduce your score.</li>
+          </ul>
+
+          <h2>Market Trends: Digital Lending and Credit Scoring in India</h2>
+          <p>In 2025, Indian banks and fintech lenders are moving beyond just CIBIL scores. <strong>Machine learning-based credit models</strong> now analyse UPI transaction patterns, GST filing history, account cash flow, and even mobile usage data. Neobanks and NBFCs are extending credit to "thin-file" customers — those with no traditional credit history — using alternative data sources. This is creating lending opportunities for millions of Indians who were previously excluded from formal credit. However, the CIBIL score remains the primary benchmark for home loans, car loans, and premium credit cards from traditional banks.</p>
+
           <h2>Official Reference</h2>
           <p>Get your free annual CIBIL report at the official <a href="https://www.cibil.com/freecibilscore" target="_blank" rel="noopener noreferrer">CIBIL Free Score portal</a>.</p>
         </div>
@@ -1645,6 +1668,42 @@ export default function Blogs({ setActiveCalculator }) {
             <li>Use <strong>PPF for sovereign-safe debt allocation</strong> and flexibility.</li>
             <li>Suggested split: 50% NPS (equity-heavy), 30% EPF, 20% PPF.</li>
           </ul>
+
+          <h2>Returns Simulation: ₹5,000/Month for 30 Years</h2>
+          <p>Let us compare what <strong>₹5,000/month invested for 30 years</strong> produces in each instrument:</p>
+          <ul>
+            <li><strong>EPF at 8.25% CAGR:</strong> Approx ₹79.5 Lakhs at retirement</li>
+            <li><strong>PPF at 7.1% CAGR:</strong> Approx ₹60.3 Lakhs at maturity (15-year lock-in, extendable)</li>
+            <li><strong>NPS Equity at 11% CAGR:</strong> Approx ₹1.19 Crores at age 60</li>
+          </ul>
+          <p>NPS with equity allocation delivers nearly <strong>2x PPF returns</strong> over 30 years. The trade-off is market risk — but with an Auto-Choice lifecycle fund, equity exposure reduces automatically as you approach retirement age, managing risk intelligently.</p>
+
+          <h2>NPS Investment Choices Explained</h2>
+          <ul>
+            <li><strong>Active Choice:</strong> You decide the allocation — up to 75% in Equity (E), rest in Corporate Bonds (C) and Government Securities (G). Best for investors who understand markets and want maximum growth in early years.</li>
+            <li><strong>Auto Choice (Lifecycle Fund):</strong> Allocation is automatically rebalanced based on your age. At age 35, equity is high (75%); as you approach 60, it shifts towards bonds. Best for most individuals who prefer a hands-off approach.</li>
+            <li><strong>Pension Fund Managers:</strong> Choose from SBI Pension Fund, HDFC Pension, UTI Retirement Solutions, ICICI Prudential Pension, and others. Compare historical returns and expense ratios at the <a href="https://www.npscra.nsdl.co.in/" target="_blank" rel="noopener noreferrer">NPS CRA portal</a>.</li>
+          </ul>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "NPS is very risky like investing in stocks."</strong> — False. Even in Active Choice with 75% equity, 25% remains in government securities and corporate bonds. The Auto-Choice option progressively reduces equity risk as you age. NPS equity historically returns 10–12% CAGR over 10+ years.</li>
+            <li><strong>Myth: "PPF can only be withdrawn after the full 15-year lock-in."</strong> — Partially false. Partial withdrawals are allowed from year 7 (after 6 complete financial years) for specified purposes like higher education, medical emergencies, or home purchase. The account can also be extended in 5-year blocks indefinitely after maturity.</li>
+            <li><strong>Myth: "EPF withdrawal is always tax-free."</strong> — False. If withdrawn before completing 5 continuous years of service, the full amount is added to your income and taxed at your applicable slab rate. TDS at 10% is deducted on such withdrawals. Always transfer your EPF via UAN when changing jobs — never withdraw prematurely.</li>
+            <li><strong>Myth: "You can withdraw 100% of your NPS corpus at retirement."</strong> — False. Only 60% can be withdrawn as a lump sum tax-free at age 60. The remaining 40% must be used to purchase an annuity plan from an IRDAI-approved insurer to provide monthly pension. Exception: if total corpus is below ₹5 Lakhs, 100% can be withdrawn.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can I contribute to EPF, PPF, and NPS simultaneously?</strong><br />A: Yes, absolutely. Using all three provides a diversified, risk-balanced retirement portfolio — EPF for guaranteed base, PPF for sovereign safety, and NPS for market-linked growth with extra tax benefits. There is no restriction on contributing to all three.</li>
+            <li><strong>Q: What happens to my EPF if I switch jobs?</strong><br />A: Your EPF can be seamlessly transferred to the new employer's EPF account using your <strong>UAN (Universal Account Number)</strong>, which remains the same throughout your career. Always transfer — never withdraw EPF prematurely as it loses compounding and triggers tax liability.</li>
+            <li><strong>Q: At age 60, can I defer my NPS withdrawal?</strong><br />A: Yes. You can defer withdrawal up to age 75. This is beneficial if you do not need the corpus immediately at 60 and want it to keep growing tax-deferred within the NPS structure.</li>
+            <li><strong>Q: Is NPS better than PPF for tax saving?</strong><br />A: Both serve different purposes. NPS gives an extra ₹50,000 deduction under 80CCD(1B) beyond the 80C limit, giving a higher overall deduction. PPF contributions count within the ₹1.5L 80C limit. For maximum deduction, invest in both: ₹1.5L in PPF/ELSS under 80C and ₹50K in NPS under 80CCD(1B).</li>
+          </ul>
+
+          <h2>Market Trends: India Retirement Savings in 2025</h2>
+          <p>By end of 2024, the <strong>EPFO had over 7.5 crore active members</strong>, and the NPS subscriber base crossed <strong>7 crore</strong> (including government sector, corporate, and voluntary all-citizen subscribers). PPF remains the most popular instrument among the self-employed and small business owners who have no EPF access. The government's expansion of NPS to the unorganised sector through PM-SYM (Pradhan Mantri Shram Yogi Maan-dhan) is bringing gig workers, domestic helpers, and informal sector workers into formal retirement savings for the first time in Indian history.</p>
+
           <h2>Official Reference</h2>
           <p>Open NPS at <a href="https://enps.nsdl.com/" target="_blank" rel="noopener noreferrer">eNPS NSDL</a>. Open PPF at <a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener noreferrer">India Post</a> or any SBI branch.</p>
         </div>
@@ -1679,12 +1738,41 @@ export default function Blogs({ setActiveCalculator }) {
             <li><strong>P/E Ratio:</strong> Price-to-Earnings — measures how expensive a stock is relative to its profits.</li>
             <li><strong>Dividend:</strong> Portion of company profits paid periodically to shareholders.</li>
           </ul>
-          <h2>Biggest Mistakes Beginners Make</h2>
+          <h2>Top Broker Platforms in India Compared</h2>
           <ul>
-            <li>Buying stocks based on tips from friends or social media without research.</li>
-            <li>Panic-selling during market corrections instead of staying invested.</li>
-            <li>Putting all money in one stock or sector — always diversify.</li>
+            <li><strong>Groww:</strong> Zero account opening fee, clean mobile UI, best for absolute beginners who want mutual funds + stocks in one unified app.</li>
+            <li><strong>Zerodha (Kite):</strong> Flat ₹20 per executed order, advanced charting (TradingView & ChartIQ), best for active investors and technical analysis.</li>
+            <li><strong>Angel One (SmartAPI):</strong> Full-service research advisory reports, algorithmic order support, robust tools for derivatives & commodities.</li>
+            <li><strong>Upstox (Pro Web):</strong> Low-latency charting, option chain analytics, competitive pricing for active traders.</li>
           </ul>
+
+          <h2>How Stock Market Returns Are Taxed in India (2025-26 Rules)</h2>
+          <ul>
+            <li><strong>Short-Term Capital Gains (STCG):</strong> Applies if shares/equity funds are sold within 12 months. Taxed at a flat <strong>20%</strong> (revised from 15% in recent Union Budget).</li>
+            <li><strong>Long-Term Capital Gains (LTCG):</strong> Applies if held for more than 12 months. Taxed at <strong>12.5%</strong> on aggregate profits exceeding <strong>₹1.25 Lakhs per financial year</strong> (up from ₹1 Lakh exemption).</li>
+            <li><strong>Dividend Income:</strong> Taxed according to your individual income tax slab rate. TDS of 10% is deducted by companies if annual dividend exceeds ₹5,000.</li>
+            <li><strong>Securities Transaction Tax (STT):</strong> Automatically deducted by the exchange on buy/sell transactions.</li>
+          </ul>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "Stock investing is just pure gambling and speculation."</strong> — False. Speculative intra-day trading without risk management carries high risk, but long-term systematic investing into quality companies and broad index funds participates directly in India's macroeconomic GDP growth. Over 10-year rolling periods, the Nifty 50 has never delivered negative returns.</li>
+            <li><strong>Myth: "You need a huge corpus (like ₹1-2 Lakhs) to start."</strong> — False. Thanks to fractional ETF units and index fund SIPs, you can start investing with as little as ₹100 or ₹500 per month. Compounding rewards time in the market, not initial capital size.</li>
+            <li><strong>Myth: "You should blindly follow stock tips from Telegram and WhatsApp channels."</strong> — False. SEBI regularly cracks down on unauthorized pump-and-dump advisory groups. Unregulated tipsters profit at your expense. Always stick to SEBI-registered advisors or low-cost passive index funds.</li>
+            <li><strong>Myth: "Timing the market (buying at bottom, selling at peak) is necessary."</strong> — False. Studies show that missing just the 10 best trading days across a 15-year period cuts your annualized returns by more than half. Consistent monthly SIP investing beats market timing consistently.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What is T+1 and T+0 settlement in Indian exchanges?</strong><br />A: T+1 means shares or money from trades are credited to your Demat/bank account 1 business day after execution. India is among the first countries globally to roll out optional T+0 (same-day) settlement on select liquid stocks.</li>
+            <li><strong>Q: What is the difference between Demat and Trading accounts?</strong><br />A: A Trading Account is used to place buy/sell orders on the stock exchange. A Demat Account functions like a digital locker that securely holds your shares, bonds, and ETF units in electronic format under CDSL or NSDL depositories.</li>
+            <li><strong>Q: What is a Stop-Loss Order and why is it critical?</strong><br />A: A stop-loss is an automated risk-control instruction that automatically sells a share if its price falls to a pre-defined trigger level, capping your potential downside on volatile trades.</li>
+            <li><strong>Q: Can a college student or homemaker open a Demat account without salary slips?</strong><br />A: Yes. Opening a Demat account only requires a PAN Card, Aadhaar Card (linked to mobile for e-KYC), and an active savings bank account. Income proof is only required if activating Futures & Options (F&O) derivatives segment.</li>
+          </ul>
+
+          <h2>Market Trends: India's Retail Investor Revolution</h2>
+          <p>India's registered Demat account count surged past <strong>17 Crore (170 Million)</strong> in recent years, making India one of the fastest-growing equity retail markets globally. Monthly Systematic Investment Plan (SIP) inflows consistently cross <strong>₹23,000+ Crores per month</strong>, providing immense domestic liquidity support to Indian stock indices independent of Foreign Institutional Investor (FII) flows.</p>
+
           <h2>Official Reference</h2>
           <p>For investor education and verified broker listings, visit <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI India</a> and <a href="https://www.nseindia.com/" target="_blank" rel="noopener noreferrer">NSE India</a>.</p>
         </div>
@@ -1709,19 +1797,50 @@ export default function Blogs({ setActiveCalculator }) {
             <li><strong>Endowment Plan:</strong> ₹1 Crore cover | 30-year term | Age 30 | Premium ≈ ₹3,00,000–₹4,00,000/year</li>
           </ul>
           <p>The premium difference of ₹2.88–3.88 Lakhs/year, invested in a Nifty 50 Index Fund at 12% CAGR for 30 years, would grow to over <strong>₹9–10 Crores</strong>. "Buy Term + Invest the Difference" always wins mathematically.</p>
+          
+          <h2>Term Plan vs Whole Life / ULIPs Comparison Table</h2>
+          <ul>
+            <li><strong>Annual Cost for ₹1 Cr Cover:</strong> Term: ~₹10,000 | Whole Life / ULIP: ~₹1,50,000 - ₹3,50,000</li>
+            <li><strong>Effective Returns:</strong> Term: 0% (Pure Protection) + 12% via SIP | Whole Life: ~4-6% internal rate of return</li>
+            <li><strong>Transparency:</strong> Term: 100% transparent mortality charges | Whole Life: Opaque allocation & admin fees</li>
+            <li><strong>Flexibility to Exit:</strong> Term: Stop paying anytime with zero loss of capital | Whole Life: Heavy surrender penalties</li>
+          </ul>
+
           <h2>When Does Whole Life Make Sense?</h2>
           <ul>
-            <li>High-net-worth individuals using it for estate planning and wealth transfer.</li>
-            <li>Business owners needing key-man insurance with cash value as collateral.</li>
+            <li>High-net-worth individuals using it for estate planning and structured inter-generational wealth transfer.</li>
+            <li>Business owners needing key-man insurance with cash value as collateral for commercial credit lines.</li>
+            <li>Individuals who lack the basic savings discipline to invest the surplus premium difference independently into index funds.</li>
           </ul>
+
           <h2>Step-by-Step: How to Buy a Term Plan</h2>
           <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
-            <li>Decide your cover: Minimum 10–15x your annual income.</li>
-            <li>Choose tenure: Cover until age 60–65 or until dependents are financially independent.</li>
+            <li>Decide your cover: Minimum 10–15x your annual income (e.g., ₹1.5 Cr for ₹10 Lakh salary).</li>
+            <li>Choose tenure: Cover until age 60–65 or until dependents are financially self-reliant. Avoid 85+ or 100-year terms which unnecessarily inflate premiums.</li>
             <li>Compare plans on <a href="https://www.policybazaar.com/" target="_blank" rel="noopener noreferrer">Policybazaar</a> or <a href="https://www.coverfox.com/" target="_blank" rel="noopener noreferrer">Coverfox</a>.</li>
-            <li>Choose an insurer with claim settlement ratio of 95%+.</li>
-            <li>Buy online directly to avoid agent commissions.</li>
+            <li>Choose an insurer with a Claim Settlement Ratio (CSR) of 98%+ and Amount Settlement Ratio of 92%+.</li>
+            <li>Buy online directly on the insurer portal to save 15-20% distributor commission over the policy life.</li>
+            <li>Disclose all medical conditions, smoking/drinking habits, and family medical history honestly to guarantee claim approvals.</li>
           </ol>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "Term insurance gives nothing back on maturity, so it is wasted money."</strong> — False. You don't expect your car insurance or home insurance to give money back if there's no accident. Insurance is pure financial risk transfer for your family, while wealth creation should be handled via mutual funds.</li>
+            <li><strong>Myth: "LIC is the only trustworthy insurer in India."</strong> — False. All life insurers in India are strictly regulated by IRDAI. Private insurers like HDFC Life, ICICI Prudential, Max Life, and Tata AIA maintain claim settlement ratios above 98%, backed by legal solvency norms.</li>
+            <li><strong>Myth: "Return of Premium (ROP) term plans are better because you get your money back."</strong> — False. ROP plans charge 2.5x to 3x higher premiums. If you invest that additional cost in a simple PPF or Mutual Fund, you will generate 4x to 6x more wealth than the refunded premium.</li>
+            <li><strong>Myth: "Company employer term cover is enough."</strong> — False. Group corporate cover vanishes the day you switch jobs, retire, or get laid off. You must always hold an independent personal term policy.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What is the Claim Settlement Ratio (CSR) vs Amount Settlement Ratio (ASR)?</strong><br />A: CSR indicates the percentage of total claims approved (e.g. 98 out of 100). ASR indicates the percentage of claim money paid out. High scores in both ensure high-value claims are honored without dispute.</li>
+            <li><strong>Q: Should I opt for Critical Illness and Accidental Disability riders?</strong><br />A: Critical illness and waiver-of-premium riders offer great value if bought with a term plan because premiums remain locked for the entire tenure.</li>
+            <li><strong>Q: Can a non-resident Indian (NRI) buy Indian term insurance?</strong><br />A: Yes. NRIs can purchase term plans from Indian insurers via tele-medical checkups or online KYC, often benefiting from competitive premiums compared to foreign policies.</li>
+          </ul>
+
+          <h2>Market Trends: Digital Underwriting & Regulation</h2>
+          <p>Under IRDAI's "Insurance for All by 2047" initiative, digital tele-medical video verification has made term plan issuance instantaneous. Over <strong>40% of all term policies</strong> in urban India are now purchased directly online, with transparent instant policy dispatch.</p>
+
           <h2>Official Reference</h2>
           <p>Check insurer claim settlement ratios at the <a href="https://www.irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI India official portal</a>.</p>
         </div>
@@ -1754,12 +1873,33 @@ export default function Blogs({ setActiveCalculator }) {
             <li>Link to your salary account for automatic monthly deductions.</li>
             <li>Revisit annually and increase by your actual salary increment percentage.</li>
           </ol>
-          <h2>Key Benefits</h2>
+          <h2>Year-by-Year Wealth Multiplier Simulation</h2>
+          <p>Let's observe the trajectory of starting a ₹10,000/month SIP at 12% estimated returns over 25 years with vs without a 10% annual step-up:</p>
           <ul>
-            <li>Keeps pace with inflation as your purchasing power grows.</li>
-            <li>Does not feel like a financial burden since the increment matches salary growth.</li>
-            <li>Dramatically accelerates corpus growth through higher compounding base in later years.</li>
+            <li><strong>At Year 5:</strong> Regular SIP: ₹8.2 Lakhs | Step-Up SIP: ₹10.3 Lakhs (+25%)</li>
+            <li><strong>At Year 10:</strong> Regular SIP: ₹23.2 Lakhs | Step-Up SIP: ₹34.8 Lakhs (+50%)</li>
+            <li><strong>At Year 15:</strong> Regular SIP: ₹50.5 Lakhs | Step-Up SIP: ₹94.2 Lakhs (+86%)</li>
+            <li><strong>At Year 20:</strong> Regular SIP: ₹99.9 Lakhs | Step-Up SIP: ₹2.28 Crores (+128%)</li>
+            <li><strong>At Year 25:</strong> Regular SIP: ₹1.89 Crores | Step-Up SIP: ₹5.16 Crores (nearly <strong>3x more wealth!</strong>)</li>
           </ul>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "Stepping up by 10% each year will become unaffordable after a few years."</strong> — False. A 10% increment tracks average Indian corporate annual salary appraisal rates. If your salary grows from ₹60,000 to ₹66,000, increasing your SIP from ₹10,000 to ₹11,000 consumes only ₹1,000 of your ₹6,000 increment, leaving you with ₹5,000 extra disposable cash.</li>
+            <li><strong>Myth: "You need to manually stop and start a new SIP every year to step up."</strong> — False. All modern platforms (Groww, Zerodha Coin, Kuvera, MF Central) support automated Step-Up (Top-Up) triggers that automatically adjust your bank mandate once every 12 months.</li>
+            <li><strong>Myth: "Step-Up SIP is only suitable for equity funds."</strong> — False. Step-up strategies work equally well in hybrid and debt mutual funds for medium-term goals like buying a car or funding a child's school admission.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Should I choose a Fixed Amount Step-Up (e.g. +₹1,000/year) or Percentage Step-Up (e.g. +10%/year)?</strong><br />A: Percentage step-up scales proportionally with compounding career earnings. However, fixed amount step-ups provide predictable budgeting if your income increments are fixed.</li>
+            <li><strong>Q: What if I have a low salary hike or job transition in a particular year?</strong><br />A: You can modify or pause the step-up feature in your mutual fund portal anytime without stopping the underlying base SIP.</li>
+            <li><strong>Q: Which fund categories work best for a 15-20 year Step-Up SIP?</strong><br />A: Flexi-cap funds, Large & Mid-cap funds, and Nifty 50 Index funds offer ideal balance of broad-market exposure and long-term alpha generation.</li>
+          </ul>
+
+          <h2>Market Trends: Systematic Investing in Indian Mutual Funds</h2>
+          <p>Over <strong>42% of new SIP registrations in India</strong> now activate automated Top-Up features. AMFI data reveals that investors who step up their SIPs achieve their retirement targets an average of <strong>7.4 years earlier</strong> than those maintaining static contributions.</p>
+
           <h2>Official Reference</h2>
           <p>For step-up SIP options and fund selection, visit <a href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">AMFI India</a> for SEBI-compliant mutual fund options.</p>
         </div>
@@ -1780,24 +1920,55 @@ export default function Blogs({ setActiveCalculator }) {
           <p>Multiple loans can feel overwhelming. There are two proven mathematical strategies to get out of debt systematically: the <strong>Debt Avalanche</strong> and the <strong>Debt Snowball</strong>.</p>
           <h2>Debt Avalanche Method (Mathematically Optimal)</h2>
           <p>Focus all extra payments on the <strong>highest interest rate debt first</strong>, while paying minimums on all others. Once cleared, roll that payment to the next highest-interest debt.</p>
-          <p><strong>Example order:</strong> Credit Card (36%) → Personal Loan (18%) → Car Loan (10%) → Home Loan (8.5%)</p>
-          <p><strong>Why it works:</strong> You pay the least total interest overall and save the most money.</p>
+          <p><strong>Example order:</strong> Credit Card (36-42%) → Personal Loan (14-18%) → Car Loan (8.5-10%) → Home Loan (8.3-9%)</p>
+          <p><strong>Why it works:</strong> You eliminate toxic high-interest compounding and pay the least total interest overall.</p>
+          
           <h2>Debt Snowball Method (Psychologically Powerful)</h2>
-          <p>Focus on paying off the <strong>smallest balance first</strong>, regardless of interest rate. Quick wins build motivation to keep going.</p>
+          <p>Focus on paying off the <strong>smallest outstanding balance first</strong>, regardless of interest rate. Quick wins create positive psychological momentum to keep going.</p>
+
+          <h2>Real-World Case Study: Vikram Clears ₹9 Lakhs in Debt</h2>
+          <p>Vikram had 4 active liabilities totaling ₹9,00,000:</p>
+          <ul>
+            <li>Credit Card Dues: ₹60,000 at 40% interest (Min payment: ₹3,000)</li>
+            <li>Instant App Loan: ₹1,40,000 at 22% interest (EMI: ₹6,500)</li>
+            <li>Personal Loan: ₹3,00,000 at 14% interest (EMI: ₹9,800)</li>
+            <li>Used Car Loan: ₹4,00,000 at 9.5% interest (EMI: ₹8,400)</li>
+          </ul>
+          <p>By finding an extra ₹12,000/month through cutting discretionary spending and routing it via the <strong>Debt Avalanche</strong>, Vikram wiped out his Credit Card in 4 months, redirected that ₹15,000 total to the App Loan (cleared in 6 months), and was <strong>100% debt-free in 28 months</strong>, saving <strong>₹1,84,000 in interest</strong> compared to minimum payments.</p>
+
           <h2>Which Should You Choose?</h2>
           <ul>
-            <li><strong>Choose Avalanche</strong> if you are disciplined and want to save maximum interest.</li>
-            <li><strong>Choose Snowball</strong> if you need motivational wins and tend to give up when results are slow.</li>
+            <li><strong>Choose Avalanche</strong> if you are analytical, disciplined, and want to save the absolute maximum rupees on interest.</li>
+            <li><strong>Choose Snowball</strong> if you feel overwhelmed and need immediate psychological relief by closing small loan accounts quickly.</li>
           </ul>
-          <h2>Step-by-Step Execution</h2>
+
+          <h2>Step-by-Step Execution Plan</h2>
           <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
-            <li>List all debts: balance, interest rate, and minimum monthly payment.</li>
-            <li>Choose your method and rank debts accordingly.</li>
-            <li>Find extra money: cancel subscriptions, reduce discretionary spending.</li>
-            <li>Apply all extra money to priority debt #1, pay minimums on all others.</li>
-            <li>Once cleared, roll that payment to the next debt.</li>
-            <li>Repeat until completely debt-free.</li>
+            <li>List all debts: lender name, outstanding balance, interest rate, and minimum monthly payment.</li>
+            <li>Build a mini emergency fund of ₹25,000–₹50,000 first to prevent taking fresh debt during an unexpected emergency.</li>
+            <li>Pick your strategy (Avalanche or Snowball) and freeze all credit card spending.</li>
+            <li>Apply all surplus monthly cash flow to Debt #1 while servicing minimum dues on the rest.</li>
+            <li>Once Debt #1 is paid off, roll the entire monthly allocation over to Debt #2.</li>
+            <li>Celebrate each milestone and never take uncollateralized high-interest debt again.</li>
           </ol>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "Paying the minimum amount due on credit cards avoids interest."</strong> — False. The minimum amount due only avoids late payment penalties. Interest at 3.5% per month (42% annual APR) is charged on the entire unpaid balance from the transaction date.</li>
+            <li><strong>Myth: "Debt consolidation loans are always good."</strong> — False. Taking a personal loan to consolidate debt only works if you immediately close the credit cards. If you keep spending on cards, you double your debt burden.</li>
+            <li><strong>Myth: "Foreclosing loans incurs massive bank penalties."</strong> — False. Under RBI regulations, banks cannot levy foreclosure or prepayment charges on floating-rate loans given to individual borrowers.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Should I use my EPF or Gold to prepay high-interest debt?</strong><br />A: Using physical gold loans (at 8.5-10% interest) to replace 40% credit card debt is smart. However, avoid withdrawing EPF retirement funds for unsecured debt settlement.</li>
+            <li><strong>Q: Does loan restructuring damage my CIBIL credit score?</strong><br />A: Yes. Opting for a one-time settlement or restructuring flags your account as "Settled" or "Restructured", negatively impacting your CIBIL score for up to 7 years. Prepaying via Avalanche/Snowball protects your score.</li>
+            <li><strong>Q: How does debt repayment affect my tax deductions?</strong><br />A: Home loan principal (Section 80C) and interest (Section 24b) offer tax deductions under the Old Regime. When prioritizing prepayment, clear non-tax-deductible loans (personal/credit card) before home loans.</li>
+          </ul>
+
+          <h2>Market Trends: Household Debt Patterns in India</h2>
+          <p>RBI data indicates a sharp rise in unsecured personal loans and buy-now-pay-later (BNPL) credit among young professionals. Financial wellness programs increasingly advocate strict debt-to-income (DTI) caps below <strong>35% of net salary</strong> to prevent debt traps.</p>
+
           <h2>Official Reference</h2>
           <p>For credit card interest rates and loan pre-closure terms, check <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">RBI consumer credit guidelines</a>.</p>
         </div>
@@ -1834,8 +2005,32 @@ export default function Blogs({ setActiveCalculator }) {
           <ul>
             <li>SBI: Up to 7.10% (general) | 7.60% (senior citizens) for 3-year tenure</li>
             <li>HDFC Bank: Up to 7.40% (general) | 7.90% (senior citizens)</li>
-            <li>Small Finance Banks: Up to 9.00% (higher return, DICGC-insured)</li>
+            <li>Small Finance Banks (Unity, Suryoday): Up to 9.00% - 9.50% (DICGC insured up to ₹5 Lakhs)</li>
           </ul>
+
+          <h2>Real-World Example: FD vs RD Returns on ₹1.20 Lakhs</h2>
+          <ul>
+            <li><strong>Lump Sum FD:</strong> Depositing ₹1,20,000 all at once at 7.5% compounded quarterly for 1 year earns approx <strong>₹9,260 in interest</strong> (Maturity: ₹1,29,260).</li>
+            <li><strong>Monthly RD:</strong> Depositing ₹10,000/month for 12 months at 7.5% earns approx <strong>₹4,940 in interest</strong> (Maturity: ₹1,24,940), because early installments compound longer than late ones.</li>
+          </ul>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "FD returns are completely tax-free if the bank doesn't deduct TDS."</strong> — False. Banks only deduct TDS if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). However, regardless of TDS, the entire interest earned must be added to your total income and taxed at your marginal slab rate (up to 30%+).</li>
+            <li><strong>Myth: "Money in Small Finance Banks is unsafe."</strong> — False. Every scheduled bank in India (including SFBs like AU, Equitas, and Ujjivan) is insured by the RBI subsidiary <strong>DICGC</strong> for up to ₹5 Lakhs per depositor (principal + interest).</li>
+            <li><strong>Myth: "You lose all interest if you break an FD prematurely."</strong> — False. You only forfeit a small interest penalty (typically 0.5% to 1.0% below the applicable rate for the actual duration held).</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What is Form 15G / Form 15H and when should I submit it?</strong><br />A: Form 15G (for under 60) and Form 15H (for senior citizens) are self-declarations submitted to banks to prevent TDS deduction on FD/RD interest if your total taxable income is below the basic exemption limit.</li>
+            <li><strong>Q: Are Tax-Saving FDs better than regular FDs?</strong><br />A: Tax-saving FDs have a mandatory 5-year lock-in with deduction under Section 80C (Old Regime). However, the interest remains fully taxable. ELSS mutual funds offer a shorter 3-year lock-in with higher growth potential.</li>
+            <li><strong>Q: What is the sweep-in FD facility?</strong><br />A: Sweep-in automatically moves idle savings account balances above a threshold (e.g. ₹25,000) into higher-interest FDs, while auto-breaking them without penalty whenever you swipe your debit card or pay bills.</li>
+          </ul>
+
+          <h2>Market Trends: Digital Fixed Deposits</h2>
+          <p>Over <strong>60% of fixed deposits</strong> in urban India are now booked digitally without visiting a branch. Fintech platforms offer instant paperless FD booking across multiple banks to optimize the ₹5 Lakh DICGC insurance limit across institutions.</p>
+
           <h2>Official Reference</h2>
           <p>Compare FD rates at <a href="https://www.sbi.co.in/web/personal-banking/investments-deposits/deposits/fixed-deposit" target="_blank" rel="noopener noreferrer">SBI Fixed Deposits</a> and <a href="https://www.hdfcbank.com/personal/save/deposits/fixed-deposit" target="_blank" rel="noopener noreferrer">HDFC Bank Fixed Deposits</a>.</p>
         </div>
@@ -1877,10 +2072,29 @@ export default function Blogs({ setActiveCalculator }) {
             <li>Compare on <a href="https://www.policybazaar.com/health-insurance/" target="_blank" rel="noopener noreferrer">Policybazaar Health Insurance</a>.</li>
             <li>Buy early — premiums are significantly lower when you are young and healthy.</li>
           </ol>
-          <h2>Tax Benefit</h2>
-          <p>Health insurance premiums are deductible up to ₹25,000 under <strong>Section 80D</strong>. An additional ₹50,000 is deductible for senior citizen parents.</p>
+
+          <h2>Why Room Rent Capping Can Devastate Claims</h2>
+          <p>If your policy has a 1% room rent cap (₹5,000/day on a ₹5 Lakh policy) and you stay in a room costing ₹10,000/day, the insurer will apply a <strong>50% proportionate deduction</strong> on your doctor visits, surgery, OT charges, and nursing fees — leaving you to pay half the entire hospital bill out of pocket!</p>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth: "My employer's ₹5 Lakh corporate group health cover is sufficient."</strong> — False. Corporate cover ends immediately if you change jobs or retire, when you are older and buying a fresh policy with pre-existing conditions is expensive or denied. Always maintain an independent retail health policy.</li>
+            <li><strong>Myth: "Health insurance pays 100% of every hospital bill."</strong> — False. Consumable items (gloves, syringes, PPE kits, admin fees) are excluded unless you buy an inexpensive "Consumables Cover Rider".</li>
+            <li><strong>Myth: "Pre-existing illnesses are never covered."</strong> — False. Pre-existing conditions (diabetes, hypertension, thyroid) are covered after a standard waiting period of 2 to 3 years (IRDAI recently capped waiting periods at 3 years maximum).</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What is a Super Top-Up policy and how does it save money?</strong><br />A: A super top-up acts on aggregate deductible across a policy year. A ₹5 Lakh Base Plan + ₹20 Lakh Super Top-Up costs ~₹14,000/year, compared to ₹26,000/year for a single ₹25 Lakh base policy.</li>
+            <li><strong>Q: What is the 100% Cashless Anywhere initiative in India?</strong><br />A: IRDAI introduced "Cashless Everywhere", allowing policyholders to access cashless treatment even at non-network hospitals by notifying the insurer 48 hours prior (or within 48 hours in emergencies).</li>
+            <li><strong>Q: What is Restoration / Refill Benefit?</strong><br />A: Restoration automatically replenishes your sum insured back to 100% if exhausted during the policy year, ensuring subsequent hospitalizations are covered.</li>
+          </ul>
+
+          <h2>Tax Benefit under Section 80D</h2>
+          <p>Health insurance premiums are deductible up to ₹25,000 under <strong>Section 80D</strong> for self/family, plus an additional ₹50,000 for senior citizen parents (total ₹75,000 deduction under Old Tax Regime).</p>
+
           <h2>Official Reference</h2>
-          <p>Verify insurer details at <a href="https://www.irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI India</a>.</p>
+          <p>Verify insurer details and grievance statistics at <a href="https://www.irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI India</a>.</p>
         </div>
       )
     },
@@ -1905,6 +2119,14 @@ export default function Blogs({ setActiveCalculator }) {
             <li><strong>No Making Charges:</strong> Physical jewellery has 8–25% making charges. SGBs have zero.</li>
             <li><strong>Loan Collateral:</strong> SGBs can be pledged as collateral for bank loans.</li>
           </ul>
+
+          <h2>Comparison: SGB vs Physical Gold vs Gold ETFs</h2>
+          <ul>
+            <li><strong>Returns:</strong> SGB: Gold appreciation + 2.5% p.a. | Gold ETF: Gold appreciation − 0.5% expense ratio | Physical Gold: Gold appreciation − making charges</li>
+            <li><strong>Tax on Maturity (8 Years):</strong> SGB: <strong>0% (Completely Tax-Free)</strong> | Gold ETF: 12.5% LTCG | Physical Gold: 12.5% LTCG</li>
+            <li><strong>Liquidity:</strong> Gold ETF: Instant on NSE/BSE | SGB: Traded on exchanges or early redemption from Year 5 with RBI</li>
+          </ul>
+
           <h2>Who Should Invest in SGBs?</h2>
           <ul>
             <li>Investors wanting gold exposure without physical storage hassles.</li>
@@ -1919,12 +2141,24 @@ export default function Blogs({ setActiveCalculator }) {
             <li>Online buyers get a ₹50/gram discount on the issue price.</li>
             <li>SGBs are credited to your Demat account and can be traded on NSE/BSE after listing.</li>
           </ol>
-          <h2>Limitations</h2>
+
+          <h2>Common Myths Busted</h2>
           <ul>
-            <li>8-year lock-in (exit from year 5, but secondary market liquidity can be low).</li>
-            <li>2.5% interest income is taxable as per your income slab.</li>
-            <li>Not ideal for short-term gold exposure — use Gold ETFs instead.</li>
+            <li><strong>Myth: "You must hold SGBs for the full 8 years with zero exit options."</strong> — False. You can redeem SGBs directly with RBI on coupon payment dates from year 5 onwards, or sell them on NSE/BSE secondary markets anytime through your broker.</li>
+            <li><strong>Myth: "The 2.5% interest on SGBs is tax-free."</strong> — False. Only capital gains on maturity are 100% tax-free. The 2.5% semi-annual interest income is added to your income and taxed at your slab rate.</li>
+            <li><strong>Myth: "SGBs can default like corporate bonds."</strong> — False. SGBs carry sovereign backing from the Government of India, representing zero default credit risk.</li>
           </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can I buy existing SGB tranches from the secondary stock market?</strong><br />A: Yes. You can search SGB ticker symbols (e.g. SGBMAY31) on Zerodha or Groww and purchase existing tranches from the secondary market, often at a discount to spot gold prices.</li>
+            <li><strong>Q: What happens if gold prices fall over the 8-year period?</strong><br />A: SGB redemption price is tied to spot gold rates. While you receive guaranteed 2.5% annual interest, the redemption value mirrors prevailing market gold prices.</li>
+            <li><strong>Q: What percentage of my portfolio should be in Gold / SGBs?</strong><br />A: Financial advisors recommend allocating <strong>5% to 10% of your total portfolio</strong> to gold as an inflation hedge and equity market crash shock absorber.</li>
+          </ul>
+
+          <h2>Market Trends: Gold Allocation & SGB Demand in India</h2>
+          <p>Indian households hold over <strong>25,000 tonnes of physical gold</strong>. SGBs have shifted over ₹50,000 Crores of physical gold demand into productive formal sovereign instruments, reducing gold import trade deficits while maximizing retail investor net yields.</p>
+
           <h2>Official Reference</h2>
           <p>Subscribe to the next SGB tranche at the <a href="https://rbiretaildirect.org.in/" target="_blank" rel="noopener noreferrer">RBI Retail Direct portal</a>.</p>
         </div>
