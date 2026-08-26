@@ -218,38 +218,39 @@ export default function PfCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>Free PF Calculator: Check Your EPF Balance</h2>
+        <h2>Online PF Calculator: Free PF Balance & Interest Calculator Online</h2>
         <p>
-          Use our exact-match <strong>pf calculator</strong> to project your total corpus at retirement. The Employee Provident Fund (EPF) is a government-backed retirement benefit scheme mandatory for all salaried employees in India. Managed by the **Employees' Provident Fund Organisation (EPFO)**, it serves as a secure long-term saving instrument where both the employee and the employer contribute monthly.
+          Looking for a reliable <strong>online pf calculator</strong> or <strong>pf balance calculator</strong>? Our free <strong>pf online calculator</strong> helps you calculate your complete Employee Provident Fund (EPF) accumulation, monthly compounding returns, and final retirement wealth. Managed by the <strong>Employees' Provident Fund Organisation (EPFO)</strong>, EPF is a government-backed retirement scheme mandatory for salaried employees in India.
         </p>
 
-        <h3>Understanding EPF Contribution Splits</h3>
+        <h3>How This PF Interest Calculator Online Works</h3>
         <p>
-          - **Employee Contribution**: 12% of basic salary + dearness allowance (DA) goes directly to the EPF account.
-          - **Employer Contribution**: 12% is paid by the employer, but this is split:
-            - **3.67%** goes to the EPF account (accumulating compounding interest).
-            - **8.33%** goes to the Employee Pension Scheme (EPS) which funds monthly pensions post-retirement, capped at a maximum salary of ₹15,000 (i.e. max contribution to EPS is ₹1,250, and the balance goes to EPF).
-          *Note: This calculator simulates the EPF accumulation based on the specified EPF shares.*
+          Our <strong>pf interest calculator online</strong> accurately splits and compounds your monthly contributions:
         </p>
+        <ul style={{ paddingLeft: '20px', marginBottom: '16px', fontSize: '14px', color: 'var(--text-main)' }}>
+          <li><strong>Employee Share (12%)</strong>: 12% of your Basic Salary + DA is deposited directly into your EPF account, earning the declared annual interest (currently 8.25% p.a.).</li>
+          <li><strong>Employer Share (12%)</strong>: 3.67% goes to your EPF account and 8.33% goes to the Employee Pension Scheme (EPS), capped at ₹15,000 basic salary (max EPS ₹1,250/mo, with the excess credited to EPF).</li>
+          <li><strong>Monthly Compounding</strong>: Interest is calculated on the closing monthly balance and officially credited at the end of each financial year.</li>
+        </ul>
 
         <h3>Frequently Asked Questions (FAQs)</h3>
         <div className="faq-list">
           <div className="faq-item">
-            <h4 className="faq-question">1. Is interest on EPF tax-free?</h4>
+            <h4 className="faq-question">1. How does this online PF calculator determine my retirement balance?</h4>
             <p className="faq-answer">
-              Interest on EPF contributions is tax-free as long as the employee's contribution does not exceed **₹2.5 Lakhs** in a financial year (or ₹5 Lakhs if there is no employer contribution, i.e., government employees). Interest on contributions above this threshold is taxable.
+              This online PF calculator adds the employee 12% contribution and employer 3.67% contribution to your previous balance every month, applies the EPFO annual interest rate (e.g. 8.25%), and factors in your annual salary increments until your chosen retirement age.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">2. When can I withdraw my EPF amount?</h4>
+            <h4 className="faq-question">2. Is interest calculated by this PF balance calculator tax-free?</h4>
             <p className="faq-answer">
-              You can withdraw your entire EPF corpus upon retirement (after 58 years of age) or if you are unemployed for more than 2 months. Partial withdrawals are allowed for specific purposes like house construction, buying land, higher education, marriage, or medical emergencies, subject to terms.
+              Yes, interest on EPF is completely tax-free under Section 10(11)/(12) as long as the employee's total annual contribution does not exceed <strong>₹2.5 Lakhs</strong> (or ₹5 Lakhs where there is no employer contribution). Any interest on contributions exceeding ₹2.5L is taxable as per your income slab.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">3. What is VPF (Voluntary Provident Fund)?</h4>
+            <h4 className="faq-question">3. What is VPF (Voluntary Provident Fund) in an online PF calculator?</h4>
             <p className="faq-answer">
-              Voluntary Provident Fund (VPF) allows employees to voluntarily contribute more than the mandatory 12% of basic salary (up to 100% of basic + DA) into their EPF account. It earns the same interest rate and tax benefit as EPF.
+              Voluntary Provident Fund (VPF) allows you to voluntarily contribute up to 100% of your Basic Salary + DA beyond the mandatory 12%. It earns the exact same 8.25% interest rate and sovereign tax-free benefits as standard EPF.
             </p>
           </div>
         </div>

@@ -228,40 +228,40 @@ export default function EligibilityCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>About Loan Eligibility Calculator</h2>
+        <h2>Loan Eligibility & FOIR Calculator India</h2>
         <p>
-          A Loan Eligibility Calculator helps you estimate the maximum loan amount you can borrow from banks or financial institutions. The eligibility is primary based on your monthly income, current debt obligations (existing EMIs), age, employment stability, and the bank's internal ratios.
+          Need an accurate <strong>foir calculator</strong> to calculate your maximum home loan or personal loan borrowing power? Our free online Loan Eligibility and FOIR calculator computes your maximum eligible loan amount, monthly EMI capacity, and safe borrowing limits based on standard Indian banking guidelines.
         </p>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '8px', marginBottom: '20px' }}>
-          *Note: To check detailed home loan interest rates, schemes, and eligibility parameters, visit the official <a href="https://homeloans.sbi/" target="_blank" rel="noopener noreferrer">SBI Home Loans portal</a> or check direct products on the <a href="https://www.hdfcbank.com" target="_blank" rel="noopener noreferrer">HDFC Loans portal</a>.
+          *Note: To check official home loan interest rates, schemes, and eligibility parameters, visit the official <a href="https://homeloans.sbi/" target="_blank" rel="noopener noreferrer">SBI Home Loans portal</a> or check direct products on the <a href="https://www.hdfcbank.com" target="_blank" rel="noopener noreferrer">HDFC Loans portal</a>.
         </p>
 
-        <h3>Understanding FOIR (Fixed Obligation to Income Ratio)</h3>
+        <h3>FOIR Calculator: Understanding Fixed Obligation to Income Ratio</h3>
         <p>
-          FOIR is the primary metric banks use to gauge your borrowing capacity. It represents the percentage of your gross monthly income that goes towards paying fixed obligations like rent, existing credit card debt, and EMIs.
+          A <strong>FOIR calculator</strong> computes the primary metric financial institutions (like SBI, HDFC, and ICICI Bank) use to gauge your credit borrowing capacity. FOIR represents the percentage of your gross monthly in-hand salary that is already committed to existing fixed obligations (such as existing personal loans, credit card EMIs, and auto loans).
         </p>
         <p>
-          Typically, banks cap FOIR at <strong>40% to 60%</strong>. For example, if your monthly income is ₹1,00,000 and the bank has a 50% FOIR cap, your total allowable EMI obligation (existing + new) is ₹50,000. If you already pay ₹10,000 EMI, you can afford a new EMI of up to ₹40,000.
+          Typically, top Indian lenders restrict FOIR to <strong>40% to 50%</strong> for conservative risk profiles, and up to <strong>60%</strong> for high-income earners. For instance, if your net monthly salary is ₹1,00,000 with a 50% FOIR cap, your total allowable EMI across all loans is ₹50,000. If you already service ₹10,000 in existing car loan EMI, you have an eligible EMI capacity of ₹40,000 for a new loan.
         </p>
 
         <h3>Frequently Asked Questions (FAQs)</h3>
         <div className="faq-list">
           <div className="faq-item">
-            <h4 className="faq-question">1. How can I increase my loan eligibility?</h4>
+            <h4 className="faq-question">1. What is a FOIR calculator and how does it determine loan approval?</h4>
             <p className="faq-answer">
-              You can increase your loan eligibility by adding a co-applicant (like a spouse or parent) to pool income, choosing a longer loan tenure to lower the EMI, clearing existing short-term loans, or declaring other income sources like rent or dividends.
+              A FOIR (Fixed Obligation to Income Ratio) calculator calculates what portion of your income is safe to allocate towards new EMIs without defaulting. Lenders reject loan applications if your FOIR exceeds 50%–60%, as it indicates financial overleveraging.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">2. Does a low credit score impact my eligibility?</h4>
+            <h4 className="faq-question">2. How can I increase my loan eligibility on a FOIR calculator?</h4>
             <p className="faq-answer">
-              Yes, credit score (like CIBIL) is critical. A high CIBIL score (750+) reflects creditworthiness and helps get loans approved easily at lower interest rates. A low credit score can reduce the eligible loan amount, lead to loan rejection, or increase the interest rate.
+              You can increase loan eligibility by adding an earning co-applicant (spouse or parent) to combine household incomes, selecting a longer tenure (e.g. 20–30 years) to reduce the monthly EMI, pre-closing existing short-term personal loans, or maintaining a high CIBIL score (750+).
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">3. What other parameters do banks check for home loan eligibility?</h4>
+            <h4 className="faq-question">3. Does a low credit score impact my eligibility?</h4>
             <p className="faq-answer">
-              Apart from income and credit score, banks check the age of the applicant (preferably 21 to 60 years), job stability (at least 2-3 years of work experience), the property's market value, and title clearances.
+              Yes. Even if your income is high on the FOIR calculator, a CIBIL score below 650 will lead to loan rejection or higher risk-adjusted interest rates. A score of 750+ qualifies you for the lowest floating interest rates and faster sanction.
             </p>
           </div>
         </div>

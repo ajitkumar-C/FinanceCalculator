@@ -329,6 +329,12 @@ export default function TaxCalculator({ setResultText }) {
               While users often search for a <strong>filing taxes jointly vs separately calculator</strong>, in India, the Income Tax Department requires every individual to file taxes separately. There is no joint tax return filing for married couples under Indian tax law, so each individual must use the calculator based on their own separate income.
             </p>
           </div>
+          <div className="faq-item">
+            <h4 className="faq-question">6. Are there any fees to calculate taxes here (compared to Tax Buddy charges)?</h4>
+            <p className="faq-answer">
+              No. Unlike assisted tax filing platforms that carry mandatory subscription or assisted filing fees (like <strong>tax buddy charges</strong>), RupeeBuddy is 100% free with zero registration, zero ads, and zero hidden costs. You can simulate unlimited tax regimes and deductions completely private in your browser.
+            </p>
+          </div>
         </div>
       </section>
     </div>

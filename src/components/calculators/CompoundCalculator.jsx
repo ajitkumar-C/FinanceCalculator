@@ -222,47 +222,47 @@ export default function CompoundCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>Best Compound Interest Calculator India</h2>
+        <h2>Best Compound Interest & Cumulative Calculator India</h2>
         <p>
-          Compound interest is the interest calculated on the initial principal and also on the accumulated interest of previous periods. Whether you are looking for a <strong>daily compound interest calculator India</strong> or a standard <strong>compounding calculator India</strong>, this tool helps you see how different compounding frequencies (daily, monthly, quarterly, or yearly) affect your terminal maturity amount and allows your wealth to grow exponentially.
+          Need a precise <strong>cumulative calculator</strong> or <strong>daily compound interest calculator India</strong>? Compound interest is interest earned on your initial principal plus the accumulated interest of previous cycles. Whether you are using this tool as a cumulative deposit calculator or a standard <strong>compounding calculator India</strong>, it reveals how daily, monthly, quarterly, or yearly compounding accelerates exponential wealth creation.
         </p>
 
-        <h3>The Compound Interest Equation</h3>
-        <p>The standard mathematical formula for compound interest is:</p>
+        <h3>The Cumulative Compound Interest Equation</h3>
+        <p>The standard mathematical formula used by this cumulative calculator is:</p>
         <div className="formula-block">
           A = P(1 + r/n)^(nt)
         </div>
         <p>Where:</p>
         <ul style={{ paddingLeft: '20px', fontSize: '14px', color: 'var(--text-main)' }}>
-          <li><strong>A</strong> represents the Future Accumulated Value (Maturity Amount).</li>
+          <li><strong>A</strong> represents the Future Cumulative Accumulated Value (Maturity Amount).</li>
           <li><strong>P</strong> represents the Principal Investment Amount.</li>
           <li><strong>r</strong> represents the annual interest rate (in decimal format, e.g. 10% = 0.10).</li>
-          <li><strong>n</strong> represents the compounding frequency per year (e.g. Quarterly = 4, Monthly = 12).</li>
-          <li><strong>t</strong> represents the tenure (number of years).</li>
+          <li><strong>n</strong> represents the compounding frequency per year (Daily = 365, Monthly = 12, Quarterly = 4, Yearly = 1).</li>
+          <li><strong>t</strong> represents the tenure in years.</li>
         </ul>
 
         <h3>Frequently Asked Questions (FAQs)</h3>
         <div className="faq-list">
           <div className="faq-item">
-            <h4 className="faq-question">1. What is the Rule of 72?</h4>
+            <h4 className="faq-question">1. How does a cumulative calculator differ from a simple interest calculator?</h4>
             <p className="faq-answer">
-              The Rule of 72 is a quick, useful mental shortcut to estimate how many years it will take for your money to double at a constant interest rate. You simply divide 72 by your annual interest rate. For example, at an interest rate of 12%, your money will double in approximately **6 years** (72 / 12).
+              A simple interest calculator computes returns purely on the base principal throughout the tenure. A cumulative calculator factors in compounding, where the interest earned in each period is added to the principal balance for all subsequent calculations, creating exponential "interest on interest" growth.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">2. How does compounding frequency affect the final returns?</h4>
+            <h4 className="faq-question">2. What is the Rule of 72 in cumulative calculations?</h4>
             <p className="faq-answer">
-              The more frequently interest is compounded, the higher your final returns will be. For instance, ₹1,00,000 invested at 10% for 10 years yields:
+              The Rule of 72 is a quick shortcut to estimate how many years it will take to double your investment at a fixed interest rate. Divide 72 by the annual return rate. At 12% CAGR, your money doubles in approximately <strong>6 years</strong> (72 / 12).
+            </p>
+          </div>
+          <div className="faq-item">
+            <h4 className="faq-question">3. How does compounding frequency affect final cumulative returns?</h4>
+            <p className="faq-answer">
+              Higher compounding frequencies yield higher cumulative wealth. For example, ₹1,00,000 invested at 10% for 10 years yields:
               - **₹2,59,374** under Annual compounding.
               - **₹2,68,506** under Quarterly compounding.
               - **₹2,70,704** under Monthly compounding.
               - **₹2,71,791** under Daily compounding.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h4 className="faq-question">3. What is the difference between Simple Interest and Compound Interest?</h4>
-            <p className="faq-answer">
-              Simple interest is calculated only on the initial principal amount. Under simple interest, you earn the exact same interest amount every year. Compound interest calculations include previously earned interest, meaning you earn interest on interest, leading to rapid capital growth.
             </p>
           </div>
         </div>

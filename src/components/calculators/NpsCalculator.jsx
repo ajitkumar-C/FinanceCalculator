@@ -241,39 +241,47 @@ export default function NpsCalculator({ setResultText }) {
 
       {/* SEO Rich Text Section */}
       <section className="seo-rich-content-section" id="faq-section">
-        <h2>About National Pension Scheme (NPS)</h2>
+        <h2>National Pension Scheme India Calculator: How to Calculate NPS Pension</h2>
         <p>
-          The National Pension System (NPS) is a voluntary, long-term retirement savings scheme designed to provide social security to citizens in India. Backed by the Central Government and regulated by the **Pension Fund Regulatory and Development Authority (PFRDA)**, NPS encourages people to invest in equity and debt funds during their employment, accumulating pension wealth.
+          Wondering <strong>how to calculate NPS</strong> maturity returns and pension payouts? Our <strong>National Pension Scheme India calculator</strong> helps you project your total wealth accumulation, tax-free lump sum, and guaranteed lifelong monthly pension under the regulatory framework of the <strong>Pension Fund Regulatory and Development Authority (PFRDA)</strong>.
         </p>
 
-        <h3>Important NPS Rules (Tier I Account)</h3>
+        <h3>How to Calculate NPS Pension & Corpus Step-by-Step</h3>
         <p>
-          - **Lock-in**: Matures at age 60. You can stay invested up to age 70.
-          - **Lump Sum Withdrawal**: Upon reaching age 60, you can withdraw up to **60%** of the accumulated corpus tax-free.
-          - **Mandatory Annuity**: You must purchase a monthly annuity plan from an IRDAI-approved life insurance company with the remaining **40%** of the corpus. The annuity provides a regular monthly pension for life.
-          - **Tax Benefits**: 
-            - Deductions up to ₹1.5 Lakhs under **Section 80CCD(1)** (combined with 80C).
-            - An exclusive additional deduction of **₹50,000** under **Section 80CCD(1B)**.
+          Understanding <strong>how to calculate NPS pension</strong> involves three simple stages:
+        </p>
+        <ol style={{ paddingLeft: '20px', marginBottom: '16px', fontSize: '14px', color: 'var(--text-main)' }}>
+          <li><strong>Corpus Accumulation:</strong> Monthly contributions compound annually based on your chosen asset allocation (Equity, Corporate Debt, Govt Securities).</li>
+          <li><strong>Tax-Free Lump Sum (Up to 60%):</strong> Upon reaching retirement age (60), you can withdraw up to 60% of the accumulated corpus completely tax-free.</li>
+          <li><strong>Monthly Annuity Pension (Min 40%):</strong> The remaining minimum 40% corpus is invested in an annuity plan from an IRDAI-approved life insurer to generate your fixed monthly pension.</li>
+        </ol>
+
+        <h3>Important NPS Rules & Tax Benefits (Tier I Account)</h3>
+        <p>
+          - <strong>Lock-in Period</strong>: Matures at age 60 (extendable up to age 75).<br />
+          - <strong>Lump Sum Withdrawal</strong>: Up to <strong>60%</strong> tax-free on superannuation.<br />
+          - <strong>Mandatory Annuity</strong>: Minimum <strong>40%</strong> reinvested for monthly pension for life.<br />
+          - <strong>Tax Deductions</strong>: Deductions up to ₹1.5 Lakhs under <strong>Section 80CCD(1)</strong> + exclusive extra ₹50,000 deduction under <strong>Section 80CCD(1B)</strong> under the Old Tax Regime.
         </p>
 
         <h3>Frequently Asked Questions (FAQs)</h3>
         <div className="faq-list">
           <div className="faq-item">
-            <h4 className="faq-question">1. What is the difference between NPS Tier I and Tier II accounts?</h4>
+            <h4 className="faq-question">1. How to calculate NPS pension amount received each month?</h4>
             <p className="faq-answer">
-              Tier I is a mandatory retirement account with tax benefits and strict lock-in rules. Tier II is a voluntary savings account that allows quick withdrawals at any time without any lock-in. However, Tier II accounts do not qualify for any tax deductions.
+              To calculate your monthly NPS pension, multiply your annuity corpus (minimum 40% of total maturity value) by your expected annuity interest rate (typically 6% to 7% p.a.), then divide by 12. For example, a ₹40 Lakh annuity corpus at 6% generates ₹20,000 per month in pension.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">2. How are NPS funds invested?</h4>
+            <h4 className="faq-question">2. What is the difference between NPS Tier I and Tier II accounts?</h4>
             <p className="faq-answer">
-              NPS funds are invested in four asset classes: Equity (E), Corporate Bonds (C), Government Securities (G), and Alternative Assets (A). You can choose to manage your allocation manually (Active Choice) or let it adjust automatically based on your age (Auto Choice).
+              Tier I is a mandatory retirement account with strict lock-in and exclusive tax deductions. Tier II is an optional voluntary investment account that allows instant withdrawals anytime without lock-in, but does not provide tax deductions.
             </p>
           </div>
           <div className="faq-item">
-            <h4 className="faq-question">3. Is annuity income taxable?</h4>
+            <h4 className="faq-question">3. How are funds managed in the National Pension Scheme?</h4>
             <p className="faq-answer">
-              While the 60% lump sum withdrawn at retirement is 100% tax-free, the monthly annuity pension you receive is treated as salary income and is taxed according to your income tax slabs in the year of receipt.
+              You can choose Active Choice (you specify equity/debt ratio, up to 75% equity) or Auto Choice (lifecycle fund that automatically shifts equity to bonds as you age). PFRDA registered managers include SBI Pension Fund, HDFC Pension, and ICICI Prudential Pension.
             </p>
           </div>
         </div>

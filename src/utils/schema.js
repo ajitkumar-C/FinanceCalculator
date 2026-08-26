@@ -11,9 +11,9 @@ const schemas = {
     category: "FinancialCalculator",
   },
   eligibility: {
-    name: "Loan Eligibility Calculator: Home Loan & Personal Loan Eligibility Checker",
-    description: "Check your loan eligibility online. Calculate home loan and personal loan eligibility based on basic salary, existing EMIs, FOIR, and bank lending terms.",
-    keywords: "loan eligibility, loan eligibility calculator, home loan eligibility, personal loan eligibility, foir calculator, check loan eligibility, sbi home loan eligibility based on salary",
+    name: "Loan Eligibility & FOIR Calculator: Calculate Maximum Borrowing Limit",
+    description: "Check your loan eligibility and compute your Fixed Obligation to Income Ratio (FOIR). Calculate home loan and personal loan eligibility based on salary, existing EMIs, and bank FOIR norms.",
+    keywords: "loan eligibility, loan eligibility calculator, foir calculator, foir calculation, home loan eligibility, personal loan eligibility, check loan eligibility, sbi home loan eligibility based on salary",
     category: "FinancialCalculator",
   },
   ppf: {
@@ -23,9 +23,9 @@ const schemas = {
     category: "InvestmentCalculator",
   },
   pf: {
-    name: "EPF Calculator: Online PF Calculator & Provident Fund Calculator",
-    description: "Estimate your Employee Provident Fund (EPF) balance and voluntary retirement corpus. Check accumulated interest and employer contribution using this free online PF calculator.",
-    keywords: "pf calculator, epf calculator, online pf calculator, provident fund calculator, epf interest rate, pf balance checker, voluntary provident fund",
+    name: "Online PF Calculator: PF Balance & Interest Calculator Online",
+    description: "Calculate your Employee Provident Fund (EPF) balance and interest online. Check accumulated monthly interest, employer contribution, and voluntary PF corpus using this free online PF calculator.",
+    keywords: "online pf calculator, pf interest calculator online, pf online calculator, pf balance calculator, pf calculator, epf calculator, provident fund calculator, epf interest rate",
     category: "RetirementCalculator",
   },
   sip: {
@@ -47,9 +47,9 @@ const schemas = {
     category: "SavingsCalculator",
   },
   nps: {
-    name: "NPS Calculator: National Pension Scheme Online Calculator",
-    description: "Calculate your National Pension Scheme (NPS) Tier 1 & Tier 2 maturity corpus, lump-sum tax-free withdrawals, and monthly annuity payouts with the best NPS calculator.",
-    keywords: "nps calculator, nps calculator online, nps calculation formula, national pension scheme, nps tier 1, nps tier 2, best nps calculator, pension calculator",
+    name: "National Pension Scheme India Calculator: How to Calculate NPS Pension",
+    description: "Learn how to calculate NPS pension and maturity corpus. Use our National Pension Scheme India calculator to project tax-free lump sum and monthly annuity pension payouts.",
+    keywords: "national pension scheme india calculator, how to calculate nps, how to calculate nps pension, nps calculator, nps calculator online, nps calculation formula, national pension scheme, nps tier 1, nps tier 2, best nps calculator, pension calculator",
     category: "RetirementCalculator",
   },
   retirement: {
@@ -59,9 +59,9 @@ const schemas = {
     category: "RetirementCalculator",
   },
   tax: {
-    name: "Income Tax Calculator: Old vs New Tax Regime Slabs & Savings",
-    description: "Compare your tax liabilities under the Old vs New Tax Regime for FY 2026-27 (AY 2027-28). Estimate standard deductions and tax rebates under Section 87A instantly.",
-    keywords: "income tax calculator, old vs new tax regime, tax slabs FY 2026-27, section 87A rebate, tax slabs India, income tax calculator FY 2026-27",
+    name: "Income Tax Calculator: Old vs New Tax Regime Slabs & Free Tax Estimator",
+    description: "Compare your tax liabilities under the Old vs New Tax Regime for FY 2026-27 (AY 2027-28). Estimate standard deductions and tax rebates under Section 87A instantly with 100% free calculations.",
+    keywords: "income tax calculator, old vs new tax regime, tax buddy charges, taxbuddy alternative, tax slabs FY 2026-27, section 87A rebate, tax slabs India, free income tax calculator india",
     category: "TaxCalculator",
   },
   mutualfund: {
@@ -71,9 +71,9 @@ const schemas = {
     category: "InvestmentCalculator",
   },
   compound: {
-    name: "Compound Interest Calculator: Daily, Monthly & Yearly Compounding",
-    description: "Calculate compound interest online with daily, monthly, quarterly, or yearly compounding frequencies using our free investment compounding calculator.",
-    keywords: "compound interest calculator, daily compound interest, compound interest formula, compound savings calculator, interest on interest calculator, accumulated interest",
+    name: "Compound Interest & Cumulative Calculator India: Daily, Monthly & Yearly",
+    description: "Calculate compound interest and cumulative returns online with daily, monthly, quarterly, or yearly compounding frequencies using our free cumulative calculator.",
+    keywords: "cumulative calculator, cumulative interest calculator, compound interest calculator, daily compound interest, compound interest formula, compound savings calculator, interest on interest calculator",
     category: "SavingsCalculator",
   },
   home: {
