@@ -1503,6 +1503,403 @@ export default function Blogs({ setActiveCalculator }) {
           </p>
         </div>
       )
+    },
+    {
+      id: 'tax-saving-tips-india',
+      title: 'How to Save Income Tax Legally in India: 10 Smart Strategies for 2025',
+      category: 'tax',
+      readTime: '7 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'Paying too much income tax? There are completely legal ways to reduce your tax bill significantly. Here are 10 tried-and-tested tax-saving strategies every Indian salaried professional should know.',
+      targetCalc: 'tax',
+      ctaText: 'Calculate Your Tax Savings Now',
+      imgUrl: '/images/tax_saving_tips_india.jpg',
+      content: (
+        <div>
+          <p>Every year, millions of salaried Indians pay more tax than they legally need to, simply because they are not aware of the deductions and exemptions available to them. Here are 10 smart strategies to cut your tax bill in 2025.</p>
+          <h2>Who Should Use These Strategies?</h2>
+          <ul>
+            <li>Salaried employees in the <strong>Old Tax Regime</strong> who want to maximise deductions.</li>
+            <li>Self-employed professionals and business owners.</li>
+            <li>Anyone earning above ₹7 Lakhs annually looking to legally minimise tax outgo.</li>
+          </ul>
+          <h2>10 Legal Tax-Saving Strategies</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Section 80C (up to ₹1.5 Lakhs):</strong> Invest in ELSS mutual funds, PPF, EPF, NSC, or pay life insurance premiums.</li>
+            <li><strong>Section 80D (up to ₹75,000):</strong> Pay health insurance premiums for yourself and senior citizen parents.</li>
+            <li><strong>Section 24(b) — Home Loan Interest (up to ₹2 Lakhs):</strong> Deduct interest paid on self-occupied home loan.</li>
+            <li><strong>Section 80CCD(1B) — NPS (up to ₹50,000 extra):</strong> Extra deduction beyond the 80C limit.</li>
+            <li><strong>HRA (House Rent Allowance):</strong> Exempt portion reduces taxable income if you live in rented housing.</li>
+            <li><strong>Section 80E — Education Loan Interest:</strong> 100% deductible for 8 years with no upper limit.</li>
+            <li><strong>Section 80G — Charitable Donations:</strong> Deductible at 50% or 100% depending on the institution.</li>
+            <li><strong>Leave Travel Allowance (LTA):</strong> Travel expenses within India claimed twice in a 4-year block are tax-exempt.</li>
+            <li><strong>Standard Deduction:</strong> ₹50,000 (Old Regime) or ₹75,000 (New Regime) automatically for all salaried employees.</li>
+            <li><strong>Section 80TTA/80TTB:</strong> Interest up to ₹10,000 from savings accounts (₹50,000 for senior citizens) is exempt.</li>
+          </ol>
+          <h2>Common Mistakes to Avoid</h2>
+          <ul>
+            <li>Investing in tax-saving instruments at the last minute without evaluating quality.</li>
+            <li>Choosing traditional insurance-cum-investment plans over pure term plans and ELSS.</li>
+            <li>Not declaring all deductions to employer for correct TDS adjustment.</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>For a complete list of eligible deductions, visit the <a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener noreferrer">Income Tax India Official Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'cibil-credit-score-guide',
+      title: 'CIBIL Credit Score Guide: How to Build and Maintain a 750+ Score in India',
+      category: 'loans',
+      readTime: '6 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'Your CIBIL score decides whether your home loan, car loan, or credit card gets approved and at what interest rate. Here is a complete guide to building and maintaining a 750+ CIBIL score.',
+      targetCalc: 'emi',
+      ctaText: 'Calculate Your Loan EMI',
+      imgUrl: '/images/cibil_credit_score_guide.jpg',
+      content: (
+        <div>
+          <p>In India, your <strong>CIBIL score</strong> is a 3-digit number ranging from 300 to 900 that tells banks how creditworthy you are. A score above <strong>750</strong> qualifies you for the best loan interest rates. A score below 650 can lead to outright loan rejection.</p>
+          <h2>What Makes Up Your CIBIL Score?</h2>
+          <ul>
+            <li><strong>Payment History (35%):</strong> On-time EMI and credit card payments are the biggest factor.</li>
+            <li><strong>Credit Utilisation (30%):</strong> Keep credit card usage below 30% of your limit.</li>
+            <li><strong>Length of Credit History (15%):</strong> Older accounts help — do not close your oldest credit card.</li>
+            <li><strong>Credit Mix (10%):</strong> A healthy mix of secured and unsecured debt is positive.</li>
+            <li><strong>New Credit Inquiries (10%):</strong> Multiple loan applications in short periods lower your score.</li>
+          </ul>
+          <h2>Step-by-Step: How to Build a 750+ CIBIL Score</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Pay all EMIs and credit card bills on the due date — set auto-pay to never miss.</li>
+            <li>Keep your credit card utilisation below 30% of your total limit.</li>
+            <li>Do not apply for multiple loans or credit cards within the same 3-month period.</li>
+            <li>Check your CIBIL report for errors quarterly and dispute inaccuracies immediately.</li>
+            <li>If you have no credit history, start with a secured credit card backed by an FD.</li>
+            <li>Do not close old credit accounts — length of history matters.</li>
+          </ol>
+          <h2>How Long Does It Take?</h2>
+          <p>Starting fresh: <strong>12–18 months</strong> of consistent on-time payments and low utilisation. Recovering from a bad score: <strong>24–36 months</strong>.</p>
+          <h2>Official Reference</h2>
+          <p>Get your free annual CIBIL report at the official <a href="https://www.cibil.com/freecibilscore" target="_blank" rel="noopener noreferrer">CIBIL Free Score portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'nps-vs-ppf-vs-epf',
+      title: 'NPS vs PPF vs EPF: Which Retirement Instrument is Best for Indians in 2025?',
+      category: 'retirement',
+      readTime: '8 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'NPS, PPF, and EPF are the three pillars of retirement savings in India. Each has unique tax benefits, returns, and lock-in periods. Here is a detailed comparison to help you decide.',
+      targetCalc: 'nps',
+      ctaText: 'Calculate Your NPS Pension Corpus',
+      imgUrl: '/images/nps_vs_ppf_vs_epf.jpg',
+      content: (
+        <div>
+          <p>When it comes to retirement planning in India, most advisors recommend a combination of <strong>NPS</strong>, <strong>PPF</strong>, and <strong>EPF</strong>. But which gives the best returns and which should you prioritise? Let us break them down side by side.</p>
+          <h2>Quick Comparison</h2>
+          <ul>
+            <li><strong>EPF:</strong> 8.25% fixed | Employee + Employer contribution | EEE tax status | Auto-deducted from salary</li>
+            <li><strong>PPF:</strong> 7.1% fixed | Voluntary | EEE tax status | 15-year lock-in | Max ₹1.5L/year</li>
+            <li><strong>NPS:</strong> 10–12% market-linked | Voluntary | Partial EEE | Retirement lock-in | No upper limit</li>
+          </ul>
+          <h2>EPF — Employee Provident Fund</h2>
+          <p>EPF is mandatory for salaried employees. Both employee and employer contribute 12% of basic salary. Current interest rate: <strong>8.25% p.a.</strong>, tax-free on withdrawal after 5 continuous years of service (EEE status).</p>
+          <h2>PPF — Public Provident Fund</h2>
+          <p>A government-backed, sovereign-guaranteed scheme with a 15-year lock-in. Invest ₹500 to ₹1.5 Lakhs/year at 7.1% interest. Entire investment, interest, and maturity are tax-free (EEE).</p>
+          <h2>NPS — National Pension System</h2>
+          <p>Market-linked pension scheme regulated by <a href="https://www.pfrda.org.in/" target="_blank" rel="noopener noreferrer">PFRDA</a>. Historical returns: <strong>10–12% p.a.</strong> At retirement (age 60), withdraw 60% lump sum tax-free, and use 40% to buy an annuity for monthly pension. Gives extra ₹50,000 tax deduction under Section 80CCD(1B).</p>
+          <h2>The Ideal Combination</h2>
+          <ul>
+            <li>Use <strong>EPF as your base</strong> — it is automatic and guaranteed.</li>
+            <li>Add <strong>NPS for market-linked growth</strong> and the extra tax deduction.</li>
+            <li>Use <strong>PPF for sovereign-safe debt allocation</strong> and flexibility.</li>
+            <li>Suggested split: 50% NPS (equity-heavy), 30% EPF, 20% PPF.</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>Open NPS at <a href="https://enps.nsdl.com/" target="_blank" rel="noopener noreferrer">eNPS NSDL</a>. Open PPF at <a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener noreferrer">India Post</a> or any SBI branch.</p>
+        </div>
+      )
+    },
+    {
+      id: 'stock-market-beginners-india',
+      title: "How to Start Investing in the Stock Market: A Beginner's Guide for Indians",
+      category: 'investment',
+      readTime: '8 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'Scared of the stock market? You should not be. With the right approach, patience, and knowledge, equities are one of the best wealth-creation tools available to every Indian. Here is how to start safely.',
+      targetCalc: 'sip',
+      ctaText: 'Calculate Your SIP Returns',
+      imgUrl: '/images/stock_market_beginners_india.jpg',
+      content: (
+        <div>
+          <p>The Sensex went from 1,000 in 1990 to over 80,000 in 2024 — a 12–15% CAGR. Yet most Indians keep savings in fixed deposits at 6–7%. The stock market is one of the greatest wealth-building tools available, and it is now accessible to everyone.</p>
+          <h2>Step-by-Step: How to Start Investing in Stocks</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Open a Demat + Trading Account:</strong> Use SEBI-registered brokers like <a href="https://zerodha.com/" target="_blank" rel="noopener noreferrer">Zerodha</a>, Groww, Angel One, or Upstox. Account opening takes 15–30 minutes online.</li>
+            <li><strong>Complete KYC:</strong> Provide your PAN card, Aadhaar, and bank account details.</li>
+            <li><strong>Start with Index Funds or ETFs:</strong> Invest in Nifty 50 index funds for instant diversification before picking individual stocks.</li>
+            <li><strong>Set up a Monthly SIP:</strong> Invest a fixed amount monthly rather than trying to time the market.</li>
+            <li><strong>Gradually learn stock picking:</strong> Read annual reports and understand P/E ratios before buying individual stocks.</li>
+            <li><strong>Never invest borrowed money or emergency funds</strong> in equities.</li>
+          </ol>
+          <h2>Key Terms Every Beginner Must Know</h2>
+          <ul>
+            <li><strong>Sensex / Nifty 50:</strong> Benchmark indices tracking the top 30 / top 50 companies in India.</li>
+            <li><strong>Bull Market:</strong> A rising market. <strong>Bear Market:</strong> A falling market (20%+ decline).</li>
+            <li><strong>P/E Ratio:</strong> Price-to-Earnings — measures how expensive a stock is relative to its profits.</li>
+            <li><strong>Dividend:</strong> Portion of company profits paid periodically to shareholders.</li>
+          </ul>
+          <h2>Biggest Mistakes Beginners Make</h2>
+          <ul>
+            <li>Buying stocks based on tips from friends or social media without research.</li>
+            <li>Panic-selling during market corrections instead of staying invested.</li>
+            <li>Putting all money in one stock or sector — always diversify.</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>For investor education and verified broker listings, visit <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI India</a> and <a href="https://www.nseindia.com/" target="_blank" rel="noopener noreferrer">NSE India</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'term-vs-whole-life-insurance',
+      title: 'Term Life Insurance vs Whole Life Insurance: What Every Indian Must Know',
+      category: 'investment',
+      readTime: '6 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'Insurance agents often push expensive whole life policies. But for most Indians, a simple term plan is dramatically better. Here is a clear, numbers-based comparison to help you decide.',
+      targetCalc: 'retirement',
+      ctaText: 'Plan Your Financial Safety Net',
+      imgUrl: '/images/term_vs_whole_life_insurance.jpg',
+      content: (
+        <div>
+          <p>Most people end up buying expensive endowment or whole life plans because agent commissions are high. For the average Indian family, a <strong>pure term plan</strong> is almost always the smarter financial decision.</p>
+          <h2>The Real Numbers: Why Term Wins</h2>
+          <ul>
+            <li><strong>Term Plan:</strong> ₹1 Crore cover | 30-year term | Age 30 | Premium ≈ ₹10,000–₹12,000/year</li>
+            <li><strong>Endowment Plan:</strong> ₹1 Crore cover | 30-year term | Age 30 | Premium ≈ ₹3,00,000–₹4,00,000/year</li>
+          </ul>
+          <p>The premium difference of ₹2.88–3.88 Lakhs/year, invested in a Nifty 50 Index Fund at 12% CAGR for 30 years, would grow to over <strong>₹9–10 Crores</strong>. "Buy Term + Invest the Difference" always wins mathematically.</p>
+          <h2>When Does Whole Life Make Sense?</h2>
+          <ul>
+            <li>High-net-worth individuals using it for estate planning and wealth transfer.</li>
+            <li>Business owners needing key-man insurance with cash value as collateral.</li>
+          </ul>
+          <h2>Step-by-Step: How to Buy a Term Plan</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Decide your cover: Minimum 10–15x your annual income.</li>
+            <li>Choose tenure: Cover until age 60–65 or until dependents are financially independent.</li>
+            <li>Compare plans on <a href="https://www.policybazaar.com/" target="_blank" rel="noopener noreferrer">Policybazaar</a> or <a href="https://www.coverfox.com/" target="_blank" rel="noopener noreferrer">Coverfox</a>.</li>
+            <li>Choose an insurer with claim settlement ratio of 95%+.</li>
+            <li>Buy online directly to avoid agent commissions.</li>
+          </ol>
+          <h2>Official Reference</h2>
+          <p>Check insurer claim settlement ratios at the <a href="https://www.irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI India official portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'sip-step-up-strategy',
+      title: 'SIP Step-Up Strategy: How to Build Wealth 3x Faster with Mutual Funds',
+      category: 'investment',
+      readTime: '6 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'A regular SIP is good. But a Step-Up SIP is dramatically better. By increasing your SIP by just 10% each year, you can build over 2x more corpus — matching salary growth without feeling the pinch.',
+      targetCalc: 'sip',
+      ctaText: 'Calculate Your SIP Growth',
+      imgUrl: '/images/sip_step_up_strategy.jpg',
+      content: (
+        <div>
+          <p>Most people invest the same fixed SIP amount every month for years. There is a simple upgrade that dramatically accelerates wealth: the <strong>Step-Up SIP</strong>. Increase your monthly SIP by 10% every year, aligned with salary increments.</p>
+          <h2>The Maths That Makes Step-Up SIPs Powerful</h2>
+          <ul>
+            <li><strong>Regular SIP:</strong> ₹10,000/month, 12% CAGR, 20 years → Corpus: ₹99.9 Lakhs (~₹1 Crore)</li>
+            <li><strong>Step-Up SIP (10% annual increase):</strong> Starting ₹10,000/month, 20 years → Corpus: ₹1.99 Crores (~₹2 Crore)</li>
+          </ul>
+          <p>Double the wealth with just a 10% annual increase — matching typical salary growth!</p>
+          <h2>Step-by-Step: How to Set Up a Step-Up SIP</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Choose a mutual fund scheme — large-cap index fund, flexicap, or multi-cap.</li>
+            <li>Start your base SIP on <a href="https://groww.in/" target="_blank" rel="noopener noreferrer">Groww</a>, <a href="https://coin.zerodha.com/" target="_blank" rel="noopener noreferrer">Zerodha Coin</a>, or directly on the AMC website.</li>
+            <li>Enable the "Step-Up" or "Top-Up" option during SIP registration — set annual increment at 10%.</li>
+            <li>Link to your salary account for automatic monthly deductions.</li>
+            <li>Revisit annually and increase by your actual salary increment percentage.</li>
+          </ol>
+          <h2>Key Benefits</h2>
+          <ul>
+            <li>Keeps pace with inflation as your purchasing power grows.</li>
+            <li>Does not feel like a financial burden since the increment matches salary growth.</li>
+            <li>Dramatically accelerates corpus growth through higher compounding base in later years.</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>For step-up SIP options and fund selection, visit <a href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">AMFI India</a> for SEBI-compliant mutual fund options.</p>
+        </div>
+      )
+    },
+    {
+      id: 'debt-avalanche-vs-snowball',
+      title: 'How to Get Out of Debt Fast: Debt Avalanche vs Debt Snowball Explained',
+      category: 'loans',
+      readTime: '6 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'Drowning in EMIs, credit card debt, and personal loans? The Debt Avalanche and Debt Snowball are two proven strategies to become debt-free faster. Here is which one to choose.',
+      targetCalc: 'emi',
+      ctaText: 'Calculate Your Loan Repayment',
+      imgUrl: '/images/debt_avalanche_snowball.jpg',
+      content: (
+        <div>
+          <p>Multiple loans can feel overwhelming. There are two proven mathematical strategies to get out of debt systematically: the <strong>Debt Avalanche</strong> and the <strong>Debt Snowball</strong>.</p>
+          <h2>Debt Avalanche Method (Mathematically Optimal)</h2>
+          <p>Focus all extra payments on the <strong>highest interest rate debt first</strong>, while paying minimums on all others. Once cleared, roll that payment to the next highest-interest debt.</p>
+          <p><strong>Example order:</strong> Credit Card (36%) → Personal Loan (18%) → Car Loan (10%) → Home Loan (8.5%)</p>
+          <p><strong>Why it works:</strong> You pay the least total interest overall and save the most money.</p>
+          <h2>Debt Snowball Method (Psychologically Powerful)</h2>
+          <p>Focus on paying off the <strong>smallest balance first</strong>, regardless of interest rate. Quick wins build motivation to keep going.</p>
+          <h2>Which Should You Choose?</h2>
+          <ul>
+            <li><strong>Choose Avalanche</strong> if you are disciplined and want to save maximum interest.</li>
+            <li><strong>Choose Snowball</strong> if you need motivational wins and tend to give up when results are slow.</li>
+          </ul>
+          <h2>Step-by-Step Execution</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>List all debts: balance, interest rate, and minimum monthly payment.</li>
+            <li>Choose your method and rank debts accordingly.</li>
+            <li>Find extra money: cancel subscriptions, reduce discretionary spending.</li>
+            <li>Apply all extra money to priority debt #1, pay minimums on all others.</li>
+            <li>Once cleared, roll that payment to the next debt.</li>
+            <li>Repeat until completely debt-free.</li>
+          </ol>
+          <h2>Official Reference</h2>
+          <p>For credit card interest rates and loan pre-closure terms, check <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">RBI consumer credit guidelines</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'fd-vs-rd-2025',
+      title: 'Fixed Deposit vs Recurring Deposit: Which is Better for You in 2025?',
+      category: 'investment',
+      readTime: '5 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'FD and RD are India\'s safest savings instruments, both government-insured up to ₹5 Lakhs. But they serve different purposes. Here is a clear guide to pick the right one for your situation.',
+      targetCalc: 'fd',
+      ctaText: 'Calculate Your FD Returns',
+      imgUrl: '/images/fd_vs_rd_comparison.jpg',
+      content: (
+        <div>
+          <p>Fixed Deposits (FD) and Recurring Deposits (RD) are the backbone of conservative savings in India. Both are DICGC-insured up to ₹5 Lakhs per bank. But they serve very different financial needs.</p>
+          <h2>Key Differences</h2>
+          <ul>
+            <li><strong>Investment Type:</strong> FD = one-time lump sum | RD = monthly installments</li>
+            <li><strong>Interest Rate:</strong> FD rates are slightly higher than RD rates for the same tenure.</li>
+            <li><strong>Minimum Amount:</strong> FD = ₹1,000 lump sum | RD = ₹100/month</li>
+            <li><strong>Best Use:</strong> FD = park a bonus or windfall | RD = build savings habit from salary</li>
+            <li><strong>Tax Treatment:</strong> Interest on both is taxable as per your income slab. TDS applies if interest exceeds ₹40,000/year (₹50,000 for seniors).</li>
+          </ul>
+          <h2>Which Should You Choose?</h2>
+          <ul>
+            <li><strong>Choose FD if:</strong> You received a large bonus, inheritance, or redemption proceeds and want to park it safely for 1–5 years.</li>
+            <li><strong>Choose RD if:</strong> You are a monthly salaried person building savings discipline without a lump sum to invest.</li>
+            <li><strong>Best Strategy:</strong> Use both — FD for existing savings, RD to systematically add new savings each month.</li>
+          </ul>
+          <h2>Current FD Interest Rates (2025)</h2>
+          <ul>
+            <li>SBI: Up to 7.10% (general) | 7.60% (senior citizens) for 3-year tenure</li>
+            <li>HDFC Bank: Up to 7.40% (general) | 7.90% (senior citizens)</li>
+            <li>Small Finance Banks: Up to 9.00% (higher return, DICGC-insured)</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>Compare FD rates at <a href="https://www.sbi.co.in/web/personal-banking/investments-deposits/deposits/fixed-deposit" target="_blank" rel="noopener noreferrer">SBI Fixed Deposits</a> and <a href="https://www.hdfcbank.com/personal/save/deposits/fixed-deposit" target="_blank" rel="noopener noreferrer">HDFC Bank Fixed Deposits</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'health-insurance-guide-india',
+      title: 'Health Insurance Guide for Indians: How to Choose the Right Plan in 2025',
+      category: 'investment',
+      readTime: '7 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'A single hospitalisation can wipe out years of savings. Medical inflation in India is growing at 14–15% per year. Here is a complete guide to choosing the right health insurance plan and coverage amount.',
+      targetCalc: 'retirement',
+      ctaText: 'Plan Your Financial Safety',
+      imgUrl: '/images/health_insurance_guide_india.jpg',
+      content: (
+        <div>
+          <p>Medical inflation in India is growing at <strong>14–15% per year</strong>. A 5-day ICU stay in a private hospital can cost ₹3–8 Lakhs. Without health insurance, a single medical emergency can devastate a family's savings. Health insurance is not optional — it is essential.</p>
+          <h2>Types of Health Insurance Plans</h2>
+          <ul>
+            <li><strong>Individual Plan:</strong> Covers one person. Best for single individuals or supplementing employer cover.</li>
+            <li><strong>Family Floater Plan:</strong> One policy covers the entire family with a shared sum insured.</li>
+            <li><strong>Senior Citizen Plan:</strong> Designed for people 60+ with pre-existing disease coverage.</li>
+            <li><strong>Critical Illness Plan:</strong> Pays a lump sum on diagnosis of specific diseases (cancer, heart attack). Use as a top-up.</li>
+            <li><strong>Super Top-Up Plan:</strong> Activates after your base policy limit is exhausted. Cost-effective way to get ₹50 Lakh+ coverage cheaply.</li>
+          </ul>
+          <h2>How Much Cover Do You Need?</h2>
+          <ul>
+            <li>Individuals under 35: Minimum ₹10 Lakhs. Recommended ₹25 Lakhs.</li>
+            <li>Families with children: ₹15–25 Lakh family floater + ₹25 Lakh super top-up.</li>
+            <li>Senior parents: Separate ₹10–20 Lakh individual plan — do not add them to your floater.</li>
+          </ul>
+          <h2>Step-by-Step: How to Choose a Health Plan</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Check the insurer's <strong>Claim Settlement Ratio</strong> — should be above 95%.</li>
+            <li>Check the <strong>network hospital list</strong> — ensure major hospitals near you are covered for cashless treatment.</li>
+            <li>Check <strong>pre-existing disease waiting period</strong> — most plans have a 2–4 year waiting period.</li>
+            <li>Avoid policies with room rent caps as they proportionally reduce all other reimbursements.</li>
+            <li>Compare on <a href="https://www.policybazaar.com/health-insurance/" target="_blank" rel="noopener noreferrer">Policybazaar Health Insurance</a>.</li>
+            <li>Buy early — premiums are significantly lower when you are young and healthy.</li>
+          </ol>
+          <h2>Tax Benefit</h2>
+          <p>Health insurance premiums are deductible up to ₹25,000 under <strong>Section 80D</strong>. An additional ₹50,000 is deductible for senior citizen parents.</p>
+          <h2>Official Reference</h2>
+          <p>Verify insurer details at <a href="https://www.irdai.gov.in/" target="_blank" rel="noopener noreferrer">IRDAI India</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'sovereign-gold-bond-guide',
+      title: 'Sovereign Gold Bond (SGB): Benefits, Returns, and How to Invest in 2025',
+      category: 'investment',
+      readTime: '6 min read',
+      date: 'Aug 26, 2026',
+      snippet: 'SGBs are the smartest way to invest in gold in India — you get gold price appreciation plus 2.5% annual interest, and zero capital gains tax on maturity. Here is everything you need to know.',
+      targetCalc: 'compound',
+      ctaText: 'Calculate Your Investment Growth',
+      imgUrl: '/images/sovereign_gold_bond_guide.jpg',
+      content: (
+        <div>
+          <p>The <strong>Sovereign Gold Bond (SGB)</strong> scheme, backed by the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India</a>, offers a far superior alternative to physical gold: full gold price exposure, 2.5% annual interest, and zero capital gains tax on maturity.</p>
+          <h2>Why SGBs Are Better Than Physical Gold</h2>
+          <ul>
+            <li><strong>2.5% Annual Interest:</strong> Physical gold earns zero income. SGBs pay 2.5% p.a. interest paid semi-annually to your bank account.</li>
+            <li><strong>Zero Capital Gains Tax on Maturity:</strong> If held to 8-year maturity, all gold price gains are 100% tax-free.</li>
+            <li><strong>No Storage Risk:</strong> Held in demat form — no theft, no locker charges.</li>
+            <li><strong>No Making Charges:</strong> Physical jewellery has 8–25% making charges. SGBs have zero.</li>
+            <li><strong>Loan Collateral:</strong> SGBs can be pledged as collateral for bank loans.</li>
+          </ul>
+          <h2>Who Should Invest in SGBs?</h2>
+          <ul>
+            <li>Investors wanting gold exposure without physical storage hassles.</li>
+            <li>Tax-conscious investors looking for capital gains tax savings.</li>
+            <li>Long-term investors (8-year horizon) seeking inflation hedge plus interest income.</li>
+          </ul>
+          <h2>Step-by-Step: How to Buy Sovereign Gold Bonds</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li>Check the RBI SGB issuance calendar — bonds are issued in specific tranches through the year.</li>
+            <li>Apply through your bank's internet banking, stockbroker (Zerodha, Groww), or the <a href="https://rbiretaildirect.org.in/" target="_blank" rel="noopener noreferrer">RBI Retail Direct portal</a>.</li>
+            <li>Minimum purchase: 1 gram. Maximum: 4 kg per financial year for individuals.</li>
+            <li>Online buyers get a ₹50/gram discount on the issue price.</li>
+            <li>SGBs are credited to your Demat account and can be traded on NSE/BSE after listing.</li>
+          </ol>
+          <h2>Limitations</h2>
+          <ul>
+            <li>8-year lock-in (exit from year 5, but secondary market liquidity can be low).</li>
+            <li>2.5% interest income is taxable as per your income slab.</li>
+            <li>Not ideal for short-term gold exposure — use Gold ETFs instead.</li>
+          </ul>
+          <h2>Official Reference</h2>
+          <p>Subscribe to the next SGB tranche at the <a href="https://rbiretaildirect.org.in/" target="_blank" rel="noopener noreferrer">RBI Retail Direct portal</a>.</p>
+        </div>
+      )
     }
   ];
 

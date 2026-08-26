@@ -246,4 +246,54 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=tax-saving-tips-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=cibil-credit-score-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=nps-vs-ppf-vs-epf</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=stock-market-beginners-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=term-vs-whole-life-insurance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=sip-step-up-strategy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=debt-avalanche-vs-snowball</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=fd-vs-rd-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=health-insurance-guide-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=blogs&amp;article=sovereign-gold-bond-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
