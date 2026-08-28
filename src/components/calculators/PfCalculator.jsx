@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { calculateEPF } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function PfCalculator({ setResultText }) {
   const [basicSalary, setBasicSalary] = useState(30000);
@@ -60,7 +61,15 @@ export default function PfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Monthly Basic Salary + DA</span>
-              <span className="slider-value-display">{formatINR(basicSalary)}</span>
+              <NumericInput
+                value={basicSalary}
+                onChange={setBasicSalary}
+                min={5000}
+                max={200000}
+                step={2000}
+                prefix="₹"
+                ariaLabel="Monthly Basic Salary"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -89,7 +98,15 @@ export default function PfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Expected Annual Salary Hike</span>
-              <span className="slider-value-display">{growth}%</span>
+              <NumericInput
+                value={growth}
+                onChange={setGrowth}
+                min={0}
+                max={20}
+                step={1}
+                suffix="%"
+                ariaLabel="Annual Salary Hike"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -112,7 +129,15 @@ export default function PfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Current Age</span>
-              <span className="slider-value-display">{currentAge} Years</span>
+              <NumericInput
+                value={currentAge}
+                onChange={setCurrentAge}
+                min={18}
+                max={58}
+                step={1}
+                suffix=" Years"
+                ariaLabel="Current Age"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -138,7 +163,15 @@ export default function PfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">EPF Interest Rate (% p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={5}
+                max={12}
+                step={0.05}
+                suffix="%"
+                ariaLabel="EPF Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -161,7 +194,15 @@ export default function PfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Employee EPF Share (%)</span>
-              <span className="slider-value-display">{empContrib}%</span>
+              <NumericInput
+                value={empContrib}
+                onChange={setEmpContrib}
+                min={8}
+                max={15}
+                step={1}
+                suffix="%"
+                ariaLabel="Employee EPF Share"
+              />
             </div>
             <div className="slider-control-row">
               <input

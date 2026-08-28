@@ -2,33 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { calculateLoanEligibility } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function EligibilityCalculator({ setResultText }) {
   const [monthlyIncome, setMonthlyIncome] = useState(75000);
   const [existingEmi, setExistingEmi] = useState(10000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
-  const [foir, setFoir] = useState(50); // 50% FOIR
+  const [foir, setFoir] = useState(50); // Default 50% FOIR cap
 
   const results = calculateLoanEligibility(monthlyIncome, existingEmi, rate, tenure, foir);
+  const maxEmiBudget = Math.round(monthlyIncome * (foir / 100));
 
   useEffect(() => {
     setResultText(
-      `Monthly Income: ${formatINR(monthlyIncome)}\nExisting EMIs: ${formatINR(existingEmi)}\nInterest Rate: ${rate}%\nTenure: ${tenure} years\nEligible Loan Amount: ${formatINR(results.eligibleLoan)}\nAllowable EMI: ${formatINR(results.eligibleEmi)}`
+      `Gross Salary: ${formatINR(monthlyIncome)}\nExisting EMIs: ${formatINR(existingEmi)}\nFOIR Cap: ${foir}%\nEligible EMI: ${formatINR(results.eligibleEmi)}\nEligible Loan: ${formatINR(results.eligibleLoan)}`
     );
   }, [monthlyIncome, existingEmi, rate, tenure, foir, results.eligibleLoan]);
 
-  const maxEmiBudget = (monthlyIncome * foir) / 100;
-  const leftForNewEmi = Math.max(0, maxEmiBudget - existingEmi);
-
   const chartData = {
-    labels: ['Monthly Income', 'Allowable EMI (FOIR Limit)', 'Existing EMIs', 'New Eligible EMI'],
+    labels: ['Monthly Allocation'],
     datasets: [
       {
-        label: 'Amount (₹)',
-        data: [monthlyIncome, maxEmiBudget, existingEmi, leftForNewEmi],
-        backgroundColor: ['#3b82f6', '#1e3a8a', '#ef4444', '#10b981'],
-        borderRadius: 6,
+        label: 'Existing EMIs',
+        data: [existingEmi],
+        backgroundColor: '#ef4444',
+      },
+      {
+        label: 'New Eligible EMI',
+        data: [results.eligibleEmi],
+        backgroundColor: '#10b981',
+      },
+      {
+        label: 'Disposable / Uncommitted Income',
+        data: [Math.max(0, monthlyIncome - (existingEmi + results.eligibleEmi))],
+        backgroundColor: '#cbd5e1',
       },
     ],
   };
@@ -36,27 +44,31 @@ export default function EligibilityCalculator({ setResultText }) {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: 'y',
     plugins: {
       legend: {
-        display: false,
+        position: 'bottom',
+        labels: {
+          font: { family: 'Inter', size: 11 },
+          color: '#1e293b',
+        },
       },
       tooltip: {
         callbacks: {
-          label: (context) => ` ${context.label || ''}: ${formatINR(context.raw)}`,
+          label: (context) => ` ${context.dataset.label}: ${formatINR(context.raw)}`,
         },
       },
     },
     scales: {
-      y: {
+      x: {
+        stacked: true,
         ticks: {
           callback: (value) => formatINR(value),
           font: { family: 'Inter', size: 10 },
         },
       },
-      x: {
-        ticks: {
-          font: { family: 'Inter', size: 10 },
-        },
+      y: {
+        stacked: true,
       },
     },
   };
@@ -70,7 +82,15 @@ export default function EligibilityCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Gross Monthly Income</span>
-              <span className="slider-value-display">{formatINR(monthlyIncome)}</span>
+              <NumericInput
+                value={monthlyIncome}
+                onChange={setMonthlyIncome}
+                min={5000}
+                max={5000000}
+                step={5000}
+                prefix="₹"
+                ariaLabel="Gross Monthly Income"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -99,7 +119,15 @@ export default function EligibilityCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Existing Monthly EMIs / Obligations</span>
-              <span className="slider-value-display">{formatINR(existingEmi)}</span>
+              <NumericInput
+                value={existingEmi}
+                onChange={setExistingEmi}
+                min={0}
+                max={2000000}
+                step={1000}
+                prefix="₹"
+                ariaLabel="Existing Monthly EMIs"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -128,7 +156,15 @@ export default function EligibilityCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Expected Loan Interest Rate</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={1}
+                max={30}
+                step={0.1}
+                suffix="%"
+                ariaLabel="Expected Loan Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -151,7 +187,15 @@ export default function EligibilityCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Tenure (Years)</span>
-              <span className="slider-value-display">{tenure} Yr</span>
+              <NumericInput
+                value={tenure}
+                onChange={setTenure}
+                min={1}
+                max={40}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Tenure in Years"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -174,7 +218,15 @@ export default function EligibilityCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">FOIR Limit (%)</span>
-              <span className="slider-value-display">{foir}%</span>
+              <NumericInput
+                value={foir}
+                onChange={setFoir}
+                min={10}
+                max={90}
+                step={1}
+                suffix="%"
+                ariaLabel="FOIR Limit Percentage"
+              />
             </div>
             <div className="slider-control-row">
               <input

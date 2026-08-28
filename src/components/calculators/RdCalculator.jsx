@@ -2,22 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { calculateRD } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function RdCalculator({ setResultText }) {
   const [monthlyDeposit, setMonthlyDeposit] = useState(5000);
   const [rate, setRate] = useState(6.8); // standard bank RD rate
-  const [tenureMonths, setTenureMonths] = useState(60); // 5 Years (60 Months)
+  const [tenureMonths, setTenureMonths] = useState(36); // 3 Years default
 
   const results = calculateRD(monthlyDeposit, rate, tenureMonths);
 
   useEffect(() => {
     setResultText(
-      `Monthly Deposit: ${formatINR(monthlyDeposit)}\nInterest Rate: ${rate}%\nTenure: ${tenureMonths} months\nTotal Invested: ${formatINR(results.totalInvested)}\nInterest Earned: ${formatINR(results.interestEarned)}\nMaturity Amount: ${formatINR(results.maturityAmount)}`
+      `Monthly Deposit: ${formatINR(monthlyDeposit)}\nInterest Rate: ${rate}%\nTenure: ${tenureMonths} Months (${tenureMonths/12} Years)\nTotal Invested: ${formatINR(results.totalInvested)}\nInterest Earned: ${formatINR(results.interestEarned)}\nMaturity Value: ${formatINR(results.maturityAmount)}`
     );
   }, [monthlyDeposit, rate, tenureMonths, results.maturityAmount]);
 
   const chartData = {
-    labels: ['Invested Principal', 'Interest Gained'],
+    labels: ['Total Deposited', 'Interest Earned'],
     datasets: [
       {
         data: [results.totalInvested, results.interestEarned],
@@ -56,7 +57,15 @@ export default function RdCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Monthly Deposit Amount</span>
-              <span className="slider-value-display">{formatINR(monthlyDeposit)}</span>
+              <NumericInput
+                value={monthlyDeposit}
+                onChange={setMonthlyDeposit}
+                min={500}
+                max={5000000}
+                step={500}
+                prefix="₹"
+                ariaLabel="Monthly Deposit Amount"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -85,7 +94,15 @@ export default function RdCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Interest Rate (% p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={1}
+                max={25}
+                step={0.1}
+                suffix="%"
+                ariaLabel="Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -108,7 +125,15 @@ export default function RdCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Tenure (Months)</span>
-              <span className="slider-value-display">{tenureMonths} Months ({Math.round(tenureMonths/12 * 10)/10} Yr)</span>
+              <NumericInput
+                value={tenureMonths}
+                onChange={setTenureMonths}
+                min={1}
+                max={360}
+                step={1}
+                suffix=" Mo"
+                ariaLabel="Tenure in Months"
+              />
             </div>
             <div className="slider-control-row">
               <input

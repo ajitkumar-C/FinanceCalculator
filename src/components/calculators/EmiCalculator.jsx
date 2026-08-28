@@ -2,28 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { calculateEMI } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function EmiCalculator({ setResultText }) {
-  const [amount, setAmount] = useState(5000000); // 50 Lakhs
+  const [amount, setAmount] = useState(2500000);
   const [rate, setRate] = useState(8.5);
-  const [tenure, setTenure] = useState(20); // 20 years
+  const [tenure, setTenure] = useState(20);
 
   const results = calculateEMI(amount, rate, tenure);
 
   // Set parent result text for PDF/sharing
   useEffect(() => {
     setResultText(
-      `Loan Amount: ${formatINR(amount)}\nInterest Rate: ${rate}%\nTenure: ${tenure} years\nMonthly EMI: ${formatINR(results.emi)}\nTotal Interest: ${formatINR(results.totalInterest)}\nTotal Repayment: ${formatINR(results.totalPayment)}`
+      `Loan Amount: ${formatINR(amount)}\nInterest Rate: ${rate}%\nTenure: ${tenure} Years\nMonthly EMI: ${formatINR(results.emi)}\nTotal Interest: ${formatINR(results.totalInterest)}\nTotal Payment: ${formatINR(results.totalPayment)}`
     );
   }, [amount, rate, tenure, results.emi]);
 
   const chartData = {
-    labels: ['Principal Amount', 'Interest Amount'],
+    labels: ['Principal Amount', 'Total Interest'],
     datasets: [
       {
         data: [amount, results.totalInterest],
-        backgroundColor: ['#1e3a8a', '#10b981'],
-        hoverBackgroundColor: ['#1d4ed8', '#059669'],
+        backgroundColor: ['#1e3a8a', '#f59e0b'],
+        hoverBackgroundColor: ['#1d4ed8', '#d97706'],
         borderWidth: 1,
       },
     ],
@@ -57,7 +58,15 @@ export default function EmiCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Loan Amount</span>
-              <span className="slider-value-display">{formatINR(amount)}</span>
+              <NumericInput
+                value={amount}
+                onChange={setAmount}
+                min={10000}
+                max={100000000}
+                step={10000}
+                prefix="₹"
+                ariaLabel="Loan Amount"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -86,7 +95,15 @@ export default function EmiCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Interest Rate (p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={1}
+                max={40}
+                step={0.1}
+                suffix="%"
+                ariaLabel="Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -115,7 +132,15 @@ export default function EmiCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Tenure (Years)</span>
-              <span className="slider-value-display">{tenure} Yr</span>
+              <NumericInput
+                value={tenure}
+                onChange={setTenure}
+                min={1}
+                max={40}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Tenure in Years"
+              />
             </div>
             <div className="slider-control-row">
               <input

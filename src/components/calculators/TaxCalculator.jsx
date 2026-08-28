@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { calculateTax } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function TaxCalculator({ setResultText }) {
   const [income, setIncome] = useState(1000000); // 10 Lakhs gross
@@ -68,7 +69,15 @@ export default function TaxCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Gross Annual Income</span>
-              <span className="slider-value-display">{formatINR(income)}</span>
+              <NumericInput
+                value={income}
+                onChange={setIncome}
+                min={0}
+                max={50000000}
+                step={10000}
+                prefix="₹"
+                ariaLabel="Gross Annual Income"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -98,7 +107,15 @@ export default function TaxCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Deductions (Old Regime Only)</span>
-              <span className="slider-value-display">{formatINR(deductions)}</span>
+              <NumericInput
+                value={deductions}
+                onChange={setDeductions}
+                min={0}
+                max={5000000}
+                step={5000}
+                prefix="₹"
+                ariaLabel="Deductions Old Regime"
+              />
             </div>
             <div className="slider-control-row">
               <input

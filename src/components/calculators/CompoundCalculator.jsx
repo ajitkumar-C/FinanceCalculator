@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { calculateCompoundInterest } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function CompoundCalculator({ setResultText }) {
   const [principal, setPrincipal] = useState(100000); // 1 Lakh
@@ -81,7 +82,15 @@ export default function CompoundCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Principal Amount</span>
-              <span className="slider-value-display">{formatINR(principal)}</span>
+              <NumericInput
+                value={principal}
+                onChange={setPrincipal}
+                min={500}
+                max={100000000}
+                step={1000}
+                prefix="₹"
+                ariaLabel="Principal Amount"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -110,7 +119,15 @@ export default function CompoundCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Interest Rate (% p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={0.1}
+                max={50}
+                step={0.1}
+                suffix="%"
+                ariaLabel="Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -133,7 +150,15 @@ export default function CompoundCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Tenure (Years)</span>
-              <span className="slider-value-display">{tenure} Yr</span>
+              <NumericInput
+                value={tenure}
+                onChange={setTenure}
+                min={1}
+                max={50}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Tenure in Years"
+              />
             </div>
             <div className="slider-control-row">
               <input

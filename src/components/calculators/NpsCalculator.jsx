@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { calculateNPS } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function NpsCalculator({ setResultText }) {
   const [monthlyContrib, setMonthlyContrib] = useState(10000);
@@ -60,7 +61,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Monthly NPS Contribution</span>
-              <span className="slider-value-display">{formatINR(monthlyContrib)}</span>
+              <NumericInput
+                value={monthlyContrib}
+                onChange={setMonthlyContrib}
+                min={500}
+                max={1000000}
+                step={500}
+                prefix="₹"
+                ariaLabel="Monthly NPS Contribution"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -89,7 +98,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Current Age</span>
-              <span className="slider-value-display">{currentAge} Years</span>
+              <NumericInput
+                value={currentAge}
+                onChange={setCurrentAge}
+                min={18}
+                max={70}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Current Age"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -112,7 +129,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Retirement Age</span>
-              <span className="slider-value-display">{retirementAge} Years</span>
+              <NumericInput
+                value={retirementAge}
+                onChange={setRetirementAge}
+                min={40}
+                max={75}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Retirement Age"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -135,7 +160,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Expected Return Rate (% p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={1}
+                max={30}
+                step={0.5}
+                suffix="%"
+                ariaLabel="Expected Return Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -158,7 +191,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Annuity Purchase Share (%)</span>
-              <span className="slider-value-display">{annuityPct}%</span>
+              <NumericInput
+                value={annuityPct}
+                onChange={setAnnuityPct}
+                min={40}
+                max={100}
+                step={5}
+                suffix="%"
+                ariaLabel="Annuity Purchase Percentage"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -181,7 +222,15 @@ export default function NpsCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Expected Annuity Interest Rate</span>
-              <span className="slider-value-display">{annuityRate}%</span>
+              <NumericInput
+                value={annuityRate}
+                onChange={setAnnuityRate}
+                min={1}
+                max={25}
+                step={0.5}
+                suffix="%"
+                ariaLabel="Expected Annuity Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input

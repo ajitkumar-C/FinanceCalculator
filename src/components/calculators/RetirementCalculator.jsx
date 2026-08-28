@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { calculateRetirement } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function RetirementCalculator({ setResultText }) {
   const [currentAge, setCurrentAge] = useState(30);
@@ -82,7 +83,15 @@ export default function RetirementCalculator({ setResultText }) {
             <div className="slider-group">
               <div className="slider-header">
                 <span className="slider-label">Current Age</span>
-                <span className="slider-value-display">{currentAge} Yr</span>
+                <NumericInput
+                  value={currentAge}
+                  onChange={setCurrentAge}
+                  min={18}
+                  max={55}
+                  step={1}
+                  suffix=" Yr"
+                  ariaLabel="Current Age"
+                />
               </div>
               <div className="slider-control-row">
                 <input
@@ -100,7 +109,15 @@ export default function RetirementCalculator({ setResultText }) {
             <div className="slider-group">
               <div className="slider-header">
                 <span className="slider-label">Retirement Age</span>
-                <span className="slider-value-display">{retirementAge} Yr</span>
+                <NumericInput
+                  value={retirementAge}
+                  onChange={setRetirementAge}
+                  min={40}
+                  max={65}
+                  step={1}
+                  suffix=" Yr"
+                  ariaLabel="Retirement Age"
+                />
               </div>
               <div className="slider-control-row">
                 <input
@@ -120,7 +137,15 @@ export default function RetirementCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Life Expectancy</span>
-              <span className="slider-value-display">{expectancy} Yr</span>
+              <NumericInput
+                value={expectancy}
+                onChange={setExpectancy}
+                min={70}
+                max={100}
+                step={1}
+                suffix=" Yr"
+                ariaLabel="Life Expectancy"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -143,7 +168,15 @@ export default function RetirementCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Current Monthly Expenses</span>
-              <span className="slider-value-display">{formatINR(currentExpenses)}</span>
+              <NumericInput
+                value={currentExpenses}
+                onChange={setCurrentExpenses}
+                min={5000}
+                max={300000}
+                step={5000}
+                prefix="₹"
+                ariaLabel="Current Monthly Expenses"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -172,7 +205,15 @@ export default function RetirementCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Expected Annual Inflation</span>
-              <span className="slider-value-display">{inflation}%</span>
+              <NumericInput
+                value={inflation}
+                onChange={setInflation}
+                min={2}
+                max={12}
+                step={0.5}
+                suffix="%"
+                ariaLabel="Expected Annual Inflation"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -196,7 +237,15 @@ export default function RetirementCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Pre-Retirement Investment Return</span>
-              <span className="slider-value-display">{returnPre}%</span>
+              <NumericInput
+                value={returnPre}
+                onChange={setReturnPre}
+                min={5}
+                max={20}
+                step={0.5}
+                suffix="%"
+                ariaLabel="Pre-Retirement Investment Return"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -219,7 +268,15 @@ export default function RetirementCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Post-Retirement Investment Return</span>
-              <span className="slider-value-display">{returnPost}%</span>
+              <NumericInput
+                value={returnPost}
+                onChange={setReturnPost}
+                min={4}
+                max={12}
+                step={0.5}
+                suffix="%"
+                ariaLabel="Post-Retirement Investment Return"
+              />
             </div>
             <div className="slider-control-row">
               <input

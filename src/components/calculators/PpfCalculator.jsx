@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { calculatePPF } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
+import NumericInput from '../common/NumericInput';
 
 export default function PpfCalculator({ setResultText }) {
   const [yearlyContrib, setYearlyContrib] = useState(150000); // 1.5 Lakhs (max tax benefit)
@@ -56,7 +57,15 @@ export default function PpfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Yearly Investment</span>
-              <span className="slider-value-display">{formatINR(yearlyContrib)}</span>
+              <NumericInput
+                value={yearlyContrib}
+                onChange={setYearlyContrib}
+                min={500}
+                max={150000}
+                step={500}
+                prefix="₹"
+                ariaLabel="Yearly PPF Investment"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -85,7 +94,15 @@ export default function PpfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Tenure (Years)</span>
-              <span className="slider-value-display">{tenure} Years</span>
+              <NumericInput
+                value={tenure}
+                onChange={setTenure}
+                min={15}
+                max={50}
+                step={5}
+                suffix=" Years"
+                ariaLabel="Tenure in Years"
+              />
             </div>
             <div className="slider-control-row">
               <input
@@ -114,7 +131,15 @@ export default function PpfCalculator({ setResultText }) {
           <div className="slider-group">
             <div className="slider-header">
               <span className="slider-label">Interest Rate (% p.a.)</span>
-              <span className="slider-value-display">{rate}%</span>
+              <NumericInput
+                value={rate}
+                onChange={setRate}
+                min={1}
+                max={20}
+                step={0.1}
+                suffix="%"
+                ariaLabel="Interest Rate"
+              />
             </div>
             <div className="slider-control-row">
               <input
