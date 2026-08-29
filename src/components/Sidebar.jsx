@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { 
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
-  Search, X, Menu, Calculator, Home, Info, Mail, BookOpen
+  Building2, Search, X, Menu, Calculator, Home, Info, Mail, BookOpen
 } from 'lucide-react';
 
 export const calculatorsList = [
   { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText },
   { id: 'emi', name: 'EMI Calculator (Home/Car/Personal)', desc: 'Estimate loan payments instantly', icon: Percent },
   { id: 'eligibility', name: 'Loan Eligibility Calculator', desc: 'FOIR-based eligible loan checker', icon: UserCheck },
+  { id: 'clp', name: 'CLP / Building Construction Calculator', desc: 'Slab-wise payment & Pre-EMI schedule', icon: Building2 },
   { id: 'ppf', name: 'PPF Calculator (Public Provident Fund)', desc: 'Calculate PPF tax-free interest', icon: Shield },
   { id: 'pf', name: 'EPF / PF Calculator (Provident Fund)', desc: 'Estimate EPF balance & interest online', icon: Briefcase },
   { id: 'sip', name: 'SIP Investment Plan Calculator', desc: 'Calculate Systematic Investment returns', icon: TrendingUp },

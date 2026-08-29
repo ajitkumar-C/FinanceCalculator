@@ -5,6 +5,7 @@ import { TrendingUp } from 'lucide-react';
 const buttonLabels = {
   emi: 'Calculate Loan EMI',
   eligibility: 'Check Loan Eligibility',
+  clp: 'Calculate CLP & Pre-EMI',
   ppf: 'Calculate PPF Returns',
   pf: 'Estimate EPF Pension',
   sip: 'Calculate SIP Growth',

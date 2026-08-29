@@ -16,6 +16,12 @@ const schemas = {
     keywords: "loan eligibility, loan eligibility calculator, foir calculator, foir calculation, home loan eligibility, personal loan eligibility, check loan eligibility, sbi home loan eligibility based on salary",
     category: "FinancialCalculator",
   },
+  clp: {
+    name: "CLP Calculator: Construction Linked Plan & Pre-EMI Calculator for Flats",
+    description: "Calculate slab-wise construction linked payment (CLP) demands, Pre-EMI monthly interest, and bank loan disbursals for under-construction flats and buildings in Maharashtra (MahaRERA).",
+    keywords: "clp calculator, construction linked plan calculator, pre emi calculator, slab wise payment calculator, maharera payment schedule, under construction flat calculator, building construction payment plan, pre emi vs full emi calculator",
+    category: "FinancialCalculator",
+  },
   ppf: {
     name: "PPF Calculator: Public Provident Fund Calculator Online",
     description: "Calculate your PPF interest returns and maturity corpus using this online Public Provident Fund calculator. Plan your tax-free savings with the latest PPF interest rates of 7.1%.",

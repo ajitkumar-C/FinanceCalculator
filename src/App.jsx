@@ -34,6 +34,7 @@ import Dashboard from './components/pages/Dashboard';
 // Lazy load calculators
 const EmiCalculator = React.lazy(() => import('./components/calculators/EmiCalculator'));
 const EligibilityCalculator = React.lazy(() => import('./components/calculators/EligibilityCalculator'));
+const ClpCalculator = React.lazy(() => import('./components/calculators/ClpCalculator'));
 const PpfCalculator = React.lazy(() => import('./components/calculators/PpfCalculator'));
 const PfCalculator = React.lazy(() => import('./components/calculators/PfCalculator'));
 const SipCalculator = React.lazy(() => import('./components/calculators/SipCalculator'));
@@ -63,8 +64,9 @@ const staticPages = {
 
 const relatedMap = {
   tax: ['sip', 'ppf', 'retirement'],
-  emi: ['eligibility', 'compound', 'tax'],
-  eligibility: ['emi', 'compound', 'fd'],
+  emi: ['clp', 'eligibility', 'tax'],
+  eligibility: ['clp', 'emi', 'compound'],
+  clp: ['emi', 'eligibility', 'tax'],
   ppf: ['pf', 'nps', 'sip'],
   pf: ['ppf', 'nps', 'retirement'],
   sip: ['mutualfund', 'compound', 'ppf'],
@@ -130,6 +132,8 @@ export default function App() {
         return <EmiCalculator setResultText={setResultText} />;
       case 'eligibility':
         return <EligibilityCalculator setResultText={setResultText} />;
+      case 'clp':
+        return <ClpCalculator setResultText={setResultText} />;
       case 'ppf':
         return <PpfCalculator setResultText={setResultText} />;
       case 'pf':

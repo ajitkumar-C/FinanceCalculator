@@ -417,3 +417,222 @@ export function calculateCompoundInterest(principal, rate, compoundingFrequency,
     maturityAmount: Math.round(maturityAmount)
   };
 }
+
+// 13. Construction Linked Plan (CLP) Real Estate Milestones & Calculator
+export const CLP_PRESETS = {
+  GALAXY_HEIGHTS: [
+    { name: 'Booking Amount of said Apartment', pct: 10.0 },
+    { name: 'Execution of Agreement of said Apartment', pct: 20.0 },
+    { name: 'Completion of Plinth of said Wing', pct: 5.0 },
+    { name: 'Completion of Raft / Podium of said Wing', pct: 8.0 },
+    { name: 'Completion of Stilt / Podium of said Wing', pct: 2.0 },
+    { name: 'Completion of 2nd Floor Slab', pct: 1.7 },
+    { name: 'Completion of 5th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 8th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 11th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 14th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 17th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 20th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 23rd Floor Slab', pct: 1.7 },
+    { name: 'Completion of 26th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 29th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 32nd Floor Slab', pct: 1.7 },
+    { name: 'Completion of 35th Floor Slab', pct: 1.7 },
+    { name: 'Completion of 38th Floor Slab', pct: 1.7 },
+    { name: 'Completion of Terrace Slab', pct: 1.7 },
+    { name: 'Completion of Brickwork of said Wing', pct: 0.6 },
+    { name: 'Completion of Internal Plaster of said Wing', pct: 0.6 },
+    { name: 'Completion of Flooring / Wall Tiles & Overall Work', pct: 4.0 },
+    { name: 'Completion of Carpentry Work / Door Frames', pct: 1.0 },
+    { name: 'Completion of Carpentry Work / Windows', pct: 2.0 },
+    { name: 'Completion of Sanitary Work', pct: 3.0 },
+    { name: 'Completion of Electrical Work', pct: 3.0 },
+    { name: 'Completion of Lobby / Staircase & Passage Work', pct: 2.0 },
+    { name: 'Completion of Plumbing upto Floor Level', pct: 3.0 },
+    { name: 'Completion of Terrace Waterproofing', pct: 2.0 },
+    { name: 'Completion of External Painting', pct: 2.0 },
+    { name: 'Completion of Lift Well upto Floor Level', pct: 1.0 },
+    { name: 'Finishing of Parking Work', pct: 1.0 },
+    { name: 'Finishing of Entrance Lobby / Paving Area', pct: 1.0 },
+    { name: 'Initiation of Possession of Apartment', pct: 5.0 }
+  ],
+  MAHARERA_10_STAGE: [
+    { name: 'Booking Amount / Application (RERA Max 10%)', pct: 10.0 },
+    { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
+    { name: 'Completion of Plinth / Foundation Stage', pct: 15.0 },
+    { name: 'Completion of Slabs (Spread across all floors)', pct: 25.0 },
+    { name: 'Completion of Brickwork, Walls & Internal Plaster', pct: 5.0 },
+    { name: 'Completion of Sanitary, Plumbing & Door Frames', pct: 5.0 },
+    { name: 'Completion of External Plaster, Elevation & Terraces', pct: 5.0 },
+    { name: 'Completion of Lifts, Water Pumps, Electrical & MEP', pct: 5.0 },
+    { name: 'Finishing of Lobbies, Paving & Common Amenities', pct: 5.0 },
+    { name: 'On Intimation of Possession / Occupancy Certificate', pct: 5.0 }
+  ]
+};
+
+// Dynamically generate slab-wise milestones for any custom building with N floors
+export function generateBuildingMilestones(totalFloors = 20) {
+  const floors = Math.max(1, Math.min(100, Math.round(totalFloors)));
+  const milestones = [
+    { name: 'Booking Amount / Application Fee', pct: 10.0 },
+    { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
+    { name: 'Completion of Plinth / Foundation & Basement', pct: 10.0 }
+  ];
+
+  // Distribute 35% across all floor slabs
+  const slabTotalPct = 35.0;
+  const pctPerSlab = Number((slabTotalPct / floors).toFixed(2));
+  let allocatedSlabPct = 0;
+
+  for (let f = 1; f <= floors; f++) {
+    const isLast = f === floors;
+    const currentPct = isLast ? Number((slabTotalPct - allocatedSlabPct).toFixed(2)) : pctPerSlab;
+    allocatedSlabPct += currentPct;
+    milestones.push({
+      name: `Completion of ${f}${getOrdinal(f)} Floor Slab`,
+      pct: Math.max(0.1, currentPct)
+    });
+  }
+
+  milestones.push(
+    { name: 'Completion of Brickwork & Internal Plaster', pct: 5.0 },
+    { name: 'Completion of Flooring, Tiles & Sanitary Fittings', pct: 5.0 },
+    { name: 'Completion of Electrical, Plumbing & Lift Works', pct: 5.0 },
+    { name: 'Completion of External Plaster & Painting', pct: 5.0 },
+    { name: 'On Intimation of Possession & Handover (OC)', pct: 5.0 }
+  );
+
+  return milestones;
+}
+
+function getOrdinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return s[(v - 20) % 10] || s[v] || s[0];
+}
+
+export function calculateCLP(
+  flatCost = 7500000,
+  currentStageIndex = 0,
+  milestones = CLP_PRESETS.GALAXY_HEIGHTS,
+  hasLoan = true,
+  loanPct = 80,
+  annualInterestRate = 8.5,
+  loanTenureYears = 20,
+  stampDutyPct = 6.0,
+  regFee = 30000,
+  gstPct = 5.0
+) {
+  const totalFlatCost = Number(flatCost) || 0;
+  const buyerMarginPct = Math.max(0, 100 - loanPct);
+  const totalLoanSanctioned = hasLoan ? (totalFlatCost * loanPct) / 100 : 0;
+  const totalBuyerMargin = hasLoan ? (totalFlatCost * buyerMarginPct) / 100 : totalFlatCost;
+
+  let cumulativePct = 0;
+  let cumulativeCost = 0;
+  let cumulativeLoanDisbursed = 0;
+  let cumulativeBuyerPaid = 0;
+
+  const milestoneRows = milestones.map((m, index) => {
+    const stagePct = Number(m.pct) || 0;
+    cumulativePct += stagePct;
+    const stageCost = Math.round((stagePct / 100) * totalFlatCost);
+    cumulativeCost += stageCost;
+
+    // Disbursement split:
+    // In India, buyer pays margin money first until satisfied, or proportionally.
+    let buyerShare = 0;
+    let bankDisbursal = 0;
+
+    if (hasLoan) {
+      if (cumulativeBuyerPaid < totalBuyerMargin) {
+        const neededBuyer = totalBuyerMargin - cumulativeBuyerPaid;
+        if (stageCost <= neededBuyer) {
+          buyerShare = stageCost;
+          bankDisbursal = 0;
+        } else {
+          buyerShare = neededBuyer;
+          bankDisbursal = stageCost - neededBuyer;
+        }
+      } else {
+        buyerShare = 0;
+        bankDisbursal = stageCost;
+      }
+    } else {
+      buyerShare = stageCost;
+      bankDisbursal = 0;
+    }
+
+    cumulativeBuyerPaid += buyerShare;
+    cumulativeLoanDisbursed += bankDisbursal;
+
+    // Monthly Pre-EMI interest on cumulative loan disbursed so far
+    const monthlyPreEmi = hasLoan && cumulativeLoanDisbursed > 0
+      ? Math.round((cumulativeLoanDisbursed * (annualInterestRate / 100)) / 12)
+      : 0;
+
+    const fullEmi = hasLoan && cumulativeLoanDisbursed > 0
+      ? calculateEMI(cumulativeLoanDisbursed, annualInterestRate, loanTenureYears).emi
+      : 0;
+
+    let status = 'upcoming';
+    if (index < currentStageIndex) status = 'completed';
+    else if (index === currentStageIndex) status = 'current';
+
+    return {
+      index: index + 1,
+      name: m.name,
+      stagePct: Number(stagePct.toFixed(2)),
+      stageCost,
+      cumulativePct: Number(Math.min(100, cumulativePct).toFixed(2)),
+      cumulativeCost,
+      buyerShare,
+      bankDisbursal,
+      cumulativeLoanDisbursed,
+      monthlyPreEmi,
+      fullEmi,
+      status
+    };
+  });
+
+  const validIndex = Math.min(Math.max(0, currentStageIndex), milestoneRows.length - 1);
+  const currentStage = milestoneRows[validIndex] || milestoneRows[0];
+
+  const paidTillNow = currentStage ? currentStage.cumulativeCost : 0;
+  const pendingBalance = Math.max(0, totalFlatCost - paidTillNow);
+  const bankDisbursedTillNow = currentStage ? currentStage.cumulativeLoanDisbursed : 0;
+  const buyerPaidTillNow = currentStage ? (paidTillNow - bankDisbursedTillNow) : 0;
+  const currentPreEmi = currentStage ? currentStage.monthlyPreEmi : 0;
+
+  // Taxes
+  const stampDutyAmount = Math.round((stampDutyPct / 100) * totalFlatCost);
+  const registrationAmount = Math.round(regFee);
+  const gstAmount = Math.round((gstPct / 100) * totalFlatCost);
+  const totalTaxes = stampDutyAmount + registrationAmount + gstAmount;
+  const totalAllInclusiveCost = totalFlatCost + totalTaxes;
+
+  return {
+    totalFlatCost,
+    totalBuyerMargin,
+    totalLoanSanctioned,
+    paidTillNow,
+    pendingBalance,
+    cumPctTillNow: currentStage ? currentStage.cumulativePct : 0,
+    currentStageName: currentStage ? currentStage.name : '',
+    currentStageIndex: validIndex,
+    bankDisbursedTillNow,
+    buyerPaidTillNow,
+    currentPreEmi,
+    milestoneRows,
+    taxes: {
+      stampDutyPct,
+      stampDutyAmount,
+      registrationAmount,
+      gstPct,
+      gstAmount,
+      totalTaxes,
+      totalAllInclusiveCost
+    }
+  };
+}
+
