@@ -7,14 +7,15 @@ import {
 } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
 import NumericInput from '../common/NumericInput';
-import { Building2, CheckCircle2, Clock, AlertCircle, Sparkles, HelpCircle, Layers } from 'lucide-react';
+import { Building2, CheckCircle2, Clock, AlertCircle, Sparkles, Layers, Sliders } from 'lucide-react';
 
 export default function ClpCalculator({ setResultText }) {
-  // Preset type: 'GALAXY_HEIGHTS' | 'MAHARERA_10_STAGE' | 'DYNAMIC_BUILDING'
-  const [presetType, setPresetType] = useState('GALAXY_HEIGHTS');
-  const [customFloors, setCustomFloors] = useState(25);
+  // Mode: 'DYNAMIC_BUILDING' (Default) | 'MAHARERA_10_STAGE'
+  const [scheduleMode, setScheduleMode] = useState('DYNAMIC_BUILDING');
+  const [totalFloors, setTotalFloors] = useState(25);
+  const [slabInterval, setSlabInterval] = useState(1); // 1 = Every floor, 2 = Every 2 floors, 3 = Every 3 floors
   const [flatCost, setFlatCost] = useState(7500000); // 75 Lakhs
-  const [currentStageIndex, setCurrentStageIndex] = useState(9); // Default around 14th floor slab
+  const [currentStageIndex, setCurrentStageIndex] = useState(6); // Default on a mid-level slab
   const [hasLoan, setHasLoan] = useState(true);
   const [loanPct, setLoanPct] = useState(80); // 80% loan, 20% own funds
   const [interestRate, setInterestRate] = useState(8.5); // 8.5% p.a.
@@ -24,16 +25,16 @@ export default function ClpCalculator({ setResultText }) {
   const [regFee, setRegFee] = useState(30000);
   const [gstPct, setGstPct] = useState(5.0); // 5% GST on under-construction
 
-  // Get active milestones list
-  let activeMilestones = CLP_PRESETS.GALAXY_HEIGHTS;
-  if (presetType === 'MAHARERA_10_STAGE') {
+  // Generate dynamic milestones or use standard 10-stage RERA
+  let activeMilestones = [];
+  if (scheduleMode === 'MAHARERA_10_STAGE') {
     activeMilestones = CLP_PRESETS.MAHARERA_10_STAGE;
-  } else if (presetType === 'DYNAMIC_BUILDING') {
-    activeMilestones = generateBuildingMilestones(customFloors);
+  } else {
+    activeMilestones = generateBuildingMilestones(totalFloors, slabInterval);
   }
 
   // Ensure currentStageIndex is within bounds
-  const clampedStageIndex = Math.min(currentStageIndex, activeMilestones.length - 1);
+  const clampedStageIndex = Math.min(currentStageIndex, Math.max(0, activeMilestones.length - 1));
 
   const results = calculateCLP(
     flatCost,
@@ -50,9 +51,9 @@ export default function ClpCalculator({ setResultText }) {
 
   useEffect(() => {
     setResultText(
-      `Flat Cost: ${formatINR(flatCost)}\nCurrent Stage: ${results.currentStageName} (${results.cumPctTillNow}%)\nTotal Paid Till Now: ${formatINR(results.paidTillNow)}\nPending Balance: ${formatINR(results.pendingBalance)}\nBank Disbursed: ${formatINR(results.bankDisbursedTillNow)}\nMonthly Pre-EMI Interest: ${formatINR(results.currentPreEmi)}`
+      `Flat Cost: ${formatINR(flatCost)}\nBuilding Floors: ${totalFloors} Floors\nCurrent Stage: ${results.currentStageName} (${results.cumPctTillNow}%)\nTotal Paid Till Now: ${formatINR(results.paidTillNow)}\nPending Balance: ${formatINR(results.pendingBalance)}\nBank Disbursed: ${formatINR(results.bankDisbursedTillNow)}\nMonthly Pre-EMI Interest: ${formatINR(results.currentPreEmi)}`
     );
-  }, [flatCost, results.currentStageName, results.cumPctTillNow, results.paidTillNow, results.pendingBalance, results.bankDisbursedTillNow, results.currentPreEmi]);
+  }, [flatCost, totalFloors, results.currentStageName, results.cumPctTillNow, results.paidTillNow, results.pendingBalance, results.bankDisbursedTillNow, results.currentPreEmi]);
 
   // Chart data: Buyer Paid vs Bank Disbursed vs Pending
   const chartData = {
@@ -96,82 +97,135 @@ export default function ClpCalculator({ setResultText }) {
         {/* Input Panel */}
         <div className="calculator-panel">
           
-          {/* Preset Selector */}
+          {/* Schedule Model Selector */}
           <div className="slider-group no-print" style={{ marginBottom: '16px' }}>
             <span className="slider-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Layers size={16} className="text-primary" /> Construction Milestone Schedule Model
+              <Layers size={16} className="text-primary" /> Construction Milestone Schedule Type
             </span>
-            <div className="custom-select-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px' }}>
+            <div className="custom-select-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
               <button
                 type="button"
-                className={`custom-select-option ${presetType === 'GALAXY_HEIGHTS' ? 'selected' : ''}`}
+                className={`custom-select-option ${scheduleMode === 'DYNAMIC_BUILDING' ? 'selected' : ''}`}
                 onClick={() => {
-                  setPresetType('GALAXY_HEIGHTS');
-                  setCurrentStageIndex(Math.min(9, CLP_PRESETS.GALAXY_HEIGHTS.length - 1));
+                  setScheduleMode('DYNAMIC_BUILDING');
+                  setCurrentStageIndex(6);
                 }}
-                style={{ padding: '8px 10px', fontSize: '12px' }}
+                style={{ padding: '8px 12px', fontSize: '13px' }}
               >
-                Galaxy Heights (34 Stages)
+                🏢 Dynamic Building Floors ({totalFloors} Floors)
               </button>
               <button
                 type="button"
-                className={`custom-select-option ${presetType === 'MAHARERA_10_STAGE' ? 'selected' : ''}`}
+                className={`custom-select-option ${scheduleMode === 'MAHARERA_10_STAGE' ? 'selected' : ''}`}
                 onClick={() => {
-                  setPresetType('MAHARERA_10_STAGE');
-                  setCurrentStageIndex(Math.min(3, CLP_PRESETS.MAHARERA_10_STAGE.length - 1));
+                  setScheduleMode('MAHARERA_10_STAGE');
+                  setCurrentStageIndex(3);
                 }}
-                style={{ padding: '8px 10px', fontSize: '12px' }}
+                style={{ padding: '8px 12px', fontSize: '13px' }}
               >
-                MahaRERA (10 Milestones)
-              </button>
-              <button
-                type="button"
-                className={`custom-select-option ${presetType === 'DYNAMIC_BUILDING' ? 'selected' : ''}`}
-                onClick={() => {
-                  setPresetType('DYNAMIC_BUILDING');
-                  setCurrentStageIndex(Math.min(5, generateBuildingMilestones(customFloors).length - 1));
-                }}
-                style={{ padding: '8px 10px', fontSize: '12px' }}
-              >
-                Custom High-Rise Floors
+                🏛️ MahaRERA 10-Milestones
               </button>
             </div>
           </div>
 
-          {/* If Dynamic Floors selected */}
-          {presetType === 'DYNAMIC_BUILDING' && (
-            <div className="slider-group no-print" style={{ marginBottom: '16px', background: '#f8fafc', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-              <div className="slider-header">
-                <span className="slider-label">Total Number of Floors in Building</span>
-                <NumericInput
-                  value={customFloors}
-                  onChange={(v) => {
-                    const floors = Math.max(1, Math.min(60, v));
-                    setCustomFloors(floors);
-                  }}
-                  min={1}
-                  max={60}
-                  step={1}
-                  suffix=" Floors"
-                  ariaLabel="Building Floors"
-                />
+          {/* Dynamic Floors Controls */}
+          {scheduleMode === 'DYNAMIC_BUILDING' && (
+            <div style={{ background: '#f8fafc', padding: '14px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div className="slider-group">
+                <div className="slider-header">
+                  <span className="slider-label" style={{ fontWeight: '600', color: 'var(--brand-navy)' }}>
+                    Total Number of Floors in Building
+                  </span>
+                  <NumericInput
+                    value={totalFloors}
+                    onChange={(v) => {
+                      const floors = Math.max(1, Math.min(80, Number(v) || 1));
+                      setTotalFloors(floors);
+                    }}
+                    min={1}
+                    max={80}
+                    step={1}
+                    suffix=" Floors"
+                    ariaLabel="Total Floors in Building"
+                  />
+                </div>
+                <div className="slider-control-row">
+                  <input
+                    type="range"
+                    min="1"
+                    max="60"
+                    step="1"
+                    value={totalFloors}
+                    onChange={(e) => setTotalFloors(Number(e.target.value))}
+                    className="slider-input"
+                  />
+                </div>
+                <div className="slider-limits">
+                  <span>1 Floor (G+1)</span>
+                  <span>60 Floors (High-Rise)</span>
+                </div>
+                <div className="quick-options-row no-print" style={{ marginTop: '4px' }}>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(4)}>G+4 (Low-Rise)</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(7)}>G+7 (Mid-Rise)</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(15)}>15 Floors</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(25)}>25 Floors</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(38)}>38 Floors</button>
+                </div>
               </div>
-              <div className="slider-control-row">
-                <input
-                  type="range"
-                  min="1"
-                  max="50"
-                  step="1"
-                  value={customFloors}
-                  onChange={(e) => setCustomFloors(Number(e.target.value))}
-                  className="slider-input"
-                />
-              </div>
-              <div className="quick-options-row no-print" style={{ marginTop: '8px' }}>
-                <button type="button" className="quick-option-btn" onClick={() => setCustomFloors(7)}>7 Floors (G+7)</button>
-                <button type="button" className="quick-option-btn" onClick={() => setCustomFloors(15)}>15 Floors</button>
-                <button type="button" className="quick-option-btn" onClick={() => setCustomFloors(25)}>25 Floors</button>
-                <button type="button" className="quick-option-btn" onClick={() => setCustomFloors(38)}>38 Floors</button>
+
+              {/* Slab Milestone Interval */}
+              <div style={{ borderTop: '1px dotted #cbd5e1', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                <span style={{ fontSize: '12px', color: 'var(--text-main)', fontWeight: '500' }}>
+                  Slab Demand Frequency:
+                </span>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <button
+                    type="button"
+                    className={`quick-option-btn ${slabInterval === 1 ? 'active-filter' : ''}`}
+                    onClick={() => setSlabInterval(1)}
+                    style={{
+                      fontSize: '11px',
+                      padding: '4px 10px',
+                      backgroundColor: slabInterval === 1 ? 'var(--brand-navy)' : '#ffffff',
+                      color: slabInterval === 1 ? '#ffffff' : 'var(--text-main)',
+                      border: '1px solid var(--border-color)'
+                    }}
+                  >
+                    Every Single Floor
+                  </button>
+                  {totalFloors >= 10 && (
+                    <button
+                      type="button"
+                      className={`quick-option-btn ${slabInterval === 2 ? 'active-filter' : ''}`}
+                      onClick={() => setSlabInterval(2)}
+                      style={{
+                        fontSize: '11px',
+                        padding: '4px 10px',
+                        backgroundColor: slabInterval === 2 ? 'var(--brand-navy)' : '#ffffff',
+                        color: slabInterval === 2 ? '#ffffff' : 'var(--text-main)',
+                        border: '1px solid var(--border-color)'
+                      }}
+                    >
+                      Every 2 Floors
+                    </button>
+                  )}
+                  {totalFloors >= 15 && (
+                    <button
+                      type="button"
+                      className={`quick-option-btn ${slabInterval === 3 ? 'active-filter' : ''}`}
+                      onClick={() => setSlabInterval(3)}
+                      style={{
+                        fontSize: '11px',
+                        padding: '4px 10px',
+                        backgroundColor: slabInterval === 3 ? 'var(--brand-navy)' : '#ffffff',
+                        color: slabInterval === 3 ? '#ffffff' : 'var(--text-main)',
+                        border: '1px solid var(--border-color)'
+                      }}
+                    >
+                      Every 3 Floors
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -500,14 +554,14 @@ export default function ClpCalculator({ setResultText }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
           <div>
             <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--brand-navy)', margin: 0 }}>
-              Milestone-by-Milestone CLP Schedule Breakdown
+              Milestone-by-Milestone CLP Schedule Breakdown ({activeMilestones.length} Milestones)
             </h3>
             <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: '4px 0 0 0' }}>
               Click any stage row to simulate payments and Pre-EMI interest up to that construction milestone.
             </p>
           </div>
           <span className="no-print" style={{ fontSize: '12px', background: 'var(--brand-navy-light)', color: 'var(--brand-navy)', padding: '4px 10px', borderRadius: '4px', fontWeight: '600' }}>
-            {activeMilestones.length} Total Milestones
+            {scheduleMode === 'DYNAMIC_BUILDING' ? `${totalFloors} Storey Tower` : 'MahaRERA Schedule'}
           </span>
         </div>
 
@@ -670,7 +724,7 @@ export default function ClpCalculator({ setResultText }) {
               How is the slab-by-slab percentage calculated in high-rise buildings?
             </summary>
             <p style={{ fontSize: '13px', color: 'var(--text-main)', marginTop: '8px', lineHeight: '1.5', margin: 0 }}>
-              In multi-storey towers (e.g. 15 to 40 floors), the RCC structural slab casting stage represents approximately 25% to 35% of the total flat cost. This percentage is distributed equally or in batches across floor slabs (e.g., ~1.70% per slab or every 3 floors like in the Galaxy Heights schedule).
+              In multi-storey towers (e.g. 5 to 60 floors), the RCC structural slab casting stage represents approximately 25% to 35% of the total flat cost. This percentage is distributed across floor slabs.
             </p>
           </details>
 

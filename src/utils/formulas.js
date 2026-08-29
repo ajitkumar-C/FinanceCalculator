@@ -420,42 +420,6 @@ export function calculateCompoundInterest(principal, rate, compoundingFrequency,
 
 // 13. Construction Linked Plan (CLP) Real Estate Milestones & Calculator
 export const CLP_PRESETS = {
-  GALAXY_HEIGHTS: [
-    { name: 'Booking Amount of said Apartment', pct: 10.0 },
-    { name: 'Execution of Agreement of said Apartment', pct: 20.0 },
-    { name: 'Completion of Plinth of said Wing', pct: 5.0 },
-    { name: 'Completion of Raft / Podium of said Wing', pct: 8.0 },
-    { name: 'Completion of Stilt / Podium of said Wing', pct: 2.0 },
-    { name: 'Completion of 2nd Floor Slab', pct: 1.7 },
-    { name: 'Completion of 5th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 8th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 11th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 14th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 17th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 20th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 23rd Floor Slab', pct: 1.7 },
-    { name: 'Completion of 26th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 29th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 32nd Floor Slab', pct: 1.7 },
-    { name: 'Completion of 35th Floor Slab', pct: 1.7 },
-    { name: 'Completion of 38th Floor Slab', pct: 1.7 },
-    { name: 'Completion of Terrace Slab', pct: 1.7 },
-    { name: 'Completion of Brickwork of said Wing', pct: 0.6 },
-    { name: 'Completion of Internal Plaster of said Wing', pct: 0.6 },
-    { name: 'Completion of Flooring / Wall Tiles & Overall Work', pct: 4.0 },
-    { name: 'Completion of Carpentry Work / Door Frames', pct: 1.0 },
-    { name: 'Completion of Carpentry Work / Windows', pct: 2.0 },
-    { name: 'Completion of Sanitary Work', pct: 3.0 },
-    { name: 'Completion of Electrical Work', pct: 3.0 },
-    { name: 'Completion of Lobby / Staircase & Passage Work', pct: 2.0 },
-    { name: 'Completion of Plumbing upto Floor Level', pct: 3.0 },
-    { name: 'Completion of Terrace Waterproofing', pct: 2.0 },
-    { name: 'Completion of External Painting', pct: 2.0 },
-    { name: 'Completion of Lift Well upto Floor Level', pct: 1.0 },
-    { name: 'Finishing of Parking Work', pct: 1.0 },
-    { name: 'Finishing of Entrance Lobby / Paving Area', pct: 1.0 },
-    { name: 'Initiation of Possession of Apartment', pct: 5.0 }
-  ],
   MAHARERA_10_STAGE: [
     { name: 'Booking Amount / Application (RERA Max 10%)', pct: 10.0 },
     { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
@@ -471,34 +435,63 @@ export const CLP_PRESETS = {
 };
 
 // Dynamically generate slab-wise milestones for any custom building with N floors
-export function generateBuildingMilestones(totalFloors = 20) {
-  const floors = Math.max(1, Math.min(100, Math.round(totalFloors)));
+export function generateBuildingMilestones(totalFloors = 20, slabInterval = 1) {
+  const floors = Math.max(1, Math.min(80, Math.round(totalFloors)));
+  const interval = Math.max(1, Math.min(floors, Math.round(slabInterval)));
+
   const milestones = [
     { name: 'Booking Amount / Application Fee', pct: 10.0 },
     { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
-    { name: 'Completion of Plinth / Foundation & Basement', pct: 10.0 }
+    { name: 'Completion of Plinth / Foundation Stage', pct: 5.0 },
+    { name: 'Completion of Raft / Podium Level', pct: 8.0 },
+    { name: 'Completion of Stilt / Basement Parking Slab', pct: 2.0 }
   ];
 
-  // Distribute 35% across all floor slabs
-  const slabTotalPct = 35.0;
-  const pctPerSlab = Number((slabTotalPct / floors).toFixed(2));
-  let allocatedSlabPct = 0;
-
-  for (let f = 1; f <= floors; f++) {
-    const isLast = f === floors;
-    const currentPct = isLast ? Number((slabTotalPct - allocatedSlabPct).toFixed(2)) : pctPerSlab;
-    allocatedSlabPct += currentPct;
-    milestones.push({
-      name: `Completion of ${f}${getOrdinal(f)} Floor Slab`,
-      pct: Math.max(0.1, currentPct)
-    });
+  // Slab percentage total = 25.0%
+  const slabTotalPct = 25.0;
+  const slabMilestones = [];
+  
+  if (interval === 1) {
+    for (let f = 1; f <= floors; f++) {
+      slabMilestones.push(f);
+    }
+  } else {
+    for (let f = interval; f <= floors; f += interval) {
+      slabMilestones.push(f);
+    }
+    if (slabMilestones[slabMilestones.length - 1] !== floors && floors > 1) {
+      slabMilestones.push(floors);
+    }
   }
 
+  if (slabMilestones.length === 0) {
+    slabMilestones.push(1);
+  }
+
+  const count = slabMilestones.length;
+  const pctPerSlab = Number((slabTotalPct / count).toFixed(2));
+  let allocated = 0;
+
+  slabMilestones.forEach((floorNum, idx) => {
+    const isLast = idx === count - 1;
+    const currentPct = isLast ? Number((slabTotalPct - allocated).toFixed(2)) : pctPerSlab;
+    allocated += currentPct;
+    const isTop = floorNum === floors;
+    milestones.push({
+      name: isTop && floorNum > 3 
+        ? `Completion of Top Terrace Slab (${floorNum}${getOrdinal(floorNum)} Floor)` 
+        : `Completion of ${floorNum}${getOrdinal(floorNum)} Floor Slab`,
+      pct: Math.max(0.1, currentPct)
+    });
+  });
+
+  // Finishing and possession milestones = 30.0%
   milestones.push(
-    { name: 'Completion of Brickwork & Internal Plaster', pct: 5.0 },
-    { name: 'Completion of Flooring, Tiles & Sanitary Fittings', pct: 5.0 },
-    { name: 'Completion of Electrical, Plumbing & Lift Works', pct: 5.0 },
-    { name: 'Completion of External Plaster & Painting', pct: 5.0 },
+    { name: 'Completion of Brickwork & Internal Plaster', pct: 2.0 },
+    { name: 'Completion of Flooring, Wall Tiles & Carpentry Work', pct: 6.0 },
+    { name: 'Completion of Sanitary, Plumbing & Electrical Work', pct: 8.0 },
+    { name: 'Completion of Terrace Waterproofing & External Painting', pct: 4.0 },
+    { name: 'Finishing of Lifts, Entrance Lobby & Parking Areas', pct: 5.0 },
     { name: 'On Intimation of Possession & Handover (OC)', pct: 5.0 }
   );
 
@@ -514,7 +507,7 @@ function getOrdinal(n) {
 export function calculateCLP(
   flatCost = 7500000,
   currentStageIndex = 0,
-  milestones = CLP_PRESETS.GALAXY_HEIGHTS,
+  milestones = [],
   hasLoan = true,
   loanPct = 80,
   annualInterestRate = 8.5,
@@ -523,6 +516,7 @@ export function calculateCLP(
   regFee = 30000,
   gstPct = 5.0
 ) {
+  const activeMilestones = milestones && milestones.length > 0 ? milestones : CLP_PRESETS.MAHARERA_10_STAGE;
   const totalFlatCost = Number(flatCost) || 0;
   const buyerMarginPct = Math.max(0, 100 - loanPct);
   const totalLoanSanctioned = hasLoan ? (totalFlatCost * loanPct) / 100 : 0;
@@ -533,14 +527,12 @@ export function calculateCLP(
   let cumulativeLoanDisbursed = 0;
   let cumulativeBuyerPaid = 0;
 
-  const milestoneRows = milestones.map((m, index) => {
+  const milestoneRows = activeMilestones.map((m, index) => {
     const stagePct = Number(m.pct) || 0;
     cumulativePct += stagePct;
     const stageCost = Math.round((stagePct / 100) * totalFlatCost);
     cumulativeCost += stageCost;
 
-    // Disbursement split:
-    // In India, buyer pays margin money first until satisfied, or proportionally.
     let buyerShare = 0;
     let bankDisbursal = 0;
 
