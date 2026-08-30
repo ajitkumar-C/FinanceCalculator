@@ -62,10 +62,10 @@ export default function ClpCalculator({ setResultText }) {
   );
 
   const scheduleName = scheduleMode === 'STANDARD_10_STAGE' 
-    ? 'Standard CLP (10 Stages)' 
+    ? 'Standard Construction Linked Plan (10 Stages)' 
     : scheduleMode === 'COMPRESSED_18_MONTH' 
-      ? '18-Month Compressed CLP (7 Stages)' 
-      : `Dynamic Multi-Storey (${totalFloors} Floors)`;
+      ? '18-Month Compressed Construction Linked Plan (7 Stages)' 
+      : `Dynamic Multi-Storey Building (${totalFloors} Floors)`;
 
   useEffect(() => {
     setResultText(
@@ -75,7 +75,7 @@ export default function ClpCalculator({ setResultText }) {
 
   // Handle WhatsApp Share
   const handleWhatsAppShare = () => {
-    let text = `*Construction Linked Plan (CLP) Payment Schedule*\n`;
+    let text = `*Construction Linked Plan Payment Schedule*\n`;
     text += `*Property Price:* ${formatINR(flatCost)}\n`;
     text += `*Schedule Model:* ${scheduleName}\n\n`;
     text += `*STAGE-WISE PAYMENT BREAKDOWN:*\n`;
@@ -102,7 +102,7 @@ export default function ClpCalculator({ setResultText }) {
       text += `• Total All-Inclusive Outgo: ${formatINR(results.taxes.totalAllInclusiveCost)}\n`;
     }
 
-    text += `\nCalculate your CLP schedule online at: https://rupeebuddy.in/?calc=clp`;
+    text += `\nCalculate your Construction Linked Plan schedule online at: https://rupeebuddy.in/?calc=clp`;
     
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
@@ -110,7 +110,7 @@ export default function ClpCalculator({ setResultText }) {
 
   // Handle Copy to Clipboard
   const handleCopySummary = () => {
-    let text = `Construction Linked Plan (CLP) Payment Schedule\n`;
+    let text = `Construction Linked Plan Payment Schedule\n`;
     text += `Property Price: ${formatINR(flatCost)}\n`;
     text += `Schedule: ${scheduleName}\n\n`;
     results.milestoneRows.forEach((r) => {
@@ -164,11 +164,11 @@ export default function ClpCalculator({ setResultText }) {
 
   const faqs = [
     {
-      q: 'What is a Construction Linked Plan (CLP)?',
-      a: 'A construction linked plan (CLP) is a property payment schedule where you pay the builder in instalments tied strictly to physical construction milestones — booking, foundation, plinth, slab, brickwork, finishing, and possession — instead of paying the full price upfront or in a flat down payment. Each instalment is legally due only after that specific stage is certified complete.'
+      q: 'What is a Construction Linked Plan?',
+      a: 'A Construction Linked Plan is a property payment schedule where you pay the builder in instalments tied strictly to physical construction milestones — booking, foundation, plinth, slab, brickwork, finishing, and possession — instead of paying the full price upfront or in a flat down payment. Each instalment is legally due only after that specific stage is certified complete.'
     },
     {
-      q: 'How is the CLP payment schedule calculated?',
+      q: 'How is the Construction Linked Plan payment schedule calculated?',
       a: 'The total property price is divided into percentage instalments against fixed construction stages. In standard Indian real estate, 10% is paid on booking, 10% on agreement/allotment, 10% on foundation, 10% on plinth, 10% on 1st slab, 15% on superstructure, 10% on brickwork, 10% on plaster/flooring, 10% on external finishing, and the remaining 5% on possession.'
     },
     {
@@ -181,7 +181,7 @@ export default function ClpCalculator({ setResultText }) {
     },
     {
       q: 'Is GST charged on Construction Linked Plan instalments?',
-      a: 'Yes. For under-construction properties, each CLP instalment attracts 5% GST for standard residential units (or 1% GST for affordable housing priced under ₹45 Lakhs with carpet area up to 60 sq.m in metros or 90 sq.m in non-metros). No GST applies if you buy a ready-to-move-in property after the Occupancy Certificate (OC) or Completion Certificate (CC) has been issued.'
+      a: 'Yes. For under-construction properties, each Construction Linked Plan instalment attracts 5% GST for standard residential units (or 1% GST for affordable housing priced under ₹45 Lakhs with carpet area up to 60 sq.m in metros or 90 sq.m in non-metros). No GST applies if you buy a ready-to-move-in property after the Occupancy Certificate (OC) or Completion Certificate (CC) has been issued.'
     },
     {
       q: 'What is the RERA Section 13 10% Advance Cap?',
@@ -189,10 +189,10 @@ export default function ClpCalculator({ setResultText }) {
     },
     {
       q: 'Is a Construction Linked Plan better than a Down Payment Plan?',
-      a: 'A CLP spreads your financial risk across the construction timeline — you pay only as physical work is completed on-site. A Down Payment Plan requires paying 80% to 95% upfront within 30-60 days; while it usually offers a 5% to 8% price discount, it puts your capital at high risk if the project is delayed. For most homebuyers, CLP offers the safest cash-flow protection.'
+      a: 'A Construction Linked Plan spreads your financial risk across the construction timeline — you pay only as physical work is completed on-site. A Down Payment Plan requires paying 80% to 95% upfront within 30-60 days; while it usually offers a 5% to 8% price discount, it puts your capital at high risk if the project is delayed. For most homebuyers, a Construction Linked Plan offers the safest cash-flow protection.'
     },
     {
-      q: 'What documents should I verify before releasing a CLP milestone payment?',
+      q: 'What documents should I verify before releasing a Construction Linked Plan milestone payment?',
       a: 'Before releasing funds or asking your bank to disburse a loan tranche, demand: 1) Certified Architect Milestone Completion Certificate, 2) Structural Engineer inspection report, 3) Updated site photographs, and 4) Confirmation that payments are routed into the project\'s RERA Designated 70% Bank Escrow Account.'
     }
   ];
@@ -208,7 +208,7 @@ export default function ClpCalculator({ setResultText }) {
             <span className="slider-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Layers size={16} className="text-primary" /> Construction Milestone Schedule Type
             </span>
-            <div className="custom-select-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px' }}>
+            <div className="custom-select-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '8px' }}>
               <button
                 type="button"
                 className={`custom-select-option ${scheduleMode === 'STANDARD_10_STAGE' ? 'selected' : ''}`}
@@ -218,7 +218,7 @@ export default function ClpCalculator({ setResultText }) {
                 }}
                 style={{ padding: '8px 10px', fontSize: '12px' }}
               >
-                Standard CLP (10 Stages)
+                Standard (10 Stages)
               </button>
               <button
                 type="button"
@@ -229,7 +229,7 @@ export default function ClpCalculator({ setResultText }) {
                 }}
                 style={{ padding: '8px 10px', fontSize: '12px' }}
               >
-                18-Month CLP (7 Stages)
+                18-Month Plan (7 Stages)
               </button>
               <button
                 type="button"
@@ -753,7 +753,7 @@ export default function ClpCalculator({ setResultText }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
           <div>
             <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--brand-navy)', margin: 0 }}>
-              Stage-Wise CLP Payment & Pre-EMI Schedule ({activeMilestones.length} Stages)
+              Stage-Wise Construction Linked Payment & Pre-EMI Schedule ({activeMilestones.length} Stages)
             </h3>
             <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: '4px 0 0 0' }}>
               Click any stage row to set the current active construction milestone and simulate cash flows.
@@ -849,26 +849,26 @@ export default function ClpCalculator({ setResultText }) {
       {/* Comprehensive SEO & Knowledge Guide Section */}
       <div className="calculator-guide-section no-print" style={{ marginTop: '40px' }}>
         <h2 style={{ fontSize: '24px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '800' }}>
-          Complete Guide to Construction Linked Plans (CLP) in Indian Real Estate
+          Complete Guide to Construction Linked Plans in Indian Real Estate
         </h2>
 
-        {/* Section 1: What is a CLP */}
+        {/* Section 1: What is a Construction Linked Plan */}
         <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
           <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px', fontWeight: '700' }}>
-            What Is a Construction Linked Plan (CLP)?
+            What Is a Construction Linked Plan?
           </h3>
           <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: '0 0 12px 0' }}>
-            A <strong>Construction Linked Plan (CLP)</strong> is the most widely used and legally protected payment structure for under-construction property in India. Instead of paying the full price at booking or within a fixed 30-to-60 day window, you pay in instalments that are released <strong>only when the builder finishes a defined physical construction stage</strong> — foundation, plinth, individual floor slabs, brickwork, plaster, finishing, and finally possession.
+            A <strong>Construction Linked Plan</strong> is the most widely used and legally protected payment structure for under-construction property in India. Instead of paying the full price at booking or within a fixed 30-to-60 day window, you pay in instalments that are released <strong>only when the builder finishes a defined physical construction stage</strong> — foundation, plinth, individual floor slabs, brickwork, plaster, finishing, and finally possession.
           </p>
           <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: 0 }}>
-            This linkage directly protects the homebuyer against developer default. If the builder stalls after the plinth stage, your financial exposure is strictly limited to what you have paid up to the plinth stage, rather than the entire property cost. That is why <strong>RERA (Real Estate Regulatory Authority)</strong> mandates that every registered project disclose its detailed CLP schedule in Annexure-A of the registered Agreement for Sale.
+            This linkage directly protects the homebuyer against developer default. If the builder stalls after the plinth stage, your financial exposure is strictly limited to what you have paid up to the plinth stage, rather than the entire property cost. That is why <strong>RERA (Real Estate Regulatory Authority)</strong> mandates that every registered project disclose its detailed Construction Linked Plan schedule in Annexure-A of the registered Agreement for Sale.
           </p>
         </div>
 
         {/* Section 2: How Home Loan Tranche Disbursals Work */}
         <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
           <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px', fontWeight: '700' }}>
-            How Home Loan Disbursement & Pre-EMI Works Under a CLP
+            How Home Loan Disbursement & Pre-EMI Works Under a Construction Linked Plan
           </h3>
           <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: '0 0 12px 0' }}>
             When a property purchase is funded by a home loan, leading banks (SBI, HDFC Bank, ICICI Bank, Axis Bank, Bank of Baroda) do <strong>not</strong> disburse the entire loan upfront. Instead, the process works as follows:
@@ -884,7 +884,7 @@ export default function ClpCalculator({ setResultText }) {
         {/* Section 3: Comparison Table - CLP vs DPP vs PLP vs Flexi */}
         <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
           <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '700' }}>
-            Real Estate Payment Plans Comparison: CLP vs Down Payment vs PLP vs Flexi
+            Real Estate Payment Plans Comparison: Construction Linked vs Down Payment vs Possession Linked vs Flexi
           </h3>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
@@ -899,7 +899,7 @@ export default function ClpCalculator({ setResultText }) {
               </thead>
               <tbody style={{ divideY: '1px solid #e2e8f0' }}>
                 <tr style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#f0fdf4' }}>
-                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Construction Linked (CLP)</td>
+                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Construction Linked Plan</td>
                   <td style={{ padding: '10px 12px' }}>Spread across 7 to 35 verified stages</td>
                   <td style={{ padding: '10px 12px', color: '#166534', fontWeight: '600' }}>Lowest Risk</td>
                   <td style={{ padding: '10px 12px' }}>Standard Price</td>
