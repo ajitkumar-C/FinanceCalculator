@@ -229,20 +229,117 @@ export function injectCalculatorSchema(calculatorId) {
     };
   }
 
-  // 4. Inject main schema script into head
+  // 4. Clean up any previous extra schema scripts
+  const oldFaq = document.getElementById("faq-schema");
+  if (oldFaq) oldFaq.remove();
+  const oldHowTo = document.getElementById("howto-schema");
+  if (oldHowTo) oldHowTo.remove();
+
+  // 5. Inject main schema script into head
   const script = document.createElement("script");
   script.type = "application/ld+json";
   script.id = "calculator-schema";
   script.text = JSON.stringify(schemaData, null, 2);
   document.head.appendChild(script);
 
-  // 5. Inject breadcrumb schema script if applicable
+  // 6. Inject breadcrumb schema script if applicable
   if (breadcrumbData) {
     const breadcrumbScript = document.createElement("script");
     breadcrumbScript.type = "application/ld+json";
     breadcrumbScript.id = "breadcrumb-schema";
     breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
     document.head.appendChild(breadcrumbScript);
+  }
+
+  // 7. Inject FAQPage and HowTo Schema for CLP
+  if (calculatorId === 'clp') {
+    const clpHowToData = {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Calculate a Construction Linked Plan (CLP) Payment Schedule",
+      "description": "Calculate your construction linked plan (CLP) instalments stage-wise, including Pre-EMI interest during construction and full EMI after possession.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Enter Property Agreement Price",
+          "text": "Enter the total agreement value of the under-construction flat or commercial property."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose CLP Milestone Schedule",
+          "text": "Select the Standard 10-Stage CLP, 18-Month Compressed CLP, or Custom Multi-Storey Building Floors."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure Home Loan & Interest Rate",
+          "text": "Enter your loan funding percentage (e.g. 80%), bank interest rate (e.g. 8.5%), and tenure to compute Pre-EMI interest during construction."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Review Stage-Wise Schedule & Taxes",
+          "text": "Inspect the stage-by-stage demand amounts, bank loan disbursals, Pre-EMI per month, and post-possession EMI."
+        }
+      ]
+    };
+
+    const clpHowToScript = document.createElement("script");
+    clpHowToScript.type = "application/ld+json";
+    clpHowToScript.id = "howto-schema";
+    clpHowToScript.text = JSON.stringify(clpHowToData, null, 2);
+    document.head.appendChild(clpHowToScript);
+
+    const clpFaqData = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Construction Linked Plan (CLP)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A construction linked plan (CLP) is a property payment schedule where you pay the builder in instalments tied strictly to physical construction milestones — booking, foundation, plinth, slab, brickwork, finishing, and possession — instead of paying the full price upfront or in a flat down payment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is the CLP payment schedule calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The total property price is split into percentages against fixed construction stages: 10% on booking, 10% on agreement, 10% on foundation, 10% on plinth, 10% on 1st slab, 15% on superstructure, 10% on brickwork, 10% on internal plaster, 10% on external finishing, and 5% on possession."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Pre-EMI in a Construction Linked Plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pre-EMI is the interest-only payment you make to the lending bank during construction, calculated on the loan amount disbursed so far — not the full sanctioned loan amount. Once the builder completes construction and hands over possession, your loan transitions to a full regular EMI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is GST charged on Construction Linked Plan instalments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. For under-construction properties, each CLP instalment attracts 5% GST for standard residential units (or 1% GST for affordable housing under ₹45 Lakhs). Ready-to-move-in properties sold after the Occupancy Certificate (OC) are GST-free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a Construction Linked Plan better than a Down Payment Plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A CLP spreads your financial risk across the construction timeline — you pay only as physical work is completed on-site. A Down Payment Plan requires paying 80% to 95% upfront; while it offers a 5% to 8% discount, it puts your capital at high risk if the project is delayed."
+          }
+        }
+      ]
+    };
+
+    const clpFaqScript = document.createElement("script");
+    clpFaqScript.type = "application/ld+json";
+    clpFaqScript.id = "faq-schema";
+    clpFaqScript.text = JSON.stringify(clpFaqData, null, 2);
+    document.head.appendChild(clpFaqScript);
   }
 
   // 6. Update Meta Page Title and Meta Description for SEO

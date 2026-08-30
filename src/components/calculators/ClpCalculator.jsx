@@ -7,28 +7,39 @@ import {
 } from '../../utils/formulas';
 import { formatINR } from '../../utils/format';
 import NumericInput from '../common/NumericInput';
-import { Building2, CheckCircle2, Clock, AlertCircle, Sparkles, Layers, Sliders } from 'lucide-react';
+import { 
+  Building2, CheckCircle2, Clock, AlertCircle, Sparkles, Layers, 
+  Share2, Copy, Check, Printer, HelpCircle, ChevronDown, 
+  ArrowRight, ShieldCheck, Scale, DollarSign, Calendar
+} from 'lucide-react';
 
 export default function ClpCalculator({ setResultText }) {
-  // Mode: 'DYNAMIC_BUILDING' (Default) | 'MAHARERA_10_STAGE'
-  const [scheduleMode, setScheduleMode] = useState('DYNAMIC_BUILDING');
-  const [totalFloors, setTotalFloors] = useState(25);
+  // Mode: 'STANDARD_10_STAGE' (Default) | 'COMPRESSED_18_MONTH' | 'DYNAMIC_BUILDING'
+  const [scheduleMode, setScheduleMode] = useState('STANDARD_10_STAGE');
+  const [totalFloors, setTotalFloors] = useState(20);
   const [slabInterval, setSlabInterval] = useState(1); // 1 = Every floor, 2 = Every 2 floors, 3 = Every 3 floors
-  const [flatCost, setFlatCost] = useState(7500000); // 75 Lakhs
-  const [currentStageIndex, setCurrentStageIndex] = useState(6); // Default on a mid-level slab
+  const [flatCost, setFlatCost] = useState(8000000); // 80 Lakhs
+  const [currentStageIndex, setCurrentStageIndex] = useState(3); // Default on Plinth / Foundation
   const [hasLoan, setHasLoan] = useState(true);
   const [loanPct, setLoanPct] = useState(80); // 80% loan, 20% own funds
   const [interestRate, setInterestRate] = useState(8.5); // 8.5% p.a.
   const [tenureYears, setTenureYears] = useState(20);
+  const [monthsPerStage, setMonthsPerStage] = useState(3); // Avg 3 months between stages
   const [includeTaxes, setIncludeTaxes] = useState(true);
   const [stampDutyPct, setStampDutyPct] = useState(6.0); // 6% Maharashtra stamp duty
   const [regFee, setRegFee] = useState(30000);
   const [gstPct, setGstPct] = useState(5.0); // 5% GST on under-construction
+  
+  // UI states
+  const [copied, setCopied] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-  // Generate dynamic milestones or use standard 10-stage RERA
+  // Generate dynamic milestones or use standard presets
   let activeMilestones = [];
-  if (scheduleMode === 'MAHARERA_10_STAGE') {
-    activeMilestones = CLP_PRESETS.MAHARERA_10_STAGE;
+  if (scheduleMode === 'STANDARD_10_STAGE') {
+    activeMilestones = CLP_PRESETS.STANDARD_10_STAGE;
+  } else if (scheduleMode === 'COMPRESSED_18_MONTH') {
+    activeMilestones = CLP_PRESETS.COMPRESSED_18_MONTH;
   } else {
     activeMilestones = generateBuildingMilestones(totalFloors, slabInterval);
   }
@@ -44,16 +55,76 @@ export default function ClpCalculator({ setResultText }) {
     loanPct,
     interestRate,
     tenureYears,
+    monthsPerStage,
     stampDutyPct,
     regFee,
     gstPct
   );
 
+  const scheduleName = scheduleMode === 'STANDARD_10_STAGE' 
+    ? 'Standard CLP (10 Stages)' 
+    : scheduleMode === 'COMPRESSED_18_MONTH' 
+      ? '18-Month Compressed CLP (7 Stages)' 
+      : `Dynamic Multi-Storey (${totalFloors} Floors)`;
+
   useEffect(() => {
     setResultText(
-      `Flat Cost: ${formatINR(flatCost)}\nBuilding Floors: ${totalFloors} Floors\nCurrent Stage: ${results.currentStageName} (${results.cumPctTillNow}%)\nTotal Paid Till Now: ${formatINR(results.paidTillNow)}\nPending Balance: ${formatINR(results.pendingBalance)}\nBank Disbursed: ${formatINR(results.bankDisbursedTillNow)}\nMonthly Pre-EMI Interest: ${formatINR(results.currentPreEmi)}`
+      `Property Cost: ${formatINR(flatCost)}\nSchedule: ${scheduleName}\nCurrent Stage: ${results.currentStageName} (${results.cumPctTillNow}%)\nTotal Paid Till Now: ${formatINR(results.paidTillNow)}\nPending Balance: ${formatINR(results.pendingBalance)}\nBank Disbursed: ${formatINR(results.bankDisbursedTillNow)}\nTotal Pre-EMI Interest: ${formatINR(results.totalPreEmiInterestDuringConstruction)}\nFull EMI After Possession: ${formatINR(results.postPossessionFullEmi)}/mo`
     );
-  }, [flatCost, totalFloors, results.currentStageName, results.cumPctTillNow, results.paidTillNow, results.pendingBalance, results.bankDisbursedTillNow, results.currentPreEmi]);
+  }, [flatCost, scheduleName, results.currentStageName, results.cumPctTillNow, results.paidTillNow, results.pendingBalance, results.bankDisbursedTillNow, results.totalPreEmiInterestDuringConstruction, results.postPossessionFullEmi]);
+
+  // Handle WhatsApp Share
+  const handleWhatsAppShare = () => {
+    let text = `*Construction Linked Plan (CLP) Payment Schedule*\n`;
+    text += `*Property Price:* ${formatINR(flatCost)}\n`;
+    text += `*Schedule Model:* ${scheduleName}\n\n`;
+    text += `*STAGE-WISE PAYMENT BREAKDOWN:*\n`;
+    
+    results.milestoneRows.forEach((r) => {
+      text += `• ${r.index}. ${r.name} (${r.stagePct}%): ${formatINR(r.stageCost)}`;
+      if (hasLoan && r.monthlyPreEmi > 0) {
+        text += ` | Pre-EMI: ${formatINR(r.monthlyPreEmi)}/mo`;
+      }
+      text += `\n`;
+    });
+
+    if (hasLoan) {
+      text += `\n*FINANCING SUMMARY:*\n`;
+      text += `• Buyer Margin (Down Payment): ${formatINR(results.totalBuyerMargin)} (${100 - loanPct}%)\n`;
+      text += `• Bank Loan Sanctioned: ${formatINR(results.totalLoanSanctioned)} (${loanPct}%)\n`;
+      text += `• Estimated Total Pre-EMI Interest (during construction): ${formatINR(results.totalPreEmiInterestDuringConstruction)}\n`;
+      text += `• Full EMI After Possession: ${formatINR(results.postPossessionFullEmi)}/mo for ${tenureYears} Years\n`;
+    }
+
+    if (includeTaxes) {
+      text += `\n*STATUTORY TAXES & CHARGES:*\n`;
+      text += `• Stamp Duty + Registration + GST: ${formatINR(results.taxes.totalTaxes)}\n`;
+      text += `• Total All-Inclusive Outgo: ${formatINR(results.taxes.totalAllInclusiveCost)}\n`;
+    }
+
+    text += `\nCalculate your CLP schedule online at: https://rupeebuddy.in/?calc=clp`;
+    
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  };
+
+  // Handle Copy to Clipboard
+  const handleCopySummary = () => {
+    let text = `Construction Linked Plan (CLP) Payment Schedule\n`;
+    text += `Property Price: ${formatINR(flatCost)}\n`;
+    text += `Schedule: ${scheduleName}\n\n`;
+    results.milestoneRows.forEach((r) => {
+      text += `${r.index}. ${r.name} (${r.stagePct}%): ${formatINR(r.stageCost)}\n`;
+    });
+    if (hasLoan) {
+      text += `\nLoan Sanctioned: ${formatINR(results.totalLoanSanctioned)}\n`;
+      text += `Total Pre-EMI Interest: ${formatINR(results.totalPreEmiInterestDuringConstruction)}\n`;
+      text += `Full EMI After Possession: ${formatINR(results.postPossessionFullEmi)}/mo\n`;
+    }
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   // Chart data: Buyer Paid vs Bank Disbursed vs Pending
   const chartData = {
@@ -91,6 +162,41 @@ export default function ClpCalculator({ setResultText }) {
     },
   };
 
+  const faqs = [
+    {
+      q: 'What is a Construction Linked Plan (CLP)?',
+      a: 'A construction linked plan (CLP) is a property payment schedule where you pay the builder in instalments tied strictly to physical construction milestones — booking, foundation, plinth, slab, brickwork, finishing, and possession — instead of paying the full price upfront or in a flat down payment. Each instalment is legally due only after that specific stage is certified complete.'
+    },
+    {
+      q: 'How is the CLP payment schedule calculated?',
+      a: 'The total property price is divided into percentage instalments against fixed construction stages. In standard Indian real estate, 10% is paid on booking, 10% on agreement/allotment, 10% on foundation, 10% on plinth, 10% on 1st slab, 15% on superstructure, 10% on brickwork, 10% on plaster/flooring, 10% on external finishing, and the remaining 5% on possession.'
+    },
+    {
+      q: 'What is Pre-EMI in a Construction Linked Plan?',
+      a: 'Pre-EMI is the interest-only payment you make to your lending bank during the construction period, calculated strictly on the loan amount disbursed so far — not the full sanctioned loan amount. Once the builder completes construction and hands over possession, the bank disburses the final loan tranche and your loan transitions to a full regular EMI (principal + interest).'
+    },
+    {
+      q: 'How much total Pre-EMI interest will I pay during construction?',
+      a: 'Total Pre-EMI interest depends on your loan interest rate and the construction duration between milestone tranches. For example, on an ₹80 Lakh property with an ₹64 Lakh loan at 8.5% interest across a 30-month construction timeline, the total accumulated Pre-EMI interest is approximately ₹5,10,000 before full possession EMIs begin.'
+    },
+    {
+      q: 'Is GST charged on Construction Linked Plan instalments?',
+      a: 'Yes. For under-construction properties, each CLP instalment attracts 5% GST for standard residential units (or 1% GST for affordable housing priced under ₹45 Lakhs with carpet area up to 60 sq.m in metros or 90 sq.m in non-metros). No GST applies if you buy a ready-to-move-in property after the Occupancy Certificate (OC) or Completion Certificate (CC) has been issued.'
+    },
+    {
+      q: 'What is the RERA Section 13 10% Advance Cap?',
+      a: 'Under Section 13(1) of the Real Estate (Regulation and Development) Act 2016 (RERA), a builder or promoter cannot accept more than 10% of the flat cost as an advance or application booking fee without first executing and registering a written Agreement for Sale.'
+    },
+    {
+      q: 'Is a Construction Linked Plan better than a Down Payment Plan?',
+      a: 'A CLP spreads your financial risk across the construction timeline — you pay only as physical work is completed on-site. A Down Payment Plan requires paying 80% to 95% upfront within 30-60 days; while it usually offers a 5% to 8% price discount, it puts your capital at high risk if the project is delayed. For most homebuyers, CLP offers the safest cash-flow protection.'
+    },
+    {
+      q: 'What documents should I verify before releasing a CLP milestone payment?',
+      a: 'Before releasing funds or asking your bank to disburse a loan tranche, demand: 1) Certified Architect Milestone Completion Certificate, 2) Structural Engineer inspection report, 3) Updated site photographs, and 4) Confirmation that payments are routed into the project\'s RERA Designated 70% Bank Escrow Account.'
+    }
+  ];
+
   return (
     <div className="calculator-container">
       <div className="calculator-wrapper-grid">
@@ -102,7 +208,29 @@ export default function ClpCalculator({ setResultText }) {
             <span className="slider-label" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Layers size={16} className="text-primary" /> Construction Milestone Schedule Type
             </span>
-            <div className="custom-select-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            <div className="custom-select-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px' }}>
+              <button
+                type="button"
+                className={`custom-select-option ${scheduleMode === 'STANDARD_10_STAGE' ? 'selected' : ''}`}
+                onClick={() => {
+                  setScheduleMode('STANDARD_10_STAGE');
+                  setCurrentStageIndex(3);
+                }}
+                style={{ padding: '8px 10px', fontSize: '12px' }}
+              >
+                Standard CLP (10 Stages)
+              </button>
+              <button
+                type="button"
+                className={`custom-select-option ${scheduleMode === 'COMPRESSED_18_MONTH' ? 'selected' : ''}`}
+                onClick={() => {
+                  setScheduleMode('COMPRESSED_18_MONTH');
+                  setCurrentStageIndex(2);
+                }}
+                style={{ padding: '8px 10px', fontSize: '12px' }}
+              >
+                18-Month CLP (7 Stages)
+              </button>
               <button
                 type="button"
                 className={`custom-select-option ${scheduleMode === 'DYNAMIC_BUILDING' ? 'selected' : ''}`}
@@ -110,20 +238,9 @@ export default function ClpCalculator({ setResultText }) {
                   setScheduleMode('DYNAMIC_BUILDING');
                   setCurrentStageIndex(6);
                 }}
-                style={{ padding: '8px 12px', fontSize: '13px' }}
+                style={{ padding: '8px 10px', fontSize: '12px' }}
               >
-                🏢 Dynamic Building Floors ({totalFloors} Floors)
-              </button>
-              <button
-                type="button"
-                className={`custom-select-option ${scheduleMode === 'MAHARERA_10_STAGE' ? 'selected' : ''}`}
-                onClick={() => {
-                  setScheduleMode('MAHARERA_10_STAGE');
-                  setCurrentStageIndex(3);
-                }}
-                style={{ padding: '8px 12px', fontSize: '13px' }}
-              >
-                🏛️ MahaRERA 10-Milestones
+                Dynamic High-Rise ({totalFloors} Floors)
               </button>
             </div>
           </div>
@@ -165,8 +282,8 @@ export default function ClpCalculator({ setResultText }) {
                   <span>60 Floors (High-Rise)</span>
                 </div>
                 <div className="quick-options-row no-print" style={{ marginTop: '4px' }}>
-                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(4)}>G+4 (Low-Rise)</button>
-                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(7)}>G+7 (Mid-Rise)</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(4)}>G+4</button>
+                  <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(7)}>G+7</button>
                   <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(15)}>15 Floors</button>
                   <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(25)}>25 Floors</button>
                   <button type="button" className="quick-option-btn" onClick={() => setTotalFloors(38)}>38 Floors</button>
@@ -191,7 +308,7 @@ export default function ClpCalculator({ setResultText }) {
                       border: '1px solid var(--border-color)'
                     }}
                   >
-                    Every Single Floor
+                    Every Floor
                   </button>
                   {totalFloors >= 10 && (
                     <button
@@ -233,7 +350,7 @@ export default function ClpCalculator({ setResultText }) {
           {/* Agreement / Flat Cost */}
           <div className="slider-group">
             <div className="slider-header">
-              <span className="slider-label">Total Flat Agreement Value / Base Cost</span>
+              <span className="slider-label">Property Price / Agreement Value</span>
               <NumericInput
                 value={flatCost}
                 onChange={setFlatCost}
@@ -241,14 +358,14 @@ export default function ClpCalculator({ setResultText }) {
                 max={500000000}
                 step={50000}
                 prefix="₹"
-                ariaLabel="Flat Agreement Value"
+                ariaLabel="Property Agreement Value"
               />
             </div>
             <div className="slider-control-row">
               <input
                 type="range"
-                min="1000000"
-                max="30000000"
+                min="2000000"
+                max="50000000"
                 step="100000"
                 value={flatCost}
                 onChange={(e) => setFlatCost(Number(e.target.value))}
@@ -256,15 +373,16 @@ export default function ClpCalculator({ setResultText }) {
               />
             </div>
             <div className="slider-limits">
-              <span>₹10 Lakhs</span>
-              <span>₹3 Crore</span>
+              <span>₹20 Lakhs</span>
+              <span>₹5 Crore</span>
             </div>
             <div className="quick-options-row no-print">
-              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(4500000)}>45L</button>
-              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(7500000)}>75L</button>
-              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(10000000)}>1 Cr</button>
-              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(15000000)}>1.5 Cr</button>
-              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(25000000)}>2.5 Cr</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(4500000)}>₹45L</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(6000000)}>₹60L</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(8000000)}>₹80L</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(10000000)}>₹1 Cr</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(15000000)}>₹1.5 Cr</button>
+              <button type="button" className="quick-option-btn" onClick={() => setFlatCost(25000000)}>₹2.5 Cr</button>
             </div>
           </div>
 
@@ -315,7 +433,7 @@ export default function ClpCalculator({ setResultText }) {
           {/* Home Loan Funding Toggle */}
           <div className="slider-group no-print" style={{ marginTop: '8px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span className="slider-label">Funding Mode</span>
+              <span className="slider-label">Funded by Home Loan?</span>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <button
                   type="button"
@@ -328,7 +446,7 @@ export default function ClpCalculator({ setResultText }) {
                     border: '1px solid var(--border-color)'
                   }}
                 >
-                  Bank Home Loan
+                  Yes (Bank Loan)
                 </button>
                 <button
                   type="button"
@@ -349,9 +467,9 @@ export default function ClpCalculator({ setResultText }) {
 
           {/* Home Loan Parameters if loan enabled */}
           {hasLoan && (
-            <div style={{ background: '#f8fafc', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ background: '#f8fafc', padding: '14px', borderRadius: '8px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div className="slider-header">
-                <span className="slider-label" style={{ fontSize: '13px' }}>Bank Loan Percentage</span>
+                <span className="slider-label" style={{ fontSize: '13px' }}>Loan Funding (% of Price)</span>
                 <NumericInput
                   value={loanPct}
                   onChange={(v) => setLoanPct(Math.min(90, Math.max(10, v)))}
@@ -378,16 +496,16 @@ export default function ClpCalculator({ setResultText }) {
                 <span>Bank Loan: <strong>{loanPct}% ({formatINR(results.totalLoanSanctioned)})</strong></span>
               </div>
 
-              {/* Interest Rate & Tenure Row */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '4px' }}>
+              {/* Interest Rate, Tenure & Construction Speed */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginTop: '4px' }}>
                 <div>
-                  <span className="slider-label" style={{ fontSize: '12px' }}>Interest Rate (p.a.)</span>
+                  <span className="slider-label" style={{ fontSize: '11px' }}>Interest Rate (p.a.)</span>
                   <div style={{ marginTop: '4px' }}>
                     <NumericInput
                       value={interestRate}
                       onChange={setInterestRate}
-                      min={6}
-                      max={18}
+                      min={5}
+                      max={15}
                       step={0.1}
                       suffix="%"
                       ariaLabel="Interest Rate"
@@ -395,16 +513,30 @@ export default function ClpCalculator({ setResultText }) {
                   </div>
                 </div>
                 <div>
-                  <span className="slider-label" style={{ fontSize: '12px' }}>Tenure (Years)</span>
+                  <span className="slider-label" style={{ fontSize: '11px' }}>Tenure (Post-Possession)</span>
                   <div style={{ marginTop: '4px' }}>
                     <NumericInput
                       value={tenureYears}
                       onChange={setTenureYears}
-                      min={1}
+                      min={5}
                       max={30}
                       step={1}
                       suffix=" Yr"
                       ariaLabel="Tenure in Years"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <span className="slider-label" style={{ fontSize: '11px' }}>Avg Months / Stage</span>
+                  <div style={{ marginTop: '4px' }}>
+                    <NumericInput
+                      value={monthsPerStage}
+                      onChange={setMonthsPerStage}
+                      min={1}
+                      max={6}
+                      step={1}
+                      suffix=" Mo"
+                      ariaLabel="Months Per Stage"
                     />
                   </div>
                 </div>
@@ -426,7 +558,7 @@ export default function ClpCalculator({ setResultText }) {
             {includeTaxes && (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '8px', fontSize: '11px', background: '#f1f5f9', padding: '10px', borderRadius: '6px' }}>
                 <div>
-                  <span>Stamp Duty: <strong>{stampDutyPct}% ({formatINR(results.taxes.stampDutyAmount)})</strong></span>
+                  <span>Stamp Duty (6%): <strong>{formatINR(results.taxes.stampDutyAmount)}</strong></span>
                 </div>
                 <div>
                   <span>Registration: <strong>{formatINR(results.taxes.registrationAmount)}</strong></span>
@@ -445,7 +577,7 @@ export default function ClpCalculator({ setResultText }) {
           <div className="results-header">
             <h3 className="results-title">Construction Payment Summary</h3>
             <span className="results-subtitle">
-              Milestone Progress: <strong>{results.cumPctTillNow}% Completed</strong>
+              Milestone Progress: <strong>{results.cumPctTillNow}% Demanded</strong>
             </span>
           </div>
 
@@ -455,7 +587,7 @@ export default function ClpCalculator({ setResultText }) {
               <span style={{ color: 'var(--brand-navy)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <Building2 size={15} /> Stage {results.currentStageIndex + 1} of {activeMilestones.length}
               </span>
-              <span style={{ color: 'var(--finance-green)' }}>{results.cumPctTillNow}% Demanded</span>
+              <span style={{ color: 'var(--finance-green)' }}>{results.cumPctTillNow}% Completed</span>
             </div>
             <div style={{ width: '100%', height: '12px', backgroundColor: '#e2e8f0', borderRadius: '10px', overflow: 'hidden' }}>
               <div 
@@ -473,47 +605,47 @@ export default function ClpCalculator({ setResultText }) {
             </div>
           </div>
 
-          {/* Output Cards */}
+          {/* 4 Main Output Cards (Matching Top Tier Design) */}
           <div className="output-cards-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-            <div className="output-summary-card" style={{ padding: '14px' }}>
-              <span className="summary-card-label">Total Paid Till Current Stage</span>
-              <span className="summary-card-value" style={{ color: 'var(--finance-green)', fontSize: '20px' }}>
-                {formatINR(results.paidTillNow)}
+            <div className="output-summary-card" style={{ padding: '14px', background: '#f8fafc' }}>
+              <span className="summary-card-label">Total Property Price</span>
+              <span className="summary-card-value" style={{ color: 'var(--brand-navy)', fontSize: '20px' }}>
+                {formatINR(flatCost)}
               </span>
               <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                {results.cumPctTillNow}% of Base Flat Cost
+                Paid till now: <strong>{formatINR(results.paidTillNow)}</strong>
               </span>
             </div>
 
-            <div className="output-summary-card" style={{ padding: '14px' }}>
-              <span className="summary-card-label">Pending Future Demands</span>
-              <span className="summary-card-value" style={{ color: '#d97706', fontSize: '20px' }}>
-                {formatINR(results.pendingBalance)}
+            <div className="output-summary-card" style={{ padding: '14px', background: '#f8fafc' }}>
+              <span className="summary-card-label">Bank Loan Amount</span>
+              <span className="summary-card-value" style={{ color: '#2563eb', fontSize: '20px' }}>
+                {formatINR(results.totalLoanSanctioned)}
               </span>
               <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                {(100 - results.cumPctTillNow).toFixed(1)}% payable until possession
+                {loanPct}% of property price
               </span>
             </div>
 
             {hasLoan && (
               <>
-                <div className="output-summary-card" style={{ padding: '14px', background: '#f8fafc' }}>
-                  <span className="summary-card-label">Bank Loan Disbursed So Far</span>
-                  <span className="summary-card-value" style={{ color: '#2563eb', fontSize: '18px' }}>
-                    {formatINR(results.bankDisbursedTillNow)}
+                <div className="output-summary-card" style={{ padding: '14px', background: '#fffbeb', border: '1px solid #fde68a' }}>
+                  <span className="summary-card-label" style={{ color: '#92400e' }}>Pre-EMI Interest (Construction)</span>
+                  <span className="summary-card-value" style={{ color: '#b45309', fontSize: '19px' }}>
+                    {formatINR(results.totalPreEmiInterestDuringConstruction)}
                   </span>
-                  <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                    Buyer Paid: {formatINR(results.buyerPaidTillNow)}
+                  <span style={{ fontSize: '11px', color: '#92400e' }}>
+                    Current stage: <strong>{formatINR(results.currentPreEmi)}/mo</strong>
                   </span>
                 </div>
 
-                <div className="output-summary-card" style={{ padding: '14px', background: '#f0fdf4', border: '1px solid #bbf7d0' }}>
-                  <span className="summary-card-label">Current Monthly Pre-EMI Interest</span>
-                  <span className="summary-card-value" style={{ color: '#166534', fontSize: '18px' }}>
-                    {formatINR(results.currentPreEmi)} / mo
+                <div className="output-summary-card" style={{ padding: '14px', background: '#eff6ff', border: '1px solid #bfdbfe' }}>
+                  <span className="summary-card-label" style={{ color: '#1e40af' }}>EMI After Possession</span>
+                  <span className="summary-card-value" style={{ color: '#1d4ed8', fontSize: '19px' }}>
+                    {formatINR(results.postPossessionFullEmi)} / mo
                   </span>
-                  <span style={{ fontSize: '11px', color: '#15803d' }}>
-                    Simple interest on ₹{formatINR(results.bankDisbursedTillNow)}
+                  <span style={{ fontSize: '11px', color: '#1e40af' }}>
+                    Full amortized EMI for {tenureYears} yrs
                   </span>
                 </div>
               </>
@@ -539,6 +671,73 @@ export default function ClpCalculator({ setResultText }) {
             </div>
           )}
 
+          {/* Action / Share Bar */}
+          <div className="no-print" style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+            <button
+              type="button"
+              onClick={handleWhatsAppShare}
+              style={{
+                flex: 1,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '10px 14px',
+                backgroundColor: '#25D366',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease'
+              }}
+            >
+              <Share2 size={16} /> Share on WhatsApp
+            </button>
+            <button
+              type="button"
+              onClick={handleCopySummary}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '10px 14px',
+                backgroundColor: '#ffffff',
+                color: 'var(--brand-navy)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
+            <button
+              type="button"
+              onClick={() => window.print()}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '10px 14px',
+                backgroundColor: '#ffffff',
+                color: 'var(--brand-navy)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <Printer size={16} /> Print
+            </button>
+          </div>
+
           {/* Doughnut Chart */}
           <div className="chart-container-wrapper" style={{ marginTop: '20px' }}>
             <div className="chart-wrapper">
@@ -554,14 +753,14 @@ export default function ClpCalculator({ setResultText }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
           <div>
             <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--brand-navy)', margin: 0 }}>
-              Milestone-by-Milestone CLP Schedule Breakdown ({activeMilestones.length} Milestones)
+              Stage-Wise CLP Payment & Pre-EMI Schedule ({activeMilestones.length} Stages)
             </h3>
             <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: '4px 0 0 0' }}>
-              Click any stage row to simulate payments and Pre-EMI interest up to that construction milestone.
+              Click any stage row to set the current active construction milestone and simulate cash flows.
             </p>
           </div>
           <span className="no-print" style={{ fontSize: '12px', background: 'var(--brand-navy-light)', color: 'var(--brand-navy)', padding: '4px 10px', borderRadius: '4px', fontWeight: '600' }}>
-            {scheduleMode === 'DYNAMIC_BUILDING' ? `${totalFloors} Storey Tower` : 'MahaRERA Schedule'}
+            {scheduleName}
           </span>
         </div>
 
@@ -569,14 +768,13 @@ export default function ClpCalculator({ setResultText }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
             <thead>
               <tr style={{ backgroundColor: 'var(--brand-navy)', color: '#ffffff' }}>
-                <th style={{ padding: '10px 12px' }}>#</th>
+                <th style={{ padding: '10px 12px' }}>Stage</th>
                 <th style={{ padding: '10px 12px' }}>Construction Milestone</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Stage %</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Demand Amount (₹)</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>%</th>
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Amount Due (₹)</th>
                 <th style={{ padding: '10px 12px', textAlign: 'right' }}>Cum. %</th>
-                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Cumulative Total (₹)</th>
-                {hasLoan && <th style={{ padding: '10px 12px', textAlign: 'right' }}>Bank Disbursal (₹)</th>}
-                {hasLoan && <th style={{ padding: '10px 12px', textAlign: 'right' }}>Monthly Pre-EMI (₹)</th>}
+                <th style={{ padding: '10px 12px', textAlign: 'right' }}>Cumulative (₹)</th>
+                {hasLoan && <th style={{ padding: '10px 12px', textAlign: 'right' }}>Pre-EMI / mo (₹)</th>}
                 <th style={{ padding: '10px 12px', textAlign: 'center' }}>Status</th>
               </tr>
             </thead>
@@ -616,12 +814,7 @@ export default function ClpCalculator({ setResultText }) {
                     <td style={{ padding: '10px 12px', textAlign: 'right' }}>{row.cumulativePct}%</td>
                     <td style={{ padding: '10px 12px', textAlign: 'right' }}>{formatINR(row.cumulativeCost)}</td>
                     {hasLoan && (
-                      <td style={{ padding: '10px 12px', textAlign: 'right', color: row.bankDisbursal > 0 ? '#2563eb' : '#64748b' }}>
-                        {formatINR(row.bankDisbursal)}
-                      </td>
-                    )}
-                    {hasLoan && (
-                      <td style={{ padding: '10px 12px', textAlign: 'right', color: '#166534', fontWeight: isSelected ? '700' : '500' }}>
+                      <td style={{ padding: '10px 12px', textAlign: 'right', color: '#b45309', fontWeight: isSelected ? '700' : '500' }}>
                         {row.monthlyPreEmi > 0 ? `${formatINR(row.monthlyPreEmi)}/mo` : '₹0'}
                       </td>
                     )}
@@ -648,104 +841,202 @@ export default function ClpCalculator({ setResultText }) {
             </tbody>
           </table>
         </div>
+        <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '8px' }}>
+          * Estimates only. Assumes the bank disburses your loan tranche stage-wise once your own contribution is exhausted, with approximately {monthsPerStage} months between stages. Actual disbursement and GST treatment depend on your builder's registered agreement and your lender's sanction letter.
+        </p>
       </div>
 
-      {/* SEO & Knowledge Guide Section */}
+      {/* Comprehensive SEO & Knowledge Guide Section */}
       <div className="calculator-guide-section no-print" style={{ marginTop: '40px' }}>
-        <h2 style={{ fontSize: '22px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '700' }}>
-          Understanding Construction Linked Plans (CLP) in India & Maharashtra (MahaRERA)
+        <h2 style={{ fontSize: '24px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '800' }}>
+          Complete Guide to Construction Linked Plans (CLP) in Indian Real Estate
         </h2>
 
+        {/* Section 1: What is a CLP */}
+        <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px', fontWeight: '700' }}>
+            What Is a Construction Linked Plan (CLP)?
+          </h3>
+          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: '0 0 12px 0' }}>
+            A <strong>Construction Linked Plan (CLP)</strong> is the most widely used and legally protected payment structure for under-construction property in India. Instead of paying the full price at booking or within a fixed 30-to-60 day window, you pay in instalments that are released <strong>only when the builder finishes a defined physical construction stage</strong> — foundation, plinth, individual floor slabs, brickwork, plaster, finishing, and finally possession.
+          </p>
+          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: 0 }}>
+            This linkage directly protects the homebuyer against developer default. If the builder stalls after the plinth stage, your financial exposure is strictly limited to what you have paid up to the plinth stage, rather than the entire property cost. That is why <strong>RERA (Real Estate Regulatory Authority)</strong> mandates that every registered project disclose its detailed CLP schedule in Annexure-A of the registered Agreement for Sale.
+          </p>
+        </div>
+
+        {/* Section 2: How Home Loan Tranche Disbursals Work */}
+        <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px', fontWeight: '700' }}>
+            How Home Loan Disbursement & Pre-EMI Works Under a CLP
+          </h3>
+          <p style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', margin: '0 0 12px 0' }}>
+            When a property purchase is funded by a home loan, leading banks (SBI, HDFC Bank, ICICI Bank, Axis Bank, Bank of Baroda) do <strong>not</strong> disburse the entire loan upfront. Instead, the process works as follows:
+          </p>
+          <ol style={{ fontSize: '14px', color: 'var(--text-main)', lineHeight: '1.7', paddingLeft: '20px', margin: '0 0 14px 0' }}>
+            <li><strong>Own Contribution (Margin Money) First:</strong> The buyer pays the initial 10% to 20% down payment from personal funds across the booking, agreement, and initial foundation stages.</li>
+            <li><strong>Stage-Wise Bank Disbursals:</strong> Once your margin money is fully paid, the bank sends an independent technical valuer to verify physical on-site slab completion before releasing each loan tranche.</li>
+            <li><strong>Pre-EMI (Simple Interest Only):</strong> During construction, you pay simple interest <em>only</em> on the actual loan amount disbursed to date, rather than the full sanctioned loan amount.</li>
+            <li><strong>Conversion to Full EMI:</strong> Upon receipt of the Occupancy Certificate (OC) and handover of keys, the bank disburses the final loan tranche and your regular amortized EMI (Principal + Interest) begins.</li>
+          </ol>
+        </div>
+
+        {/* Section 3: Comparison Table - CLP vs DPP vs PLP vs Flexi */}
+        <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '700' }}>
+            Real Estate Payment Plans Comparison: CLP vs Down Payment vs PLP vs Flexi
+          </h3>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+              <thead>
+                <tr style={{ backgroundColor: '#f1f5f9', borderBottom: '2px solid #cbd5e1' }}>
+                  <th style={{ padding: '10px 12px', textAlign: 'left', fontWeight: '700' }}>Payment Plan</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'left', fontWeight: '700' }}>Payment Schedule</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'left', fontWeight: '700' }}>Risk Level</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'left', fontWeight: '700' }}>Builder Discount</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'left', fontWeight: '700' }}>Best Suited For</th>
+                </tr>
+              </thead>
+              <tbody style={{ divideY: '1px solid #e2e8f0' }}>
+                <tr style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#f0fdf4' }}>
+                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Construction Linked (CLP)</td>
+                  <td style={{ padding: '10px 12px' }}>Spread across 7 to 35 verified stages</td>
+                  <td style={{ padding: '10px 12px', color: '#166534', fontWeight: '600' }}>Lowest Risk</td>
+                  <td style={{ padding: '10px 12px' }}>Standard Price</td>
+                  <td style={{ padding: '10px 12px' }}>End-use homebuyers & salaried buyers</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Down Payment Plan (DPP)</td>
+                  <td style={{ padding: '10px 12px' }}>10% booking, 80-90% within 30-60 days</td>
+                  <td style={{ padding: '10px 12px', color: '#dc2626', fontWeight: '600' }}>High Risk</td>
+                  <td style={{ padding: '10px 12px', color: '#166534', fontWeight: '600' }}>5% to 8% Discount</td>
+                  <td style={{ padding: '10px 12px' }}>High-liquidity investors with Tier-1 builders</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Possession Linked Plan (PLP)</td>
+                  <td style={{ padding: '10px 12px' }}>20% booking, 80% on possession</td>
+                  <td style={{ padding: '10px 12px', color: '#166534', fontWeight: '600' }}>Low Risk</td>
+                  <td style={{ padding: '10px 12px' }}>Premium Price (2-5% higher)</td>
+                  <td style={{ padding: '10px 12px' }}>Buyers currently paying heavy house rent</td>
+                </tr>
+                <tr>
+                  <td style={{ padding: '10px 12px', fontWeight: '700', color: 'var(--brand-navy)' }}>Flexi Plan (e.g. 10:80:10)</td>
+                  <td style={{ padding: '10px 12px' }}>10% booking, bank subvention, 10% possession</td>
+                  <td style={{ padding: '10px 12px', color: '#d97706', fontWeight: '600' }}>Moderate Risk</td>
+                  <td style={{ padding: '10px 12px' }}>Moderate Price</td>
+                  <td style={{ padding: '10px 12px' }}>Buyers seeking low initial cash outflows</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Section 4: GST & RERA Regulations */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '24px' }}>
-          <div className="guide-card" style={{ background: '#f8fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
             <h4 style={{ color: 'var(--brand-navy)', fontSize: '16px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Building2 size={18} className="text-primary" /> What is a Construction Linked Payment Plan (CLP)?
+              <ShieldCheck size={18} className="text-primary" /> RERA Section 13 (10% Advance Cap)
             </h4>
             <p style={{ fontSize: '13px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-              A <strong>Construction Linked Plan (CLP)</strong> is the standard, legally regulated payment structure in Indian real estate. Instead of paying upfront or on arbitrary calendar dates, the buyer and lending bank release payments in <strong>staged tranches linked strictly to verified on-site construction milestones</strong> (e.g. Plinth, 5th Floor Slab, Brickwork, Plaster, Possession).
+              Under <strong>Section 13 of the RERA Act 2016</strong>, no promoter or builder can demand or accept more than <strong>10% of the flat value</strong> as an advance payment or application fee without first executing and registering a written <strong>Agreement for Sale</strong>. Demanding higher sums before registration is a statutory violation.
             </p>
           </div>
 
-          <div className="guide-card" style={{ background: '#f8fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
             <h4 style={{ color: 'var(--brand-navy)', fontSize: '16px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Sparkles size={18} className="text-primary" /> MahaRERA Section 13 (10% Advance Cap)
+              <DollarSign size={18} className="text-primary" /> GST Rates on Under-Construction Property
             </h4>
             <p style={{ fontSize: '13px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-              Under <strong>Section 13 of the RERA Act 2016</strong> and MahaRERA rules, a builder or promoter <strong>cannot accept more than 10%</strong> of the flat cost as an advance or booking amount without executing and registering a written <strong>Agreement for Sale</strong>. Demanding more than 10% prior to registration is illegal.
+              • <strong>Standard Residential:</strong> 5% GST without Input Tax Credit (ITC).<br />
+              • <strong>Affordable Housing:</strong> 1% GST without ITC (properties up to ₹45 Lakhs with carpet area ≤60 sq.m in metros or ≤90 sq.m in non-metros).<br />
+              • <strong>Ready-to-Move Properties:</strong> 0% GST (Zero GST applies once the Occupancy Certificate is issued).
             </p>
           </div>
         </div>
 
-        {/* Pre-EMI vs Full-EMI comparison */}
+        {/* Section 5: Pre-EMI vs Full EMI comparison */}
         <div style={{ background: '#ffffff', padding: '24px', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px' }}>
-            Pre-EMI Interest vs Full-EMI: Which is Best for Under-Construction Flats?
+          <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px', fontWeight: '700' }}>
+            Pre-EMI vs Full-EMI: Which Loan Repayment Method Should You Choose?
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginTop: '12px' }}>
             <div style={{ background: '#f0fdf4', padding: '16px', borderRadius: '6px', border: '1px solid #bbf7d0' }}>
-              <h5 style={{ color: '#166534', margin: '0 0 6px 0', fontSize: '14px' }}>Pre-EMI Interest Only</h5>
-              <p style={{ fontSize: '12px', color: 'var(--text-main)', lineHeight: '1.5', margin: 0 }}>
-                • You pay simple interest only on the actual loan amount disbursed by the bank so far.<br />
-                • Lower initial monthly cash outgo while you may still be paying house rent.<br />
-                • <em>Note:</em> Principal loan balance remains unchanged until full possession.
+              <h5 style={{ color: '#166534', margin: '0 0 6px 0', fontSize: '14px', fontWeight: '700' }}>Option A: Pre-EMI Interest Only</h5>
+              <p style={{ fontSize: '12px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+                • <strong>How it works:</strong> You pay simple interest only on the loan amount disbursed to date.<br />
+                • <strong>Advantage:</strong> Much lower monthly cash outflow while paying rent for your existing home.<br />
+                • <strong>Drawback:</strong> Loan principal remains unchanged during construction, meaning total interest paid over 20 years is higher.
               </p>
             </div>
             <div style={{ background: '#eff6ff', padding: '16px', borderRadius: '6px', border: '1px solid #bfdbfe' }}>
-              <h5 style={{ color: '#1e40af', margin: '0 0 6px 0', fontSize: '14px' }}>Full Tranche EMI (Principal + Interest)</h5>
-              <p style={{ fontSize: '12px', color: 'var(--text-main)', lineHeight: '1.5', margin: 0 }}>
-                • You start repaying both principal and interest from the day the first tranche is released.<br />
-                • Significantly reduces total interest paid over the 20-year loan tenure.<br />
-                • Recommended if you have surplus monthly disposable income.
+              <h5 style={{ color: '#1e40af', margin: '0 0 6px 0', fontSize: '14px', fontWeight: '700' }}>Option B: Full Tranche EMI</h5>
+              <p style={{ fontSize: '12px', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+                • <strong>How it works:</strong> You start paying full EMI (principal + interest) on each disbursed tranche immediately.<br />
+                • <strong>Advantage:</strong> Saves substantial interest cost over the loan lifecycle and reduces total tenure.<br />
+                • <strong>Drawback:</strong> Higher monthly cash outflow while the property is still under construction.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Homebuyer Checklist */}
-        <div style={{ background: '#fffbeb', padding: '20px', borderRadius: '8px', border: '1px solid #fde68a', marginBottom: '24px' }}>
-          <h4 style={{ color: '#92400e', fontSize: '16px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <AlertCircle size={18} /> Homebuyer Checklist: Before Paying a Builder Demand Letter
-          </h4>
-          <ul style={{ fontSize: '13px', color: '#78350f', lineHeight: '1.6', paddingLeft: '20px', margin: 0 }}>
-            <li><strong>Architect Certificate:</strong> Verify that the demand letter is accompanied by a certified Architect Stage Completion Certificate.</li>
-            <li><strong>MahaRERA Project Progress:</strong> Check the quarterly progress report (QPR) on the official MahaRERA portal (`maharera.maharashtra.gov.in`).</li>
-            <li><strong>Bank Verification:</strong> When taking a home loan, your bank will dispatch a technical valuer to verify physical slab completion before releasing funds.</li>
-            <li><strong>70% Escrow Account:</strong> Ensure payments are made strictly to the RERA Designated Bank Escrow Account mentioned in your registered Agreement for Sale.</li>
-          </ul>
+        {/* Section 6: Interactive FAQs Accordion */}
+        <div style={{ marginTop: '32px' }}>
+          <h3 style={{ fontSize: '20px', color: 'var(--brand-navy)', marginBottom: '16px', fontWeight: '700' }}>
+            Frequently Asked Questions (FAQs) on Construction Linked Plans
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div
+                  key={index}
+                  style={{
+                    background: '#f8fafc',
+                    borderRadius: '8px',
+                    border: '1px solid #e2e8f0',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    style={{
+                      width: '100%',
+                      padding: '14px 18px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      color: 'var(--brand-navy)'
+                    }}
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      size={18}
+                      style={{
+                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.2s ease',
+                        color: 'var(--text-muted)',
+                        flexShrink: 0
+                      }}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div style={{ padding: '0 18px 16px 18px', fontSize: '13px', color: 'var(--text-main)', lineHeight: '1.6' }}>
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* FAQs */}
-        <h3 style={{ fontSize: '18px', color: 'var(--brand-navy)', marginBottom: '12px' }}>
-          Frequently Asked Questions (FAQs) on CLP Calculators
-        </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <details style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '6px', border: '1px solid #e2e8f0', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: '600', color: 'var(--brand-navy)', fontSize: '14px' }}>
-              How is the slab-by-slab percentage calculated in high-rise buildings?
-            </summary>
-            <p style={{ fontSize: '13px', color: 'var(--text-main)', marginTop: '8px', lineHeight: '1.5', margin: 0 }}>
-              In multi-storey towers (e.g. 5 to 60 floors), the RCC structural slab casting stage represents approximately 25% to 35% of the total flat cost. This percentage is distributed across floor slabs.
-            </p>
-          </details>
-
-          <details style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '6px', border: '1px solid #e2e8f0', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: '600', color: 'var(--brand-navy)', fontSize: '14px' }}>
-              Can the builder demand 100% payment before receiving the Occupancy Certificate (OC)?
-            </summary>
-            <p style={{ fontSize: '13px', color: 'var(--text-main)', marginTop: '8px', lineHeight: '1.5', margin: 0 }}>
-              No. Under standard RERA norms, the final 5% (and sometimes the finishing 5%) is payable only upon the receipt of the Occupancy Certificate (OC) or Completion Certificate (CC) and intimation of possession.
-            </p>
-          </details>
-
-          <details style={{ background: '#f8fafc', padding: '12px 16px', borderRadius: '6px', border: '1px solid #e2e8f0', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: '600', color: 'var(--brand-navy)', fontSize: '14px' }}>
-              What happens if construction is delayed? Do I still pay Pre-EMI?
-            </summary>
-            <p style={{ fontSize: '13px', color: 'var(--text-main)', marginTop: '8px', lineHeight: '1.5', margin: 0 }}>
-              If construction is halted, the bank does not release further milestone tranches. However, you must continue paying the monthly Pre-EMI interest on the amount already disbursed to date. Under MahaRERA, if possession is delayed beyond the agreed date, the promoter is liable to pay you monthly interest at SBI MCLR + 2% for every month of delay.
-            </p>
-          </details>
-        </div>
       </div>
     </div>
   );

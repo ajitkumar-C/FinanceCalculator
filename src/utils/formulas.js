@@ -420,17 +420,26 @@ export function calculateCompoundInterest(principal, rate, compoundingFrequency,
 
 // 13. Construction Linked Plan (CLP) Real Estate Milestones & Calculator
 export const CLP_PRESETS = {
-  MAHARERA_10_STAGE: [
-    { name: 'Booking Amount / Application (RERA Max 10%)', pct: 10.0 },
-    { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
-    { name: 'Completion of Plinth / Foundation Stage', pct: 15.0 },
-    { name: 'Completion of Slabs (Spread across all floors)', pct: 25.0 },
-    { name: 'Completion of Brickwork, Walls & Internal Plaster', pct: 5.0 },
-    { name: 'Completion of Sanitary, Plumbing & Door Frames', pct: 5.0 },
-    { name: 'Completion of External Plaster, Elevation & Terraces', pct: 5.0 },
-    { name: 'Completion of Lifts, Water Pumps, Electrical & MEP', pct: 5.0 },
-    { name: 'Finishing of Lobbies, Paving & Common Amenities', pct: 5.0 },
-    { name: 'On Intimation of Possession / Occupancy Certificate', pct: 5.0 }
+  STANDARD_10_STAGE: [
+    { name: 'Booking Amount', pct: 10.0 },
+    { name: 'On Allotment / Agreement to Sell', pct: 10.0 },
+    { name: 'On Completion of Foundation', pct: 10.0 },
+    { name: 'On Completion of Plinth', pct: 10.0 },
+    { name: 'On Completion of 1st Slab', pct: 10.0 },
+    { name: 'On Completion of Superstructure', pct: 15.0 },
+    { name: 'On Completion of Brickwork', pct: 10.0 },
+    { name: 'On Internal Plaster & Flooring', pct: 10.0 },
+    { name: 'On External Finishing & Fittings', pct: 10.0 },
+    { name: 'On Possession / Registration', pct: 5.0 }
+  ],
+  COMPRESSED_18_MONTH: [
+    { name: 'Booking Amount', pct: 10.0 },
+    { name: 'On Agreement to Sell', pct: 15.0 },
+    { name: 'On Completion of Plinth / Foundation', pct: 15.0 },
+    { name: 'On Completion of RCC Slabs', pct: 25.0 },
+    { name: 'On Brickwork & Internal Plaster', pct: 15.0 },
+    { name: 'On External Finishing & Fittings', pct: 15.0 },
+    { name: 'On Possession / Handover', pct: 5.0 }
   ]
 };
 
@@ -440,7 +449,7 @@ export function generateBuildingMilestones(totalFloors = 20, slabInterval = 1) {
   const interval = Math.max(1, Math.min(floors, Math.round(slabInterval)));
 
   const milestones = [
-    { name: 'Booking Amount / Application Fee', pct: 10.0 },
+    { name: 'Booking Amount / Application Fee (RERA Max 10%)', pct: 10.0 },
     { name: 'Execution & Registration of Agreement of Sale', pct: 20.0 },
     { name: 'Completion of Plinth / Foundation Stage', pct: 5.0 },
     { name: 'Completion of Raft / Podium Level', pct: 8.0 },
@@ -505,18 +514,19 @@ function getOrdinal(n) {
 }
 
 export function calculateCLP(
-  flatCost = 7500000,
+  flatCost = 8000000,
   currentStageIndex = 0,
   milestones = [],
   hasLoan = true,
   loanPct = 80,
   annualInterestRate = 8.5,
   loanTenureYears = 20,
+  monthsPerStage = 3,
   stampDutyPct = 6.0,
   regFee = 30000,
   gstPct = 5.0
 ) {
-  const activeMilestones = milestones && milestones.length > 0 ? milestones : CLP_PRESETS.MAHARERA_10_STAGE;
+  const activeMilestones = milestones && milestones.length > 0 ? milestones : CLP_PRESETS.STANDARD_10_STAGE;
   const totalFlatCost = Number(flatCost) || 0;
   const buyerMarginPct = Math.max(0, 100 - loanPct);
   const totalLoanSanctioned = hasLoan ? (totalFlatCost * loanPct) / 100 : 0;
@@ -526,6 +536,7 @@ export function calculateCLP(
   let cumulativeCost = 0;
   let cumulativeLoanDisbursed = 0;
   let cumulativeBuyerPaid = 0;
+  let totalPreEmiInterestDuringConstruction = 0;
 
   const milestoneRows = activeMilestones.map((m, index) => {
     const stagePct = Number(m.pct) || 0;
@@ -563,6 +574,11 @@ export function calculateCLP(
       ? Math.round((cumulativeLoanDisbursed * (annualInterestRate / 100)) / 12)
       : 0;
 
+    // Accumulate total pre-EMI interest during construction (assuming monthsPerStage between stages)
+    if (index < activeMilestones.length - 1 && hasLoan && cumulativeLoanDisbursed > 0) {
+      totalPreEmiInterestDuringConstruction += monthlyPreEmi * monthsPerStage;
+    }
+
     const fullEmi = hasLoan && cumulativeLoanDisbursed > 0
       ? calculateEMI(cumulativeLoanDisbursed, annualInterestRate, loanTenureYears).emi
       : 0;
@@ -596,6 +612,11 @@ export function calculateCLP(
   const buyerPaidTillNow = currentStage ? (paidTillNow - bankDisbursedTillNow) : 0;
   const currentPreEmi = currentStage ? currentStage.monthlyPreEmi : 0;
 
+  // Post possession full EMI on total sanctioned loan
+  const postPossessionFullEmi = hasLoan && totalLoanSanctioned > 0
+    ? calculateEMI(totalLoanSanctioned, annualInterestRate, loanTenureYears).emi
+    : 0;
+
   // Taxes
   const stampDutyAmount = Math.round((stampDutyPct / 100) * totalFlatCost);
   const registrationAmount = Math.round(regFee);
@@ -615,6 +636,8 @@ export function calculateCLP(
     bankDisbursedTillNow,
     buyerPaidTillNow,
     currentPreEmi,
+    totalPreEmiInterestDuringConstruction,
+    postPossessionFullEmi,
     milestoneRows,
     taxes: {
       stampDutyPct,
