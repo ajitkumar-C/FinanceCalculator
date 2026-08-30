@@ -118,37 +118,103 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
 
           {/* Calculators Group */}
           <div>
-            <span className="menu-group-title">CALCULATORS</span>
-            <ul className="menu-list">
-              {filteredCalculators.map((calc) => {
-                const IconComponent = calc.icon;
-                const isActive = activeCalculator === calc.id;
-                return (
-                  <li key={calc.id} className="menu-item-wrapper">
-                    <a 
-                      href={`?calc=${calc.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        selectCalculator(calc.id);
-                      }}
-                      className={`menu-item-btn ${isActive ? 'active' : ''}`}
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
-                        <IconComponent size={18} />
-                      </div>
-                      <div className="menu-text-container">
-                        <span className="menu-item-name">{calc.name}</span>
-                        <span className="menu-item-desc">{calc.desc}</span>
-                      </div>
-                    </a>
-                  </li>
-                );
-              })}
-              {filteredCalculators.length === 0 && (
-                <li className="no-results-msg">No calculators found</li>
-              )}
-            </ul>
+            {searchTerm ? (
+              <>
+                <span className="menu-group-title">SEARCH RESULTS ({filteredCalculators.length})</span>
+                <ul className="menu-list">
+                  {filteredCalculators.map((calc) => {
+                    const IconComponent = calc.icon;
+                    const isActive = activeCalculator === calc.id;
+                    return (
+                      <li key={calc.id} className="menu-item-wrapper">
+                        <a 
+                          href={`?calc=${calc.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            selectCalculator(calc.id);
+                          }}
+                          className={`menu-item-btn ${isActive ? 'active' : ''}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
+                            <IconComponent size={18} />
+                          </div>
+                          <div className="menu-text-container">
+                            <span className="menu-item-name">{calc.name}</span>
+                            <span className="menu-item-desc">{calc.desc}</span>
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  })}
+                  {filteredCalculators.length === 0 && (
+                    <li className="no-results-msg">No calculators found</li>
+                  )}
+                </ul>
+              </>
+            ) : (
+              <>
+                {/* 1. Real Estate Group */}
+                <span className="menu-group-title" style={{ marginTop: '8px' }}>🏡 REAL ESTATE & PROPERTY</span>
+                <ul className="menu-list">
+                  {calculatorsList.filter(c => c.category === 'realestate').map((calc) => {
+                    const IconComponent = calc.icon;
+                    const isActive = activeCalculator === calc.id;
+                    return (
+                      <li key={calc.id} className="menu-item-wrapper">
+                        <a 
+                          href={`?calc=${calc.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            selectCalculator(calc.id);
+                          }}
+                          className={`menu-item-btn ${isActive ? 'active' : ''}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
+                            <IconComponent size={18} />
+                          </div>
+                          <div className="menu-text-container">
+                            <span className="menu-item-name">{calc.name}</span>
+                            <span className="menu-item-desc">{calc.desc}</span>
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                {/* 2. Financial & Investments Group */}
+                <span className="menu-group-title" style={{ marginTop: '20px' }}>📈 FINANCIAL & INVESTMENTS</span>
+                <ul className="menu-list">
+                  {calculatorsList.filter(c => c.category !== 'realestate').map((calc) => {
+                    const IconComponent = calc.icon;
+                    const isActive = activeCalculator === calc.id;
+                    return (
+                      <li key={calc.id} className="menu-item-wrapper">
+                        <a 
+                          href={`?calc=${calc.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            selectCalculator(calc.id);
+                          }}
+                          className={`menu-item-btn ${isActive ? 'active' : ''}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <div className={`menu-icon-container ${isActive ? 'active' : ''}`}>
+                            <IconComponent size={18} />
+                          </div>
+                          <div className="menu-text-container">
+                            <span className="menu-item-name">{calc.name}</span>
+                            <span className="menu-item-desc">{calc.desc}</span>
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
           </div>
 
           {/* Guides & Articles Group */}
