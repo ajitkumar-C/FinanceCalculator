@@ -36,6 +36,46 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://rupeebuddy.in/?calc=stampduty</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=capitalgains</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=carpetarea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=propertytax</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=rentalyield</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=brokerage</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=reralookup</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rupeebuddy.in/?calc=rentalagreement</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://rupeebuddy.in/?calc=emi</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

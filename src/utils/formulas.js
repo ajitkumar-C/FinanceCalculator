@@ -651,3 +651,314 @@ export function calculateCLP(
   };
 }
 
+// 14. Indian State Stamp Duty & Registration Rates
+export const STAMP_DUTY_RATES = {
+  MAHARASHTRA: { name: 'Maharashtra', male: 6.0, female: 5.0, joint: 5.5, regPct: 1.0, regCap: 30000, cess: 1.0, metroCess: true },
+  KARNATAKA: { name: 'Karnataka', male: 5.0, female: 5.0, joint: 5.0, regPct: 1.0, regCap: 0, cess: 0.5, metroCess: false },
+  DELHI: { name: 'Delhi', male: 6.0, female: 4.0, joint: 5.0, regPct: 1.0, regCap: 0, cess: 0, metroCess: false },
+  UTTAR_PRADESH: { name: 'Uttar Pradesh', male: 7.0, female: 6.0, joint: 6.5, regPct: 1.0, regCap: 0, cess: 0, metroCess: false },
+  HARYANA: { name: 'Haryana', male: 7.0, female: 5.0, joint: 6.0, regPct: 0, regCap: 50000, cess: 0, metroCess: false },
+  TAMIL_NADU: { name: 'Tamil Nadu', male: 7.0, female: 7.0, joint: 7.0, regPct: 2.0, regCap: 0, cess: 0, metroCess: false },
+  GUJARAT: { name: 'Gujarat', male: 4.9, female: 3.9, joint: 4.4, regPct: 1.0, regCap: 0, cess: 0, metroCess: false },
+  WEST_BENGAL: { name: 'West Bengal', male: 6.0, female: 6.0, joint: 6.0, regPct: 1.0, regCap: 0, cess: 0, metroCess: false },
+  TELANGANA: { name: 'Telangana', male: 6.0, female: 6.0, joint: 6.0, regPct: 1.5, regCap: 0, cess: 0.5, metroCess: false },
+  RAJASTHAN: { name: 'Rajasthan', male: 6.0, female: 5.0, joint: 5.5, regPct: 1.0, regCap: 0, cess: 0.5, metroCess: false },
+  KERALA: { name: 'Kerala', male: 8.0, female: 8.0, joint: 8.0, regPct: 2.0, regCap: 0, cess: 0, metroCess: false },
+  PUNJAB: { name: 'Punjab', male: 7.0, female: 6.0, joint: 6.5, regPct: 1.0, regCap: 0, cess: 0, metroCess: false },
+  MADHYA_PRADESH: { name: 'Madhya Pradesh', male: 7.5, female: 7.5, joint: 7.5, regPct: 3.0, regCap: 0, cess: 0, metroCess: false },
+  ANDHRA_PRADESH: { name: 'Andhra Pradesh', male: 5.0, female: 5.0, joint: 5.0, regPct: 1.0, regCap: 0, cess: 1.5, metroCess: false },
+  ODISHA: { name: 'Odisha', male: 5.0, female: 4.0, joint: 4.5, regPct: 2.0, regCap: 0, cess: 0, metroCess: false }
+};
+
+export function calculateStampDuty(stateKey = 'MAHARASHTRA', propertyPrice = 7500000, gender = 'male', isUrban = true) {
+  const price = Math.max(0, Number(propertyPrice) || 0);
+  const state = STAMP_DUTY_RATES[stateKey] || STAMP_DUTY_RATES.MAHARASHTRA;
+  
+  let rate = gender === 'female' ? state.female : gender === 'joint' ? state.joint : state.male;
+  if (!isUrban && stateKey === 'HARYANA') {
+    rate = Math.max(1, rate - 2.0); // Haryana rural discount
+  }
+
+  const baseStampDuty = Math.round((rate / 100) * price);
+  const cessAmount = state.cess > 0 ? Math.round((state.cess / 100) * price) : 0;
+  const totalStampDuty = baseStampDuty + cessAmount;
+
+  let registrationFee = 0;
+  if (state.regCap > 0 && state.regPct > 0) {
+    registrationFee = Math.min(state.regCap, Math.round((state.regPct / 100) * price));
+  } else if (state.regCap > 0 && state.regPct === 0) {
+    registrationFee = state.regCap;
+  } else if (state.regPct > 0) {
+    registrationFee = Math.round((state.regPct / 100) * price);
+  }
+
+  const totalGovtCharges = totalStampDuty + registrationFee;
+  const totalPropertyOutgo = price + totalGovtCharges;
+
+  return {
+    stateName: state.name,
+    propertyPrice: price,
+    appliedRate: rate,
+    cessRate: state.cess,
+    baseStampDuty,
+    cessAmount,
+    totalStampDuty,
+    registrationFee,
+    totalGovtCharges,
+    totalPropertyOutgo,
+    effectiveDutyPercentage: Number(((totalGovtCharges / (price || 1)) * 100).toFixed(2))
+  };
+}
+
+// 15. Cost Inflation Index (CII) Table & Property Capital Gains Engine
+export const CII_TABLE = {
+  '2001-02': 100, '2002-03': 105, '2003-04': 109, '2004-05': 113, '2005-06': 117,
+  '2006-07': 122, '2007-08': 129, '2008-09': 137, '2009-10': 148, '2010-11': 167,
+  '2011-12': 184, '2012-13': 200, '2013-14': 220, '2014-15': 240, '2015-16': 254,
+  '2016-17': 264, '2017-18': 272, '2018-19': 280, '2019-20': 289, '2020-21': 301,
+  '2021-22': 317, '2022-23': 331, '2023-24': 348, '2024-25': 363, '2025-26': 377, '2026-27': 392
+};
+
+export function calculatePropertyCapitalGains(
+  salePrice = 12000000,
+  purchasePrice = 5000000,
+  buyYear = '2014-15',
+  sellYear = '2024-25',
+  transferExpenses = 100000,
+  improvementCost = 200000,
+  exemptionSection54 = 0
+) {
+  const netSaleConsideration = Math.max(0, Number(salePrice) - Number(transferExpenses));
+  const buyCII = CII_TABLE[buyYear] || 100;
+  const sellCII = CII_TABLE[sellYear] || 363;
+
+  // Holding period check (years difference)
+  const buyYearNum = parseInt(buyYear.split('-')[0], 10);
+  const sellYearNum = parseInt(sellYear.split('-')[0], 10);
+  const holdingYears = Math.max(0, sellYearNum - buyYearNum);
+  const isLTCG = holdingYears >= 2; // In India, real estate holding > 24 months is LTCG
+
+  const indexedPurchaseCost = Math.round(purchasePrice * (sellCII / buyCII));
+  const indexedImprovementCost = Math.round(improvementCost * (sellCII / buyCII));
+  const totalIndexedCost = indexedPurchaseCost + indexedImprovementCost;
+
+  // Old Regime LTCG (20% with indexation)
+  const grossCapitalGainOld = Math.max(0, netSaleConsideration - totalIndexedCost);
+  const taxableGainOld = Math.max(0, grossCapitalGainOld - Number(exemptionSection54));
+  const baseTaxOld = isLTCG ? Math.round(taxableGainOld * 0.20) : Math.round(taxableGainOld * 0.30);
+  const cessOld = Math.round(baseTaxOld * 0.04);
+  const totalTaxOld = baseTaxOld + cessOld;
+
+  // Budget 2024 New Regime LTCG (12.5% without indexation)
+  const totalUnindexedCost = Number(purchasePrice) + Number(improvementCost);
+  const grossCapitalGainNew = Math.max(0, netSaleConsideration - totalUnindexedCost);
+  const taxableGainNew = Math.max(0, grossCapitalGainNew - Number(exemptionSection54));
+  const baseTaxNew = isLTCG ? Math.round(taxableGainNew * 0.125) : Math.round(taxableGainNew * 0.30);
+  const cessNew = Math.round(baseTaxNew * 0.04);
+  const totalTaxNew = baseTaxNew + cessNew;
+
+  // Better option analysis (Homeowners can choose whichever is lower for property acquired before July 23, 2024)
+  const taxSavings = Math.abs(totalTaxOld - totalTaxNew);
+  const recommendedRegime = totalTaxOld < totalTaxNew ? 'OLD_WITH_INDEXATION' : 'NEW_WITHOUT_INDEXATION';
+
+  return {
+    salePrice: Number(salePrice),
+    netSaleConsideration,
+    purchasePrice: Number(purchasePrice),
+    buyYear,
+    sellYear,
+    holdingYears,
+    isLTCG,
+    indexedPurchaseCost,
+    totalIndexedCost,
+    grossCapitalGainOld,
+    taxableGainOld,
+    totalTaxOld,
+    grossCapitalGainNew,
+    taxableGainNew,
+    totalTaxNew,
+    recommendedRegime,
+    taxSavings
+  };
+}
+
+// 16. Land Area Units Conversion & RERA Carpet Area Calculator
+export const AREA_CONVERSION_FACTORS = {
+  SQFT: 1,
+  SQMTR: 10.7639,
+  SQYD_GAJ: 9,
+  GUNTHA: 1089,
+  BIGHA_PUCCA: 27225, // Standard Pucca Bigha (North/West)
+  BIGHA_KACCHA: 9075,
+  MARLA: 272.25,
+  KANAL: 5445,
+  CENT: 435.6,
+  GROUND: 2400,
+  ACRE: 43560,
+  HECTARE: 107639
+};
+
+export function calculateAreaConversion(value = 1000, fromUnit = 'SQFT') {
+  const input = Number(value) || 0;
+  const fromFactor = AREA_CONVERSION_FACTORS[fromUnit] || 1;
+  const areaInSqFt = input * fromFactor;
+
+  return {
+    sqFt: Number(areaInSqFt.toFixed(2)),
+    sqMtr: Number((areaInSqFt / AREA_CONVERSION_FACTORS.SQMTR).toFixed(2)),
+    gaj: Number((areaInSqFt / AREA_CONVERSION_FACTORS.SQYD_GAJ).toFixed(2)),
+    guntha: Number((areaInSqFt / AREA_CONVERSION_FACTORS.GUNTHA).toFixed(4)),
+    bigha: Number((areaInSqFt / AREA_CONVERSION_FACTORS.BIGHA_PUCCA).toFixed(4)),
+    marla: Number((areaInSqFt / AREA_CONVERSION_FACTORS.MARLA).toFixed(2)),
+    kanal: Number((areaInSqFt / AREA_CONVERSION_FACTORS.KANAL).toFixed(4)),
+    cent: Number((areaInSqFt / AREA_CONVERSION_FACTORS.CENT).toFixed(2)),
+    ground: Number((areaInSqFt / AREA_CONVERSION_FACTORS.GROUND).toFixed(4)),
+    acre: Number((areaInSqFt / AREA_CONVERSION_FACTORS.ACRE).toFixed(4)),
+    hectare: Number((areaInSqFt / AREA_CONVERSION_FACTORS.HECTARE).toFixed(4))
+  };
+}
+
+export function calculateCarpetAreaLoading(superBuiltUpArea = 1200, loadingPct = 25, isReverse = false) {
+  const area = Number(superBuiltUpArea) || 0;
+  const loading = Number(loadingPct) || 0;
+
+  if (isReverse) {
+    // If user provided RERA Carpet Area and wants Super Built-up Area
+    const carpetArea = area;
+    const superArea = Math.round(carpetArea * (1 + loading / 100));
+    const commonArea = superArea - carpetArea;
+    return { carpetArea, superArea, commonArea, loadingPct: loading };
+  } else {
+    // If user provided Super Built-up and wants RERA Carpet Area
+    const superArea = area;
+    const carpetArea = Math.round(superArea / (1 + loading / 100));
+    const commonArea = superArea - carpetArea;
+    return { carpetArea, superArea, commonArea, loadingPct: loading };
+  }
+}
+
+// 17. Indian Municipal Property Tax Calculator
+export const MUNICIPAL_TAX_CONFIG = {
+  MUMBAI_BMC: { name: 'Mumbai (BMC / MCGM)', ratePct: 0.85, multiplier: 1.2 },
+  BANGALORE_BBMP: { name: 'Bangalore (BBMP - SAS Zone A/B)', ratePct: 0.65, multiplier: 1.0 },
+  DELHI_MCD: { name: 'Delhi (MCD - Category C/D)', ratePct: 0.70, multiplier: 1.1 },
+  PUNE_PMC: { name: 'Pune (PMC / PCMC)', ratePct: 0.55, multiplier: 1.0 },
+  HYDERABAD_GHMC: { name: 'Hyderabad (GHMC)', ratePct: 0.60, multiplier: 1.0 },
+  CHENNAI_GCC: { name: 'Chennai (GCC)', ratePct: 0.60, multiplier: 1.05 },
+  KOLKATA_KMC: { name: 'Kolkata (KMC)', ratePct: 0.75, multiplier: 1.0 },
+  AHMEDABAD_AMC: { name: 'Ahmedabad (AMC)', ratePct: 0.50, multiplier: 1.0 }
+};
+
+export function calculatePropertyTax(cityKey = 'MUMBAI_BMC', builtUpSqFt = 1000, ageYears = 5, isCommercial = false) {
+  const area = Number(builtUpSqFt) || 0;
+  const age = Number(ageYears) || 0;
+  const config = MUNICIPAL_TAX_CONFIG[cityKey] || MUNICIPAL_TAX_CONFIG.MUMBAI_BMC;
+
+  // Base rate per sqft annual unit value
+  let baseRatePerSqFt = isCommercial ? 45 : 22;
+  const usageMultiplier = isCommercial ? 2.2 : 1.0;
+  
+  // Depreciation based on age (max 40%)
+  const depreciationPct = Math.min(40, age * 1.5);
+  const depreciationFactor = (100 - depreciationPct) / 100;
+
+  const annualRataleValue = Math.round(area * baseRatePerSqFt * config.multiplier * usageMultiplier * depreciationFactor);
+  const propertyTax = Math.round((config.ratePct / 100) * annualRataleValue * 12);
+  const sewerageCess = Math.round(propertyTax * 0.08);
+  const educationCess = Math.round(propertyTax * 0.05);
+  const totalAnnualTax = propertyTax + sewerageCess + educationCess;
+
+  return {
+    cityName: config.name,
+    builtUpSqFt: area,
+    annualRataleValue,
+    propertyTax,
+    sewerageCess,
+    educationCess,
+    totalAnnualTax,
+    monthlyTax: Math.round(totalAnnualTax / 12),
+    depreciationPct
+  };
+}
+
+// 18. Real Estate Brokerage Commission & GST/TDS Calculator
+export function calculateBrokerage(
+  propertyValue = 8500000,
+  commissionRatePct = 2.0,
+  isRental = false,
+  rentMonths = 1,
+  includeGst = true,
+  deductTds = true
+) {
+  let baseCommission = 0;
+  if (isRental) {
+    // Rental commission based on monthly rent
+    baseCommission = Math.round(Number(propertyValue) * Number(rentMonths));
+  } else {
+    // Sale commission based on total property price
+    baseCommission = Math.round((Number(propertyValue) * Number(commissionRatePct)) / 100);
+  }
+
+  const gstAmount = includeGst ? Math.round(baseCommission * 0.18) : 0; // 18% GST
+  const invoiceTotal = baseCommission + gstAmount;
+  
+  // 5% TDS under Section 194H for broker commission
+  const tdsAmount = deductTds ? Math.round(baseCommission * 0.05) : 0;
+  const netPayableToBroker = invoiceTotal - tdsAmount;
+
+  return {
+    baseCommission,
+    gstAmount,
+    invoiceTotal,
+    tdsAmount,
+    netPayableToBroker,
+    isRental
+  };
+}
+
+// 19. Rental Yield & Property Investment ROI Calculator
+export function calculateRentalYield(
+  propertyCost = 7500000,
+  monthlyRent = 30000,
+  annualMaintenance = 36000,
+  propertyTax = 12000,
+  vacancyWeeks = 2,
+  expectedAppreciationRate = 6.0,
+  holdingYears = 10
+) {
+  const price = Math.max(1, Number(propertyCost));
+  const rent = Number(monthlyRent) || 0;
+  const annualGrossRent = rent * 12;
+
+  // Vacancy loss
+  const vacancyLoss = Math.round((annualGrossRent / 52) * Number(vacancyWeeks));
+  const effectiveRentCollected = Math.max(0, annualGrossRent - vacancyLoss);
+  
+  // Total operational expenses
+  const totalAnnualExpenses = Number(annualMaintenance) + Number(propertyTax);
+  const netAnnualRentalIncome = Math.max(0, effectiveRentCollected - totalAnnualExpenses);
+
+  const grossRentalYield = Number(((annualGrossRent / price) * 100).toFixed(2));
+  const netRentalYield = Number(((netAnnualRentalIncome / price) * 100).toFixed(2));
+
+  // 10-Year Future Capital Value Projection
+  const futurePropertyValue = Math.round(price * Math.pow(1 + expectedAppreciationRate / 100, holdingYears));
+  const totalCapitalGain = futurePropertyValue - price;
+  const totalRentalIncomeCollected = netAnnualRentalIncome * holdingYears;
+  const totalReturnOnInvestment = totalCapitalGain + totalRentalIncomeCollected;
+  const overallCagr = Number(((Math.pow((price + totalReturnOnInvestment) / price, 1 / holdingYears) - 1) * 100).toFixed(2));
+
+  return {
+    propertyCost: price,
+    annualGrossRent,
+    netAnnualRentalIncome,
+    grossRentalYield,
+    netRentalYield,
+    futurePropertyValue,
+    totalCapitalGain,
+    totalRentalIncomeCollected,
+    totalReturnOnInvestment,
+    overallCagr
+  };
+}
+

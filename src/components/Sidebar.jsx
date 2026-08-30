@@ -2,23 +2,35 @@ import React, { useState } from 'react';
 import { 
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
-  Building2, Search, X, Menu, Calculator, Home, Info, Mail, BookOpen
+  Building2, Search, X, Menu, Calculator, Home, Info, Mail, BookOpen,
+  MapPin, Layers, Scale, DollarSign, Key
 } from 'lucide-react';
 
 export const calculatorsList = [
-  { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText },
-  { id: 'emi', name: 'EMI Calculator (Home/Car/Personal)', desc: 'Estimate loan payments instantly', icon: Percent },
-  { id: 'eligibility', name: 'Loan Eligibility Calculator', desc: 'FOIR-based eligible loan checker', icon: UserCheck },
-  { id: 'clp', name: 'Construction Linked Plan Calculator', desc: 'Slab-wise payment & Pre-EMI schedule', icon: Building2 },
-  { id: 'ppf', name: 'PPF Calculator (Public Provident Fund)', desc: 'Calculate PPF tax-free interest', icon: Shield },
-  { id: 'pf', name: 'EPF / PF Calculator (Provident Fund)', desc: 'Estimate EPF balance & interest online', icon: Briefcase },
-  { id: 'sip', name: 'SIP Investment Plan Calculator', desc: 'Calculate Systematic Investment returns', icon: TrendingUp },
-  { id: 'fd', name: 'FD Calculator (Fixed Deposit Interest)', desc: 'Calculate FD compounding returns', icon: Lock },
-  { id: 'rd', name: 'RD Calculator (Recurring Deposit)', desc: 'Calculate monthly savings maturity', icon: CalendarClock },
-  { id: 'nps', name: 'NPS Calculator (National Pension Scheme)', desc: 'Estimate retirement pension corpus', icon: HeartHandshake },
-  { id: 'retirement', name: 'Retirement Planner & Pension Calculator', desc: 'Inflation-adjusted savings target', icon: Sunset },
-  { id: 'mutualfund', name: 'Mutual Fund Lumpsum Calculator', desc: 'SIP & Lumpsum returns compounding', icon: Coins },
-  { id: 'compound', name: 'Compound Interest Calculator', desc: 'Daily/monthly compounding calculator', icon: Sparkles }
+  // Financial & Investment Suite
+  { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText, category: 'tax' },
+  { id: 'emi', name: 'EMI Calculator (Home/Car/Personal)', desc: 'Estimate loan payments instantly', icon: Percent, category: 'loan' },
+  { id: 'eligibility', name: 'Loan Eligibility Calculator', desc: 'FOIR-based eligible loan checker', icon: UserCheck, category: 'loan' },
+  { id: 'sip', name: 'SIP Investment Plan Calculator', desc: 'Calculate Systematic Investment returns', icon: TrendingUp, category: 'investment' },
+  { id: 'ppf', name: 'PPF Calculator (Public Provident Fund)', desc: 'Calculate PPF tax-free interest', icon: Shield, category: 'investment' },
+  { id: 'pf', name: 'EPF / PF Calculator (Provident Fund)', desc: 'Estimate EPF balance & interest online', icon: Briefcase, category: 'investment' },
+  { id: 'mutualfund', name: 'Mutual Fund Lumpsum Calculator', desc: 'SIP & Lumpsum returns compounding', icon: Coins, category: 'investment' },
+  { id: 'nps', name: 'NPS Calculator (National Pension Scheme)', desc: 'Estimate retirement pension corpus', icon: HeartHandshake, category: 'retirement' },
+  { id: 'retirement', name: 'Retirement Planner & Pension Calculator', desc: 'Inflation-adjusted savings target', icon: Sunset, category: 'retirement' },
+  { id: 'fd', name: 'FD Calculator (Fixed Deposit Interest)', desc: 'Calculate FD compounding returns', icon: Lock, category: 'investment' },
+  { id: 'rd', name: 'RD Calculator (Recurring Deposit)', desc: 'Calculate monthly savings maturity', icon: CalendarClock, category: 'investment' },
+  { id: 'compound', name: 'Compound Interest Calculator', desc: 'Daily/monthly compounding calculator', icon: Sparkles, category: 'investment' },
+
+  // Real Estate & Property Suite
+  { id: 'clp', name: 'Construction Linked Plan Calculator', desc: 'Slab-wise payment & Pre-EMI schedule', icon: Building2, category: 'realestate' },
+  { id: 'stampduty', name: 'Stamp Duty & Registration Calculator', desc: 'State-wise stamp duty & female concession', icon: MapPin, category: 'realestate' },
+  { id: 'capitalgains', name: 'Property Capital Gains Tax Calculator', desc: 'Budget 2024 (20% with CII vs 12.5% flat)', icon: DollarSign, category: 'realestate' },
+  { id: 'carpetarea', name: 'Carpet Area & Land Unit Converter', desc: 'RERA Carpet area, loading % & Gaj/Guntha', icon: Layers, category: 'realestate' },
+  { id: 'propertytax', name: 'Property Tax Calculator', desc: 'Municipal property tax for Mumbai, Delhi, BLR', icon: Scale, category: 'realestate' },
+  { id: 'rentalyield', name: 'Rental Yield & Property ROI', desc: 'Gross/Net rental yield & 10-Yr CAGR growth', icon: TrendingUp, category: 'realestate' },
+  { id: 'brokerage', name: 'Brokerage Commission & TDS/GST', desc: 'Sale/Rent broker fee with 18% GST & 5% TDS', icon: Percent, category: 'realestate' },
+  { id: 'reralookup', name: 'RERA Project Lookup & Directory', desc: '20+ State RERAs & legal compliance check', icon: Shield, category: 'realestate' },
+  { id: 'rentalagreement', name: 'Rental Agreement Generator', desc: 'Instant legal 11-month rent agreement draft', icon: Key, category: 'realestate' }
 ];
 
 export default function Sidebar({ activeCalculator, setActiveCalculator, isMobileOpen, setIsMobileOpen }) {

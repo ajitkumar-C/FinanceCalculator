@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { calculatorsList } from '../Sidebar';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, Building2, Shield, Percent, Sparkles, Layers } from 'lucide-react';
 
 const buttonLabels = {
+  tax: 'Compare Tax Savings',
   emi: 'Calculate Loan EMI',
   eligibility: 'Check Loan Eligibility',
-  clp: 'Calculate Construction Linked Plan',
+  sip: 'Calculate SIP Growth',
   ppf: 'Calculate PPF Returns',
   pf: 'Estimate EPF Pension',
-  sip: 'Calculate SIP Growth',
-  fd: 'Calculate FD Interest',
-  rd: 'Calculate RD Interest',
+  mutualfund: 'Estimate MF Returns',
   nps: 'Estimate NPS Pension',
   retirement: 'Plan Retirement',
-  tax: 'Compare Tax Savings',
-  mutualfund: 'Estimate MF Returns',
-  compound: 'Calculate Compound Growth'
+  fd: 'Calculate FD Interest',
+  rd: 'Calculate RD Interest',
+  compound: 'Calculate Compound Growth',
+  clp: 'Calculate Construction Linked Plan',
+  stampduty: 'Calculate Stamp Duty',
+  capitalgains: 'Calculate Capital Gains Tax',
+  carpetarea: 'Convert Carpet & Land Area',
+  propertytax: 'Estimate Property Tax',
+  rentalyield: 'Calculate Rental Yield & ROI',
+  brokerage: 'Calculate Brokerage & GST',
+  reralookup: 'Search State RERA Portals',
+  rentalagreement: 'Draft Rental Agreement'
 };
 
 export default function Dashboard({ setActiveCalculator }) {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredList = selectedCategory === 'all'
+    ? calculatorsList
+    : calculatorsList.filter(c => c.category === selectedCategory);
+
   return (
     <div className="dashboard-container" style={{ padding: '4px 0' }}>
       {/* Hero Welcome banner */}
@@ -33,18 +47,18 @@ export default function Dashboard({ setActiveCalculator }) {
         overflow: 'hidden',
         border: '1px solid rgba(255, 255, 255, 0.1)'
       }}>
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px' }}>
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '640px' }}>
           <h1 style={{ color: 'white', fontSize: '32px', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.5px' }}>
-            Simplify Your Personal Finance
+            Smart Financial & Real Estate Tools for India
           </h1>
           <p style={{ fontSize: '15px', opacity: 0.85, lineHeight: '1.6', marginBottom: '24px' }}>
-            Calculate home loans, compare tax regimes, estimate mutual fund returns, plan retirement, and track government schemes instantly with our free tools.
+            Calculate home loans, compare tax regimes, estimate mutual fund returns, compute state stamp duty, and draft rental agreements instantly with 100% free browser-based tools.
           </p>
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a 
               href="?calc=tax"
               className="ad-btn" 
-              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveCalculator('tax');
@@ -53,9 +67,20 @@ export default function Dashboard({ setActiveCalculator }) {
               Compare Income Tax
             </a>
             <a 
+              href="?calc=stampduty"
+              className="ad-btn" 
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: '#d97706', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('stampduty');
+              }}
+            >
+              Calculate Stamp Duty
+            </a>
+            <a 
               href="?calc=sip"
               className="ad-btn" 
-              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 24px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveCalculator('sip');
@@ -81,13 +106,81 @@ export default function Dashboard({ setActiveCalculator }) {
         </div>
       </section>
 
-      {/* Grid of calculators */}
-      <h3 style={{ fontSize: '18px', marginBottom: '16px', color: 'var(--primary-color)' }}>
-        Explore Financial Calculators
-      </h3>
+      {/* Category Filter Tabs */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+        <h3 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--primary-color)', margin: 0 }}>
+          Explore Calculators & Tools ({filteredList.length})
+        </h3>
+        <div className="no-print" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            className={`quick-option-btn ${selectedCategory === 'all' ? 'active-filter' : ''}`}
+            onClick={() => setSelectedCategory('all')}
+            style={{
+              backgroundColor: selectedCategory === 'all' ? 'var(--brand-navy)' : '#ffffff',
+              color: selectedCategory === 'all' ? '#ffffff' : 'var(--text-main)',
+              fontWeight: '600',
+              border: '1px solid var(--border-color)',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              fontSize: '12px'
+            }}
+          >
+            All ({calculatorsList.length})
+          </button>
+          <button
+            type="button"
+            className={`quick-option-btn ${selectedCategory === 'realestate' ? 'active-filter' : ''}`}
+            onClick={() => setSelectedCategory('realestate')}
+            style={{
+              backgroundColor: selectedCategory === 'realestate' ? 'var(--brand-navy)' : '#ffffff',
+              color: selectedCategory === 'realestate' ? '#ffffff' : 'var(--text-main)',
+              fontWeight: '600',
+              border: '1px solid var(--border-color)',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              fontSize: '12px'
+            }}
+          >
+            🏡 Real Estate & Property (9)
+          </button>
+          <button
+            type="button"
+            className={`quick-option-btn ${selectedCategory === 'investment' ? 'active-filter' : ''}`}
+            onClick={() => setSelectedCategory('investment')}
+            style={{
+              backgroundColor: selectedCategory === 'investment' ? 'var(--brand-navy)' : '#ffffff',
+              color: selectedCategory === 'investment' ? '#ffffff' : 'var(--text-main)',
+              fontWeight: '600',
+              border: '1px solid var(--border-color)',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              fontSize: '12px'
+            }}
+          >
+            📈 Investments & Wealth
+          </button>
+          <button
+            type="button"
+            className={`quick-option-btn ${selectedCategory === 'loan' ? 'active-filter' : ''}`}
+            onClick={() => setSelectedCategory('loan')}
+            style={{
+              backgroundColor: selectedCategory === 'loan' ? 'var(--brand-navy)' : '#ffffff',
+              color: selectedCategory === 'loan' ? '#ffffff' : 'var(--text-main)',
+              fontWeight: '600',
+              border: '1px solid var(--border-color)',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              fontSize: '12px'
+            }}
+          >
+            💳 Loans & Eligibility
+          </button>
+        </div>
+      </div>
       
       <div className="calculators-grid">
-        {calculatorsList.map((calc) => {
+        {filteredList.map((calc) => {
           const Icon = calc.icon;
           return (
             <a 

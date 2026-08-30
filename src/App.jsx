@@ -46,6 +46,16 @@ const TaxCalculator = React.lazy(() => import('./components/calculators/TaxCalcu
 const MutualFundCalculator = React.lazy(() => import('./components/calculators/MutualFundCalculator'));
 const CompoundCalculator = React.lazy(() => import('./components/calculators/CompoundCalculator'));
 
+// Lazy load Real Estate & Property calculators
+const StampDutyCalculator = React.lazy(() => import('./components/calculators/StampDutyCalculator'));
+const CapitalGainsCalculator = React.lazy(() => import('./components/calculators/CapitalGainsCalculator'));
+const CarpetAreaCalculator = React.lazy(() => import('./components/calculators/CarpetAreaCalculator'));
+const PropertyTaxCalculator = React.lazy(() => import('./components/calculators/PropertyTaxCalculator'));
+const BrokerageCalculator = React.lazy(() => import('./components/calculators/BrokerageCalculator'));
+const RentalYieldCalculator = React.lazy(() => import('./components/calculators/RentalYieldCalculator'));
+const ReraLookupTool = React.lazy(() => import('./components/calculators/ReraLookupTool'));
+const RentalAgreementGenerator = React.lazy(() => import('./components/calculators/RentalAgreementGenerator'));
+
 // Lazy load static pages
 const AboutUs = React.lazy(() => import('./components/pages/AboutUs'));
 const PrivacyPolicy = React.lazy(() => import('./components/pages/PrivacyPolicy'));
@@ -63,10 +73,18 @@ const staticPages = {
 };
 
 const relatedMap = {
-  tax: ['sip', 'ppf', 'retirement'],
-  emi: ['clp', 'eligibility', 'tax'],
-  eligibility: ['clp', 'emi', 'compound'],
-  clp: ['emi', 'eligibility', 'tax'],
+  tax: ['sip', 'ppf', 'capitalgains'],
+  emi: ['clp', 'eligibility', 'stampduty'],
+  eligibility: ['clp', 'emi', 'rentalyield'],
+  clp: ['emi', 'stampduty', 'reralookup'],
+  stampduty: ['clp', 'emi', 'propertytax'],
+  capitalgains: ['tax', 'rentalyield', 'stampduty'],
+  carpetarea: ['clp', 'propertytax', 'reralookup'],
+  propertytax: ['stampduty', 'carpetarea', 'rentalyield'],
+  brokerage: ['stampduty', 'rentalagreement', 'rentalyield'],
+  rentalyield: ['brokerage', 'propertytax', 'rentalagreement'],
+  reralookup: ['clp', 'carpetarea', 'stampduty'],
+  rentalagreement: ['brokerage', 'rentalyield', 'stampduty'],
   ppf: ['pf', 'nps', 'sip'],
   pf: ['ppf', 'nps', 'retirement'],
   sip: ['mutualfund', 'compound', 'ppf'],
@@ -154,6 +172,22 @@ export default function App() {
         return <MutualFundCalculator setResultText={setResultText} />;
       case 'compound':
         return <CompoundCalculator setResultText={setResultText} />;
+      case 'stampduty':
+        return <StampDutyCalculator setResultText={setResultText} />;
+      case 'capitalgains':
+        return <CapitalGainsCalculator setResultText={setResultText} />;
+      case 'carpetarea':
+        return <CarpetAreaCalculator setResultText={setResultText} />;
+      case 'propertytax':
+        return <PropertyTaxCalculator setResultText={setResultText} />;
+      case 'brokerage':
+        return <BrokerageCalculator setResultText={setResultText} />;
+      case 'rentalyield':
+        return <RentalYieldCalculator setResultText={setResultText} />;
+      case 'reralookup':
+        return <ReraLookupTool />;
+      case 'rentalagreement':
+        return <RentalAgreementGenerator />;
       case 'blogs':
         return <Blogs setActiveCalculator={setActiveCalc} />;
       default:
