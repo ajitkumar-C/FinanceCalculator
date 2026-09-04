@@ -2163,6 +2163,577 @@ export default function Blogs({ setActiveCalculator }) {
           <p>Subscribe to the next SGB tranche at the <a href="https://rbiretaildirect.org.in/" target="_blank" rel="noopener noreferrer">RBI Retail Direct portal</a>.</p>
         </div>
       )
+    },
+    {
+      id: 'stamp-duty-rates-india',
+      title: 'State-Wise Stamp Duty & Property Registration Charges in India (2026 Guide)',
+      category: 'realestate',
+      readTime: '8 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Complete guide to stamp duty and registration charges across Maharashtra, Karnataka, Delhi, UP, Haryana, and Tamil Nadu with women concession discounts.',
+      targetCalc: 'stampduty',
+      ctaText: 'Calculate Stamp Duty & Registration Charges',
+      imgUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            When purchasing a home in India, the price on the builder's brochure is never your final outgo. <strong>Stamp Duty and Registration Charges</strong> are statutory state taxes levied on property transfer documents under the Indian Stamp Act, 1899. They represent one of the single largest upfront cash outflows for homebuyers, typically adding <strong>5% to 9%</strong> to the property's agreement value.
+          </p>
+
+          <h2>State-Wise Stamp Duty Rates Across Major Indian States</h2>
+          <p>
+            Because stamp duty is a state-level subject under the Indian Constitution, rates vary significantly from state to state. Here is the current rate structure for 2026:
+          </p>
+          <ul>
+            <li><strong>Maharashtra:</strong> 6% (5% Stamp Duty + 1% Local Body/Metro Cess in municipal corporation areas). Female buyers receive a 1% concession (5% total). Registration is 1% capped at ₹30,000 for properties above ₹30 Lakhs.</li>
+            <li><strong>Delhi:</strong> 6% for male buyers, 4% for female buyers (2% concession), and 5% for joint ownership (male + female). Registration fee is 1% with no cap.</li>
+            <li><strong>Karnataka:</strong> 5% standard stamp duty across Bangalore and urban centers, plus 0.5% surcharge. Registration fee is 1%.</li>
+            <li><strong>Uttar Pradesh (Noida / Lucknow):</strong> 7% for male buyers, 6% for female buyers (1% rebate up to ₹10 Lakhs value). Registration fee is 1%.</li>
+            <li><strong>Haryana (Gurugram / Faridabad):</strong> 7% in municipal areas (5% in rural areas) for males, 5% for females, 6% for joint ownership. Registration fee is slab-capped at ₹50,000.</li>
+            <li><strong>Tamil Nadu:</strong> 7% stamp duty plus 2% registration fee, bringing total statutory charges to 9%.</li>
+            <li><strong>Gujarat:</strong> 4.9% for male buyers. Female buyers are 100% exempt from base stamp duty (paying only local surcharges), making it 3.9%. Registration fee is 1%.</li>
+          </ul>
+
+          <h2>Real-World Calculation Example</h2>
+          <p>
+            Consider <strong>Sneha and Vikram</strong>, who are purchasing a 2 BHK apartment in Mumbai with an agreement value of <strong>₹80 Lakhs</strong>:
+          </p>
+          <ul>
+            <li><strong>Option A (Purchased in Vikram's Name - Male):</strong> 6% Stamp Duty = ₹4,80,000 + Registration Fee (capped) = ₹30,000. Total Govt Outgo = <strong>₹5,10,000</strong>.</li>
+            <li><strong>Option B (Purchased in Sneha's Name - Female):</strong> 5% Stamp Duty = ₹4,00,000 + Registration Fee = ₹30,000. Total Govt Outgo = <strong>₹4,30,000</strong>.</li>
+            <li><strong>Net Savings by Registering in Female Buyer's Name:</strong> <strong>₹80,000</strong> in instant upfront cash savings!</li>
+          </ul>
+
+          <h2>Section 80C Tax Benefits on Stamp Duty</h2>
+          <p>
+            Under Section 80C of the Income Tax Act, 1961, individual homebuyers can claim a deduction of up to <strong>₹1.5 Lakhs</strong> for stamp duty and registration fees paid during the financial year in which the property is registered, provided the property is not sold within 5 years of possession.
+          </p>
+
+          <h2>Common Myths Busted</h2>
+          <ul>
+            <li><strong>Myth 1: 'Stamp duty is calculated on the builder's quote rather than Ready Reckoner / Circle Rate.'</strong><br />False. Stamp duty is calculated on whichever is higher: the actual agreement price or the government's official Ready Reckoner Rate (Circle Rate).</li>
+            <li><strong>Myth 2: 'Home loans cover 100% of stamp duty and registration costs.'</strong><br />False. RBI mandates that banks can only fund the base agreement value (up to 80% to 90% LTV). Homebuyers must pay stamp duty and registration entirely from personal down payment savings.</li>
+            <li><strong>Myth 3: 'Under-construction properties do not attract stamp duty until possession.'</strong><br />False. Stamp duty must be paid at the time of executing and registering the Agreement for Sale (usually after 10% booking under RERA Section 13).</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can stamp duty be paid online?</strong><br />A: Yes. All major states support Government Receipt Accounting System (GRAS / e-SBTR) and Stock Holding Corporation of India (SHCIL) e-stamping portals for digital payment.</li>
+            <li><strong>Q: Is stamp duty refundable if the booking is cancelled?</strong><br />A: Under the Maharashtra Stamp Act and most state laws, you can apply for a stamp duty refund within 6 months to 1 year of agreement cancellation, subject to a nominal deduction (typically 1% to 2% of the stamp duty amount).</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Check official Ready Reckoner rates and state stamp schedules on the <a href="https://igrmaharashtra.gov.in/" target="_blank" rel="noopener noreferrer">Maharashtra IGR Portal</a> and <a href="https://doris.delhigovt.nic.in/" target="_blank" rel="noopener noreferrer">Delhi Revenue Department</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'property-capital-gains-budget-2024',
+      title: 'Property Capital Gains Tax: Budget 2024 New 12.5% vs Old 20% Indexation Explained',
+      category: 'realestate',
+      readTime: '9 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Understand long-term capital gains tax on property sales after Budget 2024 amendments. Learn how the 12.5% flat rate compares with 20% CII indexation.',
+      targetCalc: 'capitalgains',
+      ctaText: 'Compare Property Capital Gains Regimes',
+      imgUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Union Budget 2024 introduced the most significant overhaul to Indian real estate taxation in decades. The statutory Long-Term Capital Gains (LTCG) tax rate on immovable property was slashed from <strong>20% to 12.5%</strong>, while the decades-old <strong>Cost Inflation Index (CII) indexation benefit</strong> was removed.
+          </p>
+          <p>
+            Following widespread representations from homeowners, the government introduced a crucial parliamentary amendment: for all immovable properties acquired <strong>before July 23, 2024</strong>, individual resident taxpayers have the legal freedom to compute tax under <em>both</em> regimes and pay whichever amount is lower!
+          </p>
+
+          <h2>Understanding Holding Periods: STCG vs LTCG</h2>
+          <p>
+            For land, residential houses, and commercial property in India, the holding period threshold is <strong>24 months (2 years)</strong>:
+          </p>
+          <ul>
+            <li><strong>Short-Term Capital Asset (Held ≤ 24 months):</strong> Gains are added directly to your total taxable income and taxed at your applicable slab rate (up to 30% + cess).</li>
+            <li><strong>Long-Term Capital Asset (Held &gt; 24 months):</strong> Gains qualify for concessional capital gains tax rates under Section 112.</li>
+          </ul>
+
+          <h2>Step-by-Step Mathematical Comparison</h2>
+          <p>
+            Let us analyze a real-world scenario. <strong>Ramesh</strong> bought a residential flat in FY 2012-13 for <strong>₹40 Lakhs</strong> (CII = 200) and sold it in FY 2024-25 for <strong>₹1.10 Crore</strong> (CII = 363).
+          </p>
+          <ul>
+            <li><strong>Option 1: Old Regime (20% with CII Indexation):</strong>
+              <ul>
+                <li>Indexed Purchase Cost = ₹40,00,000 × (363 / 200) = ₹72,60,000</li>
+                <li>Taxable Long-Term Capital Gain = ₹1,10,00,000 - ₹72,60,000 = ₹37,40,000</li>
+                <li>Tax Payable (20% + 4% Cess) = ₹7,48,000 + ₹29,920 = <strong>₹7,77,920</strong></li>
+              </ul>
+            </li>
+            <li><strong>Option 2: New Regime (12.5% Flat without Indexation):</strong>
+              <ul>
+                <li>Unindexed Purchase Cost = ₹40,00,000</li>
+                <li>Taxable Long-Term Capital Gain = ₹1,10,00,000 - ₹40,00,000 = ₹70,00,000</li>
+                <li>Tax Payable (12.5% + 4% Cess) = ₹8,75,000 + ₹35,000 = <strong>₹9,10,000</strong></li>
+              </ul>
+            </li>
+            <li><strong>Verdict for Ramesh:</strong> The Old Regime with Indexation saves Ramesh <strong>₹1,32,080</strong> in tax!</li>
+          </ul>
+
+          <h2>How to Completely Exempt Property Capital Gains Tax</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Section 54 (Reinvest in Another House):</strong> Reinvest the capital gain into purchasing another residential property within 1 year before or 2 years after sale, or construct within 3 years (exemption capped at ₹10 Crores).</li>
+            <li><strong>Section 54EC (54EC Capital Gains Bonds):</strong> Invest up to <strong>₹50 Lakhs</strong> within 6 months of sale into notified bonds issued by REC, PFC, NHAI, or IRFC with a 5-year lock-in earning ~5.25% p.a. interest.</li>
+            <li><strong>Capital Gains Account Scheme (CGAS):</strong> If you cannot buy a house before filing your ITR, deposit the unutilized gains into a CGAS account with a public sector bank to protect the exemption.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can I deduct transfer expenses and brokerage from the sale price?</strong><br />A: Yes. Real estate brokerage, legal documentation fees, and travel costs directly incurred for the sale can be subtracted from the gross sale consideration.</li>
+            <li><strong>Q: What if I renovated the house in 2018?</strong><br />A: Renovation costs incurred after April 1, 2001 qualify as 'Cost of Improvement' and can be indexed and deducted from capital gains upon producing valid architect/contractor bills.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Read the official capital gains provisions under Section 48 & Section 112 on the <a href="https://incometaxindia.gov.in/" target="_blank" rel="noopener noreferrer">Income Tax Department Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'construction-linked-plan-guide',
+      title: 'Construction Linked Plan (CLP) vs Down Payment: Which Property Payment Plan is Safest?',
+      category: 'realestate',
+      readTime: '7 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Master construction linked plan (CLP) milestone schedules, pre-EMI interest math, RERA 10% advance protection, and how to avoid builder default risks.',
+      targetCalc: 'clp',
+      ctaText: 'Calculate Your Construction Linked Plan Schedule',
+      imgUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            When purchasing an under-construction apartment from a builder, the payment structure you choose dictates both your monthly cash outflow and your financial risk. A <strong>Construction Linked Plan (CLP)</strong> is the gold standard real estate payment structure in India, legally linking every instalment to verified on-site structural progress.
+          </p>
+
+          <h2>Standard 10-Milestone Construction Linked Schedule</h2>
+          <p>
+            In standard Indian residential real estate governed by RERA, instalments are structured as follows:
+          </p>
+          <ul>
+            <li><strong>Stage 1 - Booking Token:</strong> 10% on booking application (Statutory advance cap under RERA Section 13).</li>
+            <li><strong>Stage 2 - Agreement for Sale:</strong> 10% upon registration of Agreement for Sale.</li>
+            <li><strong>Stage 3 - Foundation & Excavation:</strong> 10% upon completion of foundation piling.</li>
+            <li><strong>Stage 4 - Plinth Level:</strong> 10% upon completion of ground plinth casting.</li>
+            <li><strong>Stage 5 - 1st Floor Slab:</strong> 10% upon casting of first residential floor slab.</li>
+            <li><strong>Stage 6 - Superstructure Completion:</strong> 15% distributed across intermediate floor slabs.</li>
+            <li><strong>Stage 7 - Brickwork & Internal Plaster:</strong> 10% upon completion of wall masonry and plumbing conduits.</li>
+            <li><strong>Stage 8 - External Plaster & Flooring:</strong> 10% upon completion of exterior elevation plaster and vitrified flooring.</li>
+            <li><strong>Stage 9 - Lifts, Amenities & Painting:</strong> 10% upon installation of elevators, MEP wiring, and clubhouse.</li>
+            <li><strong>Stage 10 - Possession & Keys Handover:</strong> Remaining 5% upon receipt of Occupancy Certificate (OC).</li>
+          </ul>
+
+          <h2>How Pre-EMI Interest Saves Cash Flow for Salaried Homebuyers</h2>
+          <p>
+            When your purchase is loan-funded, the bank does not disburse the full loan upfront. You pay your 20% margin money across initial stages; thereafter, the bank disburses tranches stage-wise. During the 24-to-36 month construction period, you pay <strong>Pre-EMI (Simple Interest Only)</strong> strictly on the cumulative loan amount disbursed to date.
+          </p>
+          <p>
+            On an <strong>₹80 Lakh property with a ₹64 Lakh loan at 8.5% interest</strong>, your monthly Pre-EMI starts at just ₹4,500/month at foundation stage, gradually rising to ₹42,000/month as the building nears possession, allowing you to comfortably afford existing house rent.
+          </p>
+
+          <h2>CLP vs Down Payment Plan vs Possession Linked Plan (PLP)</h2>
+          <ul>
+            <li><strong>Construction Linked Plan (CLP):</strong> Lowest financial risk. If construction halts, payments halt. Best for salaried end-users.</li>
+            <li><strong>Down Payment Plan (DPP):</strong> 80-90% upfront in 30-60 days. Offers a 5-8% builder discount, but high capital risk if the project delays.</li>
+            <li><strong>Possession Linked Plan (PLP):</strong> 20% booking, 80% on possession. Zero Pre-EMI during construction, but property price is priced 3-6% higher.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What certificates must the builder provide before demanding a slab instalment?</strong><br />A: Under RERA, every demand notice must be accompanied by a milestone completion certificate signed by the project's licensed Architect and Structural Engineer.</li>
+            <li><strong>Q: Does GST apply on CLP instalments?</strong><br />A: Yes. Under-construction properties attract 5% GST (1% for affordable housing ≤₹45 Lakhs). Ready-to-move flats with an Occupancy Certificate are 0% GST.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Review standard model agreement clauses under RERA Section 13 on the <a href="https://maharera.mahaonline.gov.in/" target="_blank" rel="noopener noreferrer">MahaRERA Official Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'rera-carpet-area-vs-super-built-up',
+      title: 'RERA Carpet Area vs Built-Up vs Super Built-Up Area: How to Calculate Loading %',
+      category: 'realestate',
+      readTime: '8 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Learn how RERA defines usable carpet area, how builders calculate 25% to 35% loading, and convert square feet to Gaj, Guntha, Bigha, and Acres.',
+      targetCalc: 'carpetarea',
+      ctaText: 'Convert Carpet Area & Land Units',
+      imgUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Prior to the implementation of RERA in 2016, real estate brochures were notorious for quoting inflated 'Super Built-Up Areas'. Homebuyers paying for a 1,200 sq.ft flat often found that their actual living room and bedroom floor space was less than 800 sq.ft! Understanding the legal definition of <strong>RERA Carpet Area</strong> is critical to ensuring you get what you pay for.
+          </p>
+
+          <h2>Key Property Area Definitions Under Indian Law</h2>
+          <ul>
+            <li><strong>RERA Carpet Area:</strong> The net usable floor area inside the apartment walls where a carpet can physically be laid. It <em>includes</em> internal partition walls but strictly <em>excludes</em> external walls, service shafts, exclusive balconies, and open terrace areas.</li>
+            <li><strong>Built-Up Area:</strong> Carpet area PLUS the thickness of external perimeter walls and enclosed balconies (typically 10% to 15% higher than carpet area).</li>
+            <li><strong>Super Built-Up Area (Saleable Area):</strong> Built-up area PLUS your proportionate share of common residential amenities — elevator shafts, staircases, lift lobbies, security cabins, generator rooms, and clubhouse.</li>
+          </ul>
+
+          <h2>Understanding Builder Loading Percentage Formula</h2>
+          <p>
+            The difference between Super Built-Up area and RERA Carpet area is called <strong>Loading</strong>:
+          </p>
+          <div style={{ padding: '14px', background: '#f8fafc', borderLeft: '4px solid #2563eb', margin: '14px 0', fontFamily: 'monospace' }}>
+            Loading % = [(Super Built-Up Area - RERA Carpet Area) / RERA Carpet Area] × 100
+          </div>
+          <p>
+            For example, if a 3 BHK has a Super Built-Up Area of <strong>1,500 sq.ft</strong> and a RERA Carpet Area of <strong>1,154 sq.ft</strong>, the loading is: [(1500 - 1154) / 1154] × 100 = <strong>30% Loading</strong>. In modern Indian high-rise towers with extensive clubhouse amenities, 25% to 32% loading is standard.
+          </p>
+
+          <h2>Indian Land Measurement Unit Conversions</h2>
+          <ul>
+            <li><strong>1 Gaj / Square Yard:</strong> = 9 Square Feet (0.836 Sq. Meters)</li>
+            <li><strong>1 Guntha:</strong> = 1,089 Square Feet (Standard in Maharashtra, Karnataka, Gujarat)</li>
+            <li><strong>1 Bigha (Pucca):</strong> = 27,225 Square Feet (≈ 25 Gunthas or 3,025 Gaj in North India)</li>
+            <li><strong>1 Acre:</strong> = 43,560 Square Feet (40 Gunthas or 4,840 Gaj)</li>
+            <li><strong>1 Hectare:</strong> = 1,07,639 Square Feet (2.47 Acres)</li>
+            <li><strong>1 Cent:</strong> = 435.6 Square Feet (Standard in Kerala and Tamil Nadu)</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can builders quote prices on Super Built-Up area under RERA?</strong><br />A: No. Section 4 of the RERA Act makes it mandatory for all registered promoters to quote and execute agreements strictly based on RERA Net Carpet Area.</li>
+            <li><strong>Q: Are balconies included in RERA Carpet Area?</strong><br />A: No. Balconies must be listed separately as 'Exclusive Balcony / Verandah Area' in the RERA cost sheet.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Check statutory area definitions in Section 2(k) of the <a href="https://mohua.gov.in/cms/the-real-estate-act-2016.php" target="_blank" rel="noopener noreferrer">Ministry of Housing and Urban Affairs (MoHUA) RERA Act</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'property-tax-calculation-india',
+      title: 'How Municipal Property Tax is Calculated in Indian Cities (BMC, BBMP, MCD, PMC)',
+      category: 'realestate',
+      readTime: '7 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'A comprehensive guide to annual municipal property taxes in Mumbai, Bangalore, Delhi, Pune, and Chennai using Capital Value and Unit Area Value methods.',
+      targetCalc: 'propertytax',
+      ctaText: 'Estimate Your Municipal Property Tax',
+      imgUrl: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Whether you own a self-occupied residential apartment, a commercial shop, or a vacant plot, paying annual <strong>Municipal Property Tax</strong> (House Tax) is a statutory obligation under local municipal corporation acts. These civic revenues fund local roads, sewage systems, street lighting, fire safety, and sanitation.
+          </p>
+
+          <h2>Primary Property Tax Calculation Methodologies in India</h2>
+          <ul>
+            <li><strong>1. Capital Value System (CVS):</strong> Used by <strong>BMC / MCGM Mumbai</strong>. Tax is a direct percentage of the market capital value of the property derived from the government's Annual Statement of Rates (Ready Reckoner Rate), adjusted for building age, structural type (RCC vs load-bearing), and occupancy (self-occupied vs tenanted).</li>
+            <li><strong>2. Unit Area Value (UAV) System:</strong> Used by <strong>MCD Delhi, BBMP Bangalore (SAS), and PMC Pune</strong>. The city is categorized into valuation zones (e.g. Categories A to H in Delhi or Zones A to F in Bangalore). Tax is calculated per square foot per month based on the designated base unit rate multiplied by built-up area and age depreciation factors.</li>
+            <li><strong>3. Annual Rental Value (ARV) / Rateable Value:</strong> Used by municipal bodies in Chennai (GCC) and Hyderabad (GHMC), based on the gross annual rent the property is reasonably expected to fetch.</li>
+          </ul>
+
+          <h2>Age Depreciation & Rebates</h2>
+          <p>
+            Older buildings receive building age depreciation deductions (typically 1.0% to 1.5% per year of age, up to a maximum cap of 40% to 60%), reducing the annual rateable value for older residential societies.
+          </p>
+
+          <h2>Online Municipal Portals for Instant Property Tax Payment</h2>
+          <ul>
+            <li><strong>Mumbai (BMC):</strong> Pay via the BMC Citizen Portal using your 15-digit Property Assessment / SAC Number.</li>
+            <li><strong>Bangalore (BBMP):</strong> Pay on the BBMP SAS Online portal using your 10-digit Property ID (PID) or SAS Application Number.</li>
+            <li><strong>Delhi (MCD):</strong> Pay on the Unified MCD Portal using your Unique Property Identification Code (UPIC).</li>
+            <li><strong>Pune (PMC / PCMC):</strong> Pay via the PMC Property Tax Online Self-Service portal.</li>
+          </ul>
+
+          <h2>Penalties for Delayed Payment</h2>
+          <p>
+            Most civic corporations levy a strict penal interest of <strong>1% to 2% per month (12% to 24% p.a.)</strong> on unpaid property tax arrears. Timely payment in April/May often earns an early bird rebate of 5% to 10%.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Who pays property tax when a flat is rented out — Landlord or Tenant?</strong><br />A: In India, property tax is the statutory liability of the property owner (Landlord), not the tenant, unless explicitly agreed otherwise in a commercial lease agreement.</li>
+            <li><strong>Q: Can property tax be deducted from rental income for income tax?</strong><br />A: Yes! Under Section 24(a) of the Income Tax Act, municipal taxes actually paid during the financial year are fully deductible from Gross Annual Rental Value before computing income from house property.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Calculate your assessment dues on the <a href="https://ptaxportal.mcgm.gov.in/" target="_blank" rel="noopener noreferrer">BMC Property Tax Portal</a> and <a href="https://bbmptax.karnataka.gov.in/" target="_blank" rel="noopener noreferrer">BBMP SAS Karnataka</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'real-estate-brokerage-gst-tds',
+      title: 'Real Estate Brokerage in India: Standard Commission Rates, 18% GST & 5% TDS Rules',
+      category: 'realestate',
+      readTime: '6 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Know the standard 1% to 2% property broker commissions in India, 18% GST agency billing, and Section 194H 5% TDS deduction norms.',
+      targetCalc: 'brokerage',
+      ctaText: 'Calculate Brokerage Commission, GST & TDS',
+      imgUrl: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Navigating property sale, purchase, or leasing in India almost always involves a professional real estate broker or channel partner. However, understanding standard industry commission benchmarks, the applicability of <strong>18% Goods and Services Tax (GST)</strong>, and statutory <strong>5% TDS deductions under Section 194H</strong> ensures complete transparency.
+          </p>
+
+          <h2>Standard Real Estate Commission Rates in India</h2>
+          <ul>
+            <li><strong>Property Sale / Resale:</strong> 1% to 2% of the total property agreement value charged individually to both the seller and the buyer. High-value luxury properties (&gt;₹5 Crores) typically negotiate flat 1% fees.</li>
+            <li><strong>New Developer Bookings (Primary Market):</strong> The buyer pays <strong>0% brokerage</strong>; the developer pays channel partner fees directly (ranging from 1.5% to 4% depending on sales volume).</li>
+            <li><strong>Residential Rental Leases:</strong> Standard brokerage is <strong>1 month's rent</strong> for an 11-month Leave & License agreement from both tenant and landlord.</li>
+            <li><strong>Commercial Leases (3 to 9 Years):</strong> Standard commission ranges from 1 to 2 months' gross rent.</li>
+          </ul>
+
+          <h2>18% GST on Real Estate Agency Invoices</h2>
+          <p>
+            Brokerage and real estate agency services fall under SAC Code 997222 and attract <strong>18% GST (9% CGST + 9% SGST)</strong> if the broker or real estate firm has an aggregate annual turnover exceeding ₹20 Lakhs.
+          </p>
+
+          <h2>Section 194H: 5% TDS Deduction on Brokerage</h2>
+          <p>
+            Under Section 194H of the Income Tax Act, any individual (subject to tax audit), corporate entity, or partnership making commission or brokerage payments exceeding <strong>₹15,000 in a financial year</strong> must deduct <strong>5% TDS</strong> at the time of payment.
+          </p>
+          <div style={{ padding: '14px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', margin: '14px 0' }}>
+            <strong>Sample Invoice Calculation on a ₹80 Lakh Deal at 2% Brokerage:</strong><br />
+            • Base Commission: ₹1,60,000<br />
+            • 18% GST Added: +₹28,800 (Invoice Total = ₹1,88,800)<br />
+            • 5% Section 194H TDS Deducted: -₹8,000<br />
+            • <strong>Net Payout Handed to Broker: ₹1,80,800</strong> (with Form 16A TDS certificate issued).
+          </div>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Must real estate brokers be registered with RERA?</strong><br />A: Yes. Under Section 9 of the RERA Act 2016, no real estate agent can facilitate the sale or purchase of any registered plot, apartment, or building without obtaining a valid RERA Agent Registration Number.</li>
+            <li><strong>Q: Can a broker demand cash commission?</strong><br />A: Demanding cash to evade GST and income tax is illegal. Always insist on formal GST invoice billing and bank transfer payment.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Verify broker licenses and agent conduct guidelines on the <a href="https://maharera.mahaonline.gov.in/" target="_blank" rel="noopener noreferrer">State RERA Agent Directory</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'rental-yield-property-roi-india',
+      title: 'Rental Yield in India: Residential vs Commercial ROI & How to Maximize Returns',
+      category: 'investment',
+      readTime: '8 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Analyze residential 3% rental yields vs commercial 8% cap rates, operational expense deductions, and 10-year compounding capital appreciation CAGR.',
+      targetCalc: 'rentalyield',
+      ctaText: 'Calculate Rental Yield & 10-Year ROI',
+      imgUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Real estate investing is driven by two distinct wealth engines: ongoing <strong>Rental Income (Cash Flow Yield)</strong> and long-term <strong>Capital Value Appreciation</strong>. In India, understanding how to calculate both Gross and Net Rental Yield is essential before committing capital to residential flats or commercial shops.
+          </p>
+
+          <h2>Gross vs Net Rental Yield Formulas</h2>
+          <ul>
+            <li><strong>Gross Rental Yield:</strong> Total Annual Rent divided by Total Property Purchase Cost × 100.</li>
+            <li><strong>Net Rental Yield:</strong> Annual Rent collected MINUS recurring operational expenses (society maintenance, property tax, landlord insurance, and expected vacancy periods) divided by Total Purchase Cost × 100.</li>
+          </ul>
+
+          <h2>Average Rental Yields Across Major Indian Metros</h2>
+          <ul>
+            <li><strong>Bangalore (East / ORR / Whitefield):</strong> 3.6% - 4.2% (Driven by strong IT tenant demand).</li>
+            <li><strong>Hyderabad (Gachibowli / Hitec City):</strong> 3.4% - 3.9%</li>
+            <li><strong>Pune (Hinjewadi / Kharadi):</strong> 3.2% - 3.8%</li>
+            <li><strong>Mumbai (MMR):</strong> 2.4% - 3.1% (High capital acquisition costs keep percentage yields lower).</li>
+            <li><strong>Delhi-NCR (Gurugram / Noida):</strong> 2.8% - 3.5%</li>
+            <li><strong>Grade-A Commercial Real Estate (Office / Retail / Warehousing):</strong> <strong>7.0% - 9.5%</strong> Net Yield.</li>
+          </ul>
+
+          <h2>The Power of Compounding Total Property ROI</h2>
+          <p>
+            While a 3.2% net residential rental yield may appear modest compared to fixed deposits, real estate is an appreciating asset. When a 3% annual cash flow yield is combined with historical <strong>6.5% p.a. capital appreciation</strong>, the overall 10-year investment CAGR reaches approximately <strong>9.5% to 10.2% compounded</strong>.
+          </p>
+
+          <h2>5 Strategies to Maximize Your Rental Yield</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Furnish Smartly (Fully-Furnished vs Semi-Furnished):</strong> Investing ₹2 Lakhs in aesthetic modular furniture, air conditioning, and appliances can boost rental yield by 25% to 35% in tech corridors.</li>
+            <li><strong>Co-Living / Student Housing Setup:</strong> Renting per bed/room to students or working professionals can generate up to 5.5% gross yield.</li>
+            <li><strong>Choose 1 BHK & 2 BHK Over 4 BHK:</strong> Smaller unit configurations consistently command higher rental yields per square foot than sprawling penthouses.</li>
+            <li><strong>Pre-Leased Commercial Units / Fractional Ownership (REITs):</strong> Investing in REITs (Real Estate Investment Trusts like Embassy, Mindspace, Brookfield) delivers 6-8% dividend yields with zero tenant management hassle.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Is rental income taxable in India?</strong><br />A: Yes. Rental income is taxed under 'Income from House Property'. You receive a statutory flat <strong>30% standard deduction</strong> for repair/maintenance under Section 24(a), plus deductions for municipal property taxes paid.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Track pan-India residential pricing and rent indices on the <a href="https://nhb.org.in/resindex/" target="_blank" rel="noopener noreferrer">National Housing Bank (NHB) RESIDEX Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'rera-project-verification-checklist',
+      title: 'RERA Project Verification Guide: 10 Legal Checks Every Homebuyer Must Do Before Booking',
+      category: 'realestate',
+      readTime: '8 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Step-by-step verification checklist on state RERA portals: verifying the 70% escrow bank account, sanctioned floor plans, and delay penalty rights under Section 18.',
+      targetCalc: 'reralookup',
+      ctaText: 'Search State RERA Portals & Verify Projects',
+      imgUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            The Real Estate (Regulation and Development) Act, 2016 (RERA) transformed Indian real estate from an opaque builder-dominated market into a transparent, legally regulated sector. However, RERA protection only helps you if you actively perform <strong>due diligence on the state RERA registry</strong> before transferring any booking advance.
+          </p>
+
+          <h2>The 10-Point RERA Due Diligence Checklist</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>1. Verify Valid Registration Certificate:</strong> Ensure the project has an active RERA number displayed on all brochures and ads (e.g. MahaRERA P518000XXXXX).</li>
+            <li><strong>2. Inspect the 70% Designated Escrow Bank Account:</strong> Confirm that all payment cheques/RTGS are deposited strictly into the project's RERA Escrow Account specified on the state portal.</li>
+            <li><strong>3. Match Sanctioned Floor Plans:</strong> Verify that the specific wing, floor number, and apartment unit you are buying are approved in the municipal sanctioned layout uploaded on RERA.</li>
+            <li><strong>4. Check Encumbrance Certificate & Land Title:</strong> Check whether the land is freehold or leasehold, and verify if the land is mortgaged to any bank or NBFC.</li>
+            <li><strong>5. Confirm Promised Possession Handover Date:</strong> The possession date stated in your Agreement for Sale must match the completion date registered on the RERA portal.</li>
+            <li><strong>6. Review Quarterly Progress Reports (QPR):</strong> Ensure the builder regularly uploads CA, Engineer, and Architect certificates verifying construction milestones.</li>
+            <li><strong>7. Check Litigations & Complaints History:</strong> Review past consumer complaints, interim orders, and recovery warrants issued against the promoter on the portal.</li>
+            <li><strong>8. Verify Statutory Approvals:</strong> Confirm Commencement Certificate (CC), Fire NOC, Environmental Clearance, and Airport Authority height clearance.</li>
+            <li><strong>9. RERA Net Carpet Area Verification:</strong> Ensure pricing and cost sheets are calculated strictly on RERA Net Carpet Area.</li>
+            <li><strong>10. Verify Real Estate Agent Registration:</strong> If buying through a broker, check that the broker has a valid RERA Agent ID.</li>
+          </ol>
+
+          <h2>Buyer Rights Under RERA Section 18 for Delayed Projects</h2>
+          <p>
+            Under Section 18 of RERA, if a promoter fails to deliver possession on the promised date:
+          </p>
+          <ul>
+            <li><strong>Option A (Withdraw from Project):</strong> The buyer can exit and demand 100% refund of all amounts paid, along with monthly interest at <strong>SBI Marginal Cost of Lending Rate (MCLR) + 2%</strong> from the date of payment.</li>
+            <li><strong>Option B (Stay in Project):</strong> The builder must pay monthly delay interest at SBI MCLR + 2% for every month of delay until physical possession is handed over.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can a builder change sanctioned plans without buyer consent?</strong><br />A: Under Section 14 of RERA, a builder cannot make any structural additions or alterations to sanctioned plans without the prior written consent of at least <strong>two-thirds (66%)</strong> of all allottees in the project.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Search and verify project compliance on <a href="https://maharera.mahaonline.gov.in/" target="_blank" rel="noopener noreferrer">MahaRERA</a>, <a href="https://www.up-rera.in/" target="_blank" rel="noopener noreferrer">UP RERA</a>, and <a href="https://rera.karnataka.gov.in/" target="_blank" rel="noopener noreferrer">Karnataka RERA</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: '11-month-rental-agreement-laws-india',
+      title: 'Why 11-Month Rental Agreements in India? Legal Reasons, Stamp Duty & Eviction Laws',
+      category: 'realestate',
+      readTime: '7 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Why Indian landlords prefer 11-month Leave & License agreements, Registration Act Section 17 rules, e-stamp paper requirements, and security deposit clauses.',
+      targetCalc: 'rentalagreement',
+      ctaText: 'Draft Free 11-Month Rental Agreement Online',
+      imgUrl: 'https://images.unsplash.com/photo-1554415707-9e49fe74a64c?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            In virtually every Indian city — Mumbai, Delhi, Bangalore, Pune, Hyderabad — residential rent agreements are structured for exactly <strong>11 months</strong>. Why not a clean 1 year (12 months)? The answer lies in the legal distinction between a <em>Tenancy Lease</em> and a <em>Leave and License Agreement</em> under Indian property law.
+          </p>
+
+          <h2>The Registration Act, 1908 (Section 17)</h2>
+          <p>
+            Under Section 17(1)(d) of the <strong>Registration Act, 1908</strong>, any lease of immovable property from year to year, or for any term <strong>exceeding eleven months (12 months or more)</strong>, must be compulsorily registered with the Sub-Registrar Office.
+          </p>
+          <p>
+            By restricting the agreement duration to exactly 11 months, landlords and tenants legally avoid mandatory sub-registrar registration, saving hefty stamp duty, registration fees, and legal registration visits, while keeping the agreement fully enforceable on non-judicial e-stamp paper.
+          </p>
+
+          <h2>Rent Control Acts vs Leave & License Protection</h2>
+          <p>
+            State Rent Control Acts (such as the Maharashtra Rent Control Act or Delhi Rent Control Act) historically favored tenants, making tenant eviction nearly impossible in traditional leases.
+          </p>
+          <p>
+            An 11-month <strong>Leave and License Agreement</strong> governed by the Indian Easements Act, 1882 grants the tenant only a temporary personal license to occupy the premises without creating any legal tenancy rights, ownership claims, or sub-letting privileges in the property.
+          </p>
+
+          <h2>Essential Clauses Every Rental Agreement Must Contain</h2>
+          <ul>
+            <li><strong>1. Lock-in Period Clause:</strong> Specifies a mandatory minimum period (typically 3 to 6 months) during which neither landlord nor tenant can terminate the contract without penalty.</li>
+            <li><strong>2. Notice Period Clause:</strong> Requires 30 days written notice before vacating after the lock-in period.</li>
+            <li><strong>3. Refundable Security Deposit & Deduction Rules:</strong> Clearly defines that deductions can only be made for unpaid utility arrears or actual physical structural damages beyond normal wear and tear.</li>
+            <li><strong>4. Maintenance & Utility Billing:</strong> Explicitly states whether society monthly maintenance is borne by landlord or tenant.</li>
+            <li><strong>5. Rent Escalation Clause:</strong> Specifies annual rent increases (typically 5% to 10% upon 11-month renewal).</li>
+          </ul>
+
+          <h2>Stamp Paper Value Required</h2>
+          <p>
+            An 11-month Leave & License agreement must be executed on <strong>₹100 or ₹500 non-judicial e-stamp paper</strong> (or ₹1,000 for registered agreements in Maharashtra) and notarized by a licensed public notary.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Is an 11-month notarized rent agreement valid as address proof?</strong><br />A: Yes. An 11-month notarized rent agreement along with an electricity bill is widely accepted as valid address proof for opening bank accounts, gas connections, and passport verification in India.</li>
+            <li><strong>Q: Can an 11-month agreement be renewed?</strong><br />A: Yes. Upon completion of 11 months, both parties can execute a fresh 11-month renewal agreement with mutually agreed revised rent.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Review legal requirements under the <a href="https://legislative.gov.in/sites/default/files/A1908-16.pdf" target="_blank" rel="noopener noreferrer">Registration Act 1908</a> and the Model Tenancy Act.</p>
+        </div>
+      )
+    },
+    {
+      id: 'foir-home-loan-eligibility-formula',
+      title: 'How Banks Calculate Home Loan Eligibility: FOIR Formula, CIBIL & Salary Multipliers',
+      category: 'loans',
+      readTime: '8 min read',
+      date: 'Aug 30, 2026',
+      snippet: 'Understand Fixed Obligation to Income Ratio (FOIR), how existing personal loan and credit card EMIs reduce your borrowing limit, and how to maximize loan eligibility.',
+      targetCalc: 'eligibility',
+      ctaText: 'Check Your Maximum Home Loan Eligibility',
+      imgUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            When applying for a home loan with SBI, HDFC Bank, ICICI Bank, or Axis Bank, your sanctioned loan amount is not determined by property cost alone. Banks determine your maximum borrowing capacity using a strict financial ratio called <strong>FOIR (Fixed Obligation to Income Ratio)</strong>.
+          </p>
+
+          <h2>What is FOIR (Fixed Obligation to Income Ratio)?</h2>
+          <p>
+            FOIR represents the percentage of your monthly net take-home income that can safely be allocated towards debt repayments (existing EMIs + proposed new home loan EMI), leaving sufficient cushion for living expenses:
+          </p>
+          <div style={{ padding: '14px', background: '#f8fafc', borderLeft: '4px solid #2563eb', margin: '14px 0', fontFamily: 'monospace' }}>
+            Max Eligible Monthly EMI = (Net Monthly In-Hand Salary × Bank FOIR %) - Existing Ongoing EMIs
+          </div>
+          <p>
+            Indian banks typically allow:
+          </p>
+          <ul>
+            <li><strong>Salary up to ₹50,000/month:</strong> 40% to 45% FOIR</li>
+            <li><strong>Salary ₹50,000 to ₹1,50,000/month:</strong> 50% to 55% FOIR</li>
+            <li><strong>Salary &gt; ₹1,50,000/month:</strong> Up to 60% to 65% FOIR for high net-worth professionals.</li>
+          </ul>
+
+          <h2>How a Small Personal Loan or Car EMI Destroys Your Home Loan Eligibility</h2>
+          <p>
+            Consider <strong>Ankit</strong>, who earns <strong>₹1,00,000/month</strong> net salary. At 50% FOIR, his maximum allowable total EMI capacity is ₹50,000/month.
+          </p>
+          <ul>
+            <li><strong>Case A (Zero Existing Debt):</strong> Full ₹50,000/month available for home loan. At 8.5% interest for 20 years, Ankit is eligible for a home loan of <strong>₹57.6 Lakhs</strong>.</li>
+            <li><strong>Case B (Ankit has a ₹15,000/month Car Loan EMI):</strong> Available home loan EMI capacity drops to ₹35,000/month. His eligible home loan drops to <strong>₹40.3 Lakhs</strong>.</li>
+            <li><strong>Impact:</strong> A ₹15,000 car EMI reduced his home loan borrowing capacity by <strong>₹17.3 Lakhs</strong>!</li>
+          </ul>
+
+          <h2>4 Ways to Instantly Boost Your Home Loan Eligibility</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Add a Co-Applicant (Spouse / Parent):</strong> Combining incomes with an earning spouse increases household net income, boosting FOIR eligibility by up to 80%.</li>
+            <li><strong>Close Existing Personal Loans & Credit Card Dues:</strong> Prepaying small personal loans before applying frees up monthly cash flow, instantly increasing your borrowing limit.</li>
+            <li><strong>Opt for a Longer Tenure (e.g. 25-30 Years):</strong> Longer tenure lowers the monthly EMI per Lakh borrowed, fitting a larger loan within your FOIR limit. (You can prepay later without penalty).</li>
+            <li><strong>Maintain a 750+ CIBIL Score:</strong> A high credit score qualifies you for the lowest interest rate slab (e.g. 8.40% vs 9.25%), which directly maximizes loan eligibility.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Do banks consider variable bonus and incentives for eligibility?</strong><br />A: Banks typically consider 50% to 75% of your average annual performance bonus based on the last 2 years' Form 16 records.</li>
+            <li><strong>Q: What is Loan-to-Value (LTV) ratio?</strong><br />A: RBI mandates maximum LTV caps: 90% for loans up to ₹30 Lakhs, 80% for loans ₹30L to ₹75L, and 75% for loans above ₹75 Lakhs. Homebuyers must provide the remaining 10% to 25% from personal funds.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Review official housing loan regulatory norms on the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India (RBI) Portal</a>.</p>
+        </div>
+      )
     }
   ];
 
@@ -2533,7 +3104,7 @@ export default function Blogs({ setActiveCalculator }) {
 
               {/* Category Filters */}
               <div className="guides-filter-tags">
-                {['all', 'tax', 'investment', 'loans', 'retirement'].map((cat) => (
+                {['all', 'realestate', 'investment', 'loans', 'tax', 'retirement'].map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
