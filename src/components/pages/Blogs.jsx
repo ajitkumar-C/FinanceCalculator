@@ -1980,7 +1980,7 @@ export default function Blogs({ setActiveCalculator }) {
       category: 'investment',
       readTime: '5 min read',
       date: 'Aug 26, 2026',
-      snippet: 'FD and RD are India\'s safest savings instruments, both government-insured up to ₹5 Lakhs. But they serve different purposes. Here is a clear guide to pick the right one for your situation.',
+      snippet: "FD and RD are India\'s safest savings instruments, both government-insured up to ₹5 Lakhs. But they serve different purposes. Here is a clear guide to pick the right one for your situation.",
       targetCalc: 'fd',
       ctaText: 'Calculate Your FD Returns',
       imgUrl: '/images/fd_vs_rd_comparison.jpg',
@@ -2732,6 +2732,522 @@ export default function Blogs({ setActiveCalculator }) {
 
           <h2>Official Reference</h2>
           <p>Review official housing loan regulatory norms on the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India (RBI) Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'unified-pension-scheme-ups-vs-nps',
+      title: 'Unified Pension Scheme (UPS) vs NPS: Which Pension Model is Better for You?',
+      category: 'retirement',
+      readTime: '9 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Complete breakdown of the Unified Pension Scheme (UPS) featuring 50% assured pension, family pension, and Dearness Relief vs National Pension System (NPS) market returns.',
+      targetCalc: 'nps',
+      ctaText: 'Calculate Your NPS & UPS Pension Corpus',
+      imgUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            The Government of India's introduction of the <strong>Unified Pension Scheme (UPS)</strong> has triggered the biggest retirement debate across the nation. Bridging the gap between the market-linked National Pension System (NPS) and the Old Pension Scheme (OPS), UPS introduces guaranteed, inflation-indexed pension security for government and corporate subscribers.
+          </p>
+
+          <h2>Key Pillars of the Unified Pension Scheme (UPS)</h2>
+          <ul>
+            <li><strong>1. 50% Assured Pension:</strong> Guaranteed monthly pension equivalent to <strong>50% of the average basic pay</strong> drawn over the last 12 months prior to retirement, for employees with a minimum qualifying service of 25 years.</li>
+            <li><strong>2. Assured Family Pension:</strong> In the event of an employee's demise, the spouse is guaranteed a family pension of <strong>60% of the employee's last drawn pension</strong>.</li>
+            <li><strong>3. Assured Minimum Pension:</strong> A guaranteed minimum floor pension of <strong>₹10,000 per month</strong> for employees with at least 10 years of service.</li>
+            <li><strong>4. Inflation Indexation (Dearness Relief):</strong> Like serving employees, pensioners under UPS receive Dearness Relief (DR) revisions linked to the All India Consumer Price Index (AICPI).</li>
+            <li><strong>5. Lump-Sum Superannuation Benefit:</strong> A separate lump sum payment on retirement (1/10th of monthly emoluments for every completed 6 months of service), without reducing the assured pension amount.</li>
+          </ul>
+
+          <h2>Comparison: UPS vs NPS vs OPS</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', margin: '16px 0' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f1f5f9', textAlign: 'left' }}>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Feature</th>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Unified Pension Scheme (UPS)</th>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>NPS (National Pension System)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Pension Guarantee</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Assured 50% of last 12-month basic pay</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Market-linked (Depends on Annuity Yield)</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Employee Contribution</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>10% of Basic Pay + DA</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>10% of Basic Pay + DA</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Govt Contribution</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>18.5%</strong> (Increased from 14%)</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>14%</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Inflation Protection</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Yes (Dearness Relief DR included)</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>No (Fixed annuity payout)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Who Should Opt for UPS vs NPS?</h2>
+          <ul>
+            <li><strong>Choose UPS:</strong> If you value 100% sovereign peace of mind, guaranteed monthly income, and want automatic inflation adjustment through Dearness Relief.</li>
+            <li><strong>Choose NPS:</strong> If you are comfortable with market equity exposure (up to 75% equity in Active Choice) and want higher compounding potential for a massive lump sum wealth corpus.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Is the employee contribution higher under UPS?</strong><br />A: No. Employees continue contributing the standard 10% of (Basic Pay + DA). The central government increased its matching contribution from 14% to 18.5% to fund the guaranteed pension reserve.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Read official cabinet notifications on the <a href="https://pib.gov.in/" target="_blank" rel="noopener noreferrer">Press Information Bureau (PIB) Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'sebi-fo-rules-retail-trading-risks',
+      title: "SEBI's New F&O Rules: Why 93% of Options Traders Lose Money & The SIP Alternative",
+      category: 'investment',
+      readTime: '8 min read',
+      date: 'Sep 05, 2026',
+      snippet: "Analyze SEBI's landmark study on retail derivatives losses, the new ₹15 Lakhs contract size rules, and why long-term Index SIPs consistently beat active day trading.",
+      targetCalc: 'sip',
+      ctaText: 'Calculate Systematic SIP Compounding Returns',
+      imgUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            The Securities and Exchange Board of India (SEBI) published a startling regulatory report revealing that <strong>93% of retail individual traders in Equity Futures & Options (F&O) incurred heavy net trading losses</strong>, losing an aggregate of over <strong>₹1.81 Lakh Crores</strong> over three financial years.
+          </p>
+
+          <h2>Key Highlights of SEBI's New 6-Point F&O Framework</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Increased Contract Lot Sizes:</strong> Minimum derivative contract value increased from ₹5 Lakhs to <strong>₹15 Lakhs to ₹20 Lakhs</strong>, raising the entry barrier to deter small inexperienced retail traders.</li>
+            <li><strong>Rationalization of Weekly Expiries:</strong> Exchanges (NSE & BSE) can now offer weekly expiry contracts for only <strong>one benchmark index per exchange</strong> (e.g. Nifty 50 and Sensex), ending hyper-speculative daily expiries.</li>
+            <li><strong>Upfront Premium Collection:</strong> Mandates 100% upfront collection of option premium from buyers to prevent unbacked intraday leverage.</li>
+            <li><strong>Removal of Calendar Spread Benefits on Expiry Day:</strong> Curbs excessive speculative margin leverage on expiry days.</li>
+          </ol>
+
+          <h2>The Harsh Reality: Active F&O vs Disciplined Index SIP</h2>
+          <p>
+            SEBI's data revealed that the average active retail options trader lost <strong>₹1,25,000 per year</strong>, spent an additional 28% of their capital on brokerage and transaction costs, and experienced severe emotional stress.
+          </p>
+          <p>
+            In contrast, an investor who put that same ₹10,000/month into a simple <strong>Nifty 50 Index Fund SIP</strong> over the past 10 years generated an annualized return of <strong>13.8% CAGR</strong>, compounding a ₹12 Lakh investment into over <strong>₹25.8 Lakhs</strong> with zero screen time or stress!
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Why do retail option buyers lose money so consistently?</strong><br />A: Options are wasting assets governed by Theta (time decay). Unless the underlying stock moves violently in the anticipated direction very quickly, the premium continuously decays to zero.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Access the official SEBI study report on retail investor behavior in F&O at the <a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI Official Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'swp-systematic-withdrawal-plan-pension',
+      title: 'SWP in Mutual Funds: How to Generate Tax-Efficient Monthly Income for Life',
+      category: 'retirement',
+      readTime: '8 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Learn how a Systematic Withdrawal Plan (SWP) in Hybrid/Conservative Mutual Funds delivers higher post-tax monthly pension than Bank FDs and traditional annuities.',
+      targetCalc: 'mutualfund',
+      ctaText: 'Estimate Mutual Fund SWP & Corpus Growth',
+      imgUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            When entering retirement, most investors default to Fixed Deposits (FDs) or insurance annuities for monthly cash flow. However, with FD interest fully taxable at your income tax slab (up to 30% + cess) and annuities offering rigid 5.5% - 6.0% yields, a <strong>Systematic Withdrawal Plan (SWP)</strong> in mutual funds has emerged as the most tax-efficient retirement cash flow engine in India.
+          </p>
+
+          <h2>What is an SWP and How Does It Work?</h2>
+          <p>
+            An SWP allows you to withdraw a customized, fixed amount (e.g. ₹50,000/month) from your accumulated mutual fund corpus at regular intervals, while the remaining balance continues compounding in market-linked instruments.
+          </p>
+
+          <h2>Why SWP Crushes Bank Fixed Deposits on Taxes</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', margin: '16px 0' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f1f5f9', textAlign: 'left' }}>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Feature</th>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Bank Fixed Deposit (FD)</th>
+                <th style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Mutual Fund SWP (Hybrid Fund)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Taxation Method</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>100% of interest taxed at 30% slab rate</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Only the <em>gain component</em> is taxed (Capital Gains)</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>TDS Deductions</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>10% TDS deducted annually by bank</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>0% TDS on resident mutual fund redemptions</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}><strong>Inflation Protection</strong></td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>No (Principal corpus remains flat)</td>
+                <td style={{ padding: '10px', border: '1px solid #e2e8f0' }}>Yes (Corpus can grow even while withdrawing 6%)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>The 6% Sustainable SWP Rule</h2>
+          <p>
+            If you have a retirement corpus of <strong>₹1 Crore</strong> invested in an Equity Savings / Balanced Advantage Fund generating an average 9.5% annual return:
+          </p>
+          <ul>
+            <li>Withdrawing <strong>6% per annum (₹50,000/month)</strong> means your withdrawals are lower than the fund's annual growth.</li>
+            <li>After 15 years of collecting ₹90 Lakhs in monthly pension payouts, your initial ₹1 Crore corpus will still have grown to over <strong>₹1.45 Crores</strong>!</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Which category of mutual fund is safest for SWP?</strong><br />A: Financial planners recommend <strong>Balanced Advantage Funds (BAFs)</strong> or <strong>Multi-Asset Allocation Funds</strong>, which automatically manage equity-debt allocation dynamically to minimize downside market volatility.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Learn more about mutual fund retirement cash flow planning on <a href="https://www.amfiindia.com/" target="_blank" rel="noopener noreferrer">AMFI India</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'repo-rate-cuts-home-loan-emi-impact',
+      title: 'RBI Repo Rate Cuts: How They Reduce Your Home Loan EMI & Tenure Automatically',
+      category: 'loans',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Learn how RBI policy repo rate revisions pass through External Benchmark Lending Rate (EBLR) home loans. Should you reduce your EMI or shorten your tenure?',
+      targetCalc: 'emi',
+      ctaText: 'Simulate Home Loan EMI on Interest Rate Cuts',
+      imgUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Since October 2019, the Reserve Bank of India (RBI) mandates that all floating-rate retail loans (including home loans) issued by commercial banks must be linked to an <strong>External Benchmark Lending Rate (EBLR / RLLR)</strong> — predominantly the RBI Repo Rate. When RBI alters the benchmark rate, your home loan interest adjusts automatically.
+          </p>
+
+          <h2>How EBLR Transmission Works</h2>
+          <div style={{ padding: '14px', background: '#f8fafc', borderLeft: '4px solid #2563eb', margin: '14px 0', fontFamily: 'monospace' }}>
+            Effective Home Loan Interest Rate = RBI Repo Rate + Bank Operating Spread + Borrower Credit Risk Premium
+          </div>
+          <p>
+            Under RBI guidelines, banks must reset the interest rate for existing borrowers at least once every <strong>3 months</strong> following any repo rate revision.
+          </p>
+
+          <h2>Reduce EMI vs Reduce Tenure: Which Saves More?</h2>
+          <p>
+            When interest rates fall by <strong>50 bps (0.50%)</strong> on a <strong>₹50 Lakh home loan</strong> with 20 years remaining at 9.0%:
+          </p>
+          <ul>
+            <li><strong>Option A (Reduce Monthly EMI):</strong> EMI drops from ₹44,986 to ₹43,391. Total interest savings over 20 years = <strong>₹3,82,800</strong>.</li>
+            <li><strong>Option B (Keep EMI Same & Reduce Tenure):</strong> Your loan tenure automatically shrinks from <strong>240 months to 218 months (nearly 2 full years cut!)</strong>. Total interest savings = <strong>₹7,42,100</strong>!</li>
+            <li><strong>Verdict:</strong> Choosing to <em>reduce tenure</em> rather than lowering EMI saves nearly <strong>2x more interest</strong>!</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: How do I instruct my bank to keep my EMI unchanged when rates drop?</strong><br />A: By default, most banks adjust loan tenure while keeping EMI constant. You can confirm or request this via your bank's net banking portal or by submitting a loan service request.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Check historical repo rate trends and monetary policy statements on the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'gold-etf-vs-sgb-vs-digital-gold',
+      title: 'Gold ETF vs SGB vs Digital Gold vs Physical Gold: Best Way to Invest in India',
+      category: 'investment',
+      readTime: '8 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Post-customs duty cuts and SGB pauses, compare Gold ETFs, Sovereign Gold Bonds, Digital Gold, and physical gold jewelry on purity, liquidity, and taxation.',
+      targetCalc: 'compound',
+      ctaText: 'Calculate Gold Compounding Returns & Yield',
+      imgUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Gold has always held a sacred place in Indian household balance sheets. However, following the union budget cut in gold import customs duty to 6% and the pausing of fresh primary Sovereign Gold Bond (SGB) tranches, investors need clarity on the smartest route to allocate to precious metals in 2026.
+          </p>
+
+          <h2>Comparison of the 4 Gold Investment Routes</h2>
+          <ul>
+            <li><strong>1. Gold ETFs (Exchange Traded Funds):</strong>
+              <ul>
+                <li><strong>Purity:</strong> 99.5% 24 Karat gold backed 1:1 in secure bank vaults.</li>
+                <li><strong>Liquidity:</strong> Highest (Buy/Sell instantly on NSE/BSE during market hours like a stock).</li>
+                <li><strong>Cost:</strong> Zero making charges; low expense ratio (0.25% - 0.50% p.a.).</li>
+                <li><strong>Taxation:</strong> Long-Term Capital Gains (LTCG) taxed at 12.5% after 12 months holding.</li>
+              </ul>
+            </li>
+            <li><strong>2. Sovereign Gold Bonds (Secondary Market SGBs):</strong>
+              <ul>
+                <li><strong>Benefit:</strong> 2.5% annual sovereign interest credited semi-annually.</li>
+                <li><strong>Tax Exemption:</strong> 100% tax-free capital gains if held until the full 8-year redemption.</li>
+                <li><strong>Availability:</strong> Can be purchased from secondary stock exchanges (e.g. SGBMAY31) on Zerodha/Groww.</li>
+              </ul>
+            </li>
+            <li><strong>3. Digital Gold (UPI / Wallets):</strong>
+              <ul>
+                <li><strong>Caution:</strong> Not regulated by SEBI or RBI. Attracts 3% upfront GST and 2% to 3% buy-sell spread spread friction.</li>
+              </ul>
+            </li>
+            <li><strong>4. Physical Gold (Jewelry / Coins):</strong>
+              <ul>
+                <li><strong>Disadvantage:</strong> High making charges (8% to 25%), 3% GST, storage locker costs, and theft risk.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: What is the optimal gold allocation in a portfolio?</strong><br />A: Financial advisors recommend allocating <strong>5% to 10% of total wealth</strong> in Gold ETFs or SGBs as a portfolio risk stabilizer.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Track live spot gold pricing on the <a href="https://www.ibja.co/" target="_blank" rel="noopener noreferrer">India Bullion and Jewellers Association (IBJA)</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'epf-tax-on-interest-above-2-5-lakhs',
+      title: 'Tax on EPF Interest Above ₹2.5 Lakhs: How High Earners Can Optimize VPF',
+      category: 'tax',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Learn how Section 10(11) and 10(12) tax EPF & VPF employee contributions exceeding ₹2.5 Lakhs/year, how dual EPF accounts work, and TDS filing rules.',
+      targetCalc: 'pf',
+      ctaText: 'Calculate EPF Balance & Taxable Interest Online',
+      imgUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            For decades, the Employee Provident Fund (EPF) was completely tax-free under the EEE (Exempt-Exempt-Exempt) regime. However, under Section 10(11) and Section 10(12) of the Income Tax Act, the interest earned on an employee's contribution exceeding <strong>₹2.5 Lakhs in a financial year</strong> (or ₹5 Lakhs if there is no employer contribution) is now taxable as income.
+          </p>
+
+          <h2>How the Dual EPF Account System Works</h2>
+          <p>
+            To track taxable interest, EPFO maintains two separate digital ledgers in your EPF passbook:
+          </p>
+          <ul>
+            <li><strong>1. Non-Taxable Contribution Account:</strong> Contains your opening balance up to March 31, 2021, plus all subsequent annual employee contributions up to ₹2,50,000. Interest on this account is 100% tax-free.</li>
+            <li><strong>2. Taxable Contribution Account:</strong> Contains the excess portion of your employee contribution above ₹2,50,000 made during the year. The annual interest credited to this account is treated as 'Income from Other Sources' and taxed at your applicable slab rate.</li>
+          </ul>
+
+          <h2>Real-World Calculation Example</h2>
+          <p>
+            Suppose <strong>Rajesh</strong> contributes <strong>₹4,00,000</strong> to EPF + Voluntary Provident Fund (VPF) in a financial year at 8.25% interest:
+          </p>
+          <ul>
+            <li>Non-Taxable Account: ₹2,50,000 → Earns ₹20,625 interest (100% Tax-Free).</li>
+            <li>Taxable Account: ₹1,50,000 → Earns ₹12,375 interest (Taxable at Rajesh's 30% slab rate = ₹3,861 tax).</li>
+            <li><strong>Effective Post-Tax Return on Excess ₹1.5L:</strong> ~5.70% p.a.</li>
+          </ul>
+
+          <h2>Where Should High Earners Invest Beyond ₹2.5 Lakhs?</h2>
+          <p>
+            If you are in the 30% tax bracket, investing beyond ₹2.5 Lakhs in VPF yields ~5.7% post-tax. Consider allocating surplus funds into <strong>PPF (₹1.5L tax-free)</strong>, <strong>NPS Tier-1 (80CCD(1B) additional ₹50k deduction)</strong>, or <strong>Equity Index Mutual Funds (12.5% LTCG)</strong> for superior long-term post-tax wealth generation.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Is there TDS deducted on taxable EPF interest?</strong><br />A: Yes. EPFO deducts 10% TDS on taxable interest exceeding ₹5,000 per year (20% TDS if PAN is not linked to UAN).</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Check your dual-ledger passbook entries on the <a href="https://passbook.epfindia.gov.in/" target="_blank" rel="noopener noreferrer">EPFO Member Passbook Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'maharera-qr-code-and-grading-system',
+      title: 'MahaRERA QR Codes & Project Grading: How Maharashtra Regulates Real Estate Quality',
+      category: 'realestate',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: "Discover how MahaRERA's mandatory QR codes and developer grading framework protect homebuyers from construction delays, title disputes, and false promises.",
+      targetCalc: 'reralookup',
+      ctaText: 'Access All-India State RERA Project Lookup',
+      imgUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            Maharashtra Real Estate Regulatory Authority (MahaRERA) has set benchmark standards across India with two game-changing consumer protections: <strong>Mandatory Project QR Codes</strong> and the <strong>RERA Project Grading & Star Rating Framework</strong>.
+          </p>
+
+          <h2>What Happens When You Scan a MahaRERA QR Code?</h2>
+          <p>
+            Under MahaRERA regulations, every real estate promoter must display a designated QR code on all advertisements, billboards, social media posts, and brochures. Scanning the QR code with any smartphone camera instantly displays:
+          </p>
+          <ul>
+            <li>Sanctioned building floor plans and approved number of floors.</li>
+            <li>Promised possession delivery date registered with the authority.</li>
+            <li>Quarterly financial progress and percentage of physical construction completed.</li>
+            <li>Litigation history, consumer complaints, and interim stay orders against the promoter.</li>
+            <li>Specific RERA Escrow Bank Account details for booking deposits.</li>
+          </ul>
+
+          <h2>The 4-Pillar RERA Project Grading System</h2>
+          <p>
+            MahaRERA's grading matrix evaluates projects across four objective parameters:
+          </p>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Technical Compliance:</strong> Timely upload of Architect and Engineer Form-1, Form-2, and Form-3 completion certificates.</li>
+            <li><strong>Financial Track Record:</strong> Verification of annual statutory audit reports (Form-5) and escrow fund utilization.</li>
+            <li><strong>Legal Clarity:</strong> Encumbrance certificates, clear land title ownership, and litigation record.</li>
+            <li><strong>Past Execution History:</strong> Developer's historical track record of on-time delivery across previous projects.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Can a builder advertise without a RERA QR Code?</strong><br />A: No. Advertising any real estate project without an active RERA number and QR code attracts heavy financial penalties under Section 59 of the RERA Act (up to 10% of estimated project cost).</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Scan and verify registered projects on the <a href="https://maharera.mahaonline.gov.in/" target="_blank" rel="noopener noreferrer">MahaRERA Citizen Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'senior-citizens-savings-scheme-scss-guide',
+      title: 'Senior Citizen Savings Scheme (SCSS): Earn 8.2% Guaranteed Sovereign Pension',
+      category: 'retirement',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Explore the Senior Citizen Savings Scheme (SCSS) offering 8.2% quarterly payouts, ₹30 Lakhs maximum deposit limit, Section 80C tax deduction, and 5-year tenure.',
+      targetCalc: 'fd',
+      ctaText: 'Compare SCSS vs Bank Fixed Deposit Returns',
+      imgUrl: 'https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            For senior citizens seeking 100% risk-free sovereign income backed directly by the Government of India, the <strong>Senior Citizen Savings Scheme (SCSS)</strong> is the crown jewel of fixed-income instruments. With an attractive <strong>8.2% p.a. interest rate</strong> and quarterly direct-to-bank interest payouts, it outclasses standard commercial bank FDs.
+          </p>
+
+          <h2>Key Highlights of SCSS</h2>
+          <ul>
+            <li><strong>Interest Rate:</strong> <strong>8.2% per annum</strong>, paid quarterly on the first working day of April, July, October, and January.</li>
+            <li><strong>Maximum Deposit Limit:</strong> <strong>₹30 Lakhs per individual</strong> (or ₹60 Lakhs for a senior couple with individual accounts).</li>
+            <li><strong>Tenure:</strong> 5 Years (Can be extended indefinitely in 3-year blocks upon maturity).</li>
+            <li><strong>Eligibility:</strong> Indian citizens aged <strong>60 years or above</strong> (55+ for individuals who have retired under Voluntary Retirement Scheme VRS / Superannuation).</li>
+            <li><strong>Section 80C Tax Deduction:</strong> Initial deposit qualifies for tax deduction up to ₹1.5 Lakhs under Section 80C.</li>
+          </ul>
+
+          <h2>Quarterly Income Simulation on ₹30 Lakhs Max Deposit</h2>
+          <p>
+            If a retired individual deposits the maximum limit of <strong>₹30,00,000</strong>:
+          </p>
+          <ul>
+            <li>Annual Interest Earned: <strong>₹2,46,000</strong></li>
+            <li>Quarterly Cash Payout: <strong>₹61,500 every 3 months (₹20,500/month equivalent)</strong></li>
+            <li>5-Year Total Interest Yield: <strong>₹12,30,000</strong></li>
+            <li>For a senior couple investing ₹60 Lakhs jointly: <strong>₹1,23,000 every quarter (₹41,000/month)</strong> in pure sovereign pension!</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Is TDS deducted on SCSS interest?</strong><br />A: Under Section 194A, TDS is deducted if annual interest exceeds ₹50,000 for senior citizens. You can submit Form 15H if your total annual taxable income is within the basic exemption limit.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Open SCSS accounts at all public sector banks or <a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener noreferrer">India Post Post Offices</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'credit-card-reward-points-and-lounge-rules',
+      title: 'Credit Card Lounge Access & Reward Devaluations: The 2026 Smart Spender Guide',
+      category: 'loans',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Navigate spend-based airport lounge access thresholds, utility & rent payment surcharges, and how to maximize 3% to 5% net cashback on Indian credit cards.',
+      targetCalc: 'eligibility',
+      ctaText: 'Check Credit Card & Loan Eligibility',
+      imgUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            The Indian credit card landscape has experienced massive structural changes over the past 18 months. Leading card issuers (HDFC Bank, Axis Bank, ICICI Bank, SBI Card) have devalued entry-level reward multipliers, introduced 1% surcharges on rent and utility payments, and replaced complimentary walk-in airport lounge access with <strong>Quarterly Spend Thresholds</strong>.
+          </p>
+
+          <h2>Understanding the New Spend-Based Lounge Access Rules</h2>
+          <p>
+            On popular cards like ICICI Coral/Rubyx, HDFC Regalia Gold, and Axis Neo, free airport lounge access is now conditional upon spending a minimum threshold (typically <strong>₹35,000 to ₹50,000</strong> in the preceding calendar quarter).
+          </p>
+
+          <h2>Surcharges You Must Avoid</h2>
+          <ul>
+            <li><strong>Rent Payments (CRED, Paytm, Housing):</strong> 1% processing fee + 18% GST + zero reward points on almost all cards.</li>
+            <li><strong>Government & Utility Spends Above ₹50,000:</strong> 1% surcharge on aggregate utility and tax payments exceeding ₹50,000 per month.</li>
+            <li><strong>Fuel Surcharges:</strong> Always use designated partner petrol pumps to receive the 1% fuel surcharge waiver.</li>
+          </ul>
+
+          <h2>How to Maximize 5% Real Value in 2026</h2>
+          <ol style={{ paddingLeft: '20px', marginBottom: '16px' }}>
+            <li><strong>Direct Cashback Over Vague Points:</strong> Cards like <em>SBI Cashback</em> (5% flat online cashback credited directly to statement) offer transparent math without devaluation risks.</li>
+            <li><strong>UPI on RuPay Credit Cards:</strong> Link RuPay cards to Google Pay or PhonePe to earn reward points on everyday offline merchant QR scan payments.</li>
+            <li><strong>Never Carry an Unpaid Revolving Balance:</strong> Credit card APRs in India range from <strong>36% to 45% per annum</strong>. Always enable Auto-Debit for the 'Total Amount Due' to protect your CIBIL score.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Does closing an old credit card harm my CIBIL score?</strong><br />A: Yes! Closing an old card shortens your overall credit history length and increases your credit utilization ratio. Keep old no-annual-fee cards active with minor annual spends.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Review RBI master directions on credit cards and debit cards on the <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">RBI Official Portal</a>.</p>
+        </div>
+      )
+    },
+    {
+      id: 'emergency-fund-calculator-and-liquid-funds',
+      title: 'How to Build an 8-Month Emergency Fund in India: The Multi-Bucket Strategy',
+      category: 'investment',
+      readTime: '7 min read',
+      date: 'Sep 05, 2026',
+      snippet: 'Learn how to calculate your personalized 6 to 12 month emergency safety net and allocate across High-Yield Savings, Multi-Bank FDs, and Overnight Liquid Funds.',
+      targetCalc: 'compound',
+      ctaText: 'Calculate Emergency Fund Savings Growth',
+      imgUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
+      content: (
+        <div>
+          <p>
+            An emergency fund is the unshakeable bedrock of personal finance. Without a dedicated liquid safety buffer, any sudden life shock — job layoff, corporate restructuring, medical hospitalization, or home repairs — forces individuals to sell compounding equity investments at a loss or take 18% personal loans.
+          </p>
+
+          <h2>The 3-Tier Multi-Bucket Emergency Fund Formula</h2>
+          <p>
+            Rather than keeping all emergency cash in a zero-yield savings account or locking it entirely in fixed deposits, financial advisors recommend a <strong>3-Bucket Liquid Architecture</strong>:
+          </p>
+          <ul>
+            <li><strong>Bucket 1 (Instant 24-Hour Access - 20%):</strong> 1 to 2 months of living expenses kept in a secondary high-yield savings account with instant UPI and ATM debit card access.</li>
+            <li><strong>Bucket 2 (Instant Redemption Liquid / Arbitrage Funds - 40%):</strong> 3 to 4 months of expenses in SEBI-regulated Liquid Mutual Funds (with instant ₹50,000 30-minute withdrawal facility) earning ~6.5% p.a.</li>
+            <li><strong>Bucket 3 (Multi-Bank Auto-Sweep Fixed Deposits - 40%):</strong> 3 to 6 months of expenses split across 2 top-tier scheduled commercial banks with premature partial break facility.</li>
+          </ul>
+
+          <h2>Emergency Fund Sizing Guide</h2>
+          <ul>
+            <li><strong>Salaried in Stable Sector (Dual-Income Couple):</strong> 6 Months of mandatory living expenses (Rent + EMIs + Utilities + Groceries + School Fees).</li>
+            <li><strong>Single Earner in Tech / Startups / Cyclical Industry:</strong> <strong>8 to 9 Months</strong> of living expenses.</li>
+            <li><strong>Self-Employed / Freelancer / Business Owner:</strong> <strong>10 to 12 Months</strong> of living expenses.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <ul>
+            <li><strong>Q: Should I use a credit card as an emergency fund?</strong><br />A: A credit card is only a 30-day interest-free bridge, not an emergency fund. Relying on credit cards without liquid savings leads into revolving debt traps at 42% APR.</li>
+          </ul>
+
+          <h2>Official Reference</h2>
+          <p>Learn about DICGC bank deposit insurance cover up to ₹5 Lakhs per depositor at the <a href="https://www.dicgc.org.in/" target="_blank" rel="noopener noreferrer">DICGC Official Portal</a>.</p>
         </div>
       )
     }
