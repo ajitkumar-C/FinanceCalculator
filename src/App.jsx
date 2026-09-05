@@ -108,6 +108,15 @@ export default function App() {
 
   // Dynamically update SEO tags, schema, and URL query params when active calculator changes
   useEffect(() => {
+    // Reset scroll position to the top of the page on route change
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const mainLayout = document.querySelector('.main-content-layout');
+    if (mainLayout) {
+      mainLayout.scrollTop = 0;
+    }
+
     injectCalculatorSchema(activeCalc);
     
     // Update URL query parameters without page reload
@@ -121,6 +130,9 @@ export default function App() {
   // Listen to browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
       const params = new URLSearchParams(window.location.search);
       const urlCalc = params.get('calc');
       if (urlCalc && validRoutes.includes(urlCalc)) {

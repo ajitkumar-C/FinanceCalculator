@@ -2751,7 +2751,27 @@ export default function Blogs({ setActiveCalculator }) {
     return articles.find(art => art.id === selectedArticleId);
   }, [selectedArticleId]);
 
+  const handleSelectArticle = (id) => {
+    setSelectedArticleId(id);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const mainLayout = document.querySelector('.main-content-layout');
+    if (mainLayout) {
+      mainLayout.scrollTop = 0;
+    }
+  };
+
   useEffect(() => {
+    // Automatically scroll to the top of the page whenever article view changes
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const mainLayout = document.querySelector('.main-content-layout');
+    if (mainLayout) {
+      mainLayout.scrollTop = 0;
+    }
+
     const params = new URLSearchParams(window.location.search);
     
     // Helper to safely set meta tags
@@ -2961,7 +2981,7 @@ export default function Blogs({ setActiveCalculator }) {
       {activeArticle ? (
         /* Detailed Article Reader */
         <div className="article-reader-container">
-          <button className="article-back-btn" onClick={() => setSelectedArticleId(null)}>
+          <button className="article-back-btn" onClick={() => handleSelectArticle(null)}>
             <ArrowLeft size={16} /> Back to Guides
           </button>
           
@@ -3032,7 +3052,7 @@ export default function Blogs({ setActiveCalculator }) {
                     <a
                       key={rel.id}
                       href={`?calc=blogs&article=${rel.id}`}
-                      onClick={(e) => { e.preventDefault(); setSelectedArticleId(rel.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                      onClick={(e) => { e.preventDefault(); handleSelectArticle(rel.id); }}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                       <div style={{
@@ -3128,7 +3148,7 @@ export default function Blogs({ setActiveCalculator }) {
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={(e) => {
                   e.preventDefault();
-                  setSelectedArticleId(article.id);
+                  handleSelectArticle(article.id);
                 }}
               >
                 <span className={`guide-category-badge ${article.category}`}>
