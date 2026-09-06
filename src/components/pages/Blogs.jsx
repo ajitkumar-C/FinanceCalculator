@@ -1,13 +1,19 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ArrowLeft, Search, Clock, ArrowRight, BookOpen } from 'lucide-react';
+import { 
+  ArrowLeft, Search, Clock, ArrowRight, BookOpen, 
+  TrendingUp, Percent, Building2, Sunset, FileText, ChevronRight, Sparkles 
+} from 'lucide-react';
 
-export default function Blogs({ setActiveCalculator }) {
+export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.get('article') || null;
   });
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('category') || (activeCategory !== 'all' ? activeCategory : 'all');
+  });
 
   const articles = [
     {
@@ -3960,6 +3966,113 @@ export default function Blogs({ setActiveCalculator }) {
     }
   ];
 
+  const categoryMeta = {
+    all: {
+      title: 'RupeeBuddy Financial Guides',
+      subtitle: 'Deep dives, comparisons, and wealth strategies to help you make sound financial calculations.',
+      icon: '📚',
+      badge: 'All Topics',
+      colorClass: 'all'
+    },
+    investment: {
+      title: 'Investment Guides & Strategies',
+      subtitle: 'Master stock market algorithms, SIP mutual fund compounding, sovereign gold bonds, and portfolio wealth creation.',
+      icon: '📈',
+      badge: 'Wealth & Equity',
+      colorClass: 'investment'
+    },
+    loans: {
+      title: 'Loan & Debt Management Guides',
+      subtitle: 'Save lakhs on home loans, understand bank FOIR borrowing limits, evaluate prepayments, and raise your CIBIL score.',
+      icon: '💳',
+      badge: 'Borrowing & EMIs',
+      colorClass: 'loans'
+    },
+    realestate: {
+      title: 'Real Estate & Property Guides',
+      subtitle: 'State-wise stamp duty rates, Budget 2024 capital gains rules, RERA project compliance, and rental agreements.',
+      icon: '🏡',
+      badge: 'Property & Housing',
+      colorClass: 'realestate'
+    },
+    retirement: {
+      title: 'Retirement & Pension Guides',
+      subtitle: 'Optimize National Pension Scheme (NPS), EPF provident fund rules, PPF compounding, and the Unified Pension Scheme (UPS).',
+      icon: '🏖️',
+      badge: 'Pensions & Corpus',
+      colorClass: 'retirement'
+    },
+    tax: {
+      title: 'Tax Slabs & Exemption Guides',
+      subtitle: 'Union Budget tax slabs, Old vs New tax regime comparison, Standard Deductions, and Section 80C exemptions.',
+      icon: '⚖️',
+      badge: 'Taxation & Slabs',
+      colorClass: 'tax'
+    }
+  };
+
+  const categoriesList = [
+    { id: 'all', label: 'All Guides', icon: '📚' },
+    { id: 'investment', label: 'Investment', icon: '📈' },
+    { id: 'loans', label: 'Loans & EMI', icon: '💳' },
+    { id: 'realestate', label: 'Real Estate', icon: '🏡' },
+    { id: 'retirement', label: 'Retirement', icon: '🏖️' },
+    { id: 'tax', label: 'Tax & Budget', icon: '⚖️' }
+  ];
+
+  const categoryCounts = useMemo(() => {
+    const counts = { all: articles.length };
+    articles.forEach(a => {
+      counts[a.category] = (counts[a.category] || 0) + 1;
+    });
+    return counts;
+  }, [articles]);
+
+  // Sync category if activeCategory prop changes from header/sidebar
+  useEffect(() => {
+    if (activeCategory && activeCategory !== selectedCategory) {
+      setSelectedCategory(activeCategory);
+      setSelectedArticleId(null);
+      setSearchTerm('');
+    }
+  }, [activeCategory]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePop = () => {
+      const params = new URLSearchParams(window.location.search);
+      setSelectedArticleId(params.get('article') || null);
+      const cat = params.get('category') || 'all';
+      setSelectedCategory(cat);
+      if (setActiveCategory) {
+        setActiveCategory(cat);
+      }
+    };
+    window.addEventListener('popstate', handlePop);
+    return () => window.removeEventListener('popstate', handlePop);
+  }, [setActiveCategory]);
+
+  const handleCategoryChange = (newCat) => {
+    setSelectedCategory(newCat);
+    if (setActiveCategory) {
+      setActiveCategory(newCat);
+    }
+    setSelectedArticleId(null);
+    setSearchTerm('');
+    const params = new URLSearchParams(window.location.search);
+    params.set('calc', 'blogs');
+    if (newCat && newCat !== 'all') {
+      params.set('category', newCat);
+    } else {
+      params.delete('category');
+    }
+    params.delete('article');
+    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
   const filteredArticles = useMemo(() => {
     return articles.filter(article => {
       const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -3983,10 +4096,20 @@ export default function Blogs({ setActiveCalculator }) {
     if (mainLayout) {
       mainLayout.scrollTop = 0;
     }
+    const params = new URLSearchParams(window.location.search);
+    params.set('calc', 'blogs');
+    if (selectedCategory && selectedCategory !== 'all') {
+      params.set('category', selectedCategory);
+    }
+    if (id) {
+      params.set('article', id);
+    } else {
+      params.delete('article');
+    }
+    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
   };
 
   useEffect(() => {
-    // Automatically scroll to the top of the page whenever article view changes
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -4013,22 +4136,13 @@ export default function Blogs({ setActiveCalculator }) {
       element.content = value;
     }
 
-    // Remove existing breadcrumb script if any
+    // Remove existing breadcrumb & article schemas if any
     const existingBreadcrumb = document.getElementById("breadcrumb-schema");
-    if (existingBreadcrumb) {
-      existingBreadcrumb.remove();
-    }
-    // Remove existing article schema if any
+    if (existingBreadcrumb) existingBreadcrumb.remove();
     const existingArticleSchema = document.getElementById("article-schema");
-    if (existingArticleSchema) {
-      existingArticleSchema.remove();
-    }
+    if (existingArticleSchema) existingArticleSchema.remove();
 
     if (selectedArticleId) {
-      if (params.get('article') !== selectedArticleId) {
-        params.set('article', selectedArticleId);
-        window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
-      }
       const article = articles.find(a => a.id === selectedArticleId);
       if (article) {
         // Page Title & Meta Desc
@@ -4052,43 +4166,30 @@ export default function Blogs({ setActiveCalculator }) {
         metaKeywords.content = `${article.category}, finance guide, ${article.title.toLowerCase()}`;
 
         // Canonical URL
+        const articleCanonical = `https://rupeebuddy.in/?calc=blogs&category=${article.category}&article=${article.id}`;
         let canonical = document.querySelector('link[rel="canonical"]');
         if (!canonical) {
           canonical = document.createElement('link');
           canonical.rel = "canonical";
           document.head.appendChild(canonical);
         }
-        canonical.href = `https://rupeebuddy.in/?calc=blogs&article=${article.id}`;
+        canonical.href = articleCanonical;
 
         // Open Graph Meta
         setMetaTag('og:title', `${article.title} | RupeeBuddy.in`, true);
         setMetaTag('og:description', article.snippet, true);
-        setMetaTag('og:url', `https://rupeebuddy.in/?calc=blogs&article=${article.id}`, true);
+        setMetaTag('og:url', articleCanonical, true);
         setMetaTag('og:image', 'https://rupeebuddy.in/favicon.svg', true);
 
-        // Inject Article BreadcrumbList Schema
+        // Breadcrumb Schema
         const breadcrumbData = {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://rupeebuddy.in/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Financial Guides",
-              "item": "https://rupeebuddy.in/?calc=blogs"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": article.title,
-              "item": `https://rupeebuddy.in/?calc=blogs&article=${article.id}`
-            }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeebuddy.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/?calc=blogs" },
+            { "@type": "ListItem", "position": 3, "name": categoryMeta[article.category]?.title || article.category, "item": `https://rupeebuddy.in/?calc=blogs&category=${article.category}` },
+            { "@type": "ListItem", "position": 4, "name": article.title, "item": articleCanonical }
           ]
         };
         const breadcrumbScript = document.createElement("script");
@@ -4097,15 +4198,13 @@ export default function Blogs({ setActiveCalculator }) {
         breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
         document.head.appendChild(breadcrumbScript);
 
-        // Inject BlogPosting Schema for Rich Search Cards
+        // BlogPosting Schema
         const articleSchemaData = {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": article.title,
           "description": article.snippet,
-          "image": [
-            "https://rupeebuddy.in/favicon.svg"
-          ],
+          "image": ["https://rupeebuddy.in/favicon.svg"],
           "datePublished": "2026-08-12T00:00:00Z",
           "author": {
             "@type": "Organization",
@@ -4122,7 +4221,7 @@ export default function Blogs({ setActiveCalculator }) {
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://rupeebuddy.in/?calc=blogs&article=${article.id}`
+            "@id": articleCanonical
           }
         };
         const articleScript = document.createElement("script");
@@ -4132,13 +4231,11 @@ export default function Blogs({ setActiveCalculator }) {
         document.head.appendChild(articleScript);
       }
     } else {
-      if (params.has('article')) {
-        params.delete('article');
-        window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
-      }
+      const currentMeta = categoryMeta[selectedCategory] || categoryMeta.all;
+      const count = categoryCounts[selectedCategory] || articles.length;
       
       // Page Title & Meta Desc
-      document.title = "Financial Guides & Investment Strategies | RupeeBuddy.in";
+      document.title = `${currentMeta.title} (${count} Guides) | RupeeBuddy.in`;
       
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) {
@@ -4146,7 +4243,7 @@ export default function Blogs({ setActiveCalculator }) {
         metaDesc.name = "description";
         document.head.appendChild(metaDesc);
       }
-      metaDesc.content = "Explore 69+ expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.";
+      metaDesc.content = `${currentMeta.subtitle} Browse ${count} comprehensive guides on RupeeBuddy.in.`;
 
       // Meta Keywords
       let metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -4155,41 +4252,43 @@ export default function Blogs({ setActiveCalculator }) {
         metaKeywords.name = "keywords";
         document.head.appendChild(metaKeywords);
       }
-      metaKeywords.content = "finance guides, investment articles, wealth strategies india, personal finance blogs, saving tips";
+      metaKeywords.content = `${selectedCategory} guides, finance guides, personal finance india, wealth strategies`;
 
       // Canonical URL
+      const categoryCanonical = selectedCategory === 'all'
+        ? "https://rupeebuddy.in/?calc=blogs"
+        : `https://rupeebuddy.in/?calc=blogs&category=${selectedCategory}`;
       let canonical = document.querySelector('link[rel="canonical"]');
       if (!canonical) {
         canonical = document.createElement('link');
         canonical.rel = "canonical";
         document.head.appendChild(canonical);
       }
-      canonical.href = "https://rupeebuddy.in/?calc=blogs";
+      canonical.href = categoryCanonical;
 
       // Open Graph Meta
-      setMetaTag('og:title', "Financial Guides & Investment Strategies | RupeeBuddy.in", true);
-      setMetaTag('og:description', "Explore 69+ expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.", true);
-      setMetaTag('og:url', "https://rupeebuddy.in/?calc=blogs", true);
+      setMetaTag('og:title', `${currentMeta.title} | RupeeBuddy.in`, true);
+      setMetaTag('og:description', currentMeta.subtitle, true);
+      setMetaTag('og:url', categoryCanonical, true);
       setMetaTag('og:image', 'https://rupeebuddy.in/favicon.svg', true);
 
-      // Inject Blogs Landing BreadcrumbList Schema
+      // Breadcrumb Schema
+      const itemList = [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeebuddy.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/?calc=blogs" }
+      ];
+      if (selectedCategory !== 'all') {
+        itemList.push({
+          "@type": "ListItem",
+          "position": 3,
+          "name": currentMeta.title,
+          "item": categoryCanonical
+        });
+      }
       const breadcrumbData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://rupeebuddy.in/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Financial Guides",
-            "item": "https://rupeebuddy.in/?calc=blogs"
-          }
-        ]
+        "itemListElement": itemList
       };
       const breadcrumbScript = document.createElement("script");
       breadcrumbScript.type = "application/ld+json";
@@ -4197,16 +4296,49 @@ export default function Blogs({ setActiveCalculator }) {
       breadcrumbScript.text = JSON.stringify(breadcrumbData, null, 2);
       document.head.appendChild(breadcrumbScript);
     }
-  }, [selectedArticleId]);
+  }, [selectedArticleId, selectedCategory]);
 
   return (
     <div className="blogs-wrapper">
       {activeArticle ? (
         /* Detailed Article Reader */
         <div className="article-reader-container">
-          <button className="article-back-btn" onClick={() => handleSelectArticle(null)}>
-            <ArrowLeft size={16} /> Back to Guides
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+            <button 
+              className="article-back-btn" 
+              onClick={() => handleSelectArticle(null)}
+              style={{ margin: 0, padding: '6px 14px', background: '#f1f5f9', borderRadius: '6px' }}
+            >
+              <ArrowLeft size={16} /> Back to {categoryMeta[activeArticle.category]?.title || 'Guides'}
+            </button>
+            
+            {/* Breadcrumbs Navigation */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-muted)' }}>
+              <a 
+                href="?calc=home" 
+                onClick={(e) => { e.preventDefault(); setActiveCalculator('home'); }} 
+                style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '500' }}
+              >
+                Home
+              </a>
+              <ChevronRight size={13} style={{ opacity: 0.6 }} />
+              <a 
+                href="?calc=blogs" 
+                onClick={(e) => { e.preventDefault(); handleCategoryChange('all'); }} 
+                style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '500' }}
+              >
+                Guides
+              </a>
+              <ChevronRight size={13} style={{ opacity: 0.6 }} />
+              <a 
+                href={`?calc=blogs&category=${activeArticle.category}`} 
+                onClick={(e) => { e.preventDefault(); handleCategoryChange(activeArticle.category); }} 
+                style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '600', textTransform: 'capitalize' }}
+              >
+                {activeArticle.category}
+              </a>
+            </div>
+          </div>
           
           <div className="article-meta-header">
             <span className={`guide-category-badge ${activeArticle.category}`}>
@@ -4267,14 +4399,22 @@ export default function Blogs({ setActiveCalculator }) {
             if (relatedArticles.length === 0) return null;
             return (
               <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid var(--border-color)' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>
-                  📚 You May Also Like
-                </h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '8px' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
+                    📚 More in {categoryMeta[activeArticle.category]?.title || 'This Category'}
+                  </h3>
+                  <button 
+                    onClick={() => handleCategoryChange(activeArticle.category)}
+                    style={{ background: 'none', border: 'none', color: 'var(--brand-navy)', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}
+                  >
+                    View all {categoryCounts[activeArticle.category]} articles →
+                  </button>
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                   {relatedArticles.map(rel => (
                     <a
                       key={rel.id}
-                      href={`?calc=blogs&article=${rel.id}`}
+                      href={`?calc=blogs&category=${rel.category}&article=${rel.id}`}
                       onClick={(e) => { e.preventDefault(); handleSelectArticle(rel.id); }}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
@@ -4324,49 +4464,108 @@ export default function Blogs({ setActiveCalculator }) {
         </div>
 
       ) : (
-        /* Guides Dashboard */
+        /* Dedicated Category View / Guides Dashboard */
         <div className="guides-container">
-          <div className="guides-header-row">
-            <h2>RupeeBuddy Finance Guides</h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginTop: '-8px' }}>
-              Deep dives, comparisons, and wealth strategies to help you make sound financial calculations.
-            </p>
-            
-            <div className="guides-search-filters">
-              {/* Search input */}
-              <div className="search-input-wrapper" style={{ flexGrow: 1, maxWidth: '400px' }}>
+          {/* Category Hero Card */}
+          <div className={`category-hero-card ${selectedCategory}`}>
+            <div className="category-breadcrumbs">
+              <a href="?calc=home" onClick={(e) => { e.preventDefault(); setActiveCalculator('home'); }}>
+                Home
+              </a>
+              <span>/</span>
+              <a href="?calc=blogs" onClick={(e) => { e.preventDefault(); handleCategoryChange('all'); }}>
+                Financial Guides
+              </a>
+              {selectedCategory !== 'all' && (
+                <>
+                  <span>/</span>
+                  <span style={{ color: '#ffffff', fontWeight: '700', textTransform: 'capitalize' }}>
+                    {selectedCategory}
+                  </span>
+                </>
+              )}
+            </div>
+
+            <div className="category-hero-main">
+              <div className="category-hero-title-group">
+                <h1>
+                  <span>{categoryMeta[selectedCategory]?.icon}</span>
+                  <span>{categoryMeta[selectedCategory]?.title}</span>
+                </h1>
+                <p>{categoryMeta[selectedCategory]?.subtitle}</p>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                <span className="category-hero-badge">
+                  {categoryMeta[selectedCategory]?.badge} • {filteredArticles.length} {filteredArticles.length === 1 ? 'Article' : 'Articles'}
+                </span>
+                {selectedCategory !== 'all' && (
+                  <button
+                    onClick={() => handleCategoryChange('all')}
+                    style={{
+                      background: 'rgba(255,255,255,0.18)',
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      color: '#ffffff',
+                      padding: '4px 12px',
+                      borderRadius: '16px',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    View All 69 Guides →
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Category Navigation Tabs */}
+          <div className="category-nav-tabs">
+            {categoriesList.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`category-tab-btn ${isSelected ? 'active' : ''}`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.label}</span>
+                  <span className="category-tab-count">
+                    {categoryCounts[cat.id] || 0}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* In-Category Search & Counter Bar */}
+          <div className="guides-header-row" style={{ marginTop: '0', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap', gap: '12px' }}>
+              <div className="search-input-wrapper" style={{ flexGrow: 1, maxWidth: '440px' }}>
                 <Search size={18} className="search-icon" />
                 <input 
                   type="text" 
-                  placeholder="Search articles..." 
+                  placeholder={selectedCategory === 'all' ? "Search all 69 guides..." : `Search in ${categoryMeta[selectedCategory]?.title}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="search-field"
                 />
               </div>
 
-              {/* Category Filters */}
-              <div className="guides-filter-tags">
-                {['all', 'realestate', 'investment', 'loans', 'tax', 'retirement'].map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`filter-tag-btn ${selectedCategory === cat ? 'active' : ''}`}
-                    style={{ textTransform: 'capitalize' }}
-                  >
-                    {cat}
-                  </button>
-                ))}
+              <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500' }}>
+                Showing <strong>{filteredArticles.length}</strong> {selectedCategory === 'all' ? 'total guides' : `${selectedCategory} guides`}
               </div>
             </div>
           </div>
 
-          {/* Guides Cards Grid */}
+          {/* Guides Cards Grid - ONLY shows posts in active category */}
           <div className="guides-grid">
             {filteredArticles.map((article) => (
               <a 
                 key={article.id} 
-                href={`?calc=blogs&article=${article.id}`}
+                href={`?calc=blogs&category=${article.category}&article=${article.id}`}
                 className="guide-summary-card"
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={(e) => {
@@ -4374,9 +4573,14 @@ export default function Blogs({ setActiveCalculator }) {
                   handleSelectArticle(article.id);
                 }}
               >
-                <span className={`guide-category-badge ${article.category}`}>
-                  {article.category}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span className={`guide-category-badge ${article.category}`}>
+                    {article.category}
+                  </span>
+                  <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+                    ⏱️ {article.readTime}
+                  </span>
+                </div>
                 <h3 className="guide-card-title">{article.title}</h3>
                 <p className="guide-card-snippet">{article.snippet}</p>
                 <div className="guide-card-footer">
@@ -4392,14 +4596,36 @@ export default function Blogs({ setActiveCalculator }) {
               <div style={{ 
                 textAlign: 'center', 
                 gridColumn: '1 / -1', 
-                padding: '40px', 
+                padding: '48px 24px', 
                 color: 'var(--text-muted)',
                 backgroundColor: 'white',
                 border: '1px solid var(--border-color)',
                 borderRadius: 'var(--radius-md)'
               }}>
-                <BookOpen size={40} style={{ opacity: 0.3, marginBottom: '12px' }} />
-                <p>No guides found matching your search.</p>
+                <BookOpen size={44} style={{ opacity: 0.3, marginBottom: '12px' }} />
+                <p style={{ fontSize: '16px', fontWeight: '600', color: 'var(--text-main)', marginBottom: '6px' }}>
+                  No guides found matching your search.
+                </p>
+                <p style={{ fontSize: '13px', marginBottom: '16px' }}>
+                  Try a different keyword or reset your search.
+                </p>
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    style={{
+                      padding: '8px 16px',
+                      background: 'var(--brand-navy)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Clear Search
+                  </button>
+                )}
               </div>
             )}
           </div>

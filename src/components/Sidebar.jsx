@@ -33,8 +33,22 @@ export const calculatorsList = [
   { id: 'rentalagreement', name: 'Rental Agreement Generator', desc: 'Instant legal 11-month rent agreement draft', icon: Key, category: 'realestate' }
 ];
 
-export default function Sidebar({ activeCalculator, setActiveCalculator, isMobileOpen, setIsMobileOpen }) {
+export default function Sidebar({ 
+  activeCalculator, 
+  setActiveCalculator, 
+  activeCategory = 'all',
+  setActiveCategory,
+  isMobileOpen, 
+  setIsMobileOpen 
+}) {
   const [searchTerm, setSearchTerm] = useState('');
+
+  const selectGuideCategory = (catId) => {
+    if (setActiveCategory) {
+      setActiveCategory(catId);
+    }
+    selectCalculator('blogs');
+  };
 
   const filteredCalculators = calculatorsList.filter(calc => 
     calc.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -219,27 +233,58 @@ export default function Sidebar({ activeCalculator, setActiveCalculator, isMobil
 
           {/* Guides & Articles Group */}
           <div className="mobile-only-menu-group">
-            <span className="menu-group-title">GUIDES & ARTICLES</span>
+            <span className="menu-group-title">FINANCIAL GUIDES & ARTICLES</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
                   href="?calc=blogs"
                   onClick={(e) => {
                     e.preventDefault();
-                    selectCalculator('blogs');
+                    selectGuideCategory('all');
                   }}
-                  className={`menu-item-btn ${activeCalculator === 'blogs' ? 'active' : ''}`}
+                  className={`menu-item-btn ${activeCalculator === 'blogs' && activeCategory === 'all' ? 'active' : ''}`}
                   style={{ textDecoration: 'none' }}
                 >
-                  <div className={`menu-icon-container ${activeCalculator === 'blogs' ? 'active' : ''}`}>
+                  <div className={`menu-icon-container ${activeCalculator === 'blogs' && activeCategory === 'all' ? 'active' : ''}`}>
                     <BookOpen size={18} />
                   </div>
                   <div className="menu-text-container">
-                    <span className="menu-item-name">Finance Guides</span>
-                    <span className="menu-item-desc">Wealth & tax saving articles</span>
+                    <span className="menu-item-name">All Guides (69)</span>
+                    <span className="menu-item-desc">Browse complete library</span>
                   </div>
                 </a>
               </li>
+              {[
+                { id: 'investment', name: 'Investment Guides (28)', desc: 'Mutual funds, stocks & compounding', icon: TrendingUp },
+                { id: 'loans', name: 'Loan & EMI Guides (12)', desc: 'Home loans, FOIR & CIBIL score', icon: Percent },
+                { id: 'realestate', name: 'Real Estate Guides (11)', desc: 'Stamp duty, RERA & rent laws', icon: Building2 },
+                { id: 'retirement', name: 'Retirement Guides (11)', desc: 'NPS, EPF, PPF & pensions', icon: Sunset },
+                { id: 'tax', name: 'Tax & Budget Guides (7)', desc: 'Old vs New tax slabs & 80C', icon: FileText }
+              ].map(cat => {
+                const CatIcon = cat.icon;
+                const isCatActive = activeCalculator === 'blogs' && activeCategory === cat.id;
+                return (
+                  <li key={cat.id} className="menu-item-wrapper">
+                    <a 
+                      href={`?calc=blogs&category=${cat.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        selectGuideCategory(cat.id);
+                      }}
+                      className={`menu-item-btn ${isCatActive ? 'active' : ''}`}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <div className={`menu-icon-container ${isCatActive ? 'active' : ''}`}>
+                        <CatIcon size={18} />
+                      </div>
+                      <div className="menu-text-container">
+                        <span className="menu-item-name">{cat.name}</span>
+                        <span className="menu-item-desc">{cat.desc}</span>
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

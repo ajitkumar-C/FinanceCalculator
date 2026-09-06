@@ -1446,6 +1446,129 @@ h1, h2, h3, h4, h5, h6 {
 .guide-category-badge.investment { background-color: rgba(5, 150, 105, 0.1); color: #059669; }
 .guide-category-badge.loans { background-color: rgba(219, 142, 5, 0.1); color: #b77908; }
 .guide-category-badge.retirement { background-color: rgba(30, 58, 138, 0.1); color: var(--brand-navy); }
+.guide-category-badge.realestate { background-color: rgba(147, 51, 234, 0.1); color: #7e22ce; }
+
+/* Category Hero & Navigation Styles */
+.category-hero-card {
+  background: linear-gradient(135deg, var(--brand-navy) 0%, #1e3a8a 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  color: #ffffff;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.category-hero-card.investment { background: linear-gradient(135deg, #065f46 0%, #047857 100%); }
+.category-hero-card.loans { background: linear-gradient(135deg, #92400e 0%, #b45309 100%); }
+.category-hero-card.realestate { background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%); }
+.category-hero-card.retirement { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); }
+.category-hero-card.tax { background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%); }
+
+.category-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+.category-breadcrumbs a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+.category-breadcrumbs a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.category-hero-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.category-hero-title-group h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.category-hero-title-group p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  margin: 0;
+  line-height: 1.6;
+}
+.category-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+}
+
+.category-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+}
+.category-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+.category-tab-btn:hover {
+  background-color: #f8fafc;
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+.category-tab-btn.active {
+  background-color: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+}
+.category-tab-count {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.08);
+}
+.category-tab-btn.active .category-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
 
 .guide-card-title {
   font-size: 16px;

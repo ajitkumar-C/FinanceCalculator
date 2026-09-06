@@ -62,7 +62,20 @@ const PrivacyPolicy = React.lazy(() => import('./components/pages/PrivacyPolicy'
 const ContactUs = React.lazy(() => import('./components/pages/ContactUs'));
 const Blogs = React.lazy(() => import('./components/pages/Blogs'));
 
-const validRoutes = [...calculatorsList.map(c => c.id), 'home', 'about', 'privacy', 'contact', 'blogs'];
+const validRoutes = [
+  ...calculatorsList.map(c => c.id), 
+  'home', 'about', 'privacy', 'contact', 'blogs',
+  'blogs-investment', 'blogs-loans', 'blogs-realestate', 'blogs-retirement', 'blogs-tax'
+];
+
+const categoryTitles = {
+  all: 'Finance Guides & Insights',
+  investment: 'Investment Guides & Strategies',
+  loans: 'Loan & Debt Management Guides',
+  realestate: 'Real Estate & Property Guides',
+  retirement: 'Retirement & Pension Guides',
+  tax: 'Tax Slabs & Exemption Guides'
+};
 
 const staticPages = {
   home: { name: 'Home / Dashboard' },
@@ -101,8 +114,21 @@ export default function App() {
   const [activeCalc, setActiveCalc] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const urlCalc = params.get('calc');
+    if (urlCalc && urlCalc.startsWith('blogs-')) {
+      return 'blogs';
+    }
     return (urlCalc && validRoutes.includes(urlCalc)) ? urlCalc : 'home';
   });
+
+  const [activeCategory, setActiveCategory] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlCalc = params.get('calc');
+    if (urlCalc && urlCalc.startsWith('blogs-')) {
+      return urlCalc.replace('blogs-', '');
+    }
+    return params.get('category') || 'all';
+  });
+
   const [resultText, setResultText] = useState('');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -117,15 +143,47 @@ export default function App() {
       mainLayout.scrollTop = 0;
     }
 
-    injectCalculatorSchema(activeCalc);
+    injectCalculatorSchema(activeCalc, activeCategory);
     
     // Update URL query parameters without page reload
     const params = new URLSearchParams(window.location.search);
-    if (params.get('calc') !== activeCalc) {
-      params.set('calc', activeCalc);
+    let urlChanged = false;
+
+    if (activeCalc === 'blogs') {
+      if (params.get('calc') !== 'blogs') {
+        params.set('calc', 'blogs');
+        urlChanged = true;
+      }
+      if (activeCategory && activeCategory !== 'all') {
+        if (params.get('category') !== activeCategory) {
+          params.set('category', activeCategory);
+          urlChanged = true;
+        }
+      } else {
+        if (params.has('category')) {
+          params.delete('category');
+          urlChanged = true;
+        }
+      }
+    } else {
+      if (params.get('calc') !== activeCalc) {
+        params.set('calc', activeCalc);
+        urlChanged = true;
+      }
+      if (params.has('category')) {
+        params.delete('category');
+        urlChanged = true;
+      }
+      if (params.has('article')) {
+        params.delete('article');
+        urlChanged = true;
+      }
+    }
+
+    if (urlChanged) {
       window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
     }
-  }, [activeCalc]);
+  }, [activeCalc, activeCategory]);
 
   // Listen to browser back/forward buttons
   useEffect(() => {
@@ -135,8 +193,17 @@ export default function App() {
       document.body.scrollTop = 0;
       const params = new URLSearchParams(window.location.search);
       const urlCalc = params.get('calc');
-      if (urlCalc && validRoutes.includes(urlCalc)) {
+      const urlCat = params.get('category') || 'all';
+
+      if (urlCalc && urlCalc.startsWith('blogs-')) {
+        const catFromAlias = urlCalc.replace('blogs-', '');
+        setActiveCalc('blogs');
+        setActiveCategory(catFromAlias);
+      } else if (urlCalc && validRoutes.includes(urlCalc)) {
         setActiveCalc(urlCalc);
+        if (urlCalc === 'blogs') {
+          setActiveCategory(urlCat);
+        }
       } else {
         setActiveCalc('home');
       }
@@ -146,7 +213,9 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const activeDetails = calculatorsList.find(calc => calc.id === activeCalc) || staticPages[activeCalc] || staticPages['home'];
+  const activeDetails = activeCalc === 'blogs' 
+    ? { name: categoryTitles[activeCategory] || 'Finance Guides' }
+    : (calculatorsList.find(calc => calc.id === activeCalc) || staticPages[activeCalc] || staticPages['home']);
 
   const renderActiveCalculator = () => {
     switch (activeCalc) {
@@ -201,7 +270,13 @@ export default function App() {
       case 'rentalagreement':
         return <RentalAgreementGenerator />;
       case 'blogs':
-        return <Blogs setActiveCalculator={setActiveCalc} />;
+        return (
+          <Blogs 
+            setActiveCalculator={setActiveCalc} 
+            activeCategory={activeCategory} 
+            setActiveCategory={setActiveCategory} 
+          />
+        );
       default:
         return <Dashboard setActiveCalculator={setActiveCalc} />;
     }
@@ -213,6 +288,8 @@ export default function App() {
       <Sidebar 
         activeCalculator={activeCalc} 
         setActiveCalculator={setActiveCalc} 
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
         isMobileOpen={isMobileOpen}
         setIsMobileOpen={setIsMobileOpen}
       />
@@ -226,6 +303,8 @@ export default function App() {
           calculatorResultText={resultText} 
           activeCalculator={activeCalc}
           setActiveCalculator={setActiveCalc}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
           isMobileOpen={isMobileOpen}
           setIsMobileOpen={setIsMobileOpen}
         />

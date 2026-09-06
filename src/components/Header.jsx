@@ -13,10 +13,12 @@ export default function Header({
   calculatorResultText,
   activeCalculator,
   setActiveCalculator,
+  activeCategory = 'all',
+  setActiveCategory,
   isMobileOpen,
   setIsMobileOpen
 }) {
-  const [openDropdown, setOpenDropdown] = useState(null); // 'realestate' | 'investment' | 'loans' | 'tax'
+  const [openDropdown, setOpenDropdown] = useState(null); // 'realestate' | 'investment' | 'loans' | 'tax' | 'guides'
   const navRef = useRef(null);
 
   // Close dropdown on click outside
@@ -40,6 +42,15 @@ export default function Header({
 
   const navigateTo = (calcId) => {
     setActiveCalculator(calcId);
+    setOpenDropdown(null);
+    setIsMobileOpen(false);
+  };
+
+  const navigateToGuideCategory = (catId) => {
+    if (setActiveCategory) {
+      setActiveCategory(catId);
+    }
+    setActiveCalculator('blogs');
     setOpenDropdown(null);
     setIsMobileOpen(false);
   };
@@ -77,10 +88,20 @@ export default function Header({
     { id: 'retirement', name: 'Retirement Planner', desc: 'Inflation-adjusted savings target', icon: Sunset }
   ];
 
+  const guideCategories = [
+    { id: 'all', name: 'All Guides & Insights', desc: 'Browse all 69 finance & wealth articles', count: 69, icon: BookOpen },
+    { id: 'investment', name: 'Investment Guides', desc: 'Stocks, MFs, Algos, SGB, Compounding', count: 28, icon: TrendingUp },
+    { id: 'loans', name: 'Loan & EMI Guides', desc: 'Home Loans, FOIR, Prepayments, CIBIL', count: 12, icon: Percent },
+    { id: 'realestate', name: 'Real Estate Guides', desc: 'Stamp Duty, RERA, Capital Gains, Rent', count: 11, icon: Building2 },
+    { id: 'retirement', name: 'Retirement & Pension', desc: 'NPS, EPF, PPF, UPS, SCSS, SWP', count: 11, icon: Sunset },
+    { id: 'tax', name: 'Tax & Budget Guides', desc: 'Old vs New Regime, Sec 80C, Budget', count: 7, icon: FileText }
+  ];
+
   const isRealEstateActive = realEstateTools.some(t => t.id === activeCalculator);
   const isInvestmentActive = investmentTools.some(t => t.id === activeCalculator);
   const isLoanActive = loanTools.some(t => t.id === activeCalculator);
   const isTaxActive = taxRetirementTools.some(t => t.id === activeCalculator);
+  const isGuidesActive = activeCalculator === 'blogs' || activeCalculator?.startsWith?.('blogs');
 
   return (
     <header className="app-header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
@@ -428,18 +449,93 @@ export default function Header({
             )}
           </div>
 
-          {/* Financial Guides */}
-          <a 
-            href="?calc=blogs"
-            onClick={(e) => {
-              e.preventDefault();
-              navigateTo('blogs');
-            }}
-            className={`nav-link-btn ${activeCalculator === 'blogs' ? 'active' : ''}`}
-            style={{ fontSize: '13px', fontWeight: '600' }}
-          >
-            📚 Guides
-          </a>
+          {/* 5. Financial Guides Dropdown */}
+          <div style={{ position: 'relative' }}>
+            <button
+              type="button"
+              className={`nav-link-btn ${isGuidesActive || openDropdown === 'guides' ? 'active' : ''}`}
+              onClick={() => setOpenDropdown(openDropdown === 'guides' ? null : 'guides')}
+              onMouseEnter={() => setOpenDropdown('guides')}
+              style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', fontWeight: '600' }}
+            >
+              <span>📚 Guides</span>
+              <ChevronDown size={14} style={{ transform: openDropdown === 'guides' ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
+            </button>
+
+            {openDropdown === 'guides' && (
+              <div 
+                onMouseLeave={() => setOpenDropdown(null)}
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  right: '0',
+                  width: '360px',
+                  backgroundColor: '#ffffff',
+                  borderRadius: '10px',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
+                  border: '1px solid #e2e8f0',
+                  padding: '10px',
+                  zIndex: 200,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                  marginTop: '4px'
+                }}
+              >
+                <div style={{ padding: '6px 10px', fontSize: '11px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Explore Financial Guides
+                </div>
+                {guideCategories.map((g) => {
+                  const Icon = g.icon;
+                  const isCur = isGuidesActive && (activeCategory === g.id || (g.id === 'all' && (!activeCategory || activeCategory === 'all')));
+                  return (
+                    <a
+                      key={g.id}
+                      href={g.id === 'all' ? '?calc=blogs' : `?calc=blogs&category=${g.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateToGuideCategory(g.id);
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '8px 10px',
+                        borderRadius: '6px',
+                        textDecoration: 'none',
+                        backgroundColor: isCur ? '#eff6ff' : 'transparent',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isCur ? '#eff6ff' : '#f8fafc'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = isCur ? '#eff6ff' : 'transparent'}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div style={{ color: isCur ? 'var(--primary)' : '#64748b' }}><Icon size={16} /></div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <span style={{ fontSize: '13px', fontWeight: isCur ? '700' : '600', color: isCur ? 'var(--primary)' : 'var(--brand-navy)' }}>
+                            {g.name}
+                          </span>
+                          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+                            {g.desc}
+                          </span>
+                        </div>
+                      </div>
+                      <span style={{
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        padding: '2px 8px',
+                        borderRadius: '12px',
+                        backgroundColor: isCur ? 'var(--primary)' : '#f1f5f9',
+                        color: isCur ? '#ffffff' : '#64748b'
+                      }}>
+                        {g.count}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Action Buttons (Download & Share) */}
