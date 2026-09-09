@@ -192,7 +192,19 @@ const schemas = {
   }
 };
 
-export function injectCalculatorSchema(calculatorId, category = 'all') {
+export function injectCalculatorSchema(calculatorId, category = 'all', articleId = null) {
+  // If an article is specified, set article canonical immediately and let Blogs.jsx handle article-specific schema & metadata
+  if (calculatorId === 'blogs' && articleId) {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `https://rupeebuddy.in/?calc=blogs&article=${encodeURIComponent(articleId)}`;
+    return;
+  }
+
   // 1. Remove existing schema scripts if any
   const existingScript = document.getElementById("calculator-schema");
   if (existingScript) {

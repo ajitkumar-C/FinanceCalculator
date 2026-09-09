@@ -66,7 +66,7 @@ export default function Sidebar({
       {/* Sidebar Container */}
       <aside className={`app-sidebar no-print ${isMobileOpen ? 'mobile-open' : ''}`}>
         <a 
-          href="?calc=home" 
+          href="/" 
           onClick={(e) => {
             e.preventDefault();
             selectCalculator('home');
@@ -110,7 +110,7 @@ export default function Sidebar({
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
-                  href="?calc=home"
+                  href="/"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('home');

@@ -108,7 +108,7 @@ export default function Header({
       {/* Mobile Branding Bar (Visible only on mobile) */}
       <div className="mobile-header-brand no-print">
         <a 
-          href="?calc=home"
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             navigateTo('home');
@@ -149,7 +149,7 @@ export default function Header({
           
           {/* Home Link */}
           <a 
-            href="?calc=home"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               navigateTo('home');

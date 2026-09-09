@@ -14,7 +14,30 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RupeeBuddy.in | Personal Finance & Tax Calculators</title>
-    <link rel="canonical" href="https://rupeebuddy.in/" />
+    <script>
+      (function() {
+        var origin = 'https://rupeebuddy.in';
+        var search = window.location.search;
+        var canonicalUrl = origin + '/';
+        if (search && search !== '?calc=home') {
+          var params = new URLSearchParams(search);
+          var calc = params.get('calc');
+          var article = params.get('article');
+          var category = params.get('category');
+          if (calc === 'blogs' && article) {
+            canonicalUrl = origin + '/?calc=blogs&article=' + encodeURIComponent(article);
+          } else if (calc === 'blogs' && category && category !== 'all') {
+            canonicalUrl = origin + '/?calc=blogs&category=' + encodeURIComponent(category);
+          } else if (calc && calc !== 'home') {
+            canonicalUrl = origin + '/?calc=' + encodeURIComponent(calc);
+          }
+        }
+        var link = document.createElement('link');
+        link.rel = 'canonical';
+        link.href = canonicalUrl;
+        document.head.appendChild(link);
+      })();
+    </script>
     <meta name="description" content="Calculate Home Loan EMI, compare Income Tax Regimes (Old vs New), estimate Mutual Fund SIP returns, PPF growth, EPF balances, and NPS pensions with our free, private tools." />
     <meta name="keywords" content="finance calculator, emi calculator, sip calculator, income tax calculator, old vs new tax regime, ppf calculator, epf calculator, nps calculator, india finance" />
     <meta name="author" content="RupeeBuddy.in" />

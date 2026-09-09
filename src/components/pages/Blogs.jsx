@@ -4098,13 +4098,14 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     }
     const params = new URLSearchParams(window.location.search);
     params.set('calc', 'blogs');
-    if (selectedCategory && selectedCategory !== 'all') {
-      params.set('category', selectedCategory);
-    }
     if (id) {
       params.set('article', id);
+      params.delete('category');
     } else {
       params.delete('article');
+      if (selectedCategory && selectedCategory !== 'all') {
+        params.set('category', selectedCategory);
+      }
     }
     window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
   };
@@ -4166,7 +4167,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
         metaKeywords.content = `${article.category}, finance guide, ${article.title.toLowerCase()}`;
 
         // Canonical URL
-        const articleCanonical = `https://rupeebuddy.in/?calc=blogs&category=${article.category}&article=${article.id}`;
+        const articleCanonical = `https://rupeebuddy.in/?calc=blogs&article=${article.id}`;
         let canonical = document.querySelector('link[rel="canonical"]');
         if (!canonical) {
           canonical = document.createElement('link');
@@ -4315,7 +4316,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
             {/* Breadcrumbs Navigation */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--text-muted)' }}>
               <a 
-                href="?calc=home" 
+                href="/" 
                 onClick={(e) => { e.preventDefault(); setActiveCalculator('home'); }} 
                 style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '500' }}
               >
@@ -4414,7 +4415,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
                   {relatedArticles.map(rel => (
                     <a
                       key={rel.id}
-                      href={`?calc=blogs&category=${rel.category}&article=${rel.id}`}
+                      href={`?calc=blogs&article=${rel.id}`}
                       onClick={(e) => { e.preventDefault(); handleSelectArticle(rel.id); }}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
@@ -4469,7 +4470,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
           {/* Category Hero Card */}
           <div className={`category-hero-card ${selectedCategory}`}>
             <div className="category-breadcrumbs">
-              <a href="?calc=home" onClick={(e) => { e.preventDefault(); setActiveCalculator('home'); }}>
+              <a href="/" onClick={(e) => { e.preventDefault(); setActiveCalculator('home'); }}>
                 Home
               </a>
               <span>/</span>
@@ -4565,7 +4566,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
             {filteredArticles.map((article) => (
               <a 
                 key={article.id} 
-                href={`?calc=blogs&category=${article.category}&article=${article.id}`}
+                href={`?calc=blogs&article=${article.id}`}
                 className="guide-summary-card"
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={(e) => {

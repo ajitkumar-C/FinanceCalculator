@@ -143,10 +143,11 @@ export default function App() {
       mainLayout.scrollTop = 0;
     }
 
-    injectCalculatorSchema(activeCalc, activeCategory);
+    const params = new URLSearchParams(window.location.search);
+    const articleParam = params.get('article');
+    injectCalculatorSchema(activeCalc, activeCategory, articleParam);
     
     // Update URL query parameters without page reload
-    const params = new URLSearchParams(window.location.search);
     let urlChanged = false;
 
     if (activeCalc === 'blogs') {
@@ -154,7 +155,13 @@ export default function App() {
         params.set('calc', 'blogs');
         urlChanged = true;
       }
-      if (activeCategory && activeCategory !== 'all') {
+      if (articleParam) {
+        // Articles use clean ?calc=blogs&article=id URLs (category is handled internally)
+        if (params.has('category')) {
+          params.delete('category');
+          urlChanged = true;
+        }
+      } else if (activeCategory && activeCategory !== 'all') {
         if (params.get('category') !== activeCategory) {
           params.set('category', activeCategory);
           urlChanged = true;
@@ -164,6 +171,19 @@ export default function App() {
           params.delete('category');
           urlChanged = true;
         }
+      }
+    } else if (activeCalc === 'home') {
+      if (params.has('calc')) {
+        params.delete('calc');
+        urlChanged = true;
+      }
+      if (params.has('category')) {
+        params.delete('category');
+        urlChanged = true;
+      }
+      if (params.has('article')) {
+        params.delete('article');
+        urlChanged = true;
       }
     } else {
       if (params.get('calc') !== activeCalc) {
@@ -181,7 +201,9 @@ export default function App() {
     }
 
     if (urlChanged) {
-      window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+      const queryString = params.toString();
+      const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
+      window.history.pushState({}, '', newUrl);
     }
   }, [activeCalc, activeCategory]);
 
