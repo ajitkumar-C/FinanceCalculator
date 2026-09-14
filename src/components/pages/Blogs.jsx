@@ -3,6 +3,7 @@ import {
   ArrowLeft, Search, Clock, ArrowRight, BookOpen, 
   TrendingUp, Percent, Building2, Sunset, FileText, ChevronRight, Sparkles 
 } from 'lucide-react';
+import { newTrendingArticles } from './newTrendingArticles';
 
 export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
@@ -15,7 +16,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     return params.get('category') || (activeCategory !== 'all' ? activeCategory : 'all');
   });
 
-  const articles = [
+  const baseArticles = [
     {
       id: 'ai-trading-basics',
       title: 'The Rise of AI in Stock Trading: How Algorithmic Bots Work',
@@ -3966,6 +3967,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     }
   ];
 
+  const articles = [...newTrendingArticles, ...baseArticles];
+
   const categoryMeta = {
     all: {
       title: 'RupeeBuddy Financial Guides',
@@ -4514,7 +4517,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
                       cursor: 'pointer'
                     }}
                   >
-                    View All 69 Guides →
+                    View All {articles.length} Guides →
                   </button>
                 )}
               </div>
@@ -4548,7 +4551,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
                 <Search size={18} className="search-icon" />
                 <input 
                   type="text" 
-                  placeholder={selectedCategory === 'all' ? "Search all 69 guides..." : `Search in ${categoryMeta[selectedCategory]?.title}...`}
+                  placeholder={selectedCategory === 'all' ? `Search all ${articles.length} guides...` : `Search in ${categoryMeta[selectedCategory]?.title}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="search-field"
