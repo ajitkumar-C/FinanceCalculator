@@ -4,6 +4,7 @@ import {
   TrendingUp, Percent, Building2, Sunset, FileText, ChevronRight, Sparkles 
 } from 'lucide-react';
 import { newTrendingArticles } from './newTrendingArticles';
+import { latestTrendingPosts } from './latestTrendingPosts';
 
 export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
@@ -3967,7 +3968,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     }
   ];
 
-  const articles = [...newTrendingArticles, ...baseArticles];
+  const articles = [...latestTrendingPosts, ...newTrendingArticles, ...baseArticles];
 
   const categoryMeta = {
     all: {
