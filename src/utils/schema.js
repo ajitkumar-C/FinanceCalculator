@@ -462,11 +462,15 @@ export function injectCalculatorSchema(calculatorId, category = 'all', articleId
     canonical.rel = "canonical";
     document.head.appendChild(canonical);
   }
+  const urlParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const articleParam = urlParams.get('article');
   const pageUrl = calculatorId === 'home' 
     ? 'https://rupeebuddy.in/' 
-    : (calculatorId === 'blogs' && category && category !== 'all')
-      ? `https://rupeebuddy.in/?calc=blogs&category=${category}`
-      : `https://rupeebuddy.in/?calc=${calculatorId}`;
+    : (calculatorId === 'blogs' && articleParam)
+      ? `https://rupeebuddy.in/?calc=blogs&article=${articleParam}`
+      : (calculatorId === 'blogs' && category && category !== 'all')
+        ? `https://rupeebuddy.in/?calc=blogs&category=${category}`
+        : `https://rupeebuddy.in/?calc=${calculatorId}`;
   canonical.href = pageUrl;
 
   // Helper to safely set meta tags
