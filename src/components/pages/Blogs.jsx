@@ -8,6 +8,7 @@ import { latestTrendingPosts } from './latestTrendingPosts';
 import { featuredFinanceArticles } from './featuredFinanceArticles';
 import { topTrendingPostsPart1 } from './topTrendingPostsPart1';
 import { topTrendingPostsPart2 } from './topTrendingPostsPart2';
+import { strategicFinancePosts } from './strategicFinancePosts';
 
 export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
@@ -3972,6 +3973,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
   ];
 
   const articles = [
+    ...strategicFinancePosts,
     ...topTrendingPostsPart1,
     ...topTrendingPostsPart2,
     ...featuredFinanceArticles,
