@@ -70,22 +70,24 @@ async function submitBatch(urlList, batchIdx, totalBatches) {
 
     const status = response.status;
     const statusText = response.statusText;
+    const responseText = await response.text();
 
     if (status === 200 || status === 202) {
       console.log(`✅ Batch ${batchIdx + 1}: IndexNow accepted (${status} ${statusText || 'OK'}).`);
       return true;
     } else if (status === 400) {
-      console.error(`❌ Batch ${batchIdx + 1}: 400 Bad Request (Invalid format).`);
+      console.error(`❌ Batch ${batchIdx + 1}: 400 Bad Request (Invalid format). Details:`, responseText);
     } else if (status === 403) {
       console.warn(`⚠️ Batch ${batchIdx + 1}: 403 Forbidden.`);
-      console.warn(`   Reason: Search engines cannot verify key at ${KEY_LOCATION} yet.`);
-      console.warn(`   👉 Make sure the new key file is committed and deployed to your hosting server/CDN.`);
+      console.warn(`   Server Message: ${responseText || 'No response body'}`);
+      console.warn(`   Reason: IndexNow has not yet verified the key file at ${KEY_LOCATION} or cache is cooling down.`);
+      console.warn(`   👉 Bing Webmaster crawlers will refresh the verification file shortly.`);
     } else if (status === 422) {
-      console.error(`❌ Batch ${batchIdx + 1}: 422 Unprocessable Entity (URLs do not match host ${HOST} or schema mismatch).`);
+      console.error(`❌ Batch ${batchIdx + 1}: 422 Unprocessable Entity. Details:`, responseText);
     } else if (status === 429) {
-      console.error(`❌ Batch ${batchIdx + 1}: 429 Too Many Requests.`);
+      console.error(`❌ Batch ${batchIdx + 1}: 429 Too Many Requests. Details:`, responseText);
     } else {
-      console.error(`❌ Batch ${batchIdx + 1}: Unexpected response HTTP ${status} ${statusText}`);
+      console.error(`❌ Batch ${batchIdx + 1}: Unexpected response HTTP ${status} ${statusText}. Details:`, responseText);
     }
     return false;
   } catch (error) {
