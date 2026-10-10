@@ -10,6 +10,7 @@ const HOST = 'rupeebuddy.in';
 const KEY = '3df7b7c935ef49b89c253a1bd8de3af2';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const ENDPOINTS = [
+  { name: 'Bing Direct Gateway', url: 'https://www.bing.com/indexnow' },
   { name: 'IndexNow Central (Bing/Partners)', url: 'https://api.indexnow.org/indexnow' },
   { name: 'Yandex IndexNow Gateway', url: 'https://yandex.com/indexnow' }
 ];
