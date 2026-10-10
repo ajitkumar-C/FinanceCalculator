@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /*?*calc=home
 
 Sitemap: https://rupeebuddy.in/sitemap.xml

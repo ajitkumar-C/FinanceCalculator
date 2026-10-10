@@ -142,7 +142,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`?calc=${calc.id}`}
+                          href={`/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -177,7 +177,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`?calc=${calc.id}`}
+                          href={`/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -207,7 +207,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`?calc=${calc.id}`}
+                          href={`/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -237,7 +237,7 @@ export default function Sidebar({
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
-                  href="?calc=blogs"
+                  href="/?calc=blogs"
                   onClick={(e) => {
                     e.preventDefault();
                     selectGuideCategory('all');
@@ -266,7 +266,7 @@ export default function Sidebar({
                 return (
                   <li key={cat.id} className="menu-item-wrapper">
                     <a 
-                      href={`?calc=blogs&category=${cat.id}`}
+                      href={`/?calc=blogs&category=${cat.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         selectGuideCategory(cat.id);
@@ -294,7 +294,7 @@ export default function Sidebar({
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
-                  href="?calc=about"
+                  href="/?calc=about"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('about');
@@ -313,7 +313,7 @@ export default function Sidebar({
               </li>
               <li className="menu-item-wrapper">
                 <a 
-                  href="?calc=privacy"
+                  href="/?calc=privacy"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('privacy');
@@ -332,7 +332,7 @@ export default function Sidebar({
               </li>
               <li className="menu-item-wrapper">
                 <a 
-                  href="?calc=contact"
+                  href="/?calc=contact"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('contact');

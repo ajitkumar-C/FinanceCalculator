@@ -56,7 +56,7 @@ export default function Dashboard({ setActiveCalculator }) {
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a 
-              href="?calc=tax"
+              href="/?calc=tax"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
@@ -67,7 +67,7 @@ export default function Dashboard({ setActiveCalculator }) {
               Compare Income Tax
             </a>
             <a 
-              href="?calc=stampduty"
+              href="/?calc=stampduty"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: '#d97706', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
@@ -78,7 +78,7 @@ export default function Dashboard({ setActiveCalculator }) {
               Calculate Stamp Duty
             </a>
             <a 
-              href="?calc=sip"
+              href="/?calc=sip"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
@@ -185,7 +185,7 @@ export default function Dashboard({ setActiveCalculator }) {
           return (
             <a 
               key={calc.id} 
-              href={`?calc=${calc.id}`}
+              href={`/?calc=${calc.id}`}
               className="calc-card"
               style={{ textDecoration: 'none', color: 'inherit' }}
               onClick={(e) => {

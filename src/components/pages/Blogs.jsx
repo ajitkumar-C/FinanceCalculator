@@ -4340,7 +4340,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
               </a>
               <ChevronRight size={13} style={{ opacity: 0.6 }} />
               <a 
-                href="?calc=blogs" 
+                href="/?calc=blogs" 
                 onClick={(e) => { e.preventDefault(); handleCategoryChange('all'); }} 
                 style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '500' }}
               >
@@ -4348,7 +4348,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
               </a>
               <ChevronRight size={13} style={{ opacity: 0.6 }} />
               <a 
-                href={`?calc=blogs&category=${activeArticle.category}`} 
+                href={`/?calc=blogs&category=${activeArticle.category}`} 
                 onClick={(e) => { e.preventDefault(); handleCategoryChange(activeArticle.category); }} 
                 style={{ color: 'var(--brand-navy)', textDecoration: 'none', fontWeight: '600', textTransform: 'capitalize' }}
               >
@@ -4431,7 +4431,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
                   {relatedArticles.map(rel => (
                     <a
                       key={rel.id}
-                      href={`?calc=blogs&article=${rel.id}`}
+                      href={`/?calc=blogs&article=${rel.id}`}
                       onClick={(e) => { e.preventDefault(); handleSelectArticle(rel.id); }}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
@@ -4490,7 +4490,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
                 Home
               </a>
               <span>/</span>
-              <a href="?calc=blogs" onClick={(e) => { e.preventDefault(); handleCategoryChange('all'); }}>
+              <a href="/?calc=blogs" onClick={(e) => { e.preventDefault(); handleCategoryChange('all'); }}>
                 Financial Guides
               </a>
               {selectedCategory !== 'all' && (
@@ -4582,7 +4582,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
             {filteredArticles.map((article) => (
               <a 
                 key={article.id} 
-                href={`?calc=blogs&article=${article.id}`}
+                href={`/?calc=blogs&article=${article.id}`}
                 className="guide-summary-card"
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={(e) => {

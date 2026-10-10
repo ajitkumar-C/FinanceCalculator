@@ -202,7 +202,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`?calc=${t.id}`}
+                      href={`/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -281,7 +281,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`?calc=${t.id}`}
+                      href={`/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -350,7 +350,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`?calc=${t.id}`}
+                      href={`/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -419,7 +419,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`?calc=${t.id}`}
+                      href={`/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -491,7 +491,7 @@ export default function Header({
                   return (
                     <a
                       key={g.id}
-                      href={g.id === 'all' ? '?calc=blogs' : `?calc=blogs&category=${g.id}`}
+                      href={g.id === 'all' ? '/?calc=blogs' : `/?calc=blogs&category=${g.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateToGuideCategory(g.id);

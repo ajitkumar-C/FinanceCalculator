@@ -13,25 +13,85 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RupeeBuddy.in | Personal Finance & Tax Calculators</title>
+    <title>RupeeBuddy.in: Indian Financial Calculators & Wealth Dashboard | Indian Financial Calculator</title>
     <script>
       (function() {
         var origin = 'https://rupeebuddy.in';
+        var pathname = window.location.pathname;
         var search = window.location.search;
+
+        // 1. Detect non-root legacy or spam URLs (e.g. old blog paths from previous domain owner)
+        if (pathname && pathname !== '/' && pathname !== '/index.html') {
+          var metaRobots = document.createElement('meta');
+          metaRobots.name = 'robots';
+          metaRobots.content = 'noindex, nofollow';
+          document.head.appendChild(metaRobots);
+          document.title = '404 Page Not Found | RupeeBuddy.in';
+          if (!window.location.search.includes('nobounce')) {
+            window.location.replace(origin + '/');
+          }
+          return;
+        }
+
+        // 2. Synchronous Title & Description Dictionary for Calculators & Pages
+        var titles = {
+          home: 'RupeeBuddy.in: Indian Financial Calculators & Wealth Dashboard | Indian Financial Calculator',
+          emi: 'EMI Calculator: Home Loan, Car Loan & Personal Loan EMI Calculator | Indian Financial Calculator',
+          eligibility: 'Loan Eligibility & FOIR Calculator: Calculate Maximum Borrowing Limit | Indian Financial Calculator',
+          clp: 'Construction Linked Plan Calculator: Stage-Wise Payment & Pre-EMI Calculator | Indian Financial Calculator',
+          ppf: 'PPF Calculator: Public Provident Fund Calculator Online | Indian Financial Calculator',
+          pf: 'Online PF Calculator: PF Balance & Interest Calculator Online | Indian Financial Calculator',
+          sip: 'SIP Calculator: Systematic Investment Plan Return Calculator Online | Indian Financial Calculator',
+          fd: 'FD Calculator: Fixed Deposit Interest Calculator Online | Indian Financial Calculator',
+          rd: 'RD Calculator: Recurring Deposit Calculator Online | Indian Financial Calculator',
+          nps: 'National Pension Scheme India Calculator: How to Calculate NPS Pension | Indian Financial Calculator',
+          retirement: 'Retirement Planner: Pension Planner & Retirement Planning Tools | Indian Financial Calculator',
+          tax: 'Income Tax Calculator: Old vs New Tax Regime Slabs & Free Tax Estimator | Indian Financial Calculator',
+          mutualfund: 'Mutual Fund Calculator: Lumpsum & SIP Growth Calculator | Indian Financial Calculator',
+          compound: 'Compound Interest & Cumulative Calculator India: Daily, Monthly & Yearly | Indian Financial Calculator',
+          stampduty: 'Stamp Duty & Registration Calculator India: State-Wise Property Rates | Indian Financial Calculator',
+          capitalgains: 'Property Capital Gains Tax Calculator: Budget 2024 (20% vs 12.5%) | Indian Financial Calculator',
+          carpetarea: 'RERA Carpet Area Calculator & Land Unit Converter (Sq.Ft to Gaj, Guntha, Acre) | Indian Financial Calculator',
+          propertytax: 'Property Tax Calculator India: Municipal Tax for Mumbai, Bangalore, Delhi, Pune | Indian Financial Calculator',
+          brokerage: 'Brokerage Commission & Real Estate Agent TDS Calculator India | Indian Financial Calculator',
+          rentalyield: 'Rental Yield & Property Investment ROI Calculator India | Indian Financial Calculator',
+          reralookup: 'RERA Project Lookup & State Directory: Verify Builder Compliance & Approvals | Indian Financial Calculator',
+          rentalagreement: 'Rental Agreement Draft Generator & Stamp Duty Calculator India | Indian Financial Calculator',
+          about: 'About Us | RupeeBuddy.in | Indian Financial Calculator',
+          privacy: 'Privacy Policy | RupeeBuddy.in | Indian Financial Calculator',
+          contact: 'Contact Us | RupeeBuddy.in | Indian Financial Calculator',
+          blogs: 'RupeeBuddy Financial Guides & Wealth Library | Indian Financial Calculator',
+          'blogs-investment': 'Investment Guides: Stocks, Mutual Funds, Algos & Wealth Strategies | Indian Financial Calculator',
+          'blogs-loans': 'Loan & Debt Guides: Home Loans, FOIR, Prepayments & CIBIL | Indian Financial Calculator',
+          'blogs-realestate': 'Real Estate Guides: Stamp Duty, RERA, Capital Gains & Property | Indian Financial Calculator',
+          'blogs-retirement': 'Retirement & Pension Guides: NPS, EPF, PPF & Senior Citizen Plans | Indian Financial Calculator',
+          'blogs-tax': 'Tax Slabs & Exemption Guides: Old vs New Regime & Section 80C | Indian Financial Calculator'
+        };
+
         var canonicalUrl = origin + '/';
+        var pageTitle = titles.home;
+
         if (search && search !== '?calc=home') {
           var params = new URLSearchParams(search);
           var calc = params.get('calc');
           var article = params.get('article');
           var category = params.get('category');
+
           if (calc === 'blogs' && article) {
             canonicalUrl = origin + '/?calc=blogs&article=' + encodeURIComponent(article);
+            var prettyTitle = article.split('-').map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
+            pageTitle = prettyTitle + ' | RupeeBuddy Financial Guides';
           } else if (calc === 'blogs' && category && category !== 'all') {
             canonicalUrl = origin + '/?calc=blogs&category=' + encodeURIComponent(category);
+            pageTitle = (titles['blogs-' + category] || titles.blogs);
           } else if (calc && calc !== 'home') {
             canonicalUrl = origin + '/?calc=' + encodeURIComponent(calc);
+            pageTitle = (titles[calc] || titles.home);
           }
         }
+
+        document.title = pageTitle;
+
         var link = document.createElement('link');
         link.rel = 'canonical';
         link.href = canonicalUrl;
@@ -44,14 +104,14 @@
     <meta name="google-site-verification" content="FI9NBTvzR-BRyMDs21-LqPiuSk_r9iWCETqI59elmWo" />
     
     <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="RupeeBuddy.in | Personal Finance & Tax Calculators" />
+    <meta property="og:title" content="RupeeBuddy.in: Indian Financial Calculators & Wealth Dashboard" />
     <meta property="og:description" content="Calculate Home Loan EMI, compare Income Tax Regimes (Old vs New), estimate Mutual Fund SIP returns, PPF growth, EPF balances, and NPS pensions with our free, private tools." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/favicon.svg" />
     
     <!-- Twitter/X Card tags -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="RupeeBuddy.in | Personal Finance & Tax Calculators" />
+    <meta name="twitter:title" content="RupeeBuddy.in: Indian Financial Calculators & Wealth Dashboard" />
     <meta name="twitter:description" content="Calculate Home Loan EMI, compare Income Tax Regimes (Old vs New), estimate Mutual Fund SIP returns, PPF growth, EPF balances, and NPS pensions with our free, private tools." />
     <meta name="twitter:image" content="/favicon.svg" />
   </head>

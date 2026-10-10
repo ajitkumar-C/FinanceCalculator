@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Page Not Found | RupeeBuddy.in</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --brand-navy: #0f172a;
+        --brand-blue: #2563eb;
+        --brand-blue-hover: #1d4ed8;
+        --text-muted: #64748b;
+        --bg-page: #f8fafc;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-page);
+        color: var(--brand-navy);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+      }
+      .card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 48px 32px;
+        max-width: 520px;
+        width: 100%;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--brand-navy);
+        margin-bottom: 24px;
+        text-decoration: none;
+      }
+      .error-code {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--brand-blue);
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--brand-navy);
+      }
+      p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--brand-blue);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+      .btn:hover {
+        background-color: var(--brand-blue-hover);
+        transform: translateY(-1px);
+      }
+      .quick-links {
+        margin-top: 24px;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+      .quick-links a {
+        color: var(--brand-blue);
+        text-decoration: none;
+        margin: 0 6px;
+        font-weight: 500;
+      }
+      .quick-links a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <a href="/" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+          <path d="M7 7h10"></path>
+          <path d="M7 11h10"></path>
+          <path d="M7 15h4"></path>
+        </svg>
+        <span>RupeeBuddy.in</span>
+      </a>
+
+      <div class="error-code">404</div>
+      <h1>Page Not Found</h1>
+      <p>
+        The page you are looking for does not exist, has been removed, or was an archived article from a previous owner of this domain.
+      </p>
+
+      <a href="/" class="btn">Explore All Financial Calculators →</a>
+
+      <div class="quick-links">
+        Popular Calculators:
+        <a href="/?calc=tax">Income Tax</a> •
+        <a href="/?calc=emi">Home Loan EMI</a> •
+        <a href="/?calc=sip">Mutual Fund SIP</a> •
+        <a href="/?calc=stampduty">Stamp Duty</a>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        // Graceful fallback: If user typed e.g. /emi or /tax directly, route to appropriate query parameter
+        var path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+        var knownCalcs = [
+          'emi', 'eligibility', 'clp', 'ppf', 'pf', 'sip', 'fd', 'rd', 'nps',
+          'retirement', 'tax', 'mutualfund', 'compound', 'stampduty', 'capitalgains',
+          'carpetarea', 'propertytax', 'brokerage', 'rentalyield', 'reralookup',
+          'rentalagreement', 'about', 'privacy', 'contact', 'blogs'
+        ];
+        if (knownCalcs.indexOf(path) !== -1) {
+          window.location.replace('/?calc=' + encodeURIComponent(path));
+        }
+      })();
+    </script>
+  </body>
+</html>
