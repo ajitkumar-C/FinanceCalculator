@@ -89,12 +89,12 @@ export default function Header({
   ];
 
   const guideCategories = [
-    { id: 'all', name: 'All Guides & Insights', desc: 'Browse all 69 finance & wealth articles', count: 69, icon: BookOpen },
-    { id: 'investment', name: 'Investment Guides', desc: 'Stocks, MFs, Algos, SGB, Compounding', count: 28, icon: TrendingUp },
-    { id: 'loans', name: 'Loan & EMI Guides', desc: 'Home Loans, FOIR, Prepayments, CIBIL', count: 12, icon: Percent },
-    { id: 'realestate', name: 'Real Estate Guides', desc: 'Stamp Duty, RERA, Capital Gains, Rent', count: 11, icon: Building2 },
-    { id: 'retirement', name: 'Retirement & Pension', desc: 'NPS, EPF, PPF, UPS, SCSS, SWP', count: 11, icon: Sunset },
-    { id: 'tax', name: 'Tax & Budget Guides', desc: 'Old vs New Regime, Sec 80C, Budget', count: 7, icon: FileText }
+    { id: 'all', name: 'All Guides & Insights', desc: 'Browse all 89 finance & wealth articles', count: 89, icon: BookOpen },
+    { id: 'investment', name: 'Investment Guides', desc: 'Stocks, MFs, Algos, SGB, Compounding', count: 33, icon: TrendingUp },
+    { id: 'loans', name: 'Loan & EMI Guides', desc: 'Home Loans, FOIR, Prepayments, CIBIL', count: 17, icon: Percent },
+    { id: 'realestate', name: 'Real Estate Guides', desc: 'Stamp Duty, RERA, Capital Gains, Rent', count: 14, icon: Building2 },
+    { id: 'retirement', name: 'Retirement & Pension', desc: 'NPS, EPF, PPF, UPS, SCSS, SWP', count: 14, icon: Sunset },
+    { id: 'tax', name: 'Tax & Budget Guides', desc: 'Old vs New Regime, Sec 80C, Budget', count: 11, icon: FileText }
   ];
 
   const isRealEstateActive = realEstateTools.some(t => t.id === activeCalculator);

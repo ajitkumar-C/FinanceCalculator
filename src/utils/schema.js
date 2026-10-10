@@ -156,37 +156,37 @@ const schemas = {
   },
   blogs: {
     name: "RupeeBuddy Financial Guides & Wealth Library",
-    description: "Explore 69 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.",
+    description: "Explore 89 expert financial guides and articles on income tax planning, mutual fund compound interest growth, retirement corpus accumulation, and debt reduction strategies in India.",
     keywords: "finance guides, investment articles, wealth strategies india, personal finance blogs, saving tips",
     category: "FinanceGuides",
   },
   'blogs-investment': {
     name: "Investment Guides: Stocks, Mutual Funds, Algos & Wealth Strategies",
-    description: "Explore 28 expert investment guides covering AI trading bots, no-code algorithmic portfolios, SIP compounding, mutual fund vs gold comparison, and SGB strategies in India.",
+    description: "Explore 33 expert investment guides covering AI trading bots, no-code algorithmic portfolios, SIP compounding, mutual fund vs gold comparison, and SGB strategies in India.",
     keywords: "investment guides, stock trading bots, mutual fund compounding, sip calculator guides, sovereign gold bond, index fund investing",
     category: "FinanceGuides",
   },
   'blogs-loans': {
     name: "Loan & Debt Guides: Home Loans, FOIR, Prepayments & CIBIL",
-    description: "Explore 12 practical borrowing guides on reducing home loan interest, calculating bank FOIR ratios, debt avalanche methods, and boosting CIBIL credit score.",
+    description: "Explore 17 practical borrowing guides on reducing home loan interest, calculating bank FOIR ratios, debt avalanche methods, and boosting CIBIL credit score.",
     keywords: "loan guides, home loan prepayment, foir ratio, cibil score boost, reduce emi, repo rate cut impact",
     category: "FinanceGuides",
   },
   'blogs-realestate': {
     name: "Real Estate Guides: Stamp Duty, RERA, Capital Gains & Property",
-    description: "Explore 11 in-depth property guides on state-wise stamp duty, Budget 2024 property capital gains tax, Construction Linked Plans (CLP), and RERA project verification.",
+    description: "Explore 14 in-depth property guides on state-wise stamp duty, Budget 2024 property capital gains tax, Construction Linked Plans (CLP), and RERA project verification.",
     keywords: "real estate guides, stamp duty rates india, property capital gains 12.5%, rera project verification, 11 month rental agreement",
     category: "FinanceGuides",
   },
   'blogs-retirement': {
     name: "Retirement & Pension Guides: NPS, EPF, PPF & Senior Citizen Plans",
-    description: "Explore 11 sovereign retirement guides comparing NPS vs PPF vs EPF, Unified Pension Scheme (UPS), Senior Citizen Savings Scheme (SCSS), and SWP pension strategies.",
+    description: "Explore 14 sovereign retirement guides comparing NPS vs PPF vs EPF, Unified Pension Scheme (UPS), Senior Citizen Savings Scheme (SCSS), and SWP pension strategies.",
     keywords: "retirement guides, nps vs ppf vs epf, unified pension scheme, epf withdrawal rules, scss interest rate, systematic withdrawal plan",
     category: "FinanceGuides",
   },
   'blogs-tax': {
     name: "Tax Slabs & Exemption Guides: Old vs New Regime & Section 80C",
-    description: "Explore 7 comprehensive income tax guides breaking down Union Budget tax slabs, Standard Deduction ₹75,000, Section 80C limits, and Capital Gains exemptions.",
+    description: "Explore 11 comprehensive income tax guides breaking down Union Budget tax slabs, Standard Deduction ₹75,000, Section 80C limits, and Capital Gains exemptions.",
     keywords: "tax guides india, old vs new tax regime, section 80c exemptions, budget 2025 tax slabs, save income tax legally",
     category: "FinanceGuides",
   }

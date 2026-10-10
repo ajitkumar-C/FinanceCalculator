@@ -249,17 +249,17 @@ export default function Sidebar({
                     <BookOpen size={18} />
                   </div>
                   <div className="menu-text-container">
-                    <span className="menu-item-name">All Guides (69)</span>
+                    <span className="menu-item-name">All Guides (89)</span>
                     <span className="menu-item-desc">Browse complete library</span>
                   </div>
                 </a>
               </li>
               {[
-                { id: 'investment', name: 'Investment Guides (28)', desc: 'Mutual funds, stocks & compounding', icon: TrendingUp },
-                { id: 'loans', name: 'Loan & EMI Guides (12)', desc: 'Home loans, FOIR & CIBIL score', icon: Percent },
-                { id: 'realestate', name: 'Real Estate Guides (11)', desc: 'Stamp duty, RERA & rent laws', icon: Building2 },
-                { id: 'retirement', name: 'Retirement Guides (11)', desc: 'NPS, EPF, PPF & pensions', icon: Sunset },
-                { id: 'tax', name: 'Tax & Budget Guides (7)', desc: 'Old vs New tax slabs & 80C', icon: FileText }
+                { id: 'investment', name: 'Investment Guides (33)', desc: 'Mutual funds, stocks & compounding', icon: TrendingUp },
+                { id: 'loans', name: 'Loan & EMI Guides (17)', desc: 'Home loans, FOIR & CIBIL score', icon: Percent },
+                { id: 'realestate', name: 'Real Estate Guides (14)', desc: 'Stamp duty, RERA & rent laws', icon: Building2 },
+                { id: 'retirement', name: 'Retirement Guides (14)', desc: 'NPS, EPF, PPF & pensions', icon: Sunset },
+                { id: 'tax', name: 'Tax & Budget Guides (11)', desc: 'Old vs New tax slabs & 80C', icon: FileText }
               ].map(cat => {
                 const CatIcon = cat.icon;
                 const isCatActive = activeCalculator === 'blogs' && activeCategory === cat.id;

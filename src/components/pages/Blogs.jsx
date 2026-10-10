@@ -9,6 +9,8 @@ import { featuredFinanceArticles } from './featuredFinanceArticles';
 import { topTrendingPostsPart1 } from './topTrendingPostsPart1';
 import { topTrendingPostsPart2 } from './topTrendingPostsPart2';
 import { strategicFinancePosts } from './strategicFinancePosts';
+import { trendingPostsSuitePart1 } from './trendingPostsSuitePart1';
+import { trendingPostsSuitePart2 } from './trendingPostsSuitePart2';
 
 export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
@@ -3973,6 +3975,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
   ];
 
   const articles = [
+    ...trendingPostsSuitePart1,
+    ...trendingPostsSuitePart2,
     ...strategicFinancePosts,
     ...topTrendingPostsPart1,
     ...topTrendingPostsPart2,
