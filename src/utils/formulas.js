@@ -256,11 +256,12 @@ export function calculateRetirement(currentAge, retirementAge, currentExpenses, 
 }
 
 // 10. Income Tax Calculator (FY 2026-27 / AY 2027-28 - Indian Slabs)
-export function calculateTax(annualIncome, deductions = 0) {
+export function calculateTax(annualIncome, deductions = 0, employerNps = 0) {
   // New Regime slabs (FY 2025-26 & FY 2026-27 Budget 2025 Updates)
   // Standard Deduction: ₹75,000 for salaried
+  // Employer NPS under Section 80CCD(2) is deductible in New Regime (up to 14% of Basic)
   const standardDeductionNew = 75000;
-  const taxableIncomeNew = Math.max(0, annualIncome - standardDeductionNew);
+  const taxableIncomeNew = Math.max(0, annualIncome - standardDeductionNew - employerNps);
   let taxNew = 0;
 
   if (taxableIncomeNew > 0) {
@@ -304,8 +305,9 @@ export function calculateTax(annualIncome, deductions = 0) {
 
   // Old Regime slabs
   // Standard Deduction: ₹50,000
+  // Both general deductions and Employer NPS under Section 80CCD(2) apply in Old Regime
   const standardDeductionOld = 50000;
-  const taxableIncomeOld = Math.max(0, annualIncome - deductions - standardDeductionOld);
+  const taxableIncomeOld = Math.max(0, annualIncome - deductions - standardDeductionOld - employerNps);
   let taxOld = 0;
 
   if (taxableIncomeOld > 0) {
@@ -373,14 +375,16 @@ export function calculateTax(annualIncome, deductions = 0) {
       baseTax: Math.round(taxNew),
       cess: Math.round(cessNew),
       totalTax: Math.round(finalTaxNew),
-      taxBracket: bracketNew
+      taxBracket: bracketNew,
+      employerNpsDeduction: Math.round(employerNps)
     },
     oldRegime: {
       taxableIncome: Math.round(taxableIncomeOld),
       baseTax: Math.round(taxOld),
       cess: Math.round(cessOld),
       totalTax: Math.round(finalTaxOld),
-      taxBracket: bracketOld
+      taxBracket: bracketOld,
+      employerNpsDeduction: Math.round(employerNps)
     },
     recommendation: finalTaxNew <= finalTaxOld ? 'New Regime' : 'Old Regime',
     savings: Math.abs(Math.round(finalTaxOld - finalTaxNew))

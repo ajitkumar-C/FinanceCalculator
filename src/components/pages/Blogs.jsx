@@ -4400,12 +4400,17 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
               <h4>Ready to put this math to work?</h4>
               <p>Launch the corresponding calculator and run your own personalized simulations instantly.</p>
             </div>
-            <button 
+            <a 
+              href={`/?calc=${activeArticle.targetCalc}`}
               className="article-cta-btn"
-              onClick={() => setActiveCalculator(activeArticle.targetCalc)}
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator(activeArticle.targetCalc);
+              }}
             >
               {activeArticle.ctaText} <ArrowRight size={14} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: '4px' }} />
-            </button>
+            </a>
           </div>
 
           {/* Related Articles Section */}

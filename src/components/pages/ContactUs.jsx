@@ -151,7 +151,7 @@ export default function ContactUs() {
               color: 'var(--brand-navy)',
               fontSize: '14px'
             }}>
-              📧 support@RupeeBuddyulator.pages.dev
+              📧 support@rupeebuddy.in
             </div>
           </div>
 

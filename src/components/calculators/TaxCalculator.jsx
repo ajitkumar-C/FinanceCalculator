@@ -7,14 +7,15 @@ import NumericInput from '../common/NumericInput';
 export default function TaxCalculator({ setResultText }) {
   const [income, setIncome] = useState(1000000); // 10 Lakhs gross
   const [deductions, setDeductions] = useState(150000); // standard 80C deductions
+  const [employerNps, setEmployerNps] = useState(0); // Employer NPS under Sec 80CCD(2)
 
-  const results = calculateTax(income, deductions);
+  const results = calculateTax(income, deductions, employerNps);
 
   useEffect(() => {
     setResultText(
-      `Gross Annual Income: ${formatINR(income)}\nDeductions (Old Regime): ${formatINR(deductions)}\nNew Regime Tax: ${formatINR(results.newRegime.totalTax)}\nOld Regime Tax: ${formatINR(results.oldRegime.totalTax)}\nRecommended: ${results.recommendation}\nTax Savings: ${formatINR(results.savings)}`
+      `Gross Annual Income: ${formatINR(income)}\nEmployer NPS (Sec 80CCD(2)): ${formatINR(employerNps)}\nDeductions (Old Regime): ${formatINR(deductions)}\nNew Regime Tax: ${formatINR(results.newRegime.totalTax)}\nOld Regime Tax: ${formatINR(results.oldRegime.totalTax)}\nRecommended: ${results.recommendation}\nTax Savings: ${formatINR(results.savings)}`
     );
-  }, [income, deductions, results.newRegime.totalTax, results.oldRegime.totalTax]);
+  }, [income, deductions, employerNps, results.newRegime.totalTax, results.oldRegime.totalTax, results.recommendation, results.savings, setResultText]);
 
   const chartData = {
     labels: ['New Tax Regime', 'Old Tax Regime'],
@@ -95,12 +96,73 @@ export default function TaxCalculator({ setResultText }) {
               <span>50 Lakhs</span>
             </div>
             <div className="quick-options-row no-print">
-              <button className="quick-option-btn" onClick={() => setIncome(500000)}>5L</button>
-              <button className="quick-option-btn" onClick={() => setIncome(750000)}>7.5L</button>
-              <button className="quick-option-btn" onClick={() => setIncome(1000000)}>10L</button>
-              <button className="quick-option-btn" onClick={() => setIncome(1500000)}>15L</button>
-              <button className="quick-option-btn" onClick={() => setIncome(2500000)}>25L</button>
+              <button type="button" className={`quick-option-btn ${income === 500000 ? 'active-filter' : ''}`} onClick={() => setIncome(500000)}>5L</button>
+              <button type="button" className={`quick-option-btn ${income === 750000 ? 'active-filter' : ''}`} onClick={() => setIncome(750000)}>7.5L</button>
+              <button type="button" className={`quick-option-btn ${income === 1000000 ? 'active-filter' : ''}`} onClick={() => setIncome(1000000)}>10L</button>
+              <button type="button" className={`quick-option-btn ${income === 1500000 ? 'active-filter' : ''}`} onClick={() => setIncome(1500000)}>15L</button>
+              <button type="button" className={`quick-option-btn ${income === 2500000 ? 'active-filter' : ''}`} onClick={() => setIncome(2500000)}>25L</button>
             </div>
+          </div>
+
+          {/* Employer NPS Contribution (Sec 80CCD(2)) */}
+          <div className="slider-group">
+            <div className="slider-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span className="slider-label">Employer NPS (Sec 80CCD(2))</span>
+                <span style={{
+                  fontSize: '10px',
+                  fontWeight: '700',
+                  padding: '2px 8px',
+                  borderRadius: '12px',
+                  backgroundColor: 'var(--finance-green-light)',
+                  color: 'var(--finance-green-dark)',
+                  border: '1px solid rgba(16, 185, 129, 0.25)'
+                }}>
+                  ✨ Tax-Free in New & Old Regime
+                </span>
+              </div>
+              <NumericInput
+                value={employerNps}
+                onChange={setEmployerNps}
+                min={0}
+                max={2000000}
+                step={5000}
+                prefix="₹"
+                ariaLabel="Employer NPS Contribution"
+              />
+            </div>
+            <div className="slider-control-row">
+              <input
+                type="range"
+                min="0"
+                max="500000"
+                step="5000"
+                value={employerNps}
+                onChange={(e) => setEmployerNps(Number(e.target.value))}
+                className="slider-input"
+              />
+            </div>
+            <div className="slider-limits">
+              <span>₹0</span>
+              <span>5 Lakhs</span>
+            </div>
+            <div className="quick-options-row no-print">
+              <button type="button" className={`quick-option-btn ${employerNps === 0 ? 'active-filter' : ''}`} onClick={() => setEmployerNps(0)}>₹0</button>
+              <button type="button" className={`quick-option-btn ${employerNps === 50000 ? 'active-filter' : ''}`} onClick={() => setEmployerNps(50000)}>50K</button>
+              <button type="button" className={`quick-option-btn ${employerNps === 100000 ? 'active-filter' : ''}`} onClick={() => setEmployerNps(100000)}>1 Lakh</button>
+              <button type="button" className={`quick-option-btn ${employerNps === 150000 ? 'active-filter' : ''}`} onClick={() => setEmployerNps(150000)}>1.5 Lakhs</button>
+              <button 
+                type="button" 
+                className="quick-option-btn" 
+                onClick={() => setEmployerNps(Math.round((income * 0.5 * 0.14) / 1000) * 1000)}
+                title="14% of estimated Basic Salary (assuming Basic = 50% of Gross)"
+              >
+                14% Basic
+              </button>
+            </div>
+            <p className="slider-note no-print" style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>
+              *Employer's contribution to NPS under Section 80CCD(2) is fully deductible in <strong>both New and Old Tax Regimes</strong> (up to 14% of Basic + DA).
+            </p>
           </div>
 
           {/* Deductions (Old Regime) */}
@@ -133,13 +195,13 @@ export default function TaxCalculator({ setResultText }) {
               <span>5 Lakhs</span>
             </div>
             <div className="quick-options-row no-print">
-              <button className="quick-option-btn" onClick={() => setDeductions(0)}>₹0</button>
-              <button className="quick-option-btn" onClick={() => setDeductions(150000)}>1.5L (80C)</button>
-              <button className="quick-option-btn" onClick={() => setDeductions(200000)}>2L (80C+80D)</button>
-              <button className="quick-option-btn" onClick={() => setDeductions(300000)}>3L (With HRA)</button>
+              <button type="button" className={`quick-option-btn ${deductions === 0 ? 'active-filter' : ''}`} onClick={() => setDeductions(0)}>₹0</button>
+              <button type="button" className={`quick-option-btn ${deductions === 150000 ? 'active-filter' : ''}`} onClick={() => setDeductions(150000)}>1.5L (80C)</button>
+              <button type="button" className={`quick-option-btn ${deductions === 200000 ? 'active-filter' : ''}`} onClick={() => setDeductions(200000)}>2L (80C+80D)</button>
+              <button type="button" className={`quick-option-btn ${deductions === 300000 ? 'active-filter' : ''}`} onClick={() => setDeductions(300000)}>3L (With HRA)</button>
             </div>
             <p className="slider-note no-print" style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>
-              *Deductions include Sec 80C (EPF, PPF, ELSS), Sec 80D (Health Insurance), HRA, Home Loan Interest (Sec 24b).
+              *Includes Sec 80C (EPF/PPF/ELSS), Sec 80D (Health Insurance), Sec 80CCD(1B) Self NPS (up to ₹50k), HRA, Home Loan Interest (Sec 24b).
             </p>
           </div>
         </div>
@@ -164,6 +226,12 @@ export default function TaxCalculator({ setResultText }) {
                   <span>Standard Ded:</span>
                   <span>- {formatINR(75000)}</span>
                 </div>
+                {employerNps > 0 && (
+                  <div className="regime-detail-row" style={{ color: 'var(--finance-green-dark)', fontWeight: '600' }}>
+                    <span>Employer NPS (80CCD):</span>
+                    <span>- {formatINR(employerNps)}</span>
+                  </div>
+                )}
                 <div className="regime-detail-row">
                   <span>Taxable Income:</span>
                   <span>{formatINR(results.newRegime.taxableIncome)}</span>
@@ -200,10 +268,18 @@ export default function TaxCalculator({ setResultText }) {
                   <span>Standard Ded:</span>
                   <span>- {formatINR(50000)}</span>
                 </div>
-                <div className="regime-detail-row">
-                  <span>Deductions:</span>
-                  <span>- {formatINR(deductions)}</span>
-                </div>
+                {deductions > 0 && (
+                  <div className="regime-detail-row">
+                    <span>Deductions:</span>
+                    <span>- {formatINR(deductions)}</span>
+                  </div>
+                )}
+                {employerNps > 0 && (
+                  <div className="regime-detail-row" style={{ color: 'var(--finance-green-dark)', fontWeight: '600' }}>
+                    <span>Employer NPS (80CCD):</span>
+                    <span>- {formatINR(employerNps)}</span>
+                  </div>
+                )}
                 <div className="regime-detail-row">
                   <span>Taxable Income:</span>
                   <span>{formatINR(results.oldRegime.taxableIncome)}</span>
@@ -350,6 +426,12 @@ export default function TaxCalculator({ setResultText }) {
             <h4 className="faq-question">6. Are there any fees to calculate taxes here (compared to Tax Buddy charges)?</h4>
             <p className="faq-answer">
               No. Unlike assisted tax filing platforms that carry mandatory subscription or assisted filing fees (like <strong>tax buddy charges</strong>), RupeeBuddy is 100% free with zero registration, zero ads, and zero hidden costs. You can simulate unlimited tax regimes and deductions completely private in your browser.
+            </p>
+          </div>
+          <div className="faq-item">
+            <h4 className="faq-question">7. Does Employer NPS contribution save tax under the New Tax Regime?</h4>
+            <p className="faq-answer">
+              <strong>Yes!</strong> Under Section 80CCD(2) of the Income Tax Act, contributions made by your employer to your National Pension System (NPS) account are eligible for tax deduction under <strong>both the New Tax Regime and the Old Tax Regime</strong>. Under the New Regime, employers can contribute up to <strong>14% of Basic Salary + DA</strong> (for both private and government employees) completely tax-free, subject to the aggregate annual cap of ₹7.5 Lakhs (combined across EPF, NPS, and Superannuation). In contrast, employee self-contributions (Section 80CCD(1B) up to ₹50,000) are deductible only under the Old Regime.
             </p>
           </div>
         </div>

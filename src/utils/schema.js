@@ -29,27 +29,27 @@ const schemas = {
     category: "InvestmentCalculator",
   },
   pf: {
-    name: "Online PF Calculator: PF Balance & Interest Calculator Online",
-    description: "Calculate your Employee Provident Fund (EPF) balance and interest online. Check accumulated monthly interest, employer contribution, and voluntary PF corpus using this free online PF calculator.",
-    keywords: "online pf calculator, pf interest calculator online, pf online calculator, pf balance calculator, pf calculator, epf calculator, provident fund calculator, epf interest rate",
+    name: "EPF / PF Calculator: Calculate PF Balance & 8.25% Interest",
+    description: "Calculate your Employee Provident Fund (EPF) balance, monthly employee & employer contribution, and 8.25% annual interest. Estimate total retirement corpus online.",
+    keywords: "epf calculator, pf calculator, online pf calculator, pf balance calculator, epf interest rate 8.25, provident fund calculator, epf balance check online",
     category: "RetirementCalculator",
   },
   sip: {
-    name: "SIP Calculator: Systematic Investment Plan Return Calculator Online",
-    description: "Calculate maturity wealth and compounding returns on mutual fund Systematic Investment Plans (SIP) and Step-up SIP investments with our free online calculator.",
-    keywords: "sip calculator, step up sip, systematic investment plan, sip return calculator, systematic investment calculator, sip plan calculator, groww sip calculator",
+    name: "SIP Calculator: Calculate Mutual Fund Returns & Wealth Growth",
+    description: "Free SIP return calculator with visual charts. Calculate expected maturity wealth, returns, and compounding growth for monthly mutual fund SIPs instantly.",
+    keywords: "sip calculator, sip return calculator, systematic investment plan, mutual fund sip calculator, sip compounding calculator, sip wealth planner, step up sip",
     category: "InvestmentCalculator",
   },
   fd: {
     name: "FD Calculator: Fixed Deposit Interest Calculator Online",
-    description: "Calculate SBI, HDFC, and Post Office Fixed Deposit (FD) interest and maturity amount using our online fixed deposit return calculator with quarterly or monthly compounding.",
-    keywords: "fd calculator, fixed deposit calculator, fd interest rates hdfc, fd rates in hdfc bank, sbi fd calculator, post office fd interest rate, fd compounding calculator",
+    description: "Calculate SBI, HDFC, and Post Office Fixed Deposit (FD) interest and maturity amount using our online fixed deposit return calculator with quarterly compounding.",
+    keywords: "fd calculator, fixed deposit calculator, sbi fd calculator, post office fd interest rate, fd compounding calculator",
     category: "SavingsCalculator",
   },
   rd: {
-    name: "RD Calculator: Recurring Deposit Calculator Online",
-    description: "Calculate Recurring Deposit (RD) interest earnings and maturity values using our online RD calculator according to quarterly compounding banking standards.",
-    keywords: "rd calculator, recurring deposit calculator, rd account calculator, rd interest rate, post office rd calculator, sbi rd interest calculator",
+    name: "RD Calculator: Recurring Deposit Interest & Maturity Calculator",
+    description: "Calculate Post Office, SBI & bank Recurring Deposit (RD) interest earnings and maturity amount with quarterly compounding. 100% free online RD calculator.",
+    keywords: "rd calculator, recurring deposit calculator, sbi rd calculator, post office rd calculator, rd interest rate, rd maturity calculator, recurring deposit interest calculator",
     category: "SavingsCalculator",
   },
   nps: {
@@ -65,9 +65,9 @@ const schemas = {
     category: "RetirementCalculator",
   },
   tax: {
-    name: "Income Tax Calculator: Old vs New Tax Regime Slabs & Free Tax Estimator",
-    description: "Compare your tax liabilities under the Old vs New Tax Regime for FY 2026-27 (AY 2027-28). Estimate standard deductions and tax rebates under Section 87A instantly with 100% free calculations.",
-    keywords: "income tax calculator, old vs new tax regime, tax buddy charges, taxbuddy alternative, tax slabs FY 2026-27, section 87A rebate, tax slabs India, free income tax calculator india",
+    name: "Income Tax Calculator FY 2026-27: Old vs New Regime & NPS",
+    description: "Compare Old vs New Tax Regime for FY 2026-27 (AY 2027-28). Features ₹75k standard deduction, zero tax up to ₹12L rebate (87A), and Employer NPS (80CCD(2)).",
+    keywords: "income tax calculator, old vs new tax regime, budget 2025 tax slabs, tax calculator fy 2026-27, section 87a rebate, employer nps deduction 80ccd 2, tax slabs india",
     category: "TaxCalculator",
   },
   mutualfund: {
@@ -131,26 +131,26 @@ const schemas = {
     category: "LegalDocumentGenerator",
   },
   home: {
-    name: "RupeeBuddy.in: Indian Financial Calculators & Wealth Dashboard",
-    description: "Calculate Home/Car Loan EMI, compare Income Tax regimes, plan Retirement corpus, calculate SIP growth, EPF savings, and check PPF interest rates with our free online tools.",
-    keywords: "finance calculator, emi calculator, sip calculator, income tax calculator, old vs new tax regime, ppf calculator, epf calculator, nps calculator, india finance, rupeebuddy",
+    name: "RupeeBuddy: Free Indian Financial & Real Estate Calculators",
+    description: "Free online financial calculators for India. Calculate Income Tax (Old vs New Regime with NPS), Home Loan EMI, Mutual Fund SIP returns, PPF, and EPF balances instantly.",
+    keywords: "rupee buddy, rupeebuddy, finance calculator, emi calculator, sip calculator, income tax calculator, old vs new tax regime, ppf calculator, epf calculator, nps calculator, india finance",
     category: "FinancialSuite",
   },
   about: {
-    name: "About Us | RupeeBuddy.in",
-    description: "Learn more about RupeeBuddy.in. Our mission is to provide clean, interactive, math-driven personal finance calculators with 100% data privacy.",
+    name: "About Us | RupeeBuddy",
+    description: "Learn about RupeeBuddy.in. Our mission is to provide clean, interactive, math-driven personal finance calculators with 100% data privacy.",
     keywords: "about rupeebuddy, personal finance india, zero data collection, about us rupeebuddy",
     category: "AboutPage",
   },
   privacy: {
-    name: "Privacy Policy | RupeeBuddy.in",
+    name: "Privacy Policy | RupeeBuddy",
     description: "Read our privacy policy. We commit to a zero-data-collection policy for all our financial calculator tools. Your data remains on your local browser.",
-    keywords: "privacy policy rupeebuddy, zero tracking, ad free finance, gdpr compliance, cookie policy",
+    keywords: "privacy policy rupeebuddy, zero tracking, ad free finance",
     category: "PrivacyPage",
   },
   contact: {
-    name: "Contact Us | RupeeBuddy.in",
-    description: "Have questions, feedback, or suggestion about our calculators? Contact the RupeeBuddy.in support team directly.",
+    name: "Contact Us & Support | RupeeBuddy",
+    description: "Get in touch with the RupeeBuddy team for inquiries, feature requests, or calculator feedback.",
     keywords: "contact rupeebuddy, support team, email rupeebuddy, support page",
     category: "ContactPage",
   },
@@ -232,15 +232,25 @@ export function injectCalculatorSchema(calculatorId, category = 'all', articleId
           "@id": "https://rupeebuddy.in/#website",
           "url": "https://rupeebuddy.in/",
           "name": "RupeeBuddy",
-          "alternateName": ["RupeeBuddy.in", "rupeebuddy"],
+          "alternateName": ["Rupee Buddy", "RupeeBuddy.in", "rupeebuddy"],
+          "description": "Free online financial calculators for India - Income Tax, EMI, SIP, PPF, EPF, and Stamp Duty.",
           "publisher": {
             "@id": "https://rupeebuddy.in/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://rupeebuddy.in/?calc={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
           }
         },
         {
           "@type": "Organization",
           "@id": "https://rupeebuddy.in/#organization",
           "name": "RupeeBuddy",
+          "alternateName": ["Rupee Buddy"],
           "url": "https://rupeebuddy.in/",
           "logo": {
             "@type": "ImageObject",
@@ -251,11 +261,64 @@ export function injectCalculatorSchema(calculatorId, category = 'all', articleId
           "image": {
             "@id": "https://rupeebuddy.in/#logo"
           },
-          "description": "RupeeBuddy.in is a free online personal finance resources portal providing expert calculators for Indian income tax slabs, mutual fund SIP returns, home loan EMIs, and retirement savings.",
+          "description": "RupeeBuddy is a free Indian personal finance portal providing private client-side calculators for income tax, SIP, loans, and real estate.",
           "sameAs": [
-            "https://www.facebook.com/RupeeBuddy",
             "https://twitter.com/RupeeBuddy"
           ]
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Income Tax Calculator",
+          "url": "https://rupeebuddy.in/?calc=tax",
+          "description": "Compare Old vs New Tax Regime with NPS and Section 87A rebate"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "SIP Calculator",
+          "url": "https://rupeebuddy.in/?calc=sip",
+          "description": "Calculate Mutual Fund Systematic Investment Plan returns"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Home Loan EMI Calculator",
+          "url": "https://rupeebuddy.in/?calc=emi",
+          "description": "Calculate monthly loan EMIs and interest amortization"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "EPF / PF Calculator",
+          "url": "https://rupeebuddy.in/?calc=pf",
+          "description": "Calculate EPF balance and 8.25% interest growth"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "RD Calculator",
+          "url": "https://rupeebuddy.in/?calc=rd",
+          "description": "Calculate Recurring Deposit maturity and quarterly interest"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Stamp Duty & Registration Calculator",
+          "url": "https://rupeebuddy.in/?calc=stampduty",
+          "description": "State-wise property registration and stamp duty calculator"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Financial Guides & Articles",
+          "url": "https://rupeebuddy.in/?calc=blogs",
+          "description": "Explore personal finance guides and market strategies"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "About Us",
+          "url": "https://rupeebuddy.in/?calc=about",
+          "description": "About the RupeeBuddy team and mission"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Contact Us",
+          "url": "https://rupeebuddy.in/?calc=contact",
+          "description": "Contact RupeeBuddy support team"
         }
       ]
     };
@@ -436,7 +499,7 @@ export function injectCalculatorSchema(calculatorId, category = 'all', articleId
   }
 
   // 6. Update Meta Page Title and Meta Description for SEO
-  document.title = `${details.name} | Indian Financial Calculator`;
+  document.title = details.name.includes("RupeeBuddy") ? details.name : `${details.name} | RupeeBuddy`;
   
   let metaDesc = document.querySelector('meta[name="description"]');
   if (!metaDesc) {
@@ -490,7 +553,7 @@ export function injectCalculatorSchema(calculatorId, category = 'all', articleId
   }
 
   // 9. Sync Open Graph Meta tags dynamically
-  setMetaTag('og:title', `${details.name} | RupeeBuddy.in`, true);
+  setMetaTag('og:title', details.name.includes("RupeeBuddy") ? details.name : `${details.name} | RupeeBuddy`, true);
   setMetaTag('og:description', details.description, true);
   setMetaTag('og:type', 'website', true);
   setMetaTag('og:url', pageUrl, true);
