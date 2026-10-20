@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { calculatorsList } from '../Sidebar';
-import { TrendingUp, Building2, Shield, Percent, Sparkles, Layers } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 const buttonLabels = {
   tax: 'Compare Tax Savings',
@@ -35,82 +35,11 @@ export default function Dashboard({ setActiveCalculator }) {
 
   return (
     <div className="dashboard-container" style={{ padding: '4px 0' }}>
-      {/* Hero Welcome banner */}
-      <section className="dashboard-hero" style={{
-        background: 'linear-gradient(135deg, var(--brand-navy) 0%, #1e40af 100%)',
-        color: 'white',
-        borderRadius: 'var(--radius-lg)',
-        padding: '40px',
-        marginBottom: '32px',
-        boxShadow: 'var(--shadow-premium)',
-        position: 'relative',
-        overflow: 'hidden',
-        border: '1px solid rgba(255, 255, 255, 0.1)'
-      }}>
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '640px' }}>
-          <h1 style={{ color: 'white', fontSize: '32px', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.5px' }}>
-            Smart Financial & Real Estate Tools for India
-          </h1>
-          <p style={{ fontSize: '15px', opacity: 0.85, lineHeight: '1.6', marginBottom: '24px' }}>
-            Calculate home loans, compare tax regimes, estimate mutual fund returns, compute state stamp duty, and draft rental agreements instantly with 100% free browser-based tools.
-          </p>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            <a 
-              href="/?calc=tax"
-              className="ad-btn" 
-              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveCalculator('tax');
-              }}
-            >
-              Compare Income Tax
-            </a>
-            <a 
-              href="/?calc=stampduty"
-              className="ad-btn" 
-              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: '#d97706', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveCalculator('stampduty');
-              }}
-            >
-              Calculate Stamp Duty
-            </a>
-            <a 
-              href="/?calc=sip"
-              className="ad-btn" 
-              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveCalculator('sip');
-              }}
-            >
-              Calculate SIP Growth
-            </a>
-          </div>
-        </div>
-        
-        {/* Vector Background Graphic */}
-        <div className="hero-graphic" style={{
-          position: 'absolute',
-          right: '5%',
-          bottom: '-10%',
-          opacity: 0.08,
-          color: 'white',
-          transform: 'rotate(-10deg)',
-          pointerEvents: 'none',
-          userSelect: 'none'
-        }}>
-          <TrendingUp size={220} strokeWidth={1.5} />
-        </div>
-      </section>
-
       {/* Category Filter Tabs */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-        <h3 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--primary-color)', margin: 0 }}>
+        <h1 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--primary-color)', margin: 0, letterSpacing: '-0.3px' }}>
           Explore Calculators & Tools ({filteredList.length})
-        </h3>
+        </h1>
         <div className="no-print" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
             type="button"
@@ -267,6 +196,78 @@ export default function Dashboard({ setActiveCalculator }) {
           <p>
             <strong>Note on Privacy:</strong> RupeeBuddy does not store your salary, loan, or investment parameters on any server. All calculations are executed securely on your browser. Enjoy completely private financial planning.
           </p>
+        </div>
+      </section>
+
+      {/* Hero Welcome banner (shifted to the bottom of the page) */}
+      <section className="dashboard-hero" style={{
+        background: 'linear-gradient(135deg, var(--brand-navy) 0%, #1e40af 100%)',
+        color: 'white',
+        borderRadius: 'var(--radius-lg)',
+        padding: '36px 40px',
+        marginTop: '36px',
+        marginBottom: '16px',
+        boxShadow: 'var(--shadow-premium)',
+        position: 'relative',
+        overflow: 'hidden',
+        border: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '640px' }}>
+          <h2 style={{ color: 'white', fontSize: '28px', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.5px' }}>
+            Smart Financial & Real Estate Tools for India
+          </h2>
+          <p style={{ fontSize: '15px', opacity: 0.85, lineHeight: '1.6', marginBottom: '24px' }}>
+            Calculate home loans, compare tax regimes, estimate mutual fund returns, compute state stamp duty, and draft rental agreements instantly with 100% free browser-based tools.
+          </p>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <a 
+              href="/?calc=tax"
+              className="ad-btn" 
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('tax');
+              }}
+            >
+              Compare Income Tax
+            </a>
+            <a 
+              href="/?calc=stampduty"
+              className="ad-btn" 
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: '#d97706', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('stampduty');
+              }}
+            >
+              Calculate Stamp Duty
+            </a>
+            <a 
+              href="/?calc=sip"
+              className="ad-btn" 
+              style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCalculator('sip');
+              }}
+            >
+              Calculate SIP Growth
+            </a>
+          </div>
+        </div>
+        
+        {/* Vector Background Graphic */}
+        <div className="hero-graphic" style={{
+          position: 'absolute',
+          right: '5%',
+          bottom: '-10%',
+          opacity: 0.08,
+          color: 'white',
+          transform: 'rotate(-10deg)',
+          pointerEvents: 'none',
+          userSelect: 'none'
+        }}>
+          <TrendingUp size={220} strokeWidth={1.5} />
         </div>
       </section>
     </div>

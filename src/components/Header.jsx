@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Printer, Share2, Menu, X, Calculator, ChevronDown, 
+  Printer, Share2, Menu, Calculator, ChevronDown, 
   Building2, TrendingUp, Percent, FileText, Sparkles, 
   MapPin, DollarSign, Layers, Scale, Key, Shield, UserCheck, 
   Coins, Lock, CalendarClock, HeartHandshake, Sunset, BookOpen 
@@ -104,7 +104,7 @@ export default function Header({
   const isGuidesActive = activeCalculator === 'blogs' || activeCalculator?.startsWith?.('blogs');
 
   return (
-    <header className="app-header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+    <header className={`app-header ${activeCalculatorId === 'home' ? 'is-home-header' : ''}`} style={{ position: 'sticky', top: 0, zIndex: 90 }}>
       {/* Mobile Branding Bar (Visible only on mobile) */}
       <div className="mobile-header-brand no-print">
         <a 
@@ -126,11 +126,12 @@ export default function Header({
         </a>
         
         <button 
+          type="button"
           className="mobile-hamburger-btn" 
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          aria-label="Toggle Menu"
+          onClick={() => setIsMobileOpen(true)}
+          aria-label="Open Menu"
         >
-          {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu size={24} />
         </button>
       </div>
 

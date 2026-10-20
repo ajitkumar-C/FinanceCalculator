@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
-  Building2, Search, X, Menu, Calculator, Home, Info, Mail, BookOpen,
+  Building2, Search, X, Calculator, Home, Info, Mail, BookOpen,
   MapPin, Layers, Scale, DollarSign, Key
 } from 'lucide-react';
 
@@ -65,23 +65,33 @@ export default function Sidebar({
     <>
       {/* Sidebar Container */}
       <aside className={`app-sidebar no-print ${isMobileOpen ? 'mobile-open' : ''}`}>
-        <a 
-          href="/" 
-          onClick={(e) => {
-            e.preventDefault();
-            selectCalculator('home');
-          }}
-          className="sidebar-brand"
-          style={{ textDecoration: 'none', cursor: 'pointer' }}
-        >
-          <div className="brand-logo">
-            <Calculator size={28} className="brand-icon" />
-          </div>
-          <div>
-            <span className="brand-name">RupeeBuddy</span>
-            <span className="brand-subtitle">Indian Financial Suite</span>
-          </div>
-        </a>
+        <div className="sidebar-brand-wrapper">
+          <a 
+            href="/" 
+            onClick={(e) => {
+              e.preventDefault();
+              selectCalculator('home');
+            }}
+            className="sidebar-brand"
+            style={{ textDecoration: 'none', cursor: 'pointer' }}
+          >
+            <div className="brand-logo">
+              <Calculator size={28} className="brand-icon" />
+            </div>
+            <div>
+              <span className="brand-name">RupeeBuddy</span>
+              <span className="brand-subtitle">Indian Financial Suite</span>
+            </div>
+          </a>
+          <button 
+            type="button"
+            className="sidebar-close-btn no-print" 
+            onClick={() => setIsMobileOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={22} />
+          </button>
+        </div>
 
         {/* Search Bar */}
         <div className="sidebar-search">
