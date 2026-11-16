@@ -3,8 +3,9 @@ import {
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
   Building2, Search, X, Calculator, Home, Info, Mail, BookOpen,
-  MapPin, Layers, Scale, DollarSign, Key
+  MapPin, Layers, Scale, DollarSign, Key, ShieldCheck
 } from 'lucide-react';
+import { CALCULATOR_ROUTES } from '../utils/routes';
 
 export const calculatorsList = [
   // Financial & Investment Suite
@@ -152,7 +153,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`/?calc=${calc.id}`}
+                          href={CALCULATOR_ROUTES[calc.id]?.path || `/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -187,7 +188,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`/?calc=${calc.id}`}
+                          href={CALCULATOR_ROUTES[calc.id]?.path || `/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -217,7 +218,7 @@ export default function Sidebar({
                     return (
                       <li key={calc.id} className="menu-item-wrapper">
                         <a 
-                          href={`/?calc=${calc.id}`}
+                          href={CALCULATOR_ROUTES[calc.id]?.path || `/?calc=${calc.id}`}
                           onClick={(e) => {
                             e.preventDefault();
                             selectCalculator(calc.id);
@@ -247,7 +248,7 @@ export default function Sidebar({
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
-                  href="/?calc=blogs"
+                  href="/guides"
                   onClick={(e) => {
                     e.preventDefault();
                     selectGuideCategory('all');
@@ -259,24 +260,24 @@ export default function Sidebar({
                     <BookOpen size={18} />
                   </div>
                   <div className="menu-text-container">
-                    <span className="menu-item-name">All Guides (89)</span>
+                    <span className="menu-item-name">All Guides (165+)</span>
                     <span className="menu-item-desc">Browse complete library</span>
                   </div>
                 </a>
               </li>
               {[
-                { id: 'investment', name: 'Investment Guides (33)', desc: 'Mutual funds, stocks & compounding', icon: TrendingUp },
-                { id: 'loans', name: 'Loan & EMI Guides (17)', desc: 'Home loans, FOIR & CIBIL score', icon: Percent },
-                { id: 'realestate', name: 'Real Estate Guides (14)', desc: 'Stamp duty, RERA & rent laws', icon: Building2 },
-                { id: 'retirement', name: 'Retirement Guides (14)', desc: 'NPS, EPF, PPF & pensions', icon: Sunset },
-                { id: 'tax', name: 'Tax & Budget Guides (11)', desc: 'Old vs New tax slabs & 80C', icon: FileText }
+                { id: 'investment', name: 'Investment Guides', desc: 'Mutual funds, stocks & compounding', icon: TrendingUp },
+                { id: 'loans', name: 'Loan & EMI Guides', desc: 'Home loans, FOIR & CIBIL score', icon: Percent },
+                { id: 'realestate', name: 'Real Estate Guides', desc: 'Stamp duty, RERA & rent laws', icon: Building2 },
+                { id: 'retirement', name: 'Retirement Guides', desc: 'NPS, EPF, PPF & pensions', icon: Sunset },
+                { id: 'tax', name: 'Tax & Budget Guides', desc: 'Old vs New tax slabs & 80C', icon: FileText }
               ].map(cat => {
                 const CatIcon = cat.icon;
                 const isCatActive = activeCalculator === 'blogs' && activeCategory === cat.id;
                 return (
                   <li key={cat.id} className="menu-item-wrapper">
                     <a 
-                      href={`/?calc=blogs&category=${cat.id}`}
+                      href={`/guides/${cat.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         selectGuideCategory(cat.id);
@@ -300,11 +301,11 @@ export default function Sidebar({
 
           {/* Support / Info Pages Group */}
           <div className="mobile-only-menu-group">
-            <span className="menu-group-title">INFORMATION</span>
+            <span className="menu-group-title">INFORMATION & E-E-A-T</span>
             <ul className="menu-list">
               <li className="menu-item-wrapper">
                 <a 
-                  href="/?calc=about"
+                  href="/about-us"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('about');
@@ -323,7 +324,26 @@ export default function Sidebar({
               </li>
               <li className="menu-item-wrapper">
                 <a 
-                  href="/?calc=privacy"
+                  href="/editorial-policy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    selectCalculator('editorial');
+                  }}
+                  className={`menu-item-btn ${activeCalculator === 'editorial' ? 'active' : ''}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <div className={`menu-icon-container ${activeCalculator === 'editorial' ? 'active' : ''}`}>
+                    <ShieldCheck size={18} />
+                  </div>
+                  <div className="menu-text-container">
+                    <span className="menu-item-name">Editorial Policy</span>
+                    <span className="menu-item-desc">CA Review & Verification</span>
+                  </div>
+                </a>
+              </li>
+              <li className="menu-item-wrapper">
+                <a 
+                  href="/privacy-policy"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('privacy');
@@ -342,7 +362,7 @@ export default function Sidebar({
               </li>
               <li className="menu-item-wrapper">
                 <a 
-                  href="/?calc=contact"
+                  href="/contact-us"
                   onClick={(e) => {
                     e.preventDefault();
                     selectCalculator('contact');

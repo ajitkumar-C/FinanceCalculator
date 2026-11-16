@@ -27,6 +27,12 @@ ChartJS.register(
 import Sidebar, { calculatorsList } from './components/Sidebar';
 import Header from './components/Header';
 import { injectCalculatorSchema } from './utils/schema';
+import { 
+  parseRouteFromUrl, 
+  getCleanPath, 
+  CALCULATOR_ROUTES, 
+  STATIC_ROUTES 
+} from './utils/routes';
 
 // Dashboard is kept synchronous for fast FCP/LCP home rendering
 import Dashboard from './components/pages/Dashboard';
@@ -56,15 +62,16 @@ const RentalYieldCalculator = React.lazy(() => import('./components/calculators/
 const ReraLookupTool = React.lazy(() => import('./components/calculators/ReraLookupTool'));
 const RentalAgreementGenerator = React.lazy(() => import('./components/calculators/RentalAgreementGenerator'));
 
-// Lazy load static pages
+// Lazy load static & compliance pages
 const AboutUs = React.lazy(() => import('./components/pages/AboutUs'));
 const PrivacyPolicy = React.lazy(() => import('./components/pages/PrivacyPolicy'));
 const ContactUs = React.lazy(() => import('./components/pages/ContactUs'));
+const EditorialPolicy = React.lazy(() => import('./components/pages/EditorialPolicy'));
 const Blogs = React.lazy(() => import('./components/pages/Blogs'));
 
 const validRoutes = [
   ...calculatorsList.map(c => c.id), 
-  'home', 'about', 'privacy', 'contact', 'blogs',
+  'home', 'about', 'privacy', 'contact', 'editorial', 'blogs',
   'blogs-investment', 'blogs-loans', 'blogs-realestate', 'blogs-retirement', 'blogs-tax'
 ];
 
@@ -82,6 +89,7 @@ const staticPages = {
   about: { name: 'About Us' },
   privacy: { name: 'Privacy Policy' },
   contact: { name: 'Contact Us' },
+  editorial: { name: 'Editorial Policy & Standards' },
   blogs: { name: 'Finance Guides' }
 };
 
@@ -110,31 +118,17 @@ const relatedMap = {
 };
 
 export default function App() {
-  // Read initial calculator from URL query parameter, fallback to 'home' (Dashboard)
-  const [activeCalc, setActiveCalc] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlCalc = params.get('calc');
-    if (urlCalc && urlCalc.startsWith('blogs-')) {
-      return 'blogs';
-    }
-    return (urlCalc && validRoutes.includes(urlCalc)) ? urlCalc : 'home';
-  });
+  // Parse route on initial mount (supports both clean paths & legacy query params)
+  const initialRoute = parseRouteFromUrl(window.location.pathname, window.location.search);
 
-  const [activeCategory, setActiveCategory] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlCalc = params.get('calc');
-    if (urlCalc && urlCalc.startsWith('blogs-')) {
-      return urlCalc.replace('blogs-', '');
-    }
-    return params.get('category') || 'all';
-  });
-
+  const [activeCalc, setActiveCalc] = useState(initialRoute.activeCalc);
+  const [activeCategory, setActiveCategory] = useState(initialRoute.activeCategory);
+  const [articleParam, setArticleParam] = useState(initialRoute.articleParam);
   const [resultText, setResultText] = useState('');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  // Dynamically update SEO tags, schema, and URL query params when active calculator changes
+  // Synchronize SEO tags, schema markup, and URL pushState
   useEffect(() => {
-    // Reset scroll position to the top of the page on route change
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -143,69 +137,27 @@ export default function App() {
       mainLayout.scrollTop = 0;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const articleParam = params.get('article');
+    // Inject JSON-LD Schema
     injectCalculatorSchema(activeCalc, activeCategory, articleParam);
-    
-    // Update URL query parameters without page reload
-    let urlChanged = false;
 
-    if (activeCalc === 'blogs') {
-      if (params.get('calc') !== 'blogs') {
-        params.set('calc', 'blogs');
-        urlChanged = true;
-      }
-      if (articleParam) {
-        // Articles use clean ?calc=blogs&article=id URLs (category is handled internally)
-        if (params.has('category')) {
-          params.delete('category');
-          urlChanged = true;
-        }
-      } else if (activeCategory && activeCategory !== 'all') {
-        if (params.get('category') !== activeCategory) {
-          params.set('category', activeCategory);
-          urlChanged = true;
-        }
+    // Compute canonical clean path
+    const targetCleanPath = getCleanPath({ 
+      calc: activeCalc, 
+      category: activeCategory, 
+      article: articleParam 
+    });
+
+    const currentUrl = window.location.pathname + window.location.search;
+
+    if (currentUrl !== targetCleanPath) {
+      // If landing via legacy query (?calc=...), upgrade with replaceState
+      if (window.location.search && !window.location.pathname.startsWith('/calculators') && !window.location.pathname.startsWith('/guides')) {
+        window.history.replaceState({}, '', targetCleanPath);
       } else {
-        if (params.has('category')) {
-          params.delete('category');
-          urlChanged = true;
-        }
-      }
-    } else if (activeCalc === 'home') {
-      if (params.has('calc')) {
-        params.delete('calc');
-        urlChanged = true;
-      }
-      if (params.has('category')) {
-        params.delete('category');
-        urlChanged = true;
-      }
-      if (params.has('article')) {
-        params.delete('article');
-        urlChanged = true;
-      }
-    } else {
-      if (params.get('calc') !== activeCalc) {
-        params.set('calc', activeCalc);
-        urlChanged = true;
-      }
-      if (params.has('category')) {
-        params.delete('category');
-        urlChanged = true;
-      }
-      if (params.has('article')) {
-        params.delete('article');
-        urlChanged = true;
+        window.history.pushState({}, '', targetCleanPath);
       }
     }
-
-    if (urlChanged) {
-      const queryString = params.toString();
-      const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
-      window.history.pushState({}, '', newUrl);
-    }
-  }, [activeCalc, activeCategory]);
+  }, [activeCalc, activeCategory, articleParam]);
 
   // Listen to browser back/forward buttons
   useEffect(() => {
@@ -213,27 +165,22 @@ export default function App() {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      const params = new URLSearchParams(window.location.search);
-      const urlCalc = params.get('calc');
-      const urlCat = params.get('category') || 'all';
 
-      if (urlCalc && urlCalc.startsWith('blogs-')) {
-        const catFromAlias = urlCalc.replace('blogs-', '');
-        setActiveCalc('blogs');
-        setActiveCategory(catFromAlias);
-      } else if (urlCalc && validRoutes.includes(urlCalc)) {
-        setActiveCalc(urlCalc);
-        if (urlCalc === 'blogs') {
-          setActiveCategory(urlCat);
-        }
-      } else {
-        setActiveCalc('home');
-      }
+      const route = parseRouteFromUrl(window.location.pathname, window.location.search);
+      setActiveCalc(route.activeCalc);
+      setActiveCategory(route.activeCategory);
+      setArticleParam(route.articleParam);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  const navigateTo = (calcId, category = 'all', article = null) => {
+    setActiveCalc(calcId);
+    setActiveCategory(category);
+    setArticleParam(article);
+  };
 
   const activeDetails = activeCalc === 'blogs' 
     ? { name: categoryTitles[activeCategory] || 'Finance Guides' }
@@ -242,13 +189,15 @@ export default function App() {
   const renderActiveCalculator = () => {
     switch (activeCalc) {
       case 'home':
-        return <Dashboard setActiveCalculator={setActiveCalc} />;
+        return <Dashboard setActiveCalculator={(id) => navigateTo(id)} />;
       case 'about':
-        return <AboutUs />;
+        return <AboutUs setActiveCalculator={(id) => navigateTo(id)} />;
       case 'privacy':
         return <PrivacyPolicy />;
       case 'contact':
         return <ContactUs />;
+      case 'editorial':
+        return <EditorialPolicy />;
       case 'emi':
         return <EmiCalculator setResultText={setResultText} />;
       case 'eligibility':
@@ -294,13 +243,15 @@ export default function App() {
       case 'blogs':
         return (
           <Blogs 
-            setActiveCalculator={setActiveCalc} 
+            setActiveCalculator={(id) => navigateTo(id)} 
             activeCategory={activeCategory} 
-            setActiveCategory={setActiveCategory} 
+            setActiveCategory={setActiveCategory}
+            articleParam={articleParam}
+            setArticleParam={setArticleParam}
           />
         );
       default:
-        return <Dashboard setActiveCalculator={setActiveCalc} />;
+        return <Dashboard setActiveCalculator={(id) => navigateTo(id)} />;
     }
   };
 
@@ -309,7 +260,7 @@ export default function App() {
       {/* Sidebar Navigation */}
       <Sidebar 
         activeCalculator={activeCalc} 
-        setActiveCalculator={setActiveCalc} 
+        setActiveCalculator={(id) => navigateTo(id)} 
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
         isMobileOpen={isMobileOpen}
@@ -324,7 +275,7 @@ export default function App() {
           activeCalculatorId={activeCalc} 
           calculatorResultText={resultText} 
           activeCalculator={activeCalc}
-          setActiveCalculator={setActiveCalc}
+          setActiveCalculator={(id) => navigateTo(id)}
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
           isMobileOpen={isMobileOpen}
@@ -373,12 +324,16 @@ export default function App() {
                 .filter(c => relatedMap[activeCalc].includes(c.id))
                 .map(calc => {
                   const Icon = calc.icon;
+                  const cleanPath = CALCULATOR_ROUTES[calc.id]?.path || `/?calc=${calc.id}`;
                   return (
-                    <div 
+                    <a 
                       key={calc.id} 
+                      href={cleanPath}
                       className="related-tool-card"
-                      onClick={() => {
-                        setActiveCalc(calc.id);
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateTo(calc.id);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                     >
@@ -390,7 +345,7 @@ export default function App() {
                         <span className="related-tool-desc">{calc.desc}</span>
                       </div>
                       <span className="related-tool-arrow">→</span>
-                    </div>
+                    </a>
                   );
                 })}
             </div>
@@ -400,19 +355,33 @@ export default function App() {
         {/* Footer */}
         <footer className="app-footer-credits no-print" style={{ 
           marginTop: 'auto', 
-          padding: '24px 16px', 
+          padding: '28px 16px', 
           borderTop: '1px solid var(--border-color)', 
           textAlign: 'center',
-          fontSize: '11px',
+          fontSize: '12px',
           color: 'var(--text-muted)',
           lineHeight: '1.6'
         }}>
-          <p style={{ fontWeight: '600', marginBottom: '6px', fontSize: '12px', color: 'var(--text-main)' }}>© 2026 RupeeBuddy.in. All Rights Reserved.</p>
-          <p style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <strong>YMYL Financial Disclaimer:</strong> RupeeBuddy.in is a free online educational resources portal. 
-            All financial calculators, algorithms, estimations, and guides are for illustrative and educational purposes only, based on standard mathematical formulas and prevailing Indian tax slabs. 
-            The calculations are indicative and do not constitute certified tax advisory, financial planning, or fiduciary investment services. 
-            Please consult a registered financial planner or Chartered Accountant before making commercial, tax, or investment decisions.
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '14px', fontWeight: '500' }}>
+            <a href="/" onClick={(e) => { e.preventDefault(); navigateTo('home'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>Home</a>
+            <span>•</span>
+            <a href="/about-us" onClick={(e) => { e.preventDefault(); navigateTo('about'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>About Us</a>
+            <span>•</span>
+            <a href="/editorial-policy" onClick={(e) => { e.preventDefault(); navigateTo('editorial'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none', fontWeight: '600' }}>Editorial Policy & Review Standards</a>
+            <span>•</span>
+            <a href="/guides" onClick={(e) => { e.preventDefault(); navigateTo('blogs'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>Financial Guides</a>
+            <span>•</span>
+            <a href="/privacy-policy" onClick={(e) => { e.preventDefault(); navigateTo('privacy'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>Privacy Policy</a>
+            <span>•</span>
+            <a href="/contact-us" onClick={(e) => { e.preventDefault(); navigateTo('contact'); }} style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>Contact Us</a>
+          </div>
+          <p style={{ fontWeight: '600', marginBottom: '6px', fontSize: '13px', color: 'var(--text-main)' }}>
+            © 2026 RupeeBuddy.in. All Rights Reserved. Built for Indian Taxpayers & Investors 🇮🇳
+          </p>
+          <p style={{ maxWidth: '840px', margin: '0 auto', fontSize: '11px' }}>
+            <strong>YMYL Financial & Legal Disclaimer:</strong> RupeeBuddy.in is a free educational resources portal. 
+            All financial calculators, algorithms, estimations, and tax comparisons are for illustrative purposes, strictly based on standard mathematical formulas, published Union Budget tax slabs (FY 2026-27), and regulatory directives (RBI, EPFO, RERA). 
+            Computations are indicative and do not constitute certified tax advisory or financial planning. Please consult a Chartered Accountant (CA) or SEBI-Registered Investment Advisor before committing to commercial transactions.
           </p>
         </footer>
       </main>

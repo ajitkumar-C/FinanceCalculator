@@ -6,6 +6,7 @@ import {
   Coins, Lock, CalendarClock, HeartHandshake, Sunset, BookOpen 
 } from 'lucide-react';
 import { exportToPDF, shareCalculation } from '../utils/pdfExport';
+import { CALCULATOR_ROUTES } from '../utils/routes';
 
 export default function Header({ 
   activeCalculatorName, 
@@ -203,7 +204,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`/?calc=${t.id}`}
+                      href={CALCULATOR_ROUTES[t.id]?.path || `/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -282,7 +283,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`/?calc=${t.id}`}
+                      href={CALCULATOR_ROUTES[t.id]?.path || `/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -351,7 +352,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`/?calc=${t.id}`}
+                      href={CALCULATOR_ROUTES[t.id]?.path || `/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -420,7 +421,7 @@ export default function Header({
                   return (
                     <a
                       key={t.id}
-                      href={`/?calc=${t.id}`}
+                      href={CALCULATOR_ROUTES[t.id]?.path || `/?calc=${t.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateTo(t.id);
@@ -492,7 +493,7 @@ export default function Header({
                   return (
                     <a
                       key={g.id}
-                      href={g.id === 'all' ? '/?calc=blogs' : `/?calc=blogs&category=${g.id}`}
+                      href={g.id === 'all' ? '/guides' : `/guides/${g.id}`}
                       onClick={(e) => {
                         e.preventDefault();
                         navigateToGuideCategory(g.id);

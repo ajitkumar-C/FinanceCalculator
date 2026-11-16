@@ -123,26 +123,43 @@
       <a href="/" class="btn">Explore All Financial Calculators →</a>
 
       <div class="quick-links">
-        Popular Calculators:
-        <a href="/?calc=tax">Income Tax</a> •
-        <a href="/?calc=emi">Home Loan EMI</a> •
-        <a href="/?calc=sip">Mutual Fund SIP</a> •
-        <a href="/?calc=stampduty">Stamp Duty</a>
+        Popular Calculators & Standards:
+        <a href="/calculators/income-tax-calculator">Income Tax</a> •
+        <a href="/calculators/home-loan-emi-calculator">Home Loan EMI</a> •
+        <a href="/calculators/sip-calculator">Mutual Fund SIP</a> •
+        <a href="/calculators/stamp-duty-calculator">Stamp Duty</a> •
+        <a href="/editorial-policy">Editorial Policy</a>
       </div>
     </div>
 
     <script>
       (function() {
-        // Graceful fallback: If user typed e.g. /emi or /tax directly, route to appropriate query parameter
         var path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-        var knownCalcs = [
-          'emi', 'eligibility', 'clp', 'ppf', 'pf', 'sip', 'fd', 'rd', 'nps',
-          'retirement', 'tax', 'mutualfund', 'compound', 'stampduty', 'capitalgains',
-          'carpetarea', 'propertytax', 'brokerage', 'rentalyield', 'reralookup',
-          'rentalagreement', 'about', 'privacy', 'contact', 'blogs'
-        ];
-        if (knownCalcs.indexOf(path) !== -1) {
-          window.location.replace('/?calc=' + encodeURIComponent(path));
+        var cleanRedirectMap = {
+          'tax': '/calculators/income-tax-calculator',
+          'income-tax': '/calculators/income-tax-calculator',
+          'emi': '/calculators/home-loan-emi-calculator',
+          'sip': '/calculators/sip-calculator',
+          'ppf': '/calculators/ppf-calculator',
+          'pf': '/calculators/epf-calculator',
+          'clp': '/calculators/construction-linked-plan-calculator',
+          'stampduty': '/calculators/stamp-duty-calculator',
+          'capitalgains': '/calculators/capital-gains-tax-calculator',
+          'carpetarea': '/calculators/carpet-area-calculator',
+          'propertytax': '/calculators/property-tax-calculator',
+          'brokerage': '/calculators/brokerage-calculator',
+          'rentalyield': '/calculators/rental-yield-calculator',
+          'reralookup': '/calculators/rera-project-lookup',
+          'rentalagreement': '/calculators/rental-agreement-generator',
+          'about': '/about-us',
+          'privacy': '/privacy-policy',
+          'contact': '/contact-us',
+          'editorial': '/editorial-policy',
+          'blogs': '/guides'
+        };
+
+        if (cleanRedirectMap[path]) {
+          window.location.replace(cleanRedirectMap[path]);
         }
       })();
     </script>

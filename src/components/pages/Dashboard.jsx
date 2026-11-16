@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { calculatorsList } from '../Sidebar';
 import { TrendingUp } from 'lucide-react';
+import { CALCULATOR_ROUTES } from '../../utils/routes';
 
 const buttonLabels = {
   tax: 'Compare Tax Savings',
@@ -114,7 +115,7 @@ export default function Dashboard({ setActiveCalculator }) {
           return (
             <a 
               key={calc.id} 
-              href={`/?calc=${calc.id}`}
+              href={CALCULATOR_ROUTES[calc.id]?.path || `/?calc=${calc.id}`}
               className="calc-card"
               style={{ textDecoration: 'none', color: 'inherit' }}
               onClick={(e) => {
@@ -221,7 +222,7 @@ export default function Dashboard({ setActiveCalculator }) {
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a 
-              href="/?calc=tax"
+              href="/calculators/income-tax-calculator"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'var(--finance-green)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
@@ -232,7 +233,7 @@ export default function Dashboard({ setActiveCalculator }) {
               Compare Income Tax
             </a>
             <a 
-              href="/?calc=stampduty"
+              href="/calculators/stamp-duty-calculator"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: '#d97706', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {
@@ -243,7 +244,7 @@ export default function Dashboard({ setActiveCalculator }) {
               Calculate Stamp Duty
             </a>
             <a 
-              href="/?calc=sip"
+              href="/calculators/sip-calculator"
               className="ad-btn" 
               style={{ display: 'inline-block', textDecoration: 'none', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.4)', padding: '12px 22px', fontSize: '13px', fontWeight: '600', borderRadius: 'var(--radius-sm)', transition: 'var(--transition-smooth)', color: 'white' }}
               onClick={(e) => {

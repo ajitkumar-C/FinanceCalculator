@@ -17,23 +17,69 @@
     <script>
       (function() {
         var origin = 'https://rupeebuddy.in';
-        var pathname = window.location.pathname;
+        var pathname = window.location.pathname.replace(/\/+$/, '') || '/';
         var search = window.location.search;
 
-        // 1. Detect non-root legacy or spam URLs (e.g. old blog paths from previous domain owner)
-        if (pathname && pathname !== '/' && pathname !== '/index.html') {
-          var metaRobots = document.createElement('meta');
-          metaRobots.name = 'robots';
-          metaRobots.content = 'noindex, nofollow';
-          document.head.appendChild(metaRobots);
-          document.title = '404 Page Not Found | RupeeBuddy';
-          if (!window.location.search.includes('nobounce')) {
-            window.location.replace(origin + '/');
-          }
-          return;
-        }
+        // Known calculator slugs and aliases
+        var calcSlugMap = {
+          'tax': 'income-tax-calculator',
+          'income-tax': 'income-tax-calculator',
+          'income-tax-calculator': 'income-tax-calculator',
+          'emi': 'home-loan-emi-calculator',
+          'home-loan-emi': 'home-loan-emi-calculator',
+          'home-loan-emi-calculator': 'home-loan-emi-calculator',
+          'eligibility': 'loan-eligibility-calculator',
+          'loan-eligibility': 'loan-eligibility-calculator',
+          'loan-eligibility-calculator': 'loan-eligibility-calculator',
+          'clp': 'construction-linked-plan-calculator',
+          'construction-linked-plan-calculator': 'construction-linked-plan-calculator',
+          'ppf': 'ppf-calculator',
+          'ppf-calculator': 'ppf-calculator',
+          'pf': 'epf-calculator',
+          'epf-calculator': 'epf-calculator',
+          'sip': 'sip-calculator',
+          'sip-calculator': 'sip-calculator',
+          'fd': 'fd-calculator',
+          'fd-calculator': 'fd-calculator',
+          'rd': 'rd-calculator',
+          'rd-calculator': 'rd-calculator',
+          'nps': 'nps-calculator',
+          'nps-calculator': 'nps-calculator',
+          'retirement': 'retirement-planner',
+          'retirement-planner': 'retirement-planner',
+          'mutualfund': 'mutual-fund-calculator',
+          'mutual-fund-calculator': 'mutual-fund-calculator',
+          'compound': 'compound-interest-calculator',
+          'compound-interest-calculator': 'compound-interest-calculator',
+          'stampduty': 'stamp-duty-calculator',
+          'stamp-duty-calculator': 'stamp-duty-calculator',
+          'capitalgains': 'capital-gains-tax-calculator',
+          'capital-gains-tax-calculator': 'capital-gains-tax-calculator',
+          'carpetarea': 'carpet-area-calculator',
+          'carpet-area-calculator': 'carpet-area-calculator',
+          'propertytax': 'property-tax-calculator',
+          'property-tax-calculator': 'property-tax-calculator',
+          'brokerage': 'brokerage-calculator',
+          'brokerage-calculator': 'brokerage-calculator',
+          'rentalyield': 'rental-yield-calculator',
+          'rental-yield-calculator': 'rental-yield-calculator',
+          'reralookup': 'rera-project-lookup',
+          'rera-project-lookup': 'rera-project-lookup',
+          'rentalagreement': 'rental-agreement-generator',
+          'rental-agreement-generator': 'rental-agreement-generator'
+        };
 
-        // 2. Synchronous Title & Description Dictionary for Calculators & Pages
+        var staticSlugMap = {
+          'about': '/about-us',
+          'about-us': '/about-us',
+          'privacy': '/privacy-policy',
+          'privacy-policy': '/privacy-policy',
+          'contact': '/contact-us',
+          'contact-us': '/contact-us',
+          'editorial': '/editorial-policy',
+          'editorial-policy': '/editorial-policy'
+        };
+
         var titles = {
           home: 'RupeeBuddy: Free Indian Financial & Real Estate Calculators',
           emi: 'EMI Calculator: Home Loan, Car Loan & Personal Loan EMI Calculator',
@@ -60,6 +106,7 @@
           about: 'About Us | RupeeBuddy',
           privacy: 'Privacy Policy | RupeeBuddy',
           contact: 'Contact Us & Support | RupeeBuddy',
+          editorial: 'Editorial Policy & Financial Standards | RupeeBuddy',
           blogs: 'RupeeBuddy Financial Guides & Wealth Library',
           'blogs-investment': 'Investment Guides: Stocks, Mutual Funds, Algos & Wealth Strategies',
           'blogs-loans': 'Loan & Debt Guides: Home Loans, FOIR, Prepayments & CIBIL',
@@ -70,29 +117,97 @@
 
         var canonicalUrl = origin + '/';
         var pageTitle = titles.home;
+        var isValidRoute = false;
 
-        if (search && search !== '?calc=home') {
-          var params = new URLSearchParams(search);
-          var calc = params.get('calc');
-          var article = params.get('article');
-          var category = params.get('category');
+        // 1. Check Root or Index
+        if (pathname === '/' || pathname === '/index.html') {
+          isValidRoute = true;
+          // Check if legacy query parameters exist
+          if (search && search !== '?calc=home') {
+            var params = new URLSearchParams(search);
+            var qCalc = params.get('calc');
+            var qArticle = params.get('article');
+            var qCategory = params.get('category');
 
-          if (calc === 'blogs' && article) {
-            canonicalUrl = origin + '/?calc=blogs&article=' + encodeURIComponent(article);
-            var prettyTitle = article.split('-').map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
-            pageTitle = prettyTitle + ' | RupeeBuddy Financial Guides';
-          } else if (calc === 'blogs' && category && category !== 'all') {
-            canonicalUrl = origin + '/?calc=blogs&category=' + encodeURIComponent(category);
-            pageTitle = (titles['blogs-' + category] || titles.blogs) + ' | RupeeBuddy';
-          } else if (calc && calc !== 'home') {
-            canonicalUrl = origin + '/?calc=' + encodeURIComponent(calc);
-            var rawT = (titles[calc] || titles.home);
-            pageTitle = rawT.includes('RupeeBuddy') ? rawT : rawT + ' | RupeeBuddy';
+            if (qCalc === 'blogs' && qArticle) {
+              canonicalUrl = origin + '/guides/' + encodeURIComponent(qArticle);
+              var prettyT = qArticle.split('-').map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
+              pageTitle = prettyT + ' | RupeeBuddy Financial Guides';
+            } else if (qCalc === 'blogs' && qCategory && qCategory !== 'all') {
+              canonicalUrl = origin + '/guides/' + encodeURIComponent(qCategory);
+              pageTitle = (titles['blogs-' + qCategory] || titles.blogs) + ' | RupeeBuddy';
+            } else if (qCalc === 'blogs') {
+              canonicalUrl = origin + '/guides';
+              pageTitle = titles.blogs + ' | RupeeBuddy';
+            } else if (qCalc && calcSlugMap[qCalc]) {
+              canonicalUrl = origin + '/calculators/' + calcSlugMap[qCalc];
+              var rawT = (titles[qCalc] || titles.home);
+              pageTitle = rawT.includes('RupeeBuddy') ? rawT : rawT + ' | RupeeBuddy';
+            } else if (qCalc && staticSlugMap[qCalc]) {
+              canonicalUrl = origin + staticSlugMap[qCalc];
+              pageTitle = (titles[qCalc] || titles.home);
+            }
+          }
+        } 
+        // 2. Check Clean Calculator URLs (/calculators/:slug or /:calcId)
+        else if (pathname.indexOf('/calculators/') === 0) {
+          var cSlug = pathname.replace('/calculators/', '').toLowerCase();
+          if (calcSlugMap[cSlug]) {
+            isValidRoute = true;
+            canonicalUrl = origin + '/calculators/' + calcSlugMap[cSlug];
+            // Find key in titles
+            var tKey = Object.keys(calcSlugMap).find(function(k) { return calcSlugMap[k] === calcSlugMap[cSlug]; }) || cSlug;
+            var cTitle = titles[tKey] || titles.home;
+            pageTitle = cTitle.includes('RupeeBuddy') ? cTitle : cTitle + ' | RupeeBuddy';
+          }
+        } 
+        // 3. Check Clean Guides URLs (/guides/:slug or /blogs/:slug)
+        else if (pathname.indexOf('/guides') === 0 || pathname.indexOf('/blogs') === 0) {
+          isValidRoute = true;
+          var gRest = pathname.replace(/^\/(guides|blogs)\/?/, '').toLowerCase();
+          if (!gRest) {
+            canonicalUrl = origin + '/guides';
+            pageTitle = titles.blogs + ' | RupeeBuddy';
+          } else if (['investment', 'loans', 'realestate', 'retirement', 'tax'].indexOf(gRest) !== -1) {
+            canonicalUrl = origin + '/guides/' + gRest;
+            pageTitle = (titles['blogs-' + gRest] || titles.blogs) + ' | RupeeBuddy';
+          } else {
+            canonicalUrl = origin + '/guides/' + gRest;
+            var artPretty = gRest.split('-').map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
+            pageTitle = artPretty + ' | RupeeBuddy Financial Guides';
+          }
+        } 
+        // 4. Check Clean Static URLs (/about-us, /privacy-policy, /contact-us, /editorial-policy)
+        else {
+          var cleanSingle = pathname.replace(/^\//, '').toLowerCase();
+          if (staticSlugMap[cleanSingle]) {
+            isValidRoute = true;
+            canonicalUrl = origin + staticSlugMap[cleanSingle];
+            var sKey = Object.keys(staticSlugMap).find(function(k) { return staticSlugMap[k] === staticSlugMap[cleanSingle]; }) || cleanSingle;
+            pageTitle = titles[sKey] || titles.home;
+          } else if (calcSlugMap[cleanSingle]) {
+            isValidRoute = true;
+            canonicalUrl = origin + '/calculators/' + calcSlugMap[cleanSingle];
+            var rawT2 = (titles[cleanSingle] || titles.home);
+            pageTitle = rawT2.includes('RupeeBuddy') ? rawT2 : rawT2 + ' | RupeeBuddy';
           }
         }
 
-        document.title = pageTitle;
+        // 5. Unknown legacy URL detected (old blog paths or spam from previous domain owner)
+        if (!isValidRoute) {
+          var metaRobots = document.createElement('meta');
+          metaRobots.name = 'robots';
+          metaRobots.content = 'noindex, nofollow';
+          document.head.appendChild(metaRobots);
+          document.title = '404 Page Not Found | RupeeBuddy';
+          if (!window.location.search.includes('nobounce')) {
+            window.location.replace(origin + '/');
+          }
+          return;
+        }
 
+        // Apply page title and canonical tag synchronously
+        document.title = pageTitle;
         var link = document.createElement('link');
         link.rel = 'canonical';
         link.href = canonicalUrl;

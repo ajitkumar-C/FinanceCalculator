@@ -11,16 +11,24 @@ import { topTrendingPostsPart2 } from './topTrendingPostsPart2';
 import { strategicFinancePosts } from './strategicFinancePosts';
 import { trendingPostsSuitePart1 } from './trendingPostsSuitePart1';
 import { trendingPostsSuitePart2 } from './trendingPostsSuitePart2';
+import { parseRouteFromUrl } from '../../utils/routes';
 
-export default function Blogs({ setActiveCalculator, activeCategory = 'all', setActiveCategory }) {
+export default function Blogs({ 
+  setActiveCalculator, 
+  activeCategory = 'all', 
+  setActiveCategory,
+  articleParam = null,
+  setArticleParam
+}) {
   const [selectedArticleId, setSelectedArticleId] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('article') || null;
+    if (articleParam) return articleParam;
+    const route = parseRouteFromUrl(window.location.pathname, window.location.search);
+    return route.articleParam || null;
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('category') || (activeCategory !== 'all' ? activeCategory : 'all');
+    const route = parseRouteFromUrl(window.location.pathname, window.location.search);
+    return route.activeCategory || (activeCategory !== 'all' ? activeCategory : 'all');
   });
 
   const baseArticles = [
@@ -4057,20 +4065,30 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     }
   }, [activeCategory]);
 
+  // Sync article if articleParam prop changes from router
+  useEffect(() => {
+    if (articleParam !== selectedArticleId) {
+      setSelectedArticleId(articleParam);
+    }
+  }, [articleParam]);
+
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePop = () => {
-      const params = new URLSearchParams(window.location.search);
-      setSelectedArticleId(params.get('article') || null);
-      const cat = params.get('category') || 'all';
+      const route = parseRouteFromUrl(window.location.pathname, window.location.search);
+      setSelectedArticleId(route.articleParam || null);
+      const cat = route.activeCategory || 'all';
       setSelectedCategory(cat);
       if (setActiveCategory) {
         setActiveCategory(cat);
       }
+      if (setArticleParam) {
+        setArticleParam(route.articleParam || null);
+      }
     };
     window.addEventListener('popstate', handlePop);
     return () => window.removeEventListener('popstate', handlePop);
-  }, [setActiveCategory]);
+  }, [setActiveCategory, setArticleParam]);
 
   const handleCategoryChange = (newCat) => {
     setSelectedCategory(newCat);
@@ -4078,16 +4096,12 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
       setActiveCategory(newCat);
     }
     setSelectedArticleId(null);
-    setSearchTerm('');
-    const params = new URLSearchParams(window.location.search);
-    params.set('calc', 'blogs');
-    if (newCat && newCat !== 'all') {
-      params.set('category', newCat);
-    } else {
-      params.delete('category');
+    if (setArticleParam) {
+      setArticleParam(null);
     }
-    params.delete('article');
-    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+    setSearchTerm('');
+    const cleanUrl = newCat && newCat !== 'all' ? `/guides/${newCat}` : '/guides';
+    window.history.pushState({}, '', cleanUrl);
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -4109,6 +4123,9 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
 
   const handleSelectArticle = (id) => {
     setSelectedArticleId(id);
+    if (setArticleParam) {
+      setArticleParam(id);
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -4116,18 +4133,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
     if (mainLayout) {
       mainLayout.scrollTop = 0;
     }
-    const params = new URLSearchParams(window.location.search);
-    params.set('calc', 'blogs');
-    if (id) {
-      params.set('article', id);
-      params.delete('category');
-    } else {
-      params.delete('article');
-      if (selectedCategory && selectedCategory !== 'all') {
-        params.set('category', selectedCategory);
-      }
-    }
-    window.history.pushState({}, '', `${window.location.pathname}?${params.toString()}`);
+    const cleanUrl = id ? `/guides/${id}` : (selectedCategory && selectedCategory !== 'all' ? `/guides/${selectedCategory}` : '/guides');
+    window.history.pushState({}, '', cleanUrl);
   };
 
   useEffect(() => {
@@ -4187,7 +4194,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
         metaKeywords.content = `${article.category}, finance guide, ${article.title.toLowerCase()}`;
 
         // Canonical URL
-        const articleCanonical = `https://rupeebuddy.in/?calc=blogs&article=${article.id}`;
+        const articleCanonical = `https://rupeebuddy.in/guides/${article.id}`;
         let canonical = document.querySelector('link[rel="canonical"]');
         if (!canonical) {
           canonical = document.createElement('link');
@@ -4208,8 +4215,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeebuddy.in/" },
-            { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/?calc=blogs" },
-            { "@type": "ListItem", "position": 3, "name": categoryMeta[article.category]?.title || article.category, "item": `https://rupeebuddy.in/?calc=blogs&category=${article.category}` },
+            { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/guides" },
+            { "@type": "ListItem", "position": 3, "name": categoryMeta[article.category]?.title || article.category, "item": `https://rupeebuddy.in/guides/${article.category}` },
             { "@type": "ListItem", "position": 4, "name": article.title, "item": articleCanonical }
           ]
         };
@@ -4229,8 +4236,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
           "datePublished": "2026-08-12T00:00:00Z",
           "author": {
             "@type": "Organization",
-            "name": "RupeeBuddy Editorial Team",
-            "url": "https://rupeebuddy.in/?calc=about"
+            "name": "RupeeBuddy Financial Review Panel",
+            "url": "https://rupeebuddy.in/editorial-policy"
           },
           "publisher": {
             "@type": "Organization",
@@ -4277,8 +4284,8 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
 
       // Canonical URL
       const categoryCanonical = selectedCategory === 'all'
-        ? "https://rupeebuddy.in/?calc=blogs"
-        : `https://rupeebuddy.in/?calc=blogs&category=${selectedCategory}`;
+        ? "https://rupeebuddy.in/guides"
+        : `https://rupeebuddy.in/guides/${selectedCategory}`;
       let canonical = document.querySelector('link[rel="canonical"]');
       if (!canonical) {
         canonical = document.createElement('link');
@@ -4296,7 +4303,7 @@ export default function Blogs({ setActiveCalculator, activeCategory = 'all', set
       // Breadcrumb Schema
       const itemList = [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://rupeebuddy.in/" },
-        { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/?calc=blogs" }
+        { "@type": "ListItem", "position": 2, "name": "Financial Guides", "item": "https://rupeebuddy.in/guides" }
       ];
       if (selectedCategory !== 'all') {
         itemList.push({

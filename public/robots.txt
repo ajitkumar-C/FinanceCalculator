@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
+Allow: /calculators/
+Allow: /guides/
+Allow: /about-us
+Allow: /editorial-policy
+Allow: /privacy-policy
+Allow: /contact-us
 Disallow: /*?*calc=home
 
 Sitemap: https://rupeebuddy.in/sitemap.xml
