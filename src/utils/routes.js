@@ -130,6 +130,18 @@ export const CALCULATOR_ROUTES = {
     slug: 'rental-agreement-generator',
     path: '/calculators/rental-agreement-generator',
     aliases: ['rentalagreement', 'rental-agreement', 'leave-and-license']
+  },
+  prepay: {
+    id: 'prepay',
+    slug: 'loan-prepayment-calculator',
+    path: '/calculators/loan-prepayment-calculator',
+    aliases: ['prepay', 'loan-prepayment', 'prepay-vs-sip', 'loan-prepayment-calculator', 'prepayment-calculator']
+  },
+  rentvsbuy: {
+    id: 'rentvsbuy',
+    slug: 'rent-vs-buy-calculator',
+    path: '/calculators/rent-vs-buy-calculator',
+    aliases: ['rentvsbuy', 'rent-vs-buy', 'rent-vs-buy-calculator', 'rent-or-buy']
   }
 };
 

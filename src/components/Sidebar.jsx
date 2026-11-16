@@ -3,7 +3,7 @@ import {
   Percent, UserCheck, Shield, Briefcase, TrendingUp, Lock, 
   CalendarClock, HeartHandshake, Sunset, FileText, Coins, Sparkles,
   Building2, Search, X, Calculator, Home, Info, Mail, BookOpen,
-  MapPin, Layers, Scale, DollarSign, Key, ShieldCheck
+  MapPin, Layers, Scale, DollarSign, Key, ShieldCheck, Flame
 } from 'lucide-react';
 import { CALCULATOR_ROUTES } from '../utils/routes';
 
@@ -11,6 +11,7 @@ export const calculatorsList = [
   // Financial & Investment Suite
   { id: 'tax', name: 'Income Tax Calculator', desc: 'Compare Old vs New Slab Regime', icon: FileText, category: 'tax' },
   { id: 'emi', name: 'EMI Calculator (Home/Car/Personal)', desc: 'Estimate loan payments instantly', icon: Percent, category: 'loan' },
+  { id: 'prepay', name: 'Loan Prepayment vs SIP', desc: 'Prepay vs Mutual Fund SIP battle', icon: Flame, category: 'loan' },
   { id: 'eligibility', name: 'Loan Eligibility Calculator', desc: 'FOIR-based eligible loan checker', icon: UserCheck, category: 'loan' },
   { id: 'sip', name: 'SIP Investment Plan Calculator', desc: 'Calculate Systematic Investment returns', icon: TrendingUp, category: 'investment' },
   { id: 'ppf', name: 'PPF Calculator (Public Provident Fund)', desc: 'Calculate PPF tax-free interest', icon: Shield, category: 'investment' },
@@ -23,6 +24,7 @@ export const calculatorsList = [
   { id: 'compound', name: 'Compound Interest Calculator', desc: 'Daily/monthly compounding calculator', icon: Sparkles, category: 'investment' },
 
   // Real Estate & Property Suite
+  { id: 'rentvsbuy', name: 'True Rent vs Buy Calculator', desc: 'Indian opportunity cost engine', icon: Scale, category: 'realestate' },
   { id: 'clp', name: 'Construction Linked Plan Calculator', desc: 'Slab-wise payment & Pre-EMI schedule', icon: Building2, category: 'realestate' },
   { id: 'stampduty', name: 'Stamp Duty & Registration Calculator', desc: 'State-wise stamp duty & female concession', icon: MapPin, category: 'realestate' },
   { id: 'capitalgains', name: 'Property Capital Gains Tax Calculator', desc: 'Budget 2024 (20% with CII vs 12.5% flat)', icon: DollarSign, category: 'realestate' },

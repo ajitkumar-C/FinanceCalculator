@@ -421,6 +421,58 @@ const calculators = [
         a: 'Under Section 17 of the Registration Act 1908, leases exceeding 11 months require mandatory registration and higher stamp duty fees. An 11-month agreement avoids these requirements.'
       }
     ]
+  },
+  {
+    id: 'prepay',
+    slug: 'loan-prepayment-calculator',
+    name: 'Home Loan Prepayment vs SIP Calculator: Prepay vs Invest Battlefield',
+    shortName: 'Loan Prepay vs SIP Battle',
+    description: 'Compare home loan prepayment against investing surplus in an equity Mutual Fund SIP. Calculate interest saved, tenure cut, and the exact debt-free crossover year where SIP portfolio surpasses outstanding loan debt.',
+    keywords: 'home loan prepayment calculator, prepay vs sip, loan prepayment vs mutual fund, sbi home loan prepayment calculator, extra emi calculator, prepay home loan or invest in mutual fund',
+    category: 'FinancialCalculator',
+    citation: 'RBI Master Directions on Floating Rate Loans DBOD.No.Dir.BC.107/13.03.00/2011-12 & AMFI Compounding Guidelines',
+    formula: 'Monthly Reducing Balance: Balance_{t} = (Balance_{t-1} × (1 + r)) - EMI - ExtraPrepayment; vs SIP FV = P × [((1+i)^n - 1)/i] × (1+i)',
+    example: 'On a ₹50 Lakh home loan @ 8.50% for 20 years, paying just 1 extra EMI of ₹43,391 each year slashes loan tenure by 44 months and saves ₹11.2 Lakhs in interest. Alternatively, investing ₹5,000/month into an equity SIP @ 12% CAGR yields ₹49.9 Lakhs over the same period.',
+    faqs: [
+      {
+        q: 'Is it better to prepay a home loan or invest in a Mutual Fund SIP in India?',
+        a: 'Mathematically, if your expected post-tax equity SIP returns (typically 11% to 13% CAGR) exceed your home loan effective interest rate (typically 8.0% to 9.5%), investing surplus money in a SIP generates greater net wealth. However, prepayment offers guaranteed risk-free savings on interest and psychological freedom.'
+      },
+      {
+        q: 'Are there prepayment penalties on home loans in India?',
+        a: 'No. As per Reserve Bank of India (RBI) regulations, banks and housing finance companies (HFCs) cannot charge prepayment or foreclosure penalties on floating-rate individual home loans.'
+      },
+      {
+        q: 'What is the crossover year in Loan Prepayment vs SIP?',
+        a: 'The crossover year is the exact year in your loan tenure where the accumulated corpus of your parallel SIP investment matches or exceeds the outstanding principal balance of your home loan, giving you the choice to become debt-free in a single cheque.'
+      }
+    ]
+  },
+  {
+    id: 'rentvsbuy',
+    slug: 'rent-vs-buy-calculator',
+    name: 'True Rent vs Buy Calculator India: Real Estate Opportunity Cost Engine',
+    shortName: 'True Rent vs Buy Calculator',
+    description: 'Evaluate whether buying a home or renting and investing in equity mutual funds builds more wealth in India. Factors down payment opportunity cost, stamp duty, maintenance, property tax, and 20-year net worth.',
+    keywords: 'rent vs buy calculator, rent or buy home calculator india, real estate opportunity cost, buy vs rent apartment bangalore mumbai, house buying vs renting mutual fund returns',
+    category: 'RealEstateCalculator',
+    citation: 'National Housing Bank (NHB) RESIDEX Data & SEBI Wealth Creation Benchmark Studies',
+    formula: 'Net Wealth (Buy) = Appreciated Property Value - Outstanding Principal; Net Wealth (Rent) = Initial Down Payment & Stamp Duty Compounded in Equity SIP + Compounded Monthly EMI Savings',
+    example: 'Comparing an ₹80 Lakh apartment purchase (₹16L down payment + ₹5.6L stamp duty @ 8.5% EMI) against renting at ₹25,000/month: Investing the ₹21.6 Lakh upfront capital into an index SIP at 12% CAGR often generates ₹2.3 Crores in 15 years, outpacing real estate appreciation in top metros.',
+    faqs: [
+      {
+        q: 'Why does renting often build more wealth than buying a house in Indian metro cities?',
+        a: 'In Indian metros like Mumbai, Bangalore, and Gurgaon, rental yield is only 2.5% to 3.5%, while home loan interest is 8.5% to 9.0%. By renting and investing the 20% down payment and 6% stamp duty into equity mutual funds compounding at 12% to 14%, your compounding returns often surpass real estate capital appreciation.'
+      },
+      {
+        q: 'What is the break-even year in Rent vs Buy analysis?',
+        a: 'The break-even year is the point in time where the total net equity of homeownership (property value minus remaining loan debt) surpasses the accumulated investment corpus of a disciplined renter.'
+      },
+      {
+        q: 'How does tax deduction under Section 24(b) impact the decision?',
+        a: 'Section 24(b) provides up to ₹2 Lakh annual deduction on home loan interest under the Old Tax Regime. However, under the New Tax Regime (which most taxpayers now choose), Section 24(b) deductions for self-occupied properties are not available, tilting the mathematical balance further towards renting and investing.'
+      }
+    ]
   }
 ];
 

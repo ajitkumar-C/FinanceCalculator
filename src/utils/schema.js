@@ -153,6 +153,20 @@ const schemas = {
     category: "LegalDocumentGenerator",
     citation: "Indian Easements Act, 1882 & Registration Act, 1908 (11-Month Lease Conventions)"
   },
+  prepay: {
+    name: "Home Loan Prepayment vs SIP Calculator: Prepay vs Invest Battlefield",
+    description: "Compare home loan prepayment against investing in a Mutual Fund SIP. Calculate interest saved, tenure cut, and the exact debt-free crossover year where SIP exceeds loan debt.",
+    keywords: "home loan prepayment calculator, prepay vs sip, loan prepayment vs mutual fund, sbi home loan prepayment calculator, extra emi calculator",
+    category: "FinancialCalculator",
+    citation: "RBI Master Direction on Floating Rate Loans DBOD.No.Dir.BC.107/13.03.00/2011-12 & AMFI Compounding Guidelines"
+  },
+  rentvsbuy: {
+    name: "True Rent vs Buy Calculator India: Real Estate Opportunity Cost Engine",
+    description: "Evaluate whether buying a home or renting and investing in equity mutual funds builds more wealth in India. Factors down payment opportunity cost, stamp duty, maintenance, and rent inflation.",
+    keywords: "rent vs buy calculator, rent or buy home calculator india, real estate opportunity cost, buy vs rent apartment bangalore mumbai",
+    category: "RealEstateCalculator",
+    citation: "National Housing Bank (NHB) RESIDEX Data & Long-Term Real Estate vs Equity Returns"
+  },
   home: {
     name: "RupeeBuddy: Free Indian Financial & Real Estate Calculators",
     description: "Free online financial calculators for India. Calculate Income Tax (Old vs New Regime with NPS), Home Loan EMI, Mutual Fund SIP returns, PPF, and EPF balances instantly.",

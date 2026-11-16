@@ -6,6 +6,7 @@ import { CALCULATOR_ROUTES } from '../../utils/routes';
 const buttonLabels = {
   tax: 'Compare Tax Savings',
   emi: 'Calculate Loan EMI',
+  prepay: 'Launch Prepay Battle',
   eligibility: 'Check Loan Eligibility',
   sip: 'Calculate SIP Growth',
   ppf: 'Calculate PPF Returns',
@@ -16,6 +17,7 @@ const buttonLabels = {
   fd: 'Calculate FD Interest',
   rd: 'Calculate RD Interest',
   compound: 'Calculate Compound Growth',
+  rentvsbuy: 'Calculate Rent vs Buy',
   clp: 'Calculate Construction Linked Plan',
   stampduty: 'Calculate Stamp Duty',
   capitalgains: 'Calculate Capital Gains Tax',
@@ -72,7 +74,7 @@ export default function Dashboard({ setActiveCalculator }) {
               fontSize: '12px'
             }}
           >
-            🏡 Real Estate & Property (9)
+            🏡 Real Estate & Property ({calculatorsList.filter(c => c.category === 'realestate').length})
           </button>
           <button
             type="button"
@@ -88,7 +90,7 @@ export default function Dashboard({ setActiveCalculator }) {
               fontSize: '12px'
             }}
           >
-            📈 Investments & Wealth
+            📈 Investments & Wealth ({calculatorsList.filter(c => c.category === 'investment').length})
           </button>
           <button
             type="button"
@@ -104,7 +106,7 @@ export default function Dashboard({ setActiveCalculator }) {
               fontSize: '12px'
             }}
           >
-            💳 Loans & Eligibility
+            💳 Loans & Eligibility ({calculatorsList.filter(c => c.category === 'loan').length})
           </button>
         </div>
       </div>

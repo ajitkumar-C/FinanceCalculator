@@ -3,7 +3,7 @@ import {
   Printer, Share2, Menu, Calculator, ChevronDown, 
   Building2, TrendingUp, Percent, FileText, Sparkles, 
   MapPin, DollarSign, Layers, Scale, Key, Shield, UserCheck, 
-  Coins, Lock, CalendarClock, HeartHandshake, Sunset, BookOpen 
+  Coins, Lock, CalendarClock, HeartHandshake, Sunset, BookOpen, Flame 
 } from 'lucide-react';
 import { exportToPDF, shareCalculation } from '../utils/pdfExport';
 import { CALCULATOR_ROUTES } from '../utils/routes';
@@ -57,6 +57,7 @@ export default function Header({
   };
 
   const realEstateTools = [
+    { id: 'rentvsbuy', name: 'True Rent vs Buy', desc: 'Indian opportunity cost engine', icon: Scale },
     { id: 'stampduty', name: 'Stamp Duty & Registration', desc: 'State-wise stamp duty & women concession', icon: MapPin },
     { id: 'clp', name: 'Construction Linked Plan', desc: 'Slab-wise payment & Pre-EMI schedule', icon: Building2 },
     { id: 'capitalgains', name: 'Property Capital Gains Tax', desc: 'Budget 2024 (20% with CII vs 12.5% flat)', icon: DollarSign },
@@ -80,6 +81,7 @@ export default function Header({
 
   const loanTools = [
     { id: 'emi', name: 'EMI Calculator (Home/Car/Personal)', desc: 'Estimate loan payments instantly', icon: Percent },
+    { id: 'prepay', name: 'Loan Prepay vs SIP Battle', desc: 'Prepay vs Mutual Fund SIP', icon: Flame },
     { id: 'eligibility', name: 'Loan Eligibility & FOIR', desc: 'FOIR-based eligible loan checker', icon: UserCheck }
   ];
 

@@ -61,6 +61,8 @@ const BrokerageCalculator = React.lazy(() => import('./components/calculators/Br
 const RentalYieldCalculator = React.lazy(() => import('./components/calculators/RentalYieldCalculator'));
 const ReraLookupTool = React.lazy(() => import('./components/calculators/ReraLookupTool'));
 const RentalAgreementGenerator = React.lazy(() => import('./components/calculators/RentalAgreementGenerator'));
+const RentVsBuyCalculator = React.lazy(() => import('./components/calculators/RentVsBuyCalculator'));
+const PrepayBattlefield = React.lazy(() => import('./components/calculators/PrepayBattlefield'));
 
 // Lazy load static & compliance pages
 const AboutUs = React.lazy(() => import('./components/pages/AboutUs'));
@@ -95,20 +97,22 @@ const staticPages = {
 
 const relatedMap = {
   tax: ['sip', 'ppf', 'capitalgains'],
-  emi: ['clp', 'eligibility', 'stampduty'],
+  emi: ['prepay', 'clp', 'eligibility'],
+  prepay: ['emi', 'sip', 'eligibility'],
   eligibility: ['clp', 'emi', 'rentalyield'],
   clp: ['emi', 'stampduty', 'reralookup'],
-  stampduty: ['clp', 'emi', 'propertytax'],
+  stampduty: ['rentvsbuy', 'clp', 'propertytax'],
   capitalgains: ['tax', 'rentalyield', 'stampduty'],
   carpetarea: ['clp', 'propertytax', 'reralookup'],
   propertytax: ['stampduty', 'carpetarea', 'rentalyield'],
   brokerage: ['stampduty', 'rentalagreement', 'rentalyield'],
-  rentalyield: ['brokerage', 'propertytax', 'rentalagreement'],
+  rentalyield: ['rentvsbuy', 'brokerage', 'propertytax'],
+  rentvsbuy: ['rentalyield', 'emi', 'stampduty'],
   reralookup: ['clp', 'carpetarea', 'stampduty'],
   rentalagreement: ['brokerage', 'rentalyield', 'stampduty'],
   ppf: ['pf', 'nps', 'sip'],
   pf: ['ppf', 'nps', 'retirement'],
-  sip: ['mutualfund', 'compound', 'ppf'],
+  sip: ['prepay', 'mutualfund', 'compound'],
   fd: ['rd', 'ppf', 'compound'],
   rd: ['fd', 'ppf', 'compound'],
   nps: ['retirement', 'pf', 'sip'],
@@ -236,6 +240,10 @@ export default function App() {
         return <BrokerageCalculator setResultText={setResultText} />;
       case 'rentalyield':
         return <RentalYieldCalculator setResultText={setResultText} />;
+      case 'rentvsbuy':
+        return <RentVsBuyCalculator setResultText={setResultText} />;
+      case 'prepay':
+        return <PrepayBattlefield setResultText={setResultText} />;
       case 'reralookup':
         return <ReraLookupTool />;
       case 'rentalagreement':

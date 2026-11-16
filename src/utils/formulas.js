@@ -966,3 +966,369 @@ export function calculateRentalYield(
   };
 }
 
+// 20. The Loan Prepayment Battlefield (Prepay vs. SIP vs. Hybrid)
+export function calculatePrepayBattlefield({
+  loanAmount = 5000000,
+  annualRate = 8.5,
+  tenureYears = 20,
+  prepayStrategy = 'extra_emi', // 'extra_emi' | 'monthly_extra' | 'step_up' | 'lumpsum'
+  extraEmiCount = 1,
+  monthlyExtraAmount = 5000,
+  stepUpPct = 5,
+  lumpsumAmount = 200000,
+  lumpsumIntervalYears = 3,
+  sipReturnRate = 12
+}) {
+  const principal = Number(loanAmount) || 0;
+  const rate = Number(annualRate) || 0;
+  const totalMonths = Math.round((Number(tenureYears) || 20) * 12);
+  const monthlyRate = rate / 12 / 100;
+  const monthlySipRate = Math.pow(1 + (Number(sipReturnRate) || 12) / 100, 1 / 12) - 1;
+
+  // Base EMI
+  let baseEmi = 0;
+  if (monthlyRate === 0) {
+    baseEmi = principal / totalMonths;
+  } else {
+    baseEmi = (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  }
+
+  // --- Path 1: Baseline (No Prepayment) ---
+  let baselineBal = principal;
+  let baselineTotalInterest = 0;
+  const baselineSchedule = [];
+
+  for (let m = 1; m <= totalMonths; m++) {
+    const interest = baselineBal * monthlyRate;
+    const princComponent = Math.min(baselineBal, baseEmi - interest);
+    baselineTotalInterest += interest;
+    baselineBal -= princComponent;
+    baselineSchedule.push({
+      month: m,
+      balance: Math.max(0, Math.round(baselineBal)),
+      interestPaid: Math.round(interest)
+    });
+    if (baselineBal <= 0) break;
+  }
+
+  // --- Path 2: Prepayment Simulation & Path 3: SIP Simulation ---
+  let prepayBal = principal;
+  let prepayTotalInterest = 0;
+  let totalExtraPrepaid = 0;
+  let prepayPayoffMonth = totalMonths;
+  let currentEmi = baseEmi;
+
+  let sipBalance = 0;
+  let totalSipInvested = 0;
+  let crossoverMonth = null;
+  const trajectory = [];
+
+  for (let m = 1; m <= totalMonths; m++) {
+    // Determine extra prepayment amount for this month
+    let extraPayment = 0;
+    if (prepayStrategy === 'extra_emi') {
+      if (m % 12 === 0) {
+        extraPayment = baseEmi * Number(extraEmiCount);
+      }
+    } else if (prepayStrategy === 'monthly_extra') {
+      extraPayment = Number(monthlyExtraAmount);
+    } else if (prepayStrategy === 'step_up') {
+      if (m > 1 && (m - 1) % 12 === 0) {
+        currentEmi = currentEmi * (1 + Number(stepUpPct) / 100);
+      }
+      extraPayment = Math.max(0, currentEmi - baseEmi);
+    } else if (prepayStrategy === 'lumpsum') {
+      const intervalMonths = Math.round(Number(lumpsumIntervalYears) * 12);
+      if (intervalMonths > 0 && m % intervalMonths === 0) {
+        extraPayment = Number(lumpsumAmount);
+      }
+    }
+
+    // Update Prepayment Path (only if loan balance remains)
+    if (prepayBal > 0) {
+      const interest = prepayBal * monthlyRate;
+      let totalMonthlyOutflow = baseEmi + extraPayment;
+      let princComponent = totalMonthlyOutflow - interest;
+
+      if (princComponent >= prepayBal) {
+        // Loan fully settled this month
+        prepayTotalInterest += interest;
+        totalExtraPrepaid += (prepayBal + interest - baseEmi);
+        prepayBal = 0;
+        prepayPayoffMonth = m;
+      } else {
+        prepayTotalInterest += interest;
+        totalExtraPrepaid += extraPayment;
+        prepayBal -= princComponent;
+      }
+    }
+
+    // Update SIP Path: invest the exact same extraPayment each month
+    if (extraPayment > 0) {
+      totalSipInvested += extraPayment;
+      sipBalance = (sipBalance + extraPayment) * (1 + monthlySipRate);
+    } else {
+      sipBalance = sipBalance * (1 + monthlySipRate);
+    }
+
+    // Check Crossover: when SIP portfolio exceeds the baseline remaining loan
+    const baselineRemBal = baselineSchedule[m - 1] ? baselineSchedule[m - 1].balance : 0;
+    if (!crossoverMonth && baselineRemBal > 0 && sipBalance >= baselineRemBal) {
+      crossoverMonth = m;
+    }
+
+    // Record yearly checkpoints
+    if (m % 12 === 0 || m === totalMonths) {
+      trajectory.push({
+        year: Math.round(m / 12),
+        baselineBalance: baselineRemBal,
+        prepayBalance: Math.max(0, Math.round(prepayBal)),
+        sipBalance: Math.round(sipBalance)
+      });
+    }
+  }
+
+  const interestSaved = Math.max(0, Math.round(baselineTotalInterest - prepayTotalInterest));
+  const monthsSaved = Math.max(0, totalMonths - prepayPayoffMonth);
+  const yearsSaved = Number((monthsSaved / 12).toFixed(1));
+  const prepayTenureYears = Number((prepayPayoffMonth / 12).toFixed(1));
+
+  // Projected SIP corpus at the end of original loan tenure
+  const finalSipCorpus = Math.round(sipBalance);
+  const netSipAdvantage = Math.round(finalSipCorpus - (baselineTotalInterest - prepayTotalInterest));
+
+  return {
+    baseEmi: Math.round(baseEmi),
+    totalMonths,
+    baselineTotalInterest: Math.round(baselineTotalInterest),
+    baselineTotalPayment: Math.round(principal + baselineTotalInterest),
+    prepayTotalInterest: Math.round(prepayTotalInterest),
+    prepayTotalPayment: Math.round(principal + prepayTotalInterest),
+    totalExtraPrepaid: Math.round(totalExtraPrepaid),
+    interestSaved,
+    monthsSaved,
+    yearsSaved,
+    prepayTenureYears,
+    prepayPayoffMonth,
+    crossoverMonth,
+    crossoverYear: crossoverMonth ? Number((crossoverMonth / 12).toFixed(1)) : null,
+    totalSipInvested: Math.round(totalSipInvested),
+    finalSipCorpus,
+    netSipAdvantage,
+    trajectory
+  };
+}
+
+// 21. True Rent vs. Buy Opportunity Cost Engine
+export function calculateRentVsBuy({
+  propertyPrice = 8000000,
+  downPaymentPct = 20,
+  loanRate = 8.5,
+  loanTenureYears = 20,
+  stampDutyPct = 6.5,
+  monthlyMaintenance = 4000,
+  annualPropertyTax = 12000,
+  propertyAppreciationRate = 5.5,
+  monthlyRent = 25000,
+  rentInflationRate = 6.0,
+  equityReturnRate = 12.0,
+  comparisonYears = 20
+}) {
+  const price = Number(propertyPrice) || 0;
+  const downPay = price * (Number(downPaymentPct) / 100);
+  const stampDutyCost = price * (Number(stampDutyPct) / 100);
+  const upfrontCapital = downPay + stampDutyCost;
+  const loanPrincipal = price - downPay;
+
+  const totalYears = Math.min(30, Math.max(5, Number(comparisonYears) || 20));
+  const tenureMonths = Number(loanTenureYears) * 12;
+  const monthlyRate = (Number(loanRate) || 8.5) / 12 / 100;
+  const monthlyEquityRate = Math.pow(1 + (Number(equityReturnRate) || 12) / 100, 1 / 12) - 1;
+
+  // Monthly Loan EMI
+  let emi = 0;
+  if (monthlyRate === 0) {
+    emi = loanPrincipal / tenureMonths;
+  } else {
+    emi = (loanPrincipal * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) / (Math.pow(1 + monthlyRate, tenureMonths) - 1);
+  }
+
+  // --- Year by Year Simulation ---
+  let loanBalance = loanPrincipal;
+  let currentRent = Number(monthlyRent) || 0;
+  let currentMaintenance = Number(monthlyMaintenance) || 0;
+  let currentPropertyTax = Number(annualPropertyTax) || 0;
+
+  // Renting portfolio: Starts with the full upfront capital invested into equity
+  let rentEquityPortfolio = upfrontCapital;
+
+  let breakEvenYear = null;
+  const yearlyData = [];
+
+  for (let year = 1; year <= totalYears; year++) {
+    // 1. BUYING SIDE
+    // Property value appreciation
+    const propertyValue = Math.round(price * Math.pow(1 + Number(propertyAppreciationRate) / 100, year));
+
+    // Loan repayment for 12 months
+    for (let m = 1; m <= 12; m++) {
+      if (loanBalance > 0) {
+        const interest = loanBalance * monthlyRate;
+        const princ = Math.min(loanBalance, emi - interest);
+        loanBalance -= princ;
+      }
+    }
+
+    // Buyer Net Worth = Market Value of Property minus remaining debt
+    const buyerNetWorth = Math.round(propertyValue - Math.max(0, loanBalance));
+
+    // 2. RENTING SIDE
+    // Annual rent paid
+    const annualRentPaid = currentRent * 12;
+    // Annual buying cash outflow (EMI + maintenance + property tax)
+    const annualBuyerOutflow = (emi * 12) + (currentMaintenance * 12) + currentPropertyTax;
+    // Monthly cash flow difference (Buyer Outflow minus Rent)
+    const annualDifference = Math.max(0, annualBuyerOutflow - annualRentPaid);
+    const monthlyDifference = annualDifference / 12;
+
+    // Grow the initial portfolio and monthly differences
+    for (let m = 1; m <= 12; m++) {
+      rentEquityPortfolio = (rentEquityPortfolio + monthlyDifference) * (1 + monthlyEquityRate);
+    }
+
+    const renterNetWorth = Math.round(rentEquityPortfolio);
+
+    // Check Break-Even Year
+    if (!breakEvenYear && buyerNetWorth >= renterNetWorth) {
+      breakEvenYear = year;
+    }
+
+    yearlyData.push({
+      year,
+      propertyValue,
+      loanBalance: Math.max(0, Math.round(loanBalance)),
+      buyerNetWorth,
+      renterNetWorth,
+      monthlyRent: Math.round(currentRent),
+      annualBuyerOutflow: Math.round(annualBuyerOutflow),
+      netWorthDifference: Math.abs(buyerNetWorth - renterNetWorth),
+      winner: buyerNetWorth >= renterNetWorth ? 'BUY' : 'RENT'
+    });
+
+    // Inflate rent & maintenance for next year
+    currentRent = currentRent * (1 + Number(rentInflationRate) / 100);
+    currentMaintenance = currentMaintenance * 1.04; // 4% maintenance inflation
+    currentPropertyTax = currentPropertyTax * 1.02; // 2% municipal tax inflation
+  }
+
+  const finalYearData = yearlyData[yearlyData.length - 1];
+
+  return {
+    propertyPrice: price,
+    upfrontCapital: Math.round(upfrontCapital),
+    downPayment: Math.round(downPay),
+    stampDutyCost: Math.round(stampDutyCost),
+    loanPrincipal: Math.round(loanPrincipal),
+    monthlyEmi: Math.round(emi),
+    breakEvenYear,
+    finalBuyerNetWorth: finalYearData.buyerNetWorth,
+    finalRenterNetWorth: finalYearData.renterNetWorth,
+    finalDifference: Math.abs(finalYearData.buyerNetWorth - finalYearData.renterNetWorth),
+    finalWinner: finalYearData.winner,
+    yearlyData
+  };
+}
+
+// 22. Budget 2024-2027 Capital Gains & Tax Arbitrage Optimizer
+export function calculateTaxArbitrage({
+  salaryIncome = 1800000,
+  equityStcg = 100000,
+  equityLtcg = 250000,
+  propertySaleProfit = 3000000,
+  isPropertyPre2024 = true,
+  propertyOldRegimeTax = 420000,
+  propertyNewRegimeTax = 375000,
+  deductions80C = 150000,
+  healthInsurance80D = 25000,
+  homeLoanInterest24b = 200000,
+  employerNps = 100000
+}) {
+  // 1. Equity Capital Gains Tax (Budget 2024 revised rates)
+  // STCG on equity: 20%
+  const equityStcgTax = Math.round((Number(equityStcg) || 0) * 0.20);
+
+  // LTCG on equity: 12.5% on gains exceeding ₹1.25 Lakhs
+  const taxableEquityLtcg = Math.max(0, (Number(equityLtcg) || 0) - 125000);
+  const equityLtcgTax = Math.round(taxableEquityLtcg * 0.125);
+
+  const totalEquityTax = equityStcgTax + equityLtcgTax;
+
+  // 2. Real Estate Capital Gains Tax Arbitrage
+  const optimalPropertyTax = isPropertyPre2024
+    ? Math.min(Number(propertyOldRegimeTax) || 0, Number(propertyNewRegimeTax) || 0)
+    : (Number(propertyNewRegimeTax) || 0);
+
+  const propertyTaxSaved = isPropertyPre2024
+    ? Math.max(0, Math.abs((Number(propertyOldRegimeTax) || 0) - (Number(propertyNewRegimeTax) || 0)))
+    : 0;
+
+  const optimalPropertyRegime = (isPropertyPre2024 && (Number(propertyOldRegimeTax) || 0) < (Number(propertyNewRegimeTax) || 0))
+    ? '20% with CII Indexation'
+    : '12.5% Flat Rate';
+
+  // 3. Salary Tax Slabs (Old vs New Regime)
+  // Old Regime Tax Calculation
+  const totalOldDeductions = Math.min(150000, Number(deductions80C) || 0) +
+                             Math.min(100000, Number(healthInsurance80D) || 0) +
+                             Math.min(200000, Number(homeLoanInterest24b) || 0) +
+                             (Number(employerNps) || 0) + 50000; // Standard deduction ₹50k
+
+  const taxableSalaryOld = Math.max(0, (Number(salaryIncome) || 0) - totalOldDeductions);
+  let oldBaseTax = 0;
+  if (taxableSalaryOld > 1000000) {
+    oldBaseTax = 112500 + (taxableSalaryOld - 1000000) * 0.30;
+  } else if (taxableSalaryOld > 500000) {
+    oldBaseTax = 12500 + (taxableSalaryOld - 500000) * 0.20;
+  } else if (taxableSalaryOld > 250000) {
+    oldBaseTax = (taxableSalaryOld - 250000) * 0.05;
+  }
+  if (taxableSalaryOld <= 500000) oldBaseTax = 0; // Section 87A
+  const totalSalaryTaxOld = Math.round(oldBaseTax * 1.04);
+
+  // New Regime Tax Calculation (FY 2026-27 Slabs)
+  const taxableSalaryNew = Math.max(0, (Number(salaryIncome) || 0) - 75000 - (Number(employerNps) || 0));
+  let newBaseTax = 0;
+  if (taxableSalaryNew > 1500000) {
+    newBaseTax = 140000 + (taxableSalaryNew - 1500000) * 0.30;
+  } else if (taxableSalaryNew > 1200000) {
+    newBaseTax = 80000 + (taxableSalaryNew - 1200000) * 0.20;
+  } else if (taxableSalaryNew > 800000) {
+    newBaseTax = 40000 + (taxableSalaryNew - 800000) * 0.10;
+  } else if (taxableSalaryNew > 400000) {
+    newBaseTax = (taxableSalaryNew - 400000) * 0.05;
+  }
+  if (taxableSalaryNew <= 1200000) newBaseTax = 0; // Section 87A rebate
+  const totalSalaryTaxNew = Math.round(newBaseTax * 1.04);
+
+  const optimalSalaryRegime = totalSalaryTaxNew <= totalSalaryTaxOld ? 'New Tax Regime' : 'Old Tax Regime';
+  const optimalSalaryTax = Math.min(totalSalaryTaxNew, totalSalaryTaxOld);
+  const salaryTaxSavings = Math.abs(totalSalaryTaxOld - totalSalaryTaxNew);
+
+  const grandTotalTax = totalEquityTax + optimalPropertyTax + optimalSalaryTax;
+
+  return {
+    equityStcgTax,
+    equityLtcgTax,
+    totalEquityTax,
+    optimalPropertyRegime,
+    optimalPropertyTax,
+    propertyTaxSaved,
+    totalSalaryTaxOld,
+    totalSalaryTaxNew,
+    optimalSalaryRegime,
+    optimalSalaryTax,
+    salaryTaxSavings,
+    grandTotalTax
+  };
+}
+
